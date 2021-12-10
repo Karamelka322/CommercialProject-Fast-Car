@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Assets\Package\Monqo Sci-Fi Car\READ ME!.txt" />
-     <None Include="Assets\Package\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
+     <None Include="Assets\Packages\Monqo Sci-Fi Car\READ ME!.txt" />
+     <None Include="Assets\Packages\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
