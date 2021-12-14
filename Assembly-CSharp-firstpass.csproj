@@ -42,7 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
      <None Include="Assets\Plugins\Monqo Sci-Fi Car\READ ME!.txt" />
-     <None Include="Assets\Plugins\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
