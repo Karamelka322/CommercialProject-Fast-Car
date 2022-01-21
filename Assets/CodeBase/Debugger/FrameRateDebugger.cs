@@ -14,9 +14,9 @@ namespace CodeBase.Debugger
         private int _maxFrameRateCounter = int.MinValue;
         private int _minFrameRateCounter = int.MaxValue;
 
-        private int _farameRate;
         private const int _speedFrequency = 7;
-        
+        private int _farameRate;
+
         private void Update()
         {
             int frameRate = (int)RealtimeFrameRate;
