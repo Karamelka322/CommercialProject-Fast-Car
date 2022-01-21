@@ -42,13 +42,25 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\CodeBase\Services\Input\MobileInputService.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
-     <Compile Include="Assets\CodeBase\FrameRateDebugger.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\SizeValue.cs" />
+     <Compile Include="Assets\CodeBase\Debugger\FrameRateDebugger.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\StandaloneInputService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstarpper.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\logic\Camera\CameraFollow.cs" />
+     <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
+     <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Emission.shader" />
+     <None Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.shader" />
      <Reference Include="UnityEngine">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -634,11 +646,17 @@
      <Reference Include="Unity.Recorder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Postprocessing.Runtime">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Recorder.Base">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -658,8 +676,8 @@
      <Reference Include="Unity.2D.Sprite.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Flow">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+     <Reference Include="Unity.Postprocessing.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -670,14 +688,14 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Core">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+     <Reference Include="Unity.VisualScripting.Flow">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Core">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Recorder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
