@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 5624874425836311959}
   - component: {fileID: 7422848980688764312}
   - component: {fileID: 6441306311255470304}
-  - component: {fileID: 5278114488419225369}
   m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
@@ -165,19 +164,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5278114488419225369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481160164124613972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e540c4c5ad084ccab08b0ba372321d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movement: 0
 --- !u!1 &1717279132978112569
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413ee8d925f442de88758da9851e9295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: {fileID: 0}
+  _transform: {fileID: 9007761644196580852}
   _collider: {fileID: 4475612848846813654}
 --- !u!1 &5879808516794590577
 GameObject:
@@ -446,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413ee8d925f442de88758da9851e9295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: {fileID: 0}
+  _transform: {fileID: 2738570787470677488}
   _collider: {fileID: 5879808516794590576}
 --- !u!1 &6278011288415731537
 GameObject:
@@ -687,7 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413ee8d925f442de88758da9851e9295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: {fileID: 5278114488419225369}
+  _transform: {fileID: 5624874425836311959}
   _collider: {fileID: 6515981253058226929}
 --- !u!1 &6765002174677897151
 GameObject:
@@ -704,8 +690,8 @@ GameObject:
   - component: {fileID: 1935789382068488597}
   - component: {fileID: 6765002174677897145}
   - component: {fileID: 6765002174677897150}
-  - component: {fileID: 4157209243928513313}
   - component: {fileID: 7757177312404767016}
+  - component: {fileID: 4157209243928513313}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -833,20 +819,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a320627412ca47999d2e62445d43e2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _engine: {fileID: 4157209243928513313}
-  _streeringGear: {fileID: 7757177312404767016}
---- !u!114 &4157209243928513313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6765002174677897151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9d53eaee1a4186972cc3539899a365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _motor: {fileID: 4157209243928513313}
+  _steeringGear: {fileID: 7757177312404767016}
 --- !u!114 &7757177312404767016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +833,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1914315fcbf4e19bac1b6b0b690f4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frontLeftWheel: {fileID: 6515981253058226928}
+  _frontRightWheel: {fileID: 6889084145525484009}
+  _steerAngle:
+    Max: 40
+    Min: -40
+  _speed: 10
+--- !u!114 &4157209243928513313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765002174677897151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d53eaee1a4186972cc3539899a365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frontLeftWheel: {fileID: 6515981253058226928}
+  _frontRightWheel: {fileID: 6889084145525484009}
+  _rearLeftWheel: {fileID: 5879808516794590579}
+  _rearRightWheel: {fileID: 4475612848846813649}
+  _acceleration: 10
+  _power: 100
 --- !u!1 &6889084145525484015
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,5 +932,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413ee8d925f442de88758da9851e9295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: {fileID: 0}
+  _transform: {fileID: 3618680140122108019}
   _collider: {fileID: 6889084145525484014}

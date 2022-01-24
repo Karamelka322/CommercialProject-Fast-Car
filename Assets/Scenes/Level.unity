@@ -796,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 5348966456169465787}
-  _movementOffset: {x: 20, y: 34, z: 20}
+  _movementOffset: {x: 15, y: 30, z: 15}
   _rotationOffset: {x: 0, y: 0, z: 0}
   _movementSpeed: 7
   _rotationSpeed: 7

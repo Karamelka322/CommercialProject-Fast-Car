@@ -51,8 +51,10 @@
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Debugger\FrameRateDebugger.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\Motor.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\SteeringGear.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\StandaloneInputService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\logic\Player\Wheel.cs" />
@@ -60,9 +62,7 @@
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\logic\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\Engine.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\StreeringGear.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\WheelTorque.cs" />
+     <Compile Include="Assets\CodeBase\MaxMinValue.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
