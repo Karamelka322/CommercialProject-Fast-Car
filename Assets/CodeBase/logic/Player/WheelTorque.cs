@@ -13,9 +13,7 @@ namespace CodeBase.logic.Player
                 Forward();
         }
 
-        private void Forward()
-        {
-            
-        }
+        private void Forward() => 
+            transform.Rotate(transform.localEulerAngles + Vector3.right * Time.deltaTime * _movement, Space.Self);
     }
 }
