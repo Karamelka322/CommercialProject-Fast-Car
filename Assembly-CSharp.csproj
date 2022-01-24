@@ -44,6 +44,8 @@
      <Compile Include="Assets\CodeBase\Services\Input\MobileInputService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\Player.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
      <Compile Include="Assets\CodeBase\SizeValue.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
@@ -53,13 +55,14 @@
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\StandaloneInputService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\Wheel.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstarpper.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\logic\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\Player.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\Wheel.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\Engine.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\StreeringGear.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\WheelTorque.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
