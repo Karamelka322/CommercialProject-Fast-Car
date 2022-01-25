@@ -2,19 +2,16 @@ using UnityEngine;
 
 namespace CodeBase.logic.Player
 {
-    [RequireComponent(typeof(Player), typeof(Motor), typeof(SteeringGear))]
+    [RequireComponent(typeof(Player), typeof(Car.Car))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] 
-        private Motor _motor;
-
-        [SerializeField] 
-        private SteeringGear _steeringGear;
-
+        [SerializeField]
+        private Car.Car _car;
+        
         private void Update()
         {
-            _motor.Torque(Input.GetAxis("Vertical"));
-            _steeringGear.Angle(Input.GetAxis("Horizontal"));
+            _car.Movement(Input.GetAxis("Vertical"));
+            _car.Rotation(Input.GetAxis("Horizontal"));
         }
     }
 }

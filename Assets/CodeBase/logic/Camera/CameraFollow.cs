@@ -8,19 +8,19 @@ namespace CodeBase.logic.Camera
         [SerializeField] 
         private Transform _target;
 
-        [Space]
-        [SerializeField] 
+        [Space, SerializeField] 
         private Vector3 _movementOffset;
+ 
         [SerializeField] 
         private Vector3 _rotationOffset;
 
-        [Space]
-        [SerializeField]
+        [Space, SerializeField]
         private float _movementSpeed;
+        
         [SerializeField]
         private float _rotationSpeed;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(_target != null)
                 Follow(_target);
