@@ -1,14 +1,15 @@
+using CodeBase.Services.Input.LoadScene;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameBootstarpper : MonoBehaviour
+    public class GameBootstrapper : MonoBehaviour, ICorutineRunner
     {
         private Game _game;
 
         private void Awake()
         {
-            _game = new Game();
+            _game = new Game(this);
             DontDestroyOnLoad(this);
         }
     }
