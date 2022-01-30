@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
-using CodeBase.Services.Input.Factories.UI;
-using CodeBase.Services.Input.LoadScene;
+using CodeBase.Services.Factories.Player;
+using CodeBase.Services.Factories.UI;
+using CodeBase.Services.LoadScene;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateMachine
     {
         private readonly Dictionary<Type, IState> _states;
         private IExitState _exitState;
@@ -16,7 +17,8 @@ namespace CodeBase.Infrastructure
             _states = new Dictionary<Type, IState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner),
-                [typeof(LoadMenuState)] = new LoadMenuState(this, services.Single<ISceneLoaderService>(), services.Single<IUIFactory>())
+                [typeof(LoadMenuState)] = new LoadMenuState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>(), services.Single<IPlayerFactory>()),
             };
         }
 

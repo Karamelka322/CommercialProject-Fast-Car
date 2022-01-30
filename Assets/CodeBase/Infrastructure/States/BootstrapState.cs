@@ -1,9 +1,12 @@
+using CodeBase.Scene;
+using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Factories.Player;
+using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
-using CodeBase.Services.Input.AssetProvider;
-using CodeBase.Services.Input.Factories.UI;
-using CodeBase.Services.Input.LoadScene;
-using CodeBase.UI;
+using CodeBase.Services.LoadScene;
+using CodeBase.Services.StaticData;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -25,28 +28,22 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            ShowCurtain();
-            LoadMenuState();
+            _services.Single<IUIFactory>().LoadLoadingMenuCurtain().Show();
+            _services.Single<ISceneLoaderService>().Load(SceneNameConstant.Initial, LoadSceneMode.Single, EnterLoadMenuState);
         }
 
         public void Exit() { }
 
-        private void ShowCurtain()
-        {
-            LoadingCurtain curtain = _services.Single<IUIFactory>().LoadLoadingMenuCurtain();
-            curtain.Show();
-        }
-
-        private void LoadMenuState() => 
-            _stateMachine.Enter<LoadMenuState>();
-
         private void RegisterServices()
         {
+            RegisterStateMachine();
             RegisterInputService();
             RegisterSceneLoaderService();
             RegisterAssetProviderService();
             
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProviderService>()));
+            _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(),_services.Single<IAssetProviderService>()));
+            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>()));
         }
 
         private void RegisterInputService()
@@ -64,7 +61,13 @@ namespace CodeBase.Infrastructure.States
         private void RegisterSceneLoaderService() => 
             _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
 
+        private void RegisterStateMachine() => 
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
+
         private void RegisterAssetProviderService() => 
             _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
+
+        private void EnterLoadMenuState() => 
+            _stateMachine.Enter<LoadMenuState>();
     }
 }

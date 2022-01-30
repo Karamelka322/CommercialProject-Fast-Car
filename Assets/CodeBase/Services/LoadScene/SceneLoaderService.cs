@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+using CodeBase.Infrastructure;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Services.Input.LoadScene
+namespace CodeBase.Services.LoadScene
 {
     public class SceneLoaderService : ISceneLoaderService
     {
@@ -27,7 +28,7 @@ namespace CodeBase.Services.Input.LoadScene
             while (!asyncOperation.isDone)
                 yield return null;
             
-            onLoaded?.Invoke();            
+            onLoaded?.Invoke();
         }
     }
 }

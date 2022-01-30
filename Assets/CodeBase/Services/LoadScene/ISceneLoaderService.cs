@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Services.Input.LoadScene
+namespace CodeBase.Services.LoadScene
 {
     public interface ISceneLoaderService : IService
     {

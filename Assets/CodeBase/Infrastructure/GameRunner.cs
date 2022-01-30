@@ -1,6 +1,4 @@
-using CodeBase.Infrastructure.States;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure
 {
@@ -11,24 +9,13 @@ namespace CodeBase.Infrastructure
         
         private void Awake()
         {
-            if(CheckBootstapper() == false)
-            {
-                if(CheckInitialScene() == false)
-                    LoadInitialScene();
-                
+            if(CheckBootstapper() == false) 
                 Instantiate(_bootstrapperPrefab);
-            }
 
             Destroy(gameObject);
         }
 
-        private static void LoadInitialScene() => 
-            SceneManager.LoadScene(SceneNameConstant.Initial);
-
         private static bool CheckBootstapper() => 
             FindObjectOfType<GameBootstrapper>() != null;
-
-        private static bool CheckInitialScene() => 
-            SceneManager.GetActiveScene().name == SceneNameConstant.Initial;
     }
 }

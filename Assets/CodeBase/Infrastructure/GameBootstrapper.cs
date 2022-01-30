@@ -1,4 +1,3 @@
-using CodeBase.Services.Input.LoadScene;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure

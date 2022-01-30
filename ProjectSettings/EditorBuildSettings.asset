@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 55135d2537624114f8cfffe1c5c8f986
+  - enabled: 1
+    path: Assets/Scenes/Geometry/City_Geometry.unity
+    guid: e41a63be3073bee4594a85240f424487
   m_configObjects: {}

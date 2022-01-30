@@ -13,35 +13,47 @@ namespace CodeBase.UI
         private void Awake() => 
             DontDestroyOnLoad(this);
 
-        public void Show(float speed = 0) => 
-            StartCoroutine(ShowCurtain(speed));
-
-        public void Hide(float speed = 0, float delay = 0, Action done = null) =>
-            StartCoroutine(HideCurtain(speed, delay, done));
-
-        private IEnumerator ShowCurtain(float speed = 0)
+        public void Show(float speed = 0, float delay = 0, Action done = null)
         {
             if (speed == 0)
             {
                 _canvasGroup.alpha = 1f;
-                yield break;
+                done?.Invoke();
             }
+            else
+            {
+                StartCoroutine(ShowCurtain(speed, delay, done));
+            }
+        }
+
+        public void Hide(float speed = 0, float delay = 0, Action done = null)
+        {
+            if (speed == 0)
+            {
+                _canvasGroup.alpha = 0f;
+                done?.Invoke();
+            }
+            else
+            {
+                StartCoroutine(HideCurtain(speed, delay, done));
+            }
+        }
+
+        private IEnumerator ShowCurtain(float speed = 0, float delay = 0, Action done = null)
+        {
+            yield return new WaitForSeconds(delay);
 
             while (_canvasGroup.alpha < 1f)
             {
                 _canvasGroup.alpha += Time.deltaTime * speed;
                 yield return null;
             }
+            
+            done?.Invoke();
         }
         
         private IEnumerator HideCurtain(float speed = 0, float delay = 0, Action done = null)
         {
-            if (speed == 0)
-            {
-                _canvasGroup.alpha = 0f;
-                yield break;
-            }
-
             yield return new WaitForSeconds(delay);
 
             while (_canvasGroup.alpha > 0)

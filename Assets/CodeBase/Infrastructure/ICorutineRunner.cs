@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace CodeBase.Services.Input.LoadScene
+namespace CodeBase.Infrastructure
 {
     public interface ICorutineRunner
     {

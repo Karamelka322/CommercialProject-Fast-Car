@@ -17,11 +17,8 @@ namespace CodeBase.logic.Car
         private void Update() => 
             SetPositionRelativeToCollider();
 
-        public void Torque(float torque)
-        {
+        public void Torque(float torque) => 
             _collider.motorTorque = torque;
-            //_collider.brakeTorque = torque;
-        }
 
         public void SteerAngle(float angle) => 
             _collider.steerAngle = angle;

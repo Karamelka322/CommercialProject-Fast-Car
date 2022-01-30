@@ -27,7 +27,7 @@ namespace CodeBase.logic.Car
             _steeringGear.Angle(ConvertNormalizedValueToAngle(normalizedValue));
 
         private float ConvertNormalizedValueToTorque(float normalizedValue) => 
-            Mathf.Lerp(0, _motor.Power, normalizedValue);
+            normalizedValue > 0 ? Mathf.Lerp(0, _motor.Power, normalizedValue) : Mathf.Lerp(0, -_motor.Power, -normalizedValue);
 
         private float ConvertNormalizedValueToAngle(float normalizedValue) => 
             normalizedValue > 0 ? Mathf.Lerp(0, _steeringGear.SteerAngle, normalizedValue) : Mathf.Lerp(0, -_steeringGear.SteerAngle, -normalizedValue);
