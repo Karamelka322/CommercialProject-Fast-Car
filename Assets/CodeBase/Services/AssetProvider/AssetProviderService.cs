@@ -9,7 +9,13 @@ namespace CodeBase.Services.AssetProvider
     {
         public LoadingCurtain LoadLoadingMenuCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingMenuPath);
-        
+
+        public GameObject LoadSettingsInMenu() => 
+            Resources.Load<GameObject>(AssetPath.SettingsInMenu);
+
+        public GameObject LoadGarageInMenu() => 
+            Resources.Load<GameObject>(AssetPath.GarageInMenu);
+
         public LoadingCurtain LoadLoadingLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);
 

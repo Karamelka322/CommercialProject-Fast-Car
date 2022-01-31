@@ -49,7 +49,7 @@ namespace CodeBase.Infrastructure.States
             
             UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
             scene.FindComponentInRootGameObjects<MenuUIViewer>()?.Construct(_uiFactory);
-            scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayIntro();
+            scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayOpenMenu();
             
             HideCurtain(DestroyCurtain);
         }

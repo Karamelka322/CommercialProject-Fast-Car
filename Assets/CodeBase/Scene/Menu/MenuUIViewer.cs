@@ -1,5 +1,4 @@
 using CodeBase.Services.Factories.UI;
-using CodeBase.UI.Buttons;
 using UnityEngine;
 
 namespace CodeBase.Scene.Menu
@@ -10,51 +9,60 @@ namespace CodeBase.Scene.Menu
         private MenuAnimator _menuAnimator;
 
         private IUIFactory _factory;
-
-        private SkipButton _skipButton;
+        
         private GameObject _currentUI;
 
-        public void Construct(IUIFactory factory)
-        {
+        public void Construct(IUIFactory factory) => 
             _factory = factory;
-        }
 
         private void Awake()
         {
-            _menuAnimator.StartPlayIntro += ViewSkipButton;
-            _menuAnimator.IdleInMenu += ViewUIInMenu;
+            _menuAnimator.StartPlayOpenMenu += ViewSkipButton;
+            _menuAnimator.StartPlayIdleMenu += ViewUIInMenu;
+            _menuAnimator.StartPlayCloseMenu += DestroyCurrentUI;
+
+            _menuAnimator.StartPlayOpenSettings += ViewUIInSettings;
+            _menuAnimator.StartPlayCloseSettings += DestroyCurrentUI;
+            
+            _menuAnimator.StartPlayOpenGarage += ViewUIInGarage;
+            _menuAnimator.StartPlayCloseGarage += DestroyCurrentUI;
         }
 
         private void OnDestroy()
         {
-            _menuAnimator.StartPlayIntro -= ViewSkipButton;
-            _menuAnimator.IdleInMenu -= ViewUIInMenu;
+            _menuAnimator.StartPlayOpenMenu -= ViewSkipButton;
+            _menuAnimator.StartPlayIdleMenu -= ViewUIInMenu;
+            _menuAnimator.StartPlayCloseMenu -= DestroyCurrentUI;
+            
+            _menuAnimator.StartPlayOpenSettings -= ViewUIInSettings;
+            _menuAnimator.StartPlayCloseSettings -= DestroyCurrentUI;
+            
+            _menuAnimator.StartPlayOpenGarage -= ViewUIInGarage;
+            _menuAnimator.StartPlayCloseGarage -= DestroyCurrentUI;
         }
 
         private void ViewUIInMenu()
         {
-            if(_skipButton != null)
-                DestroySkipButton();
-            
             if(_currentUI == null)
-                _currentUI = _factory.LoadMainButtonInMenu();
+                _currentUI = _factory.LoadMainButtonInMenu(_menuAnimator);
         }
 
-        private void ViewSkipButton()
+        private void ViewUIInSettings()
         {
-            _skipButton = _factory.LoadSkipButton();
-            _skipButton.Click += SkipIntro;
+            DestroyCurrentUI();
+            _currentUI = _factory.LoadSettingsInMenu(_menuAnimator.PlayCloseSettings);
         }
 
-        private void SkipIntro()
+        private void ViewUIInGarage()
         {
-            _skipButton.Click -= SkipIntro;
-            _menuAnimator.SkipIntro();
-
-            DestroySkipButton();
+            DestroyCurrentUI();
+            _currentUI = _factory.LoadGarageInMenu(_menuAnimator.PlayCloseGarage);
         }
 
-        private void DestroySkipButton() => 
-            Destroy(_skipButton.gameObject);
+        private void ViewSkipButton() => 
+            _factory.LoadSkipButton(_menuAnimator);
+
+        private void DestroyCurrentUI() => 
+            Destroy(_currentUI);
     }
 }

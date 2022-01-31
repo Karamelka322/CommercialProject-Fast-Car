@@ -96,6 +96,9 @@
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\BackButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\GarageButton.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

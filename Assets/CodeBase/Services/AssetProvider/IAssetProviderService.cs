@@ -13,5 +13,7 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadMainButtonInMenu();
         SkipButton LoadSkipButton();
         PlayerStaticData[] LoadPlayerStaticData();
+        GameObject LoadSettingsInMenu();
+        GameObject LoadGarageInMenu();
     }
 }
