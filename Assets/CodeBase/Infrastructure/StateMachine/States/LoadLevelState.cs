@@ -4,6 +4,7 @@ using CodeBase.logic.Camera;
 using CodeBase.Scene;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
+using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.StaticData.Player;
 using UnityEngine;
@@ -22,12 +23,14 @@ namespace CodeBase.Infrastructure.States
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly IUIFactory _uiFactory;
         private readonly IPlayerFactory _playerFactory;
+        private readonly IInputService _inputService;
 
-        public LoadLevelState(ISceneLoaderService sceneLoaderService, IUIFactory uiFactory, IPlayerFactory playerFactory)
+        public LoadLevelState(ISceneLoaderService sceneLoaderService, IUIFactory uiFactory, IPlayerFactory playerFactory, IInputService inputService)
         {
             _sceneLoaderService = sceneLoaderService;
             _uiFactory = uiFactory;
             _playerFactory = playerFactory;
+            _inputService = inputService;
         }
 
         public void Enter()
@@ -43,7 +46,8 @@ namespace CodeBase.Infrastructure.States
             }
         }
 
-        public void Exit() { }
+        public void Exit() => 
+            _inputService.Clenup();
 
         private void LoadLevelScene() => 
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
@@ -54,7 +58,8 @@ namespace CodeBase.Infrastructure.States
         private void LoadLevel()
         {
             _uiFactory.LoadUIRoot();
-
+            _uiFactory.LoadHUD();
+            
             GameObject player = _playerFactory.CreatePlayer(PlayerTypeId.Default, Vector3.up);
             SceneManager.GetActiveScene().FindComponentInRootGameObjects<CameraFollow>().Target = player.transform;
             

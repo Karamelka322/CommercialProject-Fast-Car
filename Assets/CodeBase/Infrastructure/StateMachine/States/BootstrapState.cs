@@ -7,7 +7,6 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
@@ -30,8 +29,8 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            _services.Single<IUIFactory>().LoadLoadingMenuCurtain().Show();
-            _services.Single<ISceneLoaderService>().Load(SceneNameConstant.Initial, LoadSceneMode.Single, EnterLoadProgressState);
+            LoadAndShowCurtain();
+            _services.Single<ISceneLoaderService>().Load(SceneNameConstant.Initial, LoadSceneMode.Single, EnterLoadPersistentDataState);
         }
 
         public void Exit() { }
@@ -39,28 +38,19 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             RegisterStateMachine();
-            RegisterInputService();
             RegisterSceneLoaderService();
             RegisterAssetProviderService();
             RegisterPresistentProgressService();
+            RegisterInputService();
 
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(),_services.Single<IAssetProviderService>()));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>()));
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>()));
         }
 
-        private void RegisterInputService()
-        {
-            if (Application.isEditor)
-            {
-                _services.RegisterSingle<IInputService>(new StandaloneInputService());
-            }
-            else
-            {
-                _services.RegisterSingle<IInputService>(new MobileInputService());
-            }
-        }
+        private void RegisterInputService() => 
+            _services.RegisterSingle<IInputService>(new InputService());
 
         private void RegisterSceneLoaderService() => 
             _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
@@ -71,10 +61,13 @@ namespace CodeBase.Infrastructure.States
         private void RegisterAssetProviderService() => 
             _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
 
+        private void LoadAndShowCurtain() => 
+            _services.Single<IUIFactory>().LoadLoadingMenuCurtain().Show();
+
         private void RegisterPresistentProgressService() => 
             _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
 
-        private void EnterLoadProgressState() => 
-            _stateMachine.Enter<LoadProgressState>();
+        private void EnterLoadPersistentDataState() => 
+            _stateMachine.Enter<LoadPersistentDataState>();
     }
 }

@@ -2,6 +2,9 @@ using System;
 using CodeBase.Infrastructure;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Input;
+using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -13,15 +16,21 @@ namespace CodeBase.Services.Factories.UI
     {
         private readonly IGameStateMachine _stateMachine;
         private readonly IAssetProviderService _assetProvider;
+        private readonly IPersistentDataService _persistentDataService;
+        private readonly IStaticDataService _staticDataService;
+        private readonly IInputService _inputService;
 
         private GameObject _uiRoot;
         
         public LoadingCurtain LoadingCurtain { get; private set; }
 
-        public UIFactory(IGameStateMachine stateMachine,IAssetProviderService assetProvider)
+        public UIFactory(IGameStateMachine stateMachine, IAssetProviderService assetProvider, IPersistentDataService persistentDataService, IStaticDataService staticDataService, IInputService inputService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
+            _persistentDataService = persistentDataService;
+            _staticDataService = staticDataService;
+            _inputService = inputService;
         }
 
         public LoadingCurtain LoadLoadingMenuCurtain() => 
@@ -59,7 +68,17 @@ namespace CodeBase.Services.Factories.UI
             return garage;
         }
 
-        
+        public GameObject LoadHUD()
+        {
+            HUD hud = Object.Instantiate(_assetProvider.LoadHUD());
+
+            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.InputData.Type);
+            GameObject inputVariant = Object.Instantiate(prefab, hud.ControlContainer);
+            _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
+            
+            return hud.gameObject;
+        }
+
         public GameObject LoadSkipButton(MenuAnimator menuAnimator)
         {
             SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), _uiRoot.transform);

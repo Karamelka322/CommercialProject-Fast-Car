@@ -11,10 +11,22 @@ namespace CodeBase.Services.AssetProvider
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingMenuPath);
 
         public GameObject LoadSettingsInMenu() => 
-            Resources.Load<GameObject>(AssetPath.SettingsInMenu);
+            Resources.Load<GameObject>(AssetPath.SettingsInMenuPath);
 
         public GameObject LoadGarageInMenu() => 
-            Resources.Load<GameObject>(AssetPath.GarageInMenu);
+            Resources.Load<GameObject>(AssetPath.GarageInMenuPath);
+
+        public HUD LoadHUD() => 
+            Resources.Load<HUD>(AssetPath.HUDPath);
+
+        public GameObject LoadJoystickInput() => 
+            Resources.Load<GameObject>(AssetPath.JoystickInputPath);
+
+        public GameObject LoadButtonsInput() => 
+            Resources.Load<GameObject>(AssetPath.ButtonsInputPath);
+
+        public GameObject LoadAreasInput() => 
+            Resources.Load<GameObject>(AssetPath.AreasInputPath);
 
         public LoadingCurtain LoadLoadingLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);
@@ -29,6 +41,6 @@ namespace CodeBase.Services.AssetProvider
             Resources.Load<SkipButton>(AssetPath.SkipButtonPath);
 
         public PlayerStaticData[] LoadPlayerStaticData() => 
-            Resources.LoadAll<PlayerStaticData>(AssetPath.PlayerStaticData);
+            Resources.LoadAll<PlayerStaticData>(AssetPath.PlayerStaticDataPath);
     }
 }

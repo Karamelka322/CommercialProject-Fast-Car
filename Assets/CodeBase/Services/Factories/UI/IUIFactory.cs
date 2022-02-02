@@ -15,5 +15,6 @@ namespace CodeBase.Services.Factories.UI
         LoadingCurtain LoadingCurtain { get; }
         GameObject LoadSettingsInMenu(Action backEvent);
         GameObject LoadGarageInMenu(Action backEvent);
+        GameObject LoadHUD();
     }
 }

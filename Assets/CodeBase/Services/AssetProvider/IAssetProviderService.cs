@@ -9,11 +9,18 @@ namespace CodeBase.Services.AssetProvider
     {
         LoadingCurtain LoadLoadingMenuCurtain();
         LoadingCurtain LoadLoadingLevelCurtain();
+
+        PlayerStaticData[] LoadPlayerStaticData();
+        
         GameObject LoadUIRoot();
         GameObject LoadMainButtonInMenu();
         SkipButton LoadSkipButton();
-        PlayerStaticData[] LoadPlayerStaticData();
         GameObject LoadSettingsInMenu();
         GameObject LoadGarageInMenu();
+        
+        HUD LoadHUD();
+        GameObject LoadJoystickInput();
+        GameObject LoadButtonsInput();
+        GameObject LoadAreasInput();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
+using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
@@ -19,9 +20,9 @@ namespace CodeBase.Infrastructure
             _states = new Dictionary<Type, IState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner),
-                [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IPersistentDataService>(), services.Single<ISaveLoadService>()),
+                [typeof(LoadPersistentDataState)] = new LoadPersistentDataState(this, services.Single<IPersistentDataService>(), services.Single<ISaveLoadService>()),
                 [typeof(LoadMenuState)] = new LoadMenuState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>(), services.Single<IPlayerFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>(), services.Single<IPlayerFactory>(), services.Single<IInputService>()),
             };
         }
 
