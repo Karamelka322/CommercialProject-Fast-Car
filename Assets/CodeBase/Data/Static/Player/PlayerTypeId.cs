@@ -1,4 +1,4 @@
-namespace CodeBase.StaticData.Player
+namespace CodeBase.Data.Static.Player
 {
     public enum PlayerTypeId
     {

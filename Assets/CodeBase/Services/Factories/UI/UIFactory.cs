@@ -5,6 +5,7 @@ using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Input;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Tween;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -19,25 +20,35 @@ namespace CodeBase.Services.Factories.UI
         private readonly IPersistentDataService _persistentDataService;
         private readonly IStaticDataService _staticDataService;
         private readonly IInputService _inputService;
+        private readonly ITweenService _tweenService;
 
         private GameObject _uiRoot;
         
         public LoadingCurtain LoadingCurtain { get; private set; }
 
-        public UIFactory(IGameStateMachine stateMachine, IAssetProviderService assetProvider, IPersistentDataService persistentDataService, IStaticDataService staticDataService, IInputService inputService)
+        public UIFactory(IGameStateMachine stateMachine, IAssetProviderService assetProvider, IPersistentDataService persistentDataService, IStaticDataService staticDataService, IInputService inputService, ITweenService tweenService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
             _persistentDataService = persistentDataService;
             _staticDataService = staticDataService;
             _inputService = inputService;
+            _tweenService = tweenService;
         }
 
-        public LoadingCurtain LoadLoadingMenuCurtain() => 
-            LoadingCurtain = Object.Instantiate(_assetProvider.LoadLoadingMenuCurtain());
+        public LoadingCurtain LoadLoadingMenuCurtain()
+        {
+            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLoadingMenuCurtain());
+            curtain.Construct(_tweenService);
+            return LoadingCurtain = curtain;
+        }
 
-        public LoadingCurtain LoadLoadingLevelCurtain() => 
-            LoadingCurtain = Object.Instantiate(_assetProvider.LoadLoadingLevelCurtain());
+        public LoadingCurtain LoadLoadingLevelCurtain()
+        {
+            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLoadingLevelCurtain());
+            curtain.Construct(_tweenService);
+            return LoadingCurtain = curtain;
+        }
 
         public GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator)
         {

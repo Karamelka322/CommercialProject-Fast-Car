@@ -1,4 +1,7 @@
 using CodeBase.Data;
+using CodeBase.Data.Perseistent;
+using CodeBase.Data.Static;
+using CodeBase.Data.Static.Level;
 using CodeBase.Services.Input;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
@@ -36,7 +39,12 @@ namespace CodeBase.Infrastructure.States
                 InputData =
                 {
                     Type = InputTypeId.Buttons
-                }
+                },
+                
+                LevelData =
+                {
+                    Type = LevelTypeId.Level_1,
+                },
             };
         }
 

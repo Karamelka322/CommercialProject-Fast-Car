@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Data.Static;
 using CodeBase.Services.Input.Element;
 using UnityEngine;
 

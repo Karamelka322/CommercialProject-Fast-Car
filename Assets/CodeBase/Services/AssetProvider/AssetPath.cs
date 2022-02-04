@@ -6,7 +6,8 @@ namespace CodeBase.Services.AssetProvider
         public const string CurtainsLoadingLevelPath = "UI/Curtains/LoadingLevelCurtain";
 
         public const string PlayerStaticDataPath = "StaticData/Player";
-        
+        public const string LevelStaticDataPath = "StaticData/Level";
+
         public const string UIRootPath = "UI/UIRoot";
         public const string MainButtonInMenuPath = "UI/Menu/Menu";
         public const string SettingsInMenuPath = "UI/Menu/Settings";

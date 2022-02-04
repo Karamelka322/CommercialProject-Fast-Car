@@ -1,4 +1,4 @@
-namespace CodeBase.Services.Input
+namespace CodeBase.Data.Static
 {
     public enum InputTypeId
     {

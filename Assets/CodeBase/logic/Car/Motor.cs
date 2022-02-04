@@ -10,10 +10,10 @@ namespace CodeBase.logic.Car
         [SerializeField] 
         private Wheel _frontRightWheel;
 
-        [Space, SerializeField] 
+        [Space, SerializeField, UnityEngine.Min(0)] 
         private int _power;
 
-        [SerializeField]
+        [SerializeField, UnityEngine.Min(0)]
         private int _speedAcceleration;
 
         public int Power => _power;

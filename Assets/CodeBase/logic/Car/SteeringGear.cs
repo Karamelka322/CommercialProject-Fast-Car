@@ -10,10 +10,10 @@ namespace CodeBase.logic.Car
         [SerializeField] 
         private Wheel _frontRightWheel;
 
-        [Space, SerializeField] 
+        [Space, SerializeField, UnityEngine.Min(0)] 
         private int _steerAngle;
 
-        [SerializeField] 
+        [SerializeField, UnityEngine.Min(0)] 
         private int _speedRotation;
 
         public int SteerAngle => _steerAngle;

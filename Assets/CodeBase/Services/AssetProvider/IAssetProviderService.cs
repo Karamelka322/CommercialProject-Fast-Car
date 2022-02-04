@@ -1,4 +1,6 @@
-using CodeBase.StaticData.Player;
+using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
+using CodeBase.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -11,13 +13,14 @@ namespace CodeBase.Services.AssetProvider
         LoadingCurtain LoadLoadingLevelCurtain();
 
         PlayerStaticData[] LoadPlayerStaticData();
-        
+        LevelStaticData[] LoadLevelStaticData();
+
         GameObject LoadUIRoot();
         GameObject LoadMainButtonInMenu();
         SkipButton LoadSkipButton();
         GameObject LoadSettingsInMenu();
         GameObject LoadGarageInMenu();
-        
+
         HUD LoadHUD();
         GameObject LoadJoystickInput();
         GameObject LoadButtonsInput();

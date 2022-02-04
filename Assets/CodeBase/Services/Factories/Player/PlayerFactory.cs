@@ -1,7 +1,8 @@
+using CodeBase.Data.Static.Player;
 using CodeBase.logic.Player;
 using CodeBase.Services.Input;
 using CodeBase.Services.StaticData;
-using CodeBase.StaticData.Player;
+using CodeBase.Services.Tween;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Player
@@ -10,11 +11,13 @@ namespace CodeBase.Services.Factories.Player
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IInputService _inputService;
+        private readonly ITweenService _tweenService;
 
-        public PlayerFactory(IStaticDataService staticDataService, IInputService inputService)
+        public PlayerFactory(IStaticDataService staticDataService, IInputService inputService, ITweenService tweenService)
         {
             _staticDataService = staticDataService;
             _inputService = inputService;
+            _tweenService = tweenService;
         }
 
         public GameObject CreatePlayer(PlayerTypeId typeId, Vector3 at)
@@ -23,9 +26,12 @@ namespace CodeBase.Services.Factories.Player
 
             GameObject player = Object.Instantiate(staticData.Prefab.gameObject, at, Quaternion.identity);
             
-            if(player.TryGetComponent(out PlayerMovement component))
-                component.Construct(_inputService);
-            
+            if(player.TryGetComponent(out PlayerMovement movement))
+                movement.Construct(_inputService);
+
+            if(player.TryGetComponent(out PlayerHook hook))
+                hook.Construct(_tweenService);
+
             return player;
         }
     }

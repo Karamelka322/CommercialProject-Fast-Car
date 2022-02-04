@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using CodeBase.Services.Tween;
 using UnityEngine;
 
 namespace CodeBase.UI
@@ -10,8 +10,13 @@ namespace CodeBase.UI
         [SerializeField]
         private CanvasGroup _canvasGroup;
 
+        private ITweenService _tweenService;
+
         private void Awake() => 
             DontDestroyOnLoad(this);
+
+        public void Construct(ITweenService tweenService) => 
+            _tweenService = tweenService;
 
         public void Show(float speed = 0, float delay = 0, Action done = null)
         {
@@ -22,7 +27,7 @@ namespace CodeBase.UI
             }
             else
             {
-                StartCoroutine(ShowCurtain(speed, delay, done));
+                _tweenService.Show<LoadingCurtain>(_canvasGroup, speed, delay, done);
             }
         }
 
@@ -35,34 +40,8 @@ namespace CodeBase.UI
             }
             else
             {
-                StartCoroutine(HideCurtain(speed, delay, done));
+                _tweenService.Hide<LoadingCurtain>(_canvasGroup, speed, delay, done);
             }
-        }
-
-        private IEnumerator ShowCurtain(float speed = 0, float delay = 0, Action done = null)
-        {
-            yield return new WaitForSeconds(delay);
-
-            while (_canvasGroup.alpha < 1f)
-            {
-                _canvasGroup.alpha += Time.deltaTime * speed;
-                yield return null;
-            }
-            
-            done?.Invoke();
-        }
-        
-        private IEnumerator HideCurtain(float speed = 0, float delay = 0, Action done = null)
-        {
-            yield return new WaitForSeconds(delay);
-
-            while (_canvasGroup.alpha > 0)
-            {
-                _canvasGroup.alpha -= Time.deltaTime * speed;
-                yield return null;
-            }
-
-            done?.Invoke();
         }
     }
 }

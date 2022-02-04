@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\CodeBase\Editor\Tools.cs" />
      <Compile Include="Assets\CodeBase\Editor\PointEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\LevelStaticDataEditor.cs" />
      <Reference Include="UnityEngine">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

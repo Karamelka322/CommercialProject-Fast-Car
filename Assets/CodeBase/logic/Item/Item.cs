@@ -5,7 +5,7 @@ namespace CodeBase.logic.Player
 {
     public abstract class Item : MonoBehaviour
     {
-        public event Action Lifting;
+        public event Action OnLifting;
         
         private bool _raised;
 
@@ -19,7 +19,7 @@ namespace CodeBase.logic.Player
                 
                 if(value)
                 {
-                    Lifting?.Invoke();
+                    OnLifting?.Invoke();
                 }
             }
         }

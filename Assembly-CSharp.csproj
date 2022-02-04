@@ -51,6 +51,7 @@
      <Compile Include="Assets\CodeBase\UI\Buttons\UIButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\JoystickInputElement.cs" />
+     <Compile Include="Assets\CodeBase\logic\Item\Item.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\JoystickInputVariant.cs" />
      <Compile Include="Assets\CodeBase\logic\Player\PlayerMovement.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\ISaveLoadService.cs" />
@@ -74,7 +75,7 @@
      <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
      <Compile Include="Assets\CodeBase\logic\World\Point.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\GarageButton.cs" />
      <Compile Include="Assets\CodeBase\Services\IService.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\ButtonsInputVariant.cs" />
@@ -84,11 +85,13 @@
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadService.cs" />
      <Compile Include="Assets\CodeBase\logic\Car\Motor.cs" />
+     <Compile Include="Assets\CodeBase\logic\Item\Capsule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameRunner.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\PlayerPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\IInputModule.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerTypeId.cs" />
+     <Compile Include="Assets\CodeBase\logic\World\Area.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
@@ -111,6 +114,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\BackButton.cs" />
      <Compile Include="Assets\CodeBase\logic\Car\Wheel.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\PlayerHook.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
@@ -118,10 +122,14 @@
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
-     <Compile Include="Assets\CodeBase\logic\Player\PlayerHook.cs" />
-     <Compile Include="Assets\CodeBase\logic\World\Area.cs" />
-     <Compile Include="Assets\CodeBase\logic\Item\Item.cs" />
-     <Compile Include="Assets\CodeBase\logic\Item\Capsule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\GeometryStaticData.cs" />
+     <Compile Include="Assets\CodeBase\logic\Player\PlayerSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\LevelPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
+     <Compile Include="Assets\CodeBase\logic\Generator.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

@@ -7,6 +7,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Tween;
 using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
@@ -37,35 +38,21 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
-            RegisterStateMachine();
-            RegisterSceneLoaderService();
-            RegisterAssetProviderService();
-            RegisterPresistentProgressService();
-            RegisterInputService();
-
+            _services.RegisterSingle<ITweenService>(new TweenService(_corutineRunner));
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
+            _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
+            _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
+            _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
+            _services.RegisterSingle<IInputService>(new InputService());
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>()));
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>()));
+            
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
+            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
         }
-
-        private void RegisterInputService() => 
-            _services.RegisterSingle<IInputService>(new InputService());
-
-        private void RegisterSceneLoaderService() => 
-            _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
-
-        private void RegisterStateMachine() => 
-            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
-
-        private void RegisterAssetProviderService() => 
-            _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
 
         private void LoadAndShowCurtain() => 
             _services.Single<IUIFactory>().LoadLoadingMenuCurtain().Show();
-
-        private void RegisterPresistentProgressService() => 
-            _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
 
         private void EnterLoadPersistentDataState() => 
             _stateMachine.Enter<LoadPersistentDataState>();

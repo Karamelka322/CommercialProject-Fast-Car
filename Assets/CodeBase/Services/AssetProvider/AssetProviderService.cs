@@ -1,4 +1,6 @@
-using CodeBase.StaticData.Player;
+using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
+using CodeBase.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -42,5 +44,8 @@ namespace CodeBase.Services.AssetProvider
 
         public PlayerStaticData[] LoadPlayerStaticData() => 
             Resources.LoadAll<PlayerStaticData>(AssetPath.PlayerStaticDataPath);
+
+        public LevelStaticData[] LoadLevelStaticData() => 
+            Resources.LoadAll<LevelStaticData>(AssetPath.LevelStaticDataPath);
     }
 }

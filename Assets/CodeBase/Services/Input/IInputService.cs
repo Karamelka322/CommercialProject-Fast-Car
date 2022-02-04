@@ -1,3 +1,4 @@
+using CodeBase.Data.Static;
 using UnityEngine;
 
 namespace CodeBase.Services.Input

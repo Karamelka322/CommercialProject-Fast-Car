@@ -1,7 +1,7 @@
 using System;
-using CodeBase.Services.Input;
+using CodeBase.Data.Static;
 
-namespace CodeBase.Data
+namespace CodeBase.Data.Perseistent
 {
     [Serializable]
     public class InputPersistentData

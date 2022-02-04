@@ -1,4 +1,5 @@
 using CodeBase.Data;
+using CodeBase.Data.Perseistent;
 
 namespace CodeBase.Services.PersistentProgress
 {

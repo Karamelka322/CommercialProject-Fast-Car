@@ -1,3 +1,4 @@
+using CodeBase.Services.Tween;
 using UnityEngine;
 
 namespace CodeBase.logic.Player
@@ -10,6 +11,12 @@ namespace CodeBase.logic.Player
         [SerializeField] 
         private Point _captureCenter;
 
+        private ITweenService _tweenService;
+        private Item _item;
+
+        public void Construct(ITweenService tweenService) => 
+            _tweenService = tweenService;
+
         private void OnEnable() => 
             _captureArea.OnAreaEnter += OnAreaEnter;
 
@@ -18,10 +25,11 @@ namespace CodeBase.logic.Player
 
         private void OnAreaEnter(Collider collider)
         {
-            Debug.Log(collider.name);
+            if(_item != null)
+                return;
             
-            if (IsItem(collider, out Item item)) 
-                LiftItem(item);
+            if (IsItem(collider, out _item)) 
+                LiftItem(_item);
         }
 
         private static bool IsItem(Collider collider, out Item item) => 
@@ -30,9 +38,9 @@ namespace CodeBase.logic.Player
         private void LiftItem(Item item)
         {
             item.Raised = true;
-            
-            item.transform.parent = _captureCenter.transform;
-            item.transform.localPosition = Vector3.zero;
+
+            _item.transform.parent = _captureCenter.transform;
+            _tweenService.Move<Capsule>(item.transform, Vector3.zero, speed: 1, TweenMode.Local);
         }
     }
 }

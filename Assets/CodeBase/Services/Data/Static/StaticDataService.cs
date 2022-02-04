@@ -1,6 +1,10 @@
+using CodeBase.Data;
+using CodeBase.Data.Static;
+using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Input;
-using CodeBase.StaticData.Player;
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData
@@ -36,6 +40,19 @@ namespace CodeBase.Services.StaticData
                 InputTypeId.Areas => _assetProviderService.LoadAreasInput(),
                 _ => default
             };
+        }
+
+        public LevelStaticData ForLevel(LevelTypeId typeId)
+        {
+            LevelStaticData[] staticDatas = _assetProviderService.LoadLevelStaticData();
+
+            for (int i = 0; i < staticDatas.Length; i++)
+            {
+                if (staticDatas[i].Type == typeId)
+                    return staticDatas[i];
+            }
+
+            return default;
         }
     }
 }
