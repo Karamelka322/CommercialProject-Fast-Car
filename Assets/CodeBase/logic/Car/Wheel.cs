@@ -1,6 +1,8 @@
+using System;
+using CodeBase.Infrastructure;
 using UnityEngine;
 
-namespace CodeBase.logic.Car
+namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(WheelCollider))]
     public class Wheel : MonoBehaviour
@@ -11,10 +13,21 @@ namespace CodeBase.logic.Car
         [SerializeField] 
         private WheelCollider _collider;
 
+        private IUpdatable _updatable;
+        
         private Vector3 _position;
         private Quaternion _rotation;
-        
-        private void Update() => 
+
+        public void Construct(IUpdatable updatable) => 
+            _updatable = updatable;
+
+        private void Start() => 
+            _updatable.OnUpdate += OnUpdate;
+
+        private void OnDisable() => 
+            _updatable.OnUpdate -= OnUpdate;
+
+        private void OnUpdate() => 
             SetPositionRelativeToCollider();
 
         public void Torque(float torque) => 

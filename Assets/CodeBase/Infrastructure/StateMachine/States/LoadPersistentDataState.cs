@@ -1,8 +1,8 @@
-using CodeBase.Data;
 using CodeBase.Data.Perseistent;
+using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
-using CodeBase.Services.Input;
+using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
 
@@ -23,16 +23,27 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            LoadProgressOrInitNew();
+            LoadPlayerPersistenDataOrInitNew();
+
+#if UNITY_EDITOR
+            LoadDeveloperPersistentDataOrInitNew();
+            
+            if (_progressService.DeveloperData.FirstScene == SceneNameConstant.Level)
+            {
+                _stateMachine.Enter<LoadLevelState>();
+                return;
+            }
+#endif
+            
             EnterLoadMenuState();
         }
 
         public void Exit() { }
 
-        private void LoadProgressOrInitNew() => 
-            _progressService.PlayerData = _saveLoadService.LoadPlayerData() ?? NewProgress();
+        private void LoadPlayerPersistenDataOrInitNew() => 
+            _progressService.PlayerData = _saveLoadService.LoadPlayerData() ?? NewPlayerPersistentData();
 
-        private static PlayerPersistentData NewProgress()
+        private static PlayerPersistentData NewPlayerPersistentData()
         {
             return new PlayerPersistentData
             {
@@ -47,6 +58,20 @@ namespace CodeBase.Infrastructure.States
                 },
             };
         }
+
+#if UNITY_EDITOR
+        private void LoadDeveloperPersistentDataOrInitNew() => 
+            _progressService.DeveloperData = _saveLoadService.LoadDeveloperData() ?? DeveloperPersistentData();
+
+        private static DeveloperPersistentData DeveloperPersistentData()
+        {
+            return new DeveloperPersistentData()
+            {
+                FirstScene = ""
+            };
+        }
+#endif
+
 
         private void EnterLoadMenuState() => 
             _stateMachine.Enter<LoadMenuState>();

@@ -3,7 +3,6 @@ using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Services.Input;
-using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData

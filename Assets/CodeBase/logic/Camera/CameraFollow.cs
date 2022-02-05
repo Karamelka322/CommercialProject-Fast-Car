@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.logic.Camera
+namespace CodeBase.Logic.Camera
 {
     [RequireComponent(typeof(UnityEngine.Camera))]
     public class CameraFollow : MonoBehaviour

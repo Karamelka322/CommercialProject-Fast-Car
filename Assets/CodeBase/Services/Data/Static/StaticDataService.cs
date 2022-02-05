@@ -4,7 +4,6 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Input;
-using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.logic.Car
+namespace CodeBase.Logic.Car
 {
     public class SteeringGear : MonoBehaviour
     {

@@ -7,6 +7,9 @@ namespace CodeBase.Data.Static.Level
     {
         public LevelTypeId Type;
         
+        [Space, Header("Generator"), Min(0)]
+        public float PowerChangeSpeed;
+        
         [Space]
         public GeometryStaticData Geometry;
     }

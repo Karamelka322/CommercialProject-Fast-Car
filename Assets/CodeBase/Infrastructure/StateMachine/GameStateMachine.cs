@@ -17,14 +17,29 @@ namespace CodeBase.Infrastructure
         private readonly Dictionary<Type, IState> _states;
         private IExitState _exitState;
         
-        public GameStateMachine(AllServices services, ICorutineRunner corutineRunner)
+        public GameStateMachine(AllServices services, ICorutineRunner corutineRunner, IUpdatable updatable)
         {
             _states = new Dictionary<Type, IState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner),
-                [typeof(LoadPersistentDataState)] = new LoadPersistentDataState(this, services.Single<IPersistentDataService>(), services.Single<ISaveLoadService>()),
-                [typeof(LoadMenuState)] = new LoadMenuState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(services.Single<ISceneLoaderService>(), services.Single<IUIFactory>(), services.Single<IPlayerFactory>(), services.Single<IInputService>(), services.Single<IPersistentDataService>(), services.Single<IStaticDataService>(), services.Single<ITweenService>()),
+                [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner, updatable),
+                
+                [typeof(LoadPersistentDataState)] = new LoadPersistentDataState(
+                    services.Single<IGameStateMachine>(),
+                    services.Single<IPersistentDataService>(),
+                    services.Single<ISaveLoadService>()),
+                
+                [typeof(LoadMenuState)] = new LoadMenuState(
+                    services.Single<ISceneLoaderService>(),
+                    services.Single<IUIFactory>()),
+                
+                [typeof(LoadLevelState)] = new LoadLevelState(
+                    services.Single<ISceneLoaderService>(),
+                    services.Single<IUIFactory>(),
+                    services.Single<IPlayerFactory>(),
+                    services.Single<IInputService>(),
+                    services.Single<IPersistentDataService>(),
+                    services.Single<IStaticDataService>(),
+                    services.Single<ITweenService>()),
             };
         }
 

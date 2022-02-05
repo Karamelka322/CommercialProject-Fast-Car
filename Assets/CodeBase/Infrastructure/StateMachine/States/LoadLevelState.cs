@@ -2,8 +2,8 @@ using System;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Extension;
-using CodeBase.logic;
-using CodeBase.logic.Camera;
+using CodeBase.Logic.Camera;
+using CodeBase.Logic.Level.Generator;
 using CodeBase.Scene;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -12,6 +12,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
+using CodeBase.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -84,8 +85,17 @@ namespace CodeBase.Infrastructure.States
             _uiFactory.LoadHUD();
             
             GameObject player = _playerFactory.CreatePlayer(PlayerTypeId.Default, Vector3.up);
-            SceneManager.GetActiveScene().FindComponentInRootGameObjects<CameraFollow>().Target = player.transform;
-            SceneManager.GetSceneByName(_levelStaticData.Geometry.SceneName).FindComponentInRootGameObjects<Generator>().Construct(_tweenService);
+            
+            UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+            activeScene.FindComponentInRootGameObjects<CameraFollow>().Target = player.transform;
+
+            UnityEngine.SceneManagement.Scene additiveScene = SceneManager.GetSceneByName(_levelStaticData.Geometry.SceneName);
+            additiveScene.FindComponentInRootGameObjects<GeneratorHook>().Construct(_tweenService);
+            
+            GeneratorPower generatorPower = additiveScene.FindComponentInRootGameObjects<GeneratorPower>();
+            generatorPower.Construct(_levelStaticData);
+            
+            activeScene.FindComponentInRootGameObjects<GeneratorPowerBar>().Construct(generatorPower);
             
             HideCurtain(DestroyCurtain);
         }

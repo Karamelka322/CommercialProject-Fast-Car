@@ -1,7 +1,9 @@
+using CodeBase.Logic.Item;
+using CodeBase.Logic.World;
 using CodeBase.Services.Tween;
 using UnityEngine;
 
-namespace CodeBase.logic.Player
+namespace CodeBase.Logic.Player
 {
     public class PlayerHook : MonoBehaviour
     {
@@ -12,7 +14,7 @@ namespace CodeBase.logic.Player
         private Point _captureCenter;
 
         private ITweenService _tweenService;
-        private Item _item;
+        private Item.Item _item;
 
         public void Construct(ITweenService tweenService) => 
             _tweenService = tweenService;
@@ -32,10 +34,10 @@ namespace CodeBase.logic.Player
                 LiftItem(_item);
         }
 
-        private static bool IsItem(Collider collider, out Item item) => 
+        private static bool IsItem(Collider collider, out Item.Item item) => 
             collider.TryGetComponent(out item);
 
-        private void LiftItem(Item item)
+        private void LiftItem(Item.Item item)
         {
             item.Raised = true;
 

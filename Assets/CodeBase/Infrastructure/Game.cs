@@ -7,11 +7,11 @@ namespace CodeBase.Infrastructure
     {
         private readonly GameStateMachine _gameStateMachine;
 
-        public Game(ICorutineRunner corutineRunner)
+        public Game(ICorutineRunner corutineRunner, IUpdatable updatable)
         {
             AllServices services = new AllServices();
             
-            _gameStateMachine = new GameStateMachine(services, corutineRunner);
+            _gameStateMachine = new GameStateMachine(services, corutineRunner, updatable);
             _gameStateMachine.Enter<BootstrapState>();
         }
     }

@@ -1,7 +1,7 @@
-namespace CodeBase.logic.Player
+namespace CodeBase.Logic.Item
 {
     public class Capsule : Item
     {
-        
+        public int Power;
     }
 }

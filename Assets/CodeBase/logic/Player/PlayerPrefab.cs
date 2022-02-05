@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.logic.Player
+namespace CodeBase.Logic.Player
 {
     public class PlayerPrefab : MonoBehaviour
     {

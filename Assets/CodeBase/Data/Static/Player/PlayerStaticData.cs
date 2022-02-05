@@ -1,4 +1,4 @@
-using CodeBase.logic.Player;
+using CodeBase.Logic.Player;
 using UnityEngine;
 
 namespace CodeBase.Data.Static.Player

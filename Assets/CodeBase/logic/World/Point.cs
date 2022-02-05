@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase
+namespace CodeBase.Logic.World
 {
     [RequireComponent(typeof(Transform))]
     public class Point : MonoBehaviour

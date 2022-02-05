@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level
   m_EditorClassIdentifier: 
   Type: 1
+  PowerChangeSpeed: 2
   Geometry:
     SceneName: City_Geometry
     PlayerSpawnPoints:

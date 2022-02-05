@@ -1,6 +1,7 @@
+using CodeBase.Logic.World;
 using UnityEngine;
 
-namespace CodeBase.logic.Car
+namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(Motor), typeof(SteeringGear), typeof(Rigidbody))]
     public class Car : MonoBehaviour

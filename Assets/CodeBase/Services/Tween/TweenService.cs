@@ -57,6 +57,9 @@ namespace CodeBase.Services.Tween
         {
             for (float i = 0; i < 1f; i += Time.deltaTime * speed)
             {
+                if(transform == null)
+                    break;
+                
                 if(mode == TweenMode.Global)
                 {
                     transform.position = Vector3.Lerp(transform.position, position, i);
@@ -76,7 +79,7 @@ namespace CodeBase.Services.Tween
         {
             yield return new WaitForSeconds(delay);
 
-            while (canvasGroup.alpha < 1f)
+            while (canvasGroup != null && canvasGroup.alpha < 1f)
             {
                 canvasGroup.alpha += Time.deltaTime * speed;
                 yield return null;
@@ -89,7 +92,7 @@ namespace CodeBase.Services.Tween
         {
             yield return new WaitForSeconds(delay);
 
-            while (canvasGroup.alpha > 0)
+            while (canvasGroup != null && canvasGroup.alpha > 0)
             {
                 canvasGroup.alpha -= Time.deltaTime * speed;
                 yield return null;

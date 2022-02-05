@@ -1,7 +1,8 @@
+using CodeBase.Infrastructure;
 using CodeBase.Services.Input;
 using UnityEngine;
 
-namespace CodeBase.logic.Player
+namespace CodeBase.Logic.Player
 {
     [RequireComponent(typeof(PlayerPrefab), typeof(Car.Car))]
     public class PlayerMovement : MonoBehaviour
@@ -10,11 +11,21 @@ namespace CodeBase.logic.Player
         private Car.Car _car;
 
         private IInputService _inputService;
-        
-        public void Construct(IInputService inputService) => 
-            _inputService = inputService;
+        private IUpdatable _updatable;
 
-        private void Update()
+        public void Construct(IInputService inputService, IUpdatable updatable)
+        {
+            _inputService = inputService;
+            _updatable = updatable;
+        }
+
+        private void Start() => 
+            _updatable.OnUpdate += OnUpdate;
+
+        private void OnDisable() => 
+            _updatable.OnUpdate -= OnUpdate;
+
+        private void OnUpdate()
         {
             _car.Movement(_inputService.Axis.x);
             _car.Rotation(_inputService.Axis.y);

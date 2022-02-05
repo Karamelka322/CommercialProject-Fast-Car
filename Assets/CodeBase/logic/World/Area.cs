@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CodeBase.logic.Player
+namespace CodeBase.Logic.World
 {
     [RequireComponent(typeof(Collider))]
     public class Area : MonoBehaviour

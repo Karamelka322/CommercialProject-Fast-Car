@@ -15,8 +15,8 @@ namespace CodeBase.Services.AssetProvider
         public const string SkipButtonPath = "UI/Menu/SkipButton";
 
         public const string HUDPath = "UI/HUD/HUD";
-        public const string JoystickInputPath = "UI/HUD/Joystick";
-        public const string ButtonsInputPath = "UI/HUD/Buttons";
-        public const string AreasInputPath = "UI/HUD/Areas";
+        public const string JoystickInputPath = "UI/HUD/Input/Joystick";
+        public const string ButtonsInputPath = "UI/HUD/Input/Buttons";
+        public const string AreasInputPath = "UI/HUD/Input/Areas";
     }
 }

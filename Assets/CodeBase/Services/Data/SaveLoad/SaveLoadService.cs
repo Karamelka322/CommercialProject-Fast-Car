@@ -1,5 +1,5 @@
-using CodeBase.Data;
 using CodeBase.Data.Perseistent;
+using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Extension;
 using CodeBase.Services.PersistentProgress;
 using UnityEngine;
@@ -9,9 +9,10 @@ namespace CodeBase.Services.SaveLoad
     public class SaveLoadService : ISaveLoadService
     {
         private const string PlayerDataKey = "PlayerData";
-        
-        private readonly IPersistentDataService _progressService;
+        private const string DeveloperDataKey = "DeveloperData";
 
+        private readonly IPersistentDataService _progressService;
+        
         public SaveLoadService(IPersistentDataService progressService)
         {
             _progressService = progressService;
@@ -19,6 +20,9 @@ namespace CodeBase.Services.SaveLoad
 
         public PlayerPersistentData LoadPlayerData() => 
             PlayerPrefs.GetString(PlayerDataKey).DeserializeFromJson<PlayerPersistentData>();
+
+        public DeveloperPersistentData LoadDeveloperData() => 
+            PlayerPrefs.GetString(DeveloperDataKey).DeserializeFromJson<DeveloperPersistentData>();
 
         public void SavePlayerData() => 
             PlayerPrefs.SetString(PlayerDataKey, _progressService.PlayerData.SerializeToJson());

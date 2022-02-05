@@ -1,19 +1,22 @@
-using CodeBase.logic.Player;
+using System;
+using CodeBase.Logic.Item;
+using CodeBase.Logic.World;
 using CodeBase.Services.Tween;
 using UnityEngine;
 
-namespace CodeBase.logic
+namespace CodeBase.Logic.Level.Generator
 {
-    public class Generator : MonoBehaviour
+    public class GeneratorHook : MonoBehaviour
     {
         [SerializeField] 
         private Area _capturArea;
 
         [SerializeField] 
-        private Point _capturePoin;
+        private Point _capturPoin;
 
+        public event Action<Capsule> OnCapsuleLift;
         private ITweenService _tweenService;
-
+        
         public void Construct(ITweenService tweenService) => 
             _tweenService = tweenService;
 
@@ -35,7 +38,10 @@ namespace CodeBase.logic
         private void LiftCapsule(Capsule capsule)
         {
             capsule.transform.parent = null;
-            _tweenService.Move<Capsule>(capsule.transform, _capturePoin.WorldPosition);
+            
+            _tweenService.Move<Capsule>(capsule.transform, _capturPoin.WorldPosition);
+            OnCapsuleLift?.Invoke(capsule);
+            
             Destroy(capsule.gameObject, 1f);
         }
     }

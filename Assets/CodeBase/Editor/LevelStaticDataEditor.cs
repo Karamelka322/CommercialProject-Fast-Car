@@ -1,5 +1,5 @@
 using CodeBase.Data.Static.Level;
-using CodeBase.StaticData;
+using CodeBase.Logic.Player;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
