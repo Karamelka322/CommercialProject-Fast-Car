@@ -17,7 +17,7 @@ namespace CodeBase.Logic.Camera
         [SerializeField]
         private float _rotationSpeed;
 
-        public Transform Target;
+        public Transform Target { get; set; }
 
         private void FixedUpdate()
         {

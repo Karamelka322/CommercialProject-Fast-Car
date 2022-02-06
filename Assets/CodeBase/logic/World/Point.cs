@@ -9,5 +9,6 @@ namespace CodeBase.Logic.World
         public float Range;
         
         public Vector3 WorldPosition => transform.position;
+        public Vector3 LocalPosition => transform.localPosition;
     }
 }

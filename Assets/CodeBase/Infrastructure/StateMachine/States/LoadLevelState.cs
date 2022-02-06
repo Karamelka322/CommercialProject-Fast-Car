@@ -84,9 +84,9 @@ namespace CodeBase.Infrastructure.States
             _uiFactory.LoadUIRoot();
             _uiFactory.LoadHUD();
             
-            GameObject player = _playerFactory.CreatePlayer(PlayerTypeId.Default, Vector3.up);
+            GameObject player = _playerFactory.CreatePlayer(PlayerTypeId.Default, RandomPlayerSpawnPoint() + Vector3.up);
             
-            UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetActiveScene();
+            UnityEngine.SceneManagement.Scene activeScene = SceneManager.GetSceneByName(SceneNameConstant.Level);
             activeScene.FindComponentInRootGameObjects<CameraFollow>().Target = player.transform;
 
             UnityEngine.SceneManagement.Scene additiveScene = SceneManager.GetSceneByName(_levelStaticData.Geometry.SceneName);
@@ -101,7 +101,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private Vector3 RandomPlayerSpawnPoint() => 
-            _levelStaticData.Geometry.PlayerSpawnPoints[Random.Range(0, _levelStaticData.Geometry.PlayerSpawnPoints.Count)] + Vector3.up;
+            _levelStaticData.Geometry.PlayerSpawnPoints[Random.Range(0, _levelStaticData.Geometry.PlayerSpawnPoints.Count)];
 
         private void LoadCurtain() => 
             _uiFactory.LoadLoadingLevelCurtain();

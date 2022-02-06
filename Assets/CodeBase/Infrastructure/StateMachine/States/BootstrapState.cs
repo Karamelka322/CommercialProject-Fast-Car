@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Scene;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Factories.Player;
@@ -33,7 +34,7 @@ namespace CodeBase.Infrastructure.States
         public void Enter()
         {
             LoadAndShowCurtain();
-            _services.Single<ISceneLoaderService>().Load(SceneNameConstant.Initial, LoadSceneMode.Single, EnterLoadPersistentDataState);
+            LoadInitialScene(EnterLoadPersistentDataState);
         }
 
         public void Exit() { }
@@ -55,6 +56,14 @@ namespace CodeBase.Infrastructure.States
 
         private void LoadAndShowCurtain() => 
             _services.Single<IUIFactory>().LoadLoadingMenuCurtain().Show();
+
+        private void LoadInitialScene(Action done)
+        {
+            if (SceneManager.GetActiveScene().name == SceneNameConstant.Initial)
+                done?.Invoke();
+            else
+                _services.Single<ISceneLoaderService>().Load(SceneNameConstant.Initial, LoadSceneMode.Single, done);
+        }
 
         private void EnterLoadPersistentDataState() => 
             _stateMachine.Enter<LoadPersistentDataState>();

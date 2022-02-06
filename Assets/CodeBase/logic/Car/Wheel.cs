@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Infrastructure;
 using UnityEngine;
 
