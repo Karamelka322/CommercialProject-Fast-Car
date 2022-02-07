@@ -2,9 +2,11 @@ using CodeBase.Data.Perseistent;
 using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
 using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
+using CodeBase.Services.StaticData;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -12,13 +14,15 @@ namespace CodeBase.Infrastructure.States
     {
         private readonly IGameStateMachine _stateMachine;
         private readonly IPersistentDataService _progressService;
-        private readonly ISaveLoadService _saveLoadService;
+        private readonly ISaveLoadDataService _saveLoadDataService;
+        private readonly IStaticDataService _staticDataService;
 
-        public LoadPersistentDataState(IGameStateMachine stateMachine, IPersistentDataService progressService, ISaveLoadService saveLoadService)
+        public LoadPersistentDataState(IGameStateMachine stateMachine, IPersistentDataService progressService, ISaveLoadDataService saveLoadDataService, IStaticDataService staticDataService)
         {
             _stateMachine = stateMachine;
             _progressService = progressService;
-            _saveLoadService = saveLoadService;
+            _saveLoadDataService = saveLoadDataService;
+            _staticDataService = staticDataService;
         }
 
         public void Enter()
@@ -30,7 +34,7 @@ namespace CodeBase.Infrastructure.States
             
             if (_progressService.DeveloperData.FirstScene == SceneNameConstant.Level)
             {
-                _stateMachine.Enter<LoadLevelState>();
+                EnterLoadLevelState();
                 return;
             }
 #endif
@@ -41,39 +45,50 @@ namespace CodeBase.Infrastructure.States
         public void Exit() { }
 
         private void LoadPlayerPersistenDataOrInitNew() => 
-            _progressService.PlayerData = _saveLoadService.LoadPlayerData() ?? NewPlayerPersistentData();
+            _progressService.PlayerData = _saveLoadDataService.LoadPlayerData() ?? NewPlayerPersistentData();
 
-        private static PlayerPersistentData NewPlayerPersistentData()
+        private PlayerPersistentData NewPlayerPersistentData()
         {
             return new PlayerPersistentData
             {
                 InputData =
                 {
-                    Type = InputTypeId.Buttons
+                    Type = InputTypeId.Areas
                 },
                 
                 LevelData =
                 {
                     Type = LevelTypeId.Level_1,
                 },
+                
+                SessionData =
+                {
+                    PlayerSessionData =
+                    {
+                        Health = _staticDataService.ForPlayer(PlayerTypeId.Default).Health
+                    }
+                }
             };
         }
 
 #if UNITY_EDITOR
         private void LoadDeveloperPersistentDataOrInitNew() => 
-            _progressService.DeveloperData = _saveLoadService.LoadDeveloperData() ?? DeveloperPersistentData();
+            _progressService.DeveloperData = _saveLoadDataService.LoadDeveloperData() ?? NewDeveloperPersistentData();
 
-        private static DeveloperPersistentData DeveloperPersistentData()
+        private static DeveloperPersistentData NewDeveloperPersistentData()
         {
             return new DeveloperPersistentData()
             {
                 FirstScene = ""
             };
         }
+
 #endif
-
-
+        
         private void EnterLoadMenuState() => 
             _stateMachine.Enter<LoadMenuState>();
+
+        private void EnterLoadLevelState() => 
+            _stateMachine.Enter<LoadLevelState>();
     }
 }

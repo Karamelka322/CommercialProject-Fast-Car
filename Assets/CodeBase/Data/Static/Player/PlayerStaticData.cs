@@ -8,5 +8,8 @@ namespace CodeBase.Data.Static.Player
     {
         public PlayerTypeId Type;
         public PlayerPrefab Prefab;
+        
+        [Header("Stats"), Min(1)]
+        public float Health;
     }
 }

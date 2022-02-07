@@ -41,9 +41,9 @@ namespace CodeBase.Infrastructure.States
         public void Exit() { }
 
         private void LoadScene() => 
-            _sceneLoader.Load(SceneNameConstant.Menu, LoadSceneMode.Single, LoadMenu);
+            _sceneLoader.Load(SceneNameConstant.Menu, LoadSceneMode.Single, OnLoaded);
 
-        private void LoadMenu()
+        private void OnLoaded()
         {
             _uiFactory.LoadUIRoot();
             

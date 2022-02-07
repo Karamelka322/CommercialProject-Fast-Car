@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Prefab: {fileID: 6765002174677897145, guid: f27dda49b2c4c6c4b8152f61c5dbc80b, type: 3}
+  Health: 100

@@ -7,11 +7,13 @@ namespace CodeBase.Data.Perseistent
     {
         public InputPersistentData InputData;
         public LevelPersistentData LevelData;
+        public SessionPersistentData SessionData;
 
         public PlayerPersistentData()
         {
             InputData = new InputPersistentData();
             LevelData = new LevelPersistentData();
+            SessionData = new SessionPersistentData();
         }
     }
 }

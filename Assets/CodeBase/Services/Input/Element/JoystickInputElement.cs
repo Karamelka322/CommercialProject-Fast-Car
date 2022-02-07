@@ -55,8 +55,8 @@ namespace CodeBase.Services.Input.Element
 
         private void SetNormalizeValue(in Vector3 position)
         {
-            _value.x = Mathf.Clamp01((1f / _radius) * position.y * _multiplier);
-            _value.y = Mathf.Clamp01((1f / _radius) * position.x * _multiplier);
+            _value.x = Mathf.Clamp((1f / _radius) * position.y * _multiplier, -1, 1);
+            _value.y = Mathf.Clamp((1f / _radius) * position.x * _multiplier, -1, 1);
         }
 
         private void ResetNormalizeValue() => 

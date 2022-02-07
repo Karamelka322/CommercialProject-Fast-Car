@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Scene;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
@@ -45,13 +46,15 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
             _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
-            _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
             _services.RegisterSingle<IInputService>(new InputService());
-            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentDataService>()));
+
+            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService());
+            _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
+            _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable));
+            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable, _services.Single<IReadWriteDataService>()));
         }
 
         private void LoadAndShowCurtain() => 
