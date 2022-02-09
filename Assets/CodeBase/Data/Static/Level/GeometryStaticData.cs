@@ -11,5 +11,11 @@ namespace CodeBase.Data.Static.Level
         
         [Space]
         public List<Vector3> PlayerSpawnPoints;
+
+        [Space]
+        public List<Vector3> GeneratorSpawnPoint;
+
+        [Space] 
+        public List<Vector3> EnemySpawnPoint;
     }
 }

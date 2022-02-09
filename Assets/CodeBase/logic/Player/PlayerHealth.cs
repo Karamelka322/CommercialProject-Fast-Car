@@ -1,17 +1,19 @@
 using CodeBase.Data.Perseistent;
-using CodeBase.Services.Data.ReaderWriter;
 using UnityEngine;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerHealth : MonoBehaviour, IReadData, IWriteData
+    public class PlayerHealth : MonoBehaviour
     {
-        private float _health;
-        
-        public void ReadData(PlayerPersistentData persistentData) => 
-            _health = persistentData.SessionData.PlayerSessionData.Health;
+        private PlayerSessionData _playerSessionData;
 
-        public void WriteData(PlayerPersistentData persistentData) => 
-            persistentData.SessionData.PlayerSessionData.Health = _health;
+        public void Construct(PlayerSessionData playerSessionData) => 
+            _playerSessionData = playerSessionData;
+
+        public void AddHealth(float value) => 
+            _playerSessionData.AddHealth(value);
+
+        public void ReduceHealth(float value) => 
+            _playerSessionData.ReduceHealth(value);
     }
 }

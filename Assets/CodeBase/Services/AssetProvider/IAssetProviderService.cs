@@ -13,6 +13,7 @@ namespace CodeBase.Services.AssetProvider
 
         PlayerStaticData[] LoadPlayerStaticData();
         LevelStaticData[] LoadLevelStaticData();
+        GameObject LoadEnemy();
 
         GameObject LoadUIRoot();
         GameObject LoadMainButtonInMenu();
@@ -24,5 +25,6 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadJoystickInput();
         GameObject LoadButtonsInput();
         GameObject LoadAreasInput();
+        GameObject LoadGenerator();
     }
 }

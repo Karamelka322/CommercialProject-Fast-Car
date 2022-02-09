@@ -2,6 +2,8 @@ using System;
 using CodeBase.Scene;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Factories.Enemy;
+using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
@@ -52,9 +54,11 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
             _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
-            
+
+            _services.RegisterSingle<ILevelFactory>(new LevelFactory(_services.Single<IAssetProviderService>(), _services.Single<ITweenService>(), _services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable, _services.Single<IReadWriteDataService>()));
+            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable, _services.Single<IPersistentDataService>()));
+            _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(_services.Single<IAssetProviderService>(), _updatable));
         }
 
         private void LoadAndShowCurtain() => 

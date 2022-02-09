@@ -1,23 +1,21 @@
-using CodeBase.Logic.Level.Generator;
+using CodeBase.Data.Perseistent;
 
 namespace CodeBase.UI
 {
     public class GeneratorPowerBar : UIBar
     {
-        private const float MaxPower = 100;
+        private GeneratorSessionData _generatorSessionData;
+
+        public void Construct(GeneratorSessionData generatorSessionData) =>
+            _generatorSessionData = generatorSessionData;
         
-        private GeneratorPower _generatorPower;
-
-        public void Construct(GeneratorPower generatorPower) => 
-            _generatorPower = generatorPower;
-
         private void Start() => 
-            _generatorPower.Change += OnChangePower;
+            _generatorSessionData.ChangePower += OnChangePower;
 
         private void OnDestroy() => 
-            _generatorPower.Change -= OnChangePower;
+            _generatorSessionData.ChangePower -= OnChangePower;
 
         private void OnChangePower(float power) => 
-            Fill = power / MaxPower;
+            Fill = power / GeneratorSessionData.MaxPower;
     }
 }

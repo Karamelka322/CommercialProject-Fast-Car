@@ -32,7 +32,7 @@ namespace CodeBase.Infrastructure.States
 #if UNITY_EDITOR
             LoadDeveloperPersistentDataOrInitNew();
             
-            if (_progressService.DeveloperData.FirstScene == SceneNameConstant.Level)
+            if (IsInitialScene())
             {
                 EnterLoadLevelState();
                 return;
@@ -49,11 +49,14 @@ namespace CodeBase.Infrastructure.States
 
         private PlayerPersistentData NewPlayerPersistentData()
         {
+            PlayerStaticData playerStaticData = _staticDataService.ForPlayer(PlayerTypeId.Default);
+            LevelStaticData levelStaticData = _staticDataService.ForLevel(LevelTypeId.Level_1);
+            
             return new PlayerPersistentData
             {
                 InputData =
                 {
-                    Type = InputTypeId.Areas
+                    Type = InputTypeId.Joystick
                 },
                 
                 LevelData =
@@ -63,9 +66,16 @@ namespace CodeBase.Infrastructure.States
                 
                 SessionData =
                 {
-                    PlayerSessionData =
+                    PlayerData =
                     {
-                        Health = _staticDataService.ForPlayer(PlayerTypeId.Default).Health
+                        MaxHealth = playerStaticData.Health,
+                        Health = playerStaticData.Health
+                    },
+                    
+                    GeneratorData =
+                    {
+                        Power = GeneratorSessionData.MaxPower,
+                        PowerSpeedChange = levelStaticData.PowerChangeSpeed
                     }
                 }
             };
@@ -83,12 +93,14 @@ namespace CodeBase.Infrastructure.States
             };
         }
 
+        private bool IsInitialScene() => 
+            _progressService.DeveloperData.FirstScene == SceneNameConstant.Level;
+
+        private void EnterLoadLevelState() => 
+            _stateMachine.Enter<LoadLevelState>();
 #endif
         
         private void EnterLoadMenuState() => 
             _stateMachine.Enter<LoadMenuState>();
-
-        private void EnterLoadLevelState() => 
-            _stateMachine.Enter<LoadLevelState>();
     }
 }

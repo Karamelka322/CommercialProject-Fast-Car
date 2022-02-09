@@ -17,8 +17,8 @@ MonoBehaviour:
   Geometry:
     SceneName: City_Geometry
     PlayerSpawnPoints:
-    - {x: 38.7, y: 0, z: 51.5}
-    - {x: 62.1, y: 0, z: -1.06}
-    - {x: -46.7, y: 0, z: -14.2}
-    - {x: 3.3, y: 0, z: -4.1}
-    - {x: 19.1, y: 0, z: -48.4}
+    - {x: -37.9, y: 0, z: -50.9}
+    GeneratorSpawnPoint:
+    - {x: -56.3, y: 0, z: -60.9}
+    EnemySpawnPoint:
+    - {x: 57.63, y: 0, z: 48.19}

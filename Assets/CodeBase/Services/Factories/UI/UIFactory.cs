@@ -87,6 +87,9 @@ namespace CodeBase.Services.Factories.UI
             GameObject inputVariant = Object.Instantiate(prefab, hud.ControlContainer);
             _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
             
+            hud.gameObject.GetComponentInChildren<GeneratorPowerBar>()?.Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
+            hud.gameObject.GetComponentInChildren<PlayerHealthBar>()?.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
+            
             return hud.gameObject;
         }
 

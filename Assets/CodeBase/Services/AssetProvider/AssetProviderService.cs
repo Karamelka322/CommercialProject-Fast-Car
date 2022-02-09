@@ -29,6 +29,12 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadAreasInput() => 
             Resources.Load<GameObject>(AssetPath.AreasInputPath);
 
+        public GameObject LoadGenerator() => 
+            Resources.Load<GameObject>(AssetPath.GeneratorPath);
+
+        public GameObject LoadEnemy() => 
+            Resources.Load<GameObject>(AssetPath.EnemyPath);
+
         public LoadingCurtain LoadLoadingLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);
 

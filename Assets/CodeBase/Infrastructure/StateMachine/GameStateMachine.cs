@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Factories.Enemy;
+using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
@@ -41,8 +42,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IInputService>(),
                     services.Single<IPersistentDataService>(),
                     services.Single<IStaticDataService>(),
-                    services.Single<ITweenService>(),
-                    services.Single<IReadWriteDataService>()),
+                    services.Single<ILevelFactory>(),
+                    services.Single<IEnemyFactory>()),
             };
         }
 

@@ -7,6 +7,7 @@ namespace CodeBase.Services.AssetProvider
 
         public const string PlayerStaticDataPath = "StaticData/Player";
         public const string LevelStaticDataPath = "StaticData/Level";
+        public const string EnemyPath = "Enemy/Enemy";
 
         public const string UIRootPath = "UI/UIRoot";
         public const string MainButtonInMenuPath = "UI/Menu/Menu";
@@ -18,5 +19,7 @@ namespace CodeBase.Services.AssetProvider
         public const string JoystickInputPath = "UI/HUD/Input/Joystick";
         public const string ButtonsInputPath = "UI/HUD/Input/Buttons";
         public const string AreasInputPath = "UI/HUD/Input/Areas";
+
+        public const string GeneratorPath = "Level/Generator";
     }
 }

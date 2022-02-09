@@ -5,11 +5,13 @@ namespace CodeBase.Data.Perseistent
     [Serializable]
     public class SessionPersistentData
     {
-        public PlayerSessionData PlayerSessionData;
+        public PlayerSessionData PlayerData;
+        public GeneratorSessionData GeneratorData;
 
         public SessionPersistentData()
         {
-            PlayerSessionData = new PlayerSessionData();
+            PlayerData = new PlayerSessionData();
+            GeneratorData = new GeneratorSessionData();
         }
     }
 }
