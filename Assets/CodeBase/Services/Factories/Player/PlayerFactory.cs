@@ -43,11 +43,12 @@ namespace CodeBase.Services.Factories.Player
          
             if(player.TryGetComponent(out PlayerHealth health))
                 health.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
-            
-            Wheel[] wheels = player.GetComponentsInChildren<Wheel>();
 
-            for (int i = 0; i < wheels.Length; i++)
-                wheels[i].Construct(_updatable);
+            if(player.TryGetComponent(out Stabilization stabilization))
+                stabilization.Construct(_updatable);
+
+            foreach (Wheel wheel in player.GetComponentsInChildren<Wheel>()) 
+                wheel.Construct(_updatable);
 
             return Player = player;
         }

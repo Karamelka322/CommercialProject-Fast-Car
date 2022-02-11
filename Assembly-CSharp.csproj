@@ -49,6 +49,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\GeometryStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
@@ -155,6 +156,7 @@
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

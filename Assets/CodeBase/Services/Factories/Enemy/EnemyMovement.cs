@@ -1,8 +1,7 @@
-using System;
-using CodeBase.Extension;
+using CodeBase.Infrastructure;
 using CodeBase.Logic.Car;
+using CodeBase.Logic.Enemy;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace CodeBase.Services.Factories.Enemy
 {
@@ -12,25 +11,88 @@ namespace CodeBase.Services.Factories.Enemy
         private Car _car;
 
         [SerializeField] 
-        private NavMeshAgent _navMeshAgent;
+        private NavMeshAgentWrapper _navMeshAgentWrapper;
 
-        private Transform _target;
-        
-        public void Construct(Transform target) => 
-            _target = target;
+        private IUpdatable _updatable;
 
-        private void Update()
+        private const int BackwardsMovementDuration = 2;
+        private const float StopDuration = 1.5f;
+
+        private float _stopwatch;
+        private float _timer;
+
+        public void Construct(IUpdatable updatable) =>
+            _updatable = updatable;
+
+        private void Start() => 
+            _updatable.OnUpdate += OnUpdate;
+
+        private void OnDisable() => 
+            _updatable.OnUpdate -= OnUpdate;
+
+        private void OnUpdate()
         {
-            _navMeshAgent.transform.position = transform.position;
-            _navMeshAgent.destination = _target.position;
-
-            double angle = Math.Round(CosAngle() / 0.01f, 4);
-            
-            _car.Rotation(Mathf.Clamp((float)angle, -1, 1));
-            _car.Movement(Mathf.Clamp(_navMeshAgent.path.corners[1].magnitude, -1, 1));
+            if (IsStopped() == false)
+            {
+                MovingForward();
+            }
+            else
+            {
+                MovingBackwards();
+            }
         }
 
-        private float CosAngle() => 
-            transform.position.CosAngle(_navMeshAgent.path.corners[1], transform.position + transform.forward);
+        private bool IsStopped()
+        {
+            if (IsSleepStopwatch())
+            {
+                UpdateTimer();
+
+                if (IsSleepTimer()) 
+                    ResetStopwatch();
+            }
+            else
+            {
+                ResetTimer();
+
+                if(IsSleepTimer())
+                    UpdateStopwatch();
+            }
+            
+            return IsTimerRun();
+        }
+
+        private void UpdateTimer() => 
+            _timer = Mathf.Clamp(_timer - Time.deltaTime, 0, BackwardsMovementDuration);
+
+        private void UpdateStopwatch() => 
+            _stopwatch = Mathf.Clamp(_stopwatch + (_car.Speed < 4f ? Time.deltaTime : -_stopwatch), 0, StopDuration);
+
+        private void ResetTimer() => 
+            _timer = BackwardsMovementDuration;
+
+        private void ResetStopwatch() => 
+            _stopwatch = 0;
+
+        private bool IsSleepStopwatch() => 
+            _stopwatch == StopDuration;
+
+        private bool IsSleepTimer() => 
+            _timer == BackwardsMovementDuration || _timer == 0;
+
+        private bool IsTimerRun() => 
+            _timer < BackwardsMovementDuration;
+
+        private void MovingForward()
+        {
+            _car.Rotation(_navMeshAgentWrapper.GetNormalizeAngle());
+            _car.Movement(_navMeshAgentWrapper.GetNormalizeSpeed());
+        }
+
+        private void MovingBackwards()
+        {
+            _car.Rotation(-_navMeshAgentWrapper.GetNormalizeAngle());
+            _car.Movement(-_navMeshAgentWrapper.GetNormalizeSpeed());
+        }
     }
 }

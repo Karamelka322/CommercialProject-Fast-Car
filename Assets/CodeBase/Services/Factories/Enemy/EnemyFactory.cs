@@ -1,5 +1,6 @@
 using CodeBase.Infrastructure;
 using CodeBase.Logic.Car;
+using CodeBase.Logic.Enemy;
 using CodeBase.Services.AssetProvider;
 using UnityEngine;
 
@@ -22,12 +23,15 @@ namespace CodeBase.Services.Factories.Enemy
             GameObject enemy = Object.Instantiate(prefab, at, Quaternion.identity);
          
             if(enemy.TryGetComponent(out EnemyMovement movement))
-                movement.Construct(player);
+                movement.Construct(_updatable);
             
-            Wheel[] wheels = enemy.GetComponentsInChildren<Wheel>();
+            if(enemy.TryGetComponent(out Stabilization stabilization))
+                stabilization.Construct(_updatable);
 
-            for (int i = 0; i < wheels.Length; i++)
-                wheels[i].Construct(_updatable);
+            enemy.GetComponentInChildren<NavMeshAgentWrapper>()?.Construct(_updatable, player);
+            
+            foreach (Wheel wheel in enemy.GetComponentsInChildren<Wheel>()) 
+                wheel.Construct(_updatable);
         }
     }
 }

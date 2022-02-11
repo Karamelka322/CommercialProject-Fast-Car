@@ -56,7 +56,7 @@ namespace CodeBase.Infrastructure.States
             {
                 InputData =
                 {
-                    Type = InputTypeId.Joystick
+                    Type = InputTypeId.Buttons
                 },
                 
                 LevelData =

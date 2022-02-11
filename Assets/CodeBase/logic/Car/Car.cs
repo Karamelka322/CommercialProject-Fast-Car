@@ -18,9 +18,11 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private Rigidbody _rigidbody;
 
+        public float Speed => _rigidbody.velocity.magnitude;
+        
         private void Awake() => 
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
-        
+
         public void Movement(float normalizedValue) => 
             _motor.Torque(ConvertNormalizedValueToTorque(normalizedValue));
 

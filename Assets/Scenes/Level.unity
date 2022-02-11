@@ -342,8 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3e5fcabe9e4b369a467ac36040af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementOffset: {x: 10, y: 14, z: 10}
+  _movementOffset: {x: 14, y: 20, z: 14}
   _rotationOffset: {x: 0, y: 0, z: 0}
   _movementSpeed: 7
   _rotationSpeed: 7
-  Target: {fileID: 0}
