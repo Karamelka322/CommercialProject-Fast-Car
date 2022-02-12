@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3234621847011567729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -0.5}
+  m_LocalPosition: {x: 0, y: 1, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6305153232657492870}
@@ -475,7 +475,7 @@ WheelCollider:
     damper: 0
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 2
+  m_ForceAppPointDistance: 1
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -552,7 +552,7 @@ WheelCollider:
     damper: 0
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 2
+  m_ForceAppPointDistance: 1
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -793,7 +793,7 @@ WheelCollider:
     damper: 0
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 2
+  m_ForceAppPointDistance: 1
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -844,7 +844,6 @@ GameObject:
   - component: {fileID: 5738886296961861453}
   - component: {fileID: 7757177312404767016}
   - component: {fileID: 4157209243928513313}
-  - component: {fileID: 2545339881922670124}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1064,20 +1063,6 @@ MonoBehaviour:
   _frontRightWheel: {fileID: 4475612848846813649}
   _power: 800
   _speedAcceleration: 10
---- !u!114 &2545339881922670124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6765002174677897151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3b0ee680584384bf5aa0d1ae3d12aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 6765002174677897144}
-  _intensity: {x: 1, y: 0, z: 1}
 --- !u!1 &6889084145525484015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1110,7 @@ WheelCollider:
     damper: 0
     targetPosition: 0.5
   m_SuspensionDistance: 0.2
-  m_ForceAppPointDistance: 2
+  m_ForceAppPointDistance: 1
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

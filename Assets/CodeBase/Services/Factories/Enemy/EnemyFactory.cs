@@ -25,9 +25,6 @@ namespace CodeBase.Services.Factories.Enemy
             if(enemy.TryGetComponent(out EnemyMovement movement))
                 movement.Construct(_updatable);
             
-            if(enemy.TryGetComponent(out Stabilization stabilization))
-                stabilization.Construct(_updatable);
-
             enemy.GetComponentInChildren<NavMeshAgentWrapper>()?.Construct(_updatable, player);
             
             foreach (Wheel wheel in enemy.GetComponentsInChildren<Wheel>()) 

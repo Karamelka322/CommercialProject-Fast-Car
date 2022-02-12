@@ -44,9 +44,6 @@ namespace CodeBase.Services.Factories.Player
             if(player.TryGetComponent(out PlayerHealth health))
                 health.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
 
-            if(player.TryGetComponent(out Stabilization stabilization))
-                stabilization.Construct(_updatable);
-
             foreach (Wheel wheel in player.GetComponentsInChildren<Wheel>()) 
                 wheel.Construct(_updatable);
 

@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 2.5
+    agentRadius: 2
     agentHeight: 1
     agentSlope: 14
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.8333333
+    cellSize: 0.6666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -865,8 +865,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540661339}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34, y: 0.89, z: 10}
-  m_LocalScale: {x: 83.12419, y: 2.903104, z: 2.5845}
+  m_LocalPosition: {x: -34.7, y: 0.89, z: 10}
+  m_LocalScale: {x: 81.12339, y: 2.903104, z: 2.5845}
   m_Children: []
   m_Father: {fileID: 434820997}
   m_RootOrder: 3

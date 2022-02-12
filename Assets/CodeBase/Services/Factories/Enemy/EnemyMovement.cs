@@ -15,8 +15,8 @@ namespace CodeBase.Services.Factories.Enemy
 
         private IUpdatable _updatable;
 
-        private const int BackwardsMovementDuration = 2;
-        private const float StopDuration = 1.5f;
+        private const int BackwardsMovementDuration = 1;
+        private const int StopDuration = 1;
 
         private float _stopwatch;
         private float _timer;
@@ -85,6 +85,8 @@ namespace CodeBase.Services.Factories.Enemy
 
         private void MovingForward()
         {
+            Debug.Log(_navMeshAgentWrapper.GetNormalizeAngle());
+            
             _car.Rotation(_navMeshAgentWrapper.GetNormalizeAngle());
             _car.Movement(_navMeshAgentWrapper.GetNormalizeSpeed());
         }

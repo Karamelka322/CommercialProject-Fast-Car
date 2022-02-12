@@ -156,7 +156,6 @@
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

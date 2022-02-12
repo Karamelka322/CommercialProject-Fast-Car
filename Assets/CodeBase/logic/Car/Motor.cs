@@ -10,10 +10,10 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private Wheel _frontRightWheel;
 
-        [Space, SerializeField, UnityEngine.Min(0)] 
+        [Space, SerializeField, Min(0)] 
         private int _power;
 
-        [SerializeField, UnityEngine.Min(0)]
+        [SerializeField, Min(0)]
         private int _speedAcceleration;
 
         public int Power => _power;
@@ -22,7 +22,7 @@ namespace CodeBase.Logic.Car
 
         public void Torque(float torque)
         {
-            _nowTorque = Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _speedAcceleration);
+            _nowTorque = torque != 0? Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _speedAcceleration) : 0;
             
             _frontLeftWheel.Torque(_nowTorque);
             _frontRightWheel.Torque(_nowTorque);
