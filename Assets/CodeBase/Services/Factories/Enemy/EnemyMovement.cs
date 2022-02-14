@@ -85,8 +85,6 @@ namespace CodeBase.Services.Factories.Enemy
 
         private void MovingForward()
         {
-            Debug.Log(_navMeshAgentWrapper.GetNormalizeAngle());
-            
             _car.Rotation(_navMeshAgentWrapper.GetNormalizeAngle());
             _car.Movement(_navMeshAgentWrapper.GetNormalizeSpeed());
         }

@@ -39,7 +39,7 @@ namespace CodeBase.Logic.Enemy
         }
 
         public float GetNormalizeAngle() => 
-            Mathf.Clamp((float)Math.Round(CosAngle() / 0.01f, 4), -1, 1);
+            Mathf.Clamp((float)Math.Round(CosAngle() / 0.01f, 3), -1, 1);
 
         public float GetNormalizeSpeed() => 
             Mathf.Clamp(NextPosition().magnitude, -1, 1);

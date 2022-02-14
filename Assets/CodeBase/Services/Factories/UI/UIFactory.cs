@@ -26,7 +26,13 @@ namespace CodeBase.Services.Factories.UI
         
         public LoadingCurtain LoadingCurtain { get; private set; }
 
-        public UIFactory(IGameStateMachine stateMachine, IAssetProviderService assetProvider, IPersistentDataService persistentDataService, IStaticDataService staticDataService, IInputService inputService, ITweenService tweenService)
+        public UIFactory(
+            IGameStateMachine stateMachine,
+            IAssetProviderService assetProvider,
+            IPersistentDataService persistentDataService,
+            IStaticDataService staticDataService,
+            IInputService inputService,
+            ITweenService tweenService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
@@ -65,7 +71,8 @@ namespace CodeBase.Services.Factories.UI
         {
             GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), _uiRoot.transform);
             
-            settings.GetComponentInChildren<BackButton>().Construct(backEvent);
+            settings.GetComponentInChildren<BackButton>()?.Construct(backEvent);
+            settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.InputData);
             
             return settings;
         }
