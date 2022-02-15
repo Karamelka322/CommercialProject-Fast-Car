@@ -661,6 +661,12 @@
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
@@ -672,6 +678,12 @@
      </Reference>
      <Reference Include="Unity.2D.Sprite.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
@@ -687,18 +699,6 @@
      </Reference>
      <Reference Include="Unity.Recorder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AddOns.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
