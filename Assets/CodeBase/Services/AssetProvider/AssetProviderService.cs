@@ -1,5 +1,6 @@
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
+using CodeBase.Logic.Item;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -31,6 +32,9 @@ namespace CodeBase.Services.AssetProvider
 
         public GameObject LoadGenerator() => 
             Resources.Load<GameObject>(AssetPath.GeneratorPath);
+
+        public Capsule LoadCapsule() => 
+            Resources.Load<Capsule>(AssetPath.CapsulePath);
 
         public GameObject LoadEnemy() => 
             Resources.Load<GameObject>(AssetPath.EnemyPath);

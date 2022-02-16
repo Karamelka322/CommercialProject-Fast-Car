@@ -21,5 +21,6 @@ namespace CodeBase.Services.AssetProvider
         public const string AreasInputPath = "UI/HUD/Input/Areas";
 
         public const string GeneratorPath = "Level/Generator";
+        public const string CapsulePath = "Level/Capsule";
     }
 }

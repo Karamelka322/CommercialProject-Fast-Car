@@ -1,5 +1,6 @@
 using CodeBase.Data.Static.Level;
 using CodeBase.Logic.Enemy;
+using CodeBase.Logic.Item;
 using CodeBase.Logic.Player;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace CodeBase.Editor
                 FillPlayerSpawnPoints(levelStaticData);
                 FillGeneratorSpawnPoints(levelStaticData);
                 FillEnemySpawnPoints(levelStaticData);
+                FillCapsuleSpawnPoints(levelStaticData);
                 FillSceneName(levelStaticData);
             }
             
@@ -37,24 +39,34 @@ namespace CodeBase.Editor
                 levelStaticData.Geometry.PlayerSpawnPoints.Add(playerSpawnPoints[i].WorldPosition);
         }
 
+        private static void FillCapsuleSpawnPoints(LevelStaticData levelStaticData)
+        {
+            CapsuleSpawnPoint[] capsuleSpawnPoints = FindObjectsOfType<CapsuleSpawnPoint>();
+
+            levelStaticData.Geometry.CapsuleSpawnPoints.Clear();
+
+            for (int i = 0; i < capsuleSpawnPoints.Length; i++)
+                levelStaticData.Geometry.CapsuleSpawnPoints.Add(capsuleSpawnPoints[i].WorldPosition);
+        }
+        
         private static void FillGeneratorSpawnPoints(LevelStaticData levelStaticData)
         {
             GeneratorSpawnPoint[] generatorSpawnPoints = FindObjectsOfType<GeneratorSpawnPoint>();
             
-            levelStaticData.Geometry.GeneratorSpawnPoint.Clear();
+            levelStaticData.Geometry.GeneratorSpawnPoints.Clear();
 
             for (int i = 0; i < generatorSpawnPoints.Length; i++)
-                levelStaticData.Geometry.GeneratorSpawnPoint.Add(generatorSpawnPoints[i].WorldPosition);
+                levelStaticData.Geometry.GeneratorSpawnPoints.Add(generatorSpawnPoints[i].WorldPosition);
         }
 
         private static void FillEnemySpawnPoints(LevelStaticData levelStaticData)
         {
             EnemySpawnPoint[] playerSpawnPoints = FindObjectsOfType<EnemySpawnPoint>();
 
-            levelStaticData.Geometry.EnemySpawnPoint.Clear();
+            levelStaticData.Geometry.EnemySpawnPoints.Clear();
 
             for (int i = 0; i < playerSpawnPoints.Length; i++)
-                levelStaticData.Geometry.EnemySpawnPoint.Add(playerSpawnPoints[i].WorldPosition);
+                levelStaticData.Geometry.EnemySpawnPoints.Add(playerSpawnPoints[i].WorldPosition);
         }
 
         private static void FillSceneName(LevelStaticData levelStaticData) => 

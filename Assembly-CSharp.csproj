@@ -68,7 +68,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Item\Capsule.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameRunner.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
@@ -159,6 +159,10 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Random\IRandomService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

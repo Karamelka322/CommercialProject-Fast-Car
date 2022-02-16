@@ -8,9 +8,9 @@ using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Random;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
-using CodeBase.Services.Tween;
 
 namespace CodeBase.Infrastructure
 {
@@ -36,6 +36,7 @@ namespace CodeBase.Infrastructure
                     services.Single<IUIFactory>()),
                 
                 [typeof(LoadLevelState)] = new LoadLevelState(
+                    services.Single<IGameStateMachine>(),
                     services.Single<ISceneLoaderService>(),
                     services.Single<IUIFactory>(),
                     services.Single<IPlayerFactory>(),
@@ -43,7 +44,13 @@ namespace CodeBase.Infrastructure
                     services.Single<IPersistentDataService>(),
                     services.Single<IStaticDataService>(),
                     services.Single<ILevelFactory>(),
-                    services.Single<IEnemyFactory>()),
+                    services.Single<IRandomService>()),
+                
+                [typeof(LoopLevelState)] = new LoopLevelState(
+                    services.Single<ILevelFactory>(),
+                    services.Single<IEnemyFactory>(),
+                    services.Single<IRandomService>(),
+                    updatable)
             };
         }
 

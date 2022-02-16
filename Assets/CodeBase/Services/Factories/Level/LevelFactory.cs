@@ -1,3 +1,4 @@
+using CodeBase.Logic.Item;
 using CodeBase.Logic.Level.Generator;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.PersistentProgress;
@@ -26,6 +27,12 @@ namespace CodeBase.Services.Factories.Level
 
             generator.GetComponentInChildren<GeneratorHook>().Construct(_tweenService);
             generator.GetComponentInChildren<GeneratorPower>().Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
+        }
+
+        public Capsule LoadCapsule(Vector3 at)
+        {
+            Capsule prefab = _assetProviderService.LoadCapsule();
+            return Object.Instantiate(prefab, at, Quaternion.identity);
         }
     }
 }

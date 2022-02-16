@@ -4,6 +4,11 @@ namespace CodeBase.Infrastructure.States
     {
         
     }
+
+    public interface IUpdateableState : IState
+    {
+        void OnUpdate();
+    }
     
     public interface IEnterState
     {

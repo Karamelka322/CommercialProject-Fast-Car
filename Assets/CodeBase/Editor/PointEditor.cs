@@ -8,7 +8,7 @@ namespace CodeBase.Editor
     [CustomEditor(typeof(Point))]
     public class PointEditor : UnityEditor.Editor
     {
-        [DrawGizmo(GizmoType.Active | GizmoType.Selected | GizmoType.InSelectionHierarchy)]
+        [DrawGizmo(GizmoType.Active | GizmoType.Selected | GizmoType.InSelectionHierarchy | GizmoType.NonSelected)]
         private static void RenderCustomGizmo(Point point, GizmoType gizmoType)
         {
             Gizmos.color = point.Color;

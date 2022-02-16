@@ -16,9 +16,12 @@ MonoBehaviour:
   PowerChangeSpeed: 2
   Geometry:
     SceneName: City_Geometry
+    GeneratorSpawnPoints:
+    - {x: -106, y: 6, z: -79}
+    CapsuleSpawnPoints:
+    - {x: 73, y: 0, z: -80}
+    - {x: 37, y: 0, z: 19}
     PlayerSpawnPoints:
     - {x: 3, y: 0, z: -5}
-    GeneratorSpawnPoint:
-    - {x: -106, y: 7, z: -79}
-    EnemySpawnPoint:
+    EnemySpawnPoints:
     - {x: -116, y: 6, z: 0}

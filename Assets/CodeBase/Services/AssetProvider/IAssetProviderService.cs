@@ -1,5 +1,6 @@
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
+using CodeBase.Logic.Item;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using UnityEngine;
@@ -26,5 +27,6 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadButtonsInput();
         GameObject LoadAreasInput();
         GameObject LoadGenerator();
+        Capsule LoadCapsule();
     }
 }

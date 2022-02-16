@@ -9,6 +9,7 @@ using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Random;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
@@ -55,6 +56,8 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
 
+            _services.RegisterSingle<IRandomService>(new RandomService(_services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>()));
+            
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(_services.Single<IAssetProviderService>(), _services.Single<ITweenService>(), _services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable, _services.Single<IPersistentDataService>()));
