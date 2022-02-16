@@ -25,5 +25,8 @@ namespace CodeBase.Data.Perseistent
             Power = Mathf.Clamp(Power - value, MinPower, MaxPower);
             ChangePower?.Invoke(Power);
         }
+
+        public void ResetPower() => 
+            Power = MaxPower;
     }
 }

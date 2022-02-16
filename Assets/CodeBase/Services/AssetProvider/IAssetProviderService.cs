@@ -28,5 +28,6 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadAreasInput();
         GameObject LoadGenerator();
         Capsule LoadCapsule();
+        GameObject LoadPauseWindow();
     }
 }

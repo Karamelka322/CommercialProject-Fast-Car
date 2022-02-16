@@ -22,5 +22,8 @@ namespace CodeBase.Data.Perseistent
             Health = Mathf.Clamp(Health - value, 0, MaxHealth);
             ChangeHealth?.Invoke(Health);
         }
+
+        public void ResetHealth() => 
+            Health = MaxHealth;
     }
 }

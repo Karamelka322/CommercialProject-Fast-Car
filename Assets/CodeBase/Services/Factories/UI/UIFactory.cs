@@ -25,7 +25,8 @@ namespace CodeBase.Services.Factories.UI
         private GameObject _uiRoot;
         
         public LoadingCurtain LoadingCurtain { get; private set; }
-
+        public HUD HUD { get; private set; }
+        
         public UIFactory(
             IGameStateMachine stateMachine,
             IAssetProviderService assetProvider,
@@ -88,16 +89,25 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadHUD()
         {
-            HUD hud = Object.Instantiate(_assetProvider.LoadHUD());
+            HUD = Object.Instantiate(_assetProvider.LoadHUD());
 
             GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.InputData.Type);
-            GameObject inputVariant = Object.Instantiate(prefab, hud.ControlContainer);
+            GameObject inputVariant = Object.Instantiate(prefab, HUD.ControlContainer);
             _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
             
-            hud.gameObject.GetComponentInChildren<GeneratorPowerBar>()?.Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
-            hud.gameObject.GetComponentInChildren<PlayerHealthBar>()?.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
+            HUD.gameObject.GetComponentInChildren<GeneratorPowerBar>()?.Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
+            HUD.gameObject.GetComponentInChildren<PlayerHealthBar>()?.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
+            HUD.gameObject.GetComponentInChildren<PauseButton>()?.Construct(this);
+
+            return HUD.gameObject;
+        }
+
+        public void LoadPauseWindow()
+        {
+            GameObject prefab = _assetProvider.LoadPauseWindow();
+            GameObject window = Object.Instantiate(prefab, _uiRoot.transform);
             
-            return hud.gameObject;
+            window.GetComponentInChildren<HomeButton>()?.Construct(_stateMachine);
         }
 
         public GameObject LoadSkipButton(MenuAnimator menuAnimator)

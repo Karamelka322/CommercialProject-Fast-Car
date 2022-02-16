@@ -36,6 +36,9 @@ namespace CodeBase.Services.AssetProvider
         public Capsule LoadCapsule() => 
             Resources.Load<Capsule>(AssetPath.CapsulePath);
 
+        public GameObject LoadPauseWindow() => 
+            Resources.Load<GameObject>(AssetPath.PauseWindowPath);
+
         public GameObject LoadEnemy() => 
             Resources.Load<GameObject>(AssetPath.EnemyPath);
 

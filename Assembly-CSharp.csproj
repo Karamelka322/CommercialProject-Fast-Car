@@ -163,6 +163,10 @@
      <Compile Include="Assets\CodeBase\Services\Random\IRandomService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
      <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\UI\Navigation.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\PauseButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ResumeButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

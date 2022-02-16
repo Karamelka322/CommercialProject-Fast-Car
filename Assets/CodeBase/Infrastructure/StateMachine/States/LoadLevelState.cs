@@ -88,8 +88,8 @@ namespace CodeBase.Infrastructure.States
 
         private void OnLoaded()
         {
-            InitUIRoot();
             InitHUD();
+            InitUIRoot();
             InitGenerator();
 
             GameObject player = InitPlayer();

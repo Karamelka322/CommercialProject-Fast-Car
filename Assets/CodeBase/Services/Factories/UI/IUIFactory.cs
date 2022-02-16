@@ -13,8 +13,10 @@ namespace CodeBase.Services.Factories.UI
         GameObject LoadUIRoot();
         GameObject LoadSkipButton(MenuAnimator menuAnimator);
         LoadingCurtain LoadingCurtain { get; }
+        HUD HUD { get; }
         GameObject LoadSettingsInMenu(Action backEvent);
         GameObject LoadGarageInMenu(Action backEvent);
         GameObject LoadHUD();
+        void LoadPauseWindow();
     }
 }

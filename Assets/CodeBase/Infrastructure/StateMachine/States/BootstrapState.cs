@@ -59,8 +59,8 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IRandomService>(new RandomService(_services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>()));
             
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(_services.Single<IAssetProviderService>(), _services.Single<ITweenService>(), _services.Single<IPersistentDataService>()));
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>(), _updatable, _services.Single<IPersistentDataService>()));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(), _services.Single<IAssetProviderService>(), _services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>(), _services.Single<IInputService>(), _services.Single<ITweenService>()));
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(_services.Single<IAssetProviderService>(), _updatable));
         }
 

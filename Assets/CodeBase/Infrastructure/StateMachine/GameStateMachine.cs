@@ -49,7 +49,9 @@ namespace CodeBase.Infrastructure
                 [typeof(LoopLevelState)] = new LoopLevelState(
                     services.Single<ILevelFactory>(),
                     services.Single<IEnemyFactory>(),
+                    services.Single<IUIFactory>(),
                     services.Single<IRandomService>(),
+                    services.Single<IPersistentDataService>(),
                     updatable)
             };
         }

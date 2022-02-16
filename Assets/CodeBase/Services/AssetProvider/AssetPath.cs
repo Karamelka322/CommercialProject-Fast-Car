@@ -22,5 +22,7 @@ namespace CodeBase.Services.AssetProvider
 
         public const string GeneratorPath = "Level/Generator";
         public const string CapsulePath = "Level/Capsule";
+        
+        public const string PauseWindowPath = "UI/Pause_window";
     }
 }
