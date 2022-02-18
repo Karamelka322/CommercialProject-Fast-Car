@@ -23,7 +23,7 @@ namespace CodeBase.Logic.Car
         private void Start() => 
             _updatable.OnUpdate += OnUpdate;
 
-        private void OnDisable() => 
+        private void OnDestroy() => 
             _updatable.OnUpdate -= OnUpdate;
 
         private void OnUpdate() => 

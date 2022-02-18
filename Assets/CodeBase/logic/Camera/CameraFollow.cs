@@ -18,7 +18,7 @@ namespace CodeBase.Logic.Camera
         private float _rotationSpeed;
 
         public Transform Target { get; set; }
-
+        
         private void FixedUpdate()
         {
             if(Target != null)

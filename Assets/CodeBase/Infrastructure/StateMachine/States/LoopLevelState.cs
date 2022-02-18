@@ -46,7 +46,7 @@ namespace CodeBase.Infrastructure.States
             if (_capsule == null)
             {
                 _capsule = _levelFactory.LoadCapsule(_randomService.CapsuleSpawnPoint());
-                _uiFactory.HUD.GetComponentInChildren<Navigation>().Target = _capsule.transform;
+                _uiFactory.HUD.GetComponentInChildren<Waypoints>().Target = _capsule.transform;
             }
         }
 

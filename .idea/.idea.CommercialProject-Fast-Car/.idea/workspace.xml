@@ -8,29 +8,31 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Editor/PostProcessEffectEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Course Project-Mobile-Game-Architecture/src/KnowledgeIsPower/Assets/CodeBase/Services/PersistentProgress/PersistentProgressService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/39/0d0764ea/MaterialPropertyBlock.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/96/1bfc064c/Void.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Post Processing/Bloom/BloomPostEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3197ad6d70a84de78c60779ae26120116a00/de/c3aa5615/RectTransformUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/Effects/Bloom.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/bd/4f8bc964/ShortcutExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/StandaloneInputModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/Utils/ShaderIDs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cbc56ce48ec645d2beabdfed6b9ae8ee76a400/66/b5ec6b97/CustomPropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/91/a8262c17/RenderTexture.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/PostProcessRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ff04fda545c4aacb8dab659ad40b2f428200/33/a32a6331/GUIStyle.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/Utils/RuntimeUtilities.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Services/Input/Element/ButtonInputElement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Editor/Effects/BloomEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/75/357b464a/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Editor/PostProcessEffectEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Course Project-Mobile-Game-Architecture/src/KnowledgeIsPower/Assets/CodeBase/Services/PersistentProgress/PersistentProgressService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/96/1bfc064c/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Post Processing/Bloom/BloomPostEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/bd/4f8bc964/ShortcutExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/Utils/ShaderIDs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/91/a8262c17/RenderTexture.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/5f/089a4997/Camera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/PostProcessRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Course Project-Mobile-Game-Architecture/src/KnowledgeIsPower/Assets/CodeBase/Data/PlayerProgress.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Post Processing/Saturation/SaturationPostEffect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/f7/ed4849e4/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/PostProcessEffectRenderer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/Utils/RuntimeUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/f8/d09dacf2/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Services/Input/Element/ButtonInputElement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Editor/Effects/BloomEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/75/357b464a/Graphics.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="22E38tSMIIfXrAnFuRuwDKUkmc4" />
   <component name="ProjectViewState">
@@ -38,7 +40,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3501355" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -55,10 +57,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9776">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="12268">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="9776" />
+      <option name="pid" value="12268" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />

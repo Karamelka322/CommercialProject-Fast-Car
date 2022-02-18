@@ -19,8 +19,8 @@ MonoBehaviour:
     GeneratorSpawnPoints:
     - {x: -106, y: 6, z: -79}
     CapsuleSpawnPoints:
-    - {x: 73, y: 0, z: -80}
     - {x: 37, y: 0, z: 19}
+    - {x: 73, y: 0, z: -80}
     PlayerSpawnPoints:
     - {x: 3, y: 0, z: -5}
     EnemySpawnPoints:
