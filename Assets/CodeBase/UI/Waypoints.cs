@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Extension;
 using UnityEngine;
 
@@ -6,31 +5,24 @@ namespace CodeBase.UI
 {
     public class Waypoints : MonoBehaviour
     {
-        [SerializeField] private RectTransform _mark;
+        [SerializeField] 
+        private RectTransform _mark;
 
-        [SerializeField] private RectTransform _area;
+        [SerializeField] 
+        private float _offset;
 
-        public float _multiplyer = 1;
-
-        private Camera _camera;
-        private Vector3 _offset;
-        private SizeValue _screenSize;
+        private Vector3 _screenCenter;
+        private Vector3 _screenBounds;
         
-        private GameObject _point;
-        private Canvas _canvas;
+        private Camera _camera;
 
         public Transform Target { get; set; }
 
         private void Awake()
         {
             _camera = Camera.main;
-
-            _point = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity, _camera.transform);
-
-            _canvas = GetComponentInParent<Canvas>();
-
-            _screenSize.Height = Screen.height / 2;
-            _screenSize.Width = Screen.width / 2;
+            _screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+            _screenBounds = _screenCenter - new Vector3(_offset, _offset, 0f);
         }
 
         private void Update()
@@ -41,89 +33,43 @@ namespace CodeBase.UI
             Follow();
         }
 
-        private void Follow()
-        {
-            if (true)
-            {
-                _point.transform.position = GetPosition();
-                //_point.transform.localPosition = new Vector3(_point.transform.localPosition.x, _point.transform.localPosition.y, _camera.nearClipPlane);
-                
-                Vector2 screen = _point.transform.localPosition;
+        private void Follow() => 
+            _mark.position = GetMarkPosition();
 
-                screen.x = _area.rect.width / 2 * Mathf.Clamp(screen.x, -1, 1);
-                screen.y = _area.rect.height / 2 * Mathf.Clamp(screen.y, -1, 1);
-            
-                //Debug.Log(RectTransformUtility.PixelAdjustPoint(screen, Target, _canvas));
-                
-                _mark.anchoredPosition = screen;
-                //_mark.anchoredPosition = MathfExtension.ViewportClamp(RectTransformUtility.PixelAdjustPoint(screen, _camera.transform, _canvas), _screenSize);
+        private Vector3 GetMarkPosition()
+        {
+            Vector3 point = _camera.CustomConvertWorldPointToScreenPoint(Target.position);
+
+            if (_camera.IsPointVisible(point))
+            {
+                return point;
             }
             else
             {
-                _mark.position = MathfExtension.ViewportClamp(_camera.WorldToScreenPoint(Target.position), _screenSize);
+                point -= _screenCenter;
+                
+                float angle = Mathf.Atan2(point.y, point.x);
+                angle -= 90f * Mathf.Deg2Rad;
+
+                float cos = Mathf.Cos(angle);
+                float sin = -Mathf.Sin(angle);
+                float cotangent = cos / sin;
+                
+                float boundsY = (cos > 0f) ? _screenBounds.y : -_screenBounds.y;
+                
+                point.Set(boundsY / cotangent, boundsY, 0f);
+                
+                if (point.x > _screenBounds.x)
+                {
+                    point.Set(_screenBounds.x, _screenBounds.x * cotangent, 0f);
+                }
+                else if (point.x < -_screenBounds.x)
+                {
+                    point.Set(-_screenBounds.x, -_screenBounds.x * cotangent, 0f);
+                }
+
+                return point + _screenCenter;
             }
-            
-            //_mark.position = MathfExtension.ViewportClamp(_camera.WorldToScreenPoint(_point.transform.position), _screenSize);
-
-            //Variant_1();
         }
-        
-        private bool IsPointVisible(Vector3 point) => 
-             Vector3.Angle(_camera.transform.forward, point - _camera.transform.position) < _camera.fieldOfView;
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(_camera.transform.position + (_camera.transform.forward * _camera.nearClipPlane), _point.transform.position);
-        }
-
-        private Vector3 GetPosition()
-        {
-            return _camera.transform.position + (Target.position - _camera.transform.position).normalized * _multiplyer;
-        }
-
-        // private void Variant_1()
-        // {
-        //     if (IsPointVisible(Target.position))
-        //     {
-        //         Vector3 nextPosition = MathfExtension.ViewportClamp(_camera.WorldToScreenPoint(Target.position), _screenSize);
-        //         _mark.position = Vector3.Lerp(_mark.position, nextPosition, Time.deltaTime * 5);
-        //     }
-        //     else
-        //     {
-        //         Vector3 nextPosition = MathfExtension.ViewportClamp(_camera.WorldToScreenPoint(GetPosition()), _screenSize);
-        //         _mark.position = Vector3.Lerp(_mark.position, nextPosition, Time.deltaTime * 5);
-        //     }
-        // }
-        //
-        // private bool IsPointVisible(Vector3 point) => 
-        //     Vector3.Angle(_camera.transform.forward, point - _camera.transform.position) < _camera.fieldOfView;
-        //
-        // private void OnDrawGizmos()
-        // {
-        //     if(Target == null)
-        //         return;
-        //
-        //     Gizmos.color = Color.yellow;
-        //     
-        //     Gizmos.DrawLine(_camera.transform.position, StartingPoint());
-        //     Gizmos.DrawLine(StartingPoint(), Target.position);
-        //     Gizmos.DrawLine(_camera.transform.position, _offset);
-        //
-        //     Gizmos.DrawSphere(GetPosition(), 1);
-        //     Gizmos.DrawLine(_offset, GetPosition());
-        // }
-        //
-        // private Vector3 GetPosition()
-        // {
-        //     Vector3 startingPoint = StartingPoint();
-        //     float distance = (Target.position - startingPoint).magnitude;
-        //     
-        //     _offset = startingPoint + (-_camera.transform.forward * distance * 2);
-        //     return _offset + (Target.position - _offset).normalized * distance * 2.5f;
-        // }
-        //
-        // private Vector3 StartingPoint() =>
-        //     _camera.transform.position + (_camera.transform.forward * 28);
     }
 }
