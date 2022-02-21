@@ -3,21 +3,22 @@ using UnityEngine;
 
 namespace CodeBase.UI
 {
-    public class Waypoints : MonoBehaviour
+    public class Marker : MonoBehaviour
     {
         [SerializeField] 
         private RectTransform _mark;
+
+        [SerializeField] 
+        private Transform _target;
 
         [SerializeField] 
         private float _offset;
 
         private Vector3 _screenCenter;
         private Vector3 _screenBounds;
-        
+
         private Camera _camera;
-
-        public Transform Target { get; set; }
-
+        
         private void Awake()
         {
             _camera = Camera.main;
@@ -25,26 +26,14 @@ namespace CodeBase.UI
             _screenBounds = _screenCenter - new Vector3(_offset, _offset, 0f);
         }
 
-        private void Update()
+        private void Update() => 
+            Movement();
+
+        private void Movement()
         {
-            if (Target == null)
-                return;
-
-            Follow();
-        }
-
-        private void Follow() => 
-            _mark.position = GetMarkPosition();
-
-        private Vector3 GetMarkPosition()
-        {
-            Vector3 point = _camera.WorldToScreenPoint(Target.position);
+            Vector3 point = _camera.WorldToScreenPoint(_target.position);
             
-            if(_camera.IsPointVisible(point, _offset))
-            {
-                return point;
-            }
-            else
+            if(!_camera.IsPointVisible(point, _offset))
             {
                 if(point.z < 0)
                 {
@@ -74,8 +63,10 @@ namespace CodeBase.UI
                     point.Set(-_screenBounds.x, -_screenBounds.x * cotangent, 0f);
                 }
 
-                return point + _screenCenter;
+                _mark.position = point + _screenCenter;
             }
+
+            _mark.position = point;
         }
     }
 }
