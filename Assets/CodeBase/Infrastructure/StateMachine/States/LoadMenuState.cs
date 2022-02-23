@@ -55,7 +55,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void LoadCurtain() => 
-            _uiFactory.LoadLoadingMenuCurtain();
+            _uiFactory.LoadMenuCurtain();
 
         private void ShowCurtain(Action callBack) => 
             _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);

@@ -1,10 +1,11 @@
 using CodeBase.Logic.World;
+using CodeBase.Services.Pause;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(Motor), typeof(SteeringGear), typeof(Rigidbody))]
-    public class Car : MonoBehaviour
+    public class Car : MonoBehaviour, IPauseHandler
     {
         [SerializeField] 
         private Motor _motor;
@@ -19,6 +20,9 @@ namespace CodeBase.Logic.Car
         private Rigidbody _rigidbody;
 
         public float Speed => _rigidbody.velocity.magnitude;
+
+        private Vector3 _velocity;
+        private Vector3 _angularVelocity;
         
         private void Awake() => 
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
@@ -34,5 +38,21 @@ namespace CodeBase.Logic.Car
 
         private float ConvertNormalizedValueToAngle(float normalizedValue) => 
             normalizedValue > 0 ? Mathf.Lerp(0, _steeringGear.SteerAngle, normalizedValue) : Mathf.Lerp(0, -_steeringGear.SteerAngle, -normalizedValue);
+
+        public void OnEnabledPause()
+        {
+            _velocity = _rigidbody.velocity;
+            _angularVelocity = _rigidbody.angularVelocity;
+
+            _rigidbody.isKinematic = true;
+        }
+
+        public void OnDisabledPause()
+        {
+            _rigidbody.isKinematic = false;
+
+            _rigidbody.velocity = _velocity;
+            _rigidbody.angularVelocity = _angularVelocity;
+        }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
-using CodeBase.Extension;
 using CodeBase.Logic.Camera;
 using CodeBase.Scene;
 using CodeBase.Services.Factories.Level;
@@ -12,6 +11,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Update;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -34,6 +34,7 @@ namespace CodeBase.Infrastructure.States
         private readonly IStaticDataService _staticDataService;
         private readonly ILevelFactory _levelFactory;
         private readonly IRandomService _randomService;
+        private readonly IUpdateService _updateService;
 
         private LevelStaticData _levelStaticData;
 
@@ -46,7 +47,8 @@ namespace CodeBase.Infrastructure.States
             IPersistentDataService persistentDataService,
             IStaticDataService staticDataService,
             ILevelFactory levelFactory,
-            IRandomService randomService)
+            IRandomService randomService,
+            IUpdateService updateService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoaderService = sceneLoaderService;
@@ -57,6 +59,7 @@ namespace CodeBase.Infrastructure.States
             _staticDataService = staticDataService;
             _levelFactory = levelFactory;
             _randomService = randomService;
+            _updateService = updateService;
         }
 
         public void Enter()
@@ -77,14 +80,20 @@ namespace CodeBase.Infrastructure.States
         public void Exit()
         {
             _inputService.Clenup();
+
             HideCurtain(DestroyCurtain);
         }
 
-        private void LoadLevelScene() => 
+        private void LoadLevelScene()
+        {
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
+        }
 
-        private void LoadGeometry() => 
+        private void LoadGeometry()
+        {
+            Camera.main.GetComponent<CameraFollow>().Construct(_updateService);
             _sceneLoaderService.Load(_levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
+        }
 
         private void OnLoaded()
         {
@@ -113,8 +122,13 @@ namespace CodeBase.Infrastructure.States
         private GameObject InitPlayer() => 
             _playerFactory.CreatePlayer(PlayerTypeId.Default, _randomService.PlayerSpawnPoint());
         
-        private static void CameraFollow(GameObject player) => 
-            SceneManager.GetActiveScene().FindComponentInRootGameObjects<CameraFollow>().Target = player.transform;
+        private void CameraFollow(GameObject player)
+        {
+            if (Camera.main.TryGetComponent(out CameraFollow cameraFollow))
+            {
+                cameraFollow.Target = player.transform;
+            }
+        }
 
         private void LoadCurtain() => 
             _uiFactory.LoadLoadingLevelCurtain();

@@ -1,6 +1,8 @@
 using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.States;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Enemy;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Enemy
@@ -13,7 +15,7 @@ namespace CodeBase.Services.Factories.Enemy
         [SerializeField] 
         private NavMeshAgentWrapper _navMeshAgentWrapper;
 
-        private IUpdatable _updatable;
+        private IUpdateService _updateService;
 
         private const int BackwardsMovementDuration = 1;
         private const int StopDuration = 1;
@@ -21,14 +23,14 @@ namespace CodeBase.Services.Factories.Enemy
         private float _stopwatch;
         private float _timer;
 
-        public void Construct(IUpdatable updatable) =>
-            _updatable = updatable;
+        public void Construct(IUpdateService updateService) =>
+            _updateService = updateService;
 
         private void Start() => 
-            _updatable.OnUpdate += OnUpdate;
+            _updateService.OnUpdate += OnUpdate;
 
         private void OnDisable() => 
-            _updatable.OnUpdate -= OnUpdate;
+            _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate()
         {

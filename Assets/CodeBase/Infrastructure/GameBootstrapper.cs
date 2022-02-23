@@ -8,6 +8,7 @@ namespace CodeBase.Infrastructure
         private Game _game;
 
         public event Action OnUpdate;
+        public event Action OnFixedUpdate;
 
         private void Awake()
         {
@@ -17,5 +18,8 @@ namespace CodeBase.Infrastructure
 
         private void Update() => 
             OnUpdate?.Invoke();
+
+        private void FixedUpdate() => 
+            OnFixedUpdate?.Invoke();
     }
 }

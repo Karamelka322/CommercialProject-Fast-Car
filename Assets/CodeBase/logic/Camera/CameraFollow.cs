@@ -1,3 +1,5 @@
+using System;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Logic.Camera
@@ -17,9 +19,20 @@ namespace CodeBase.Logic.Camera
         [SerializeField]
         private float _rotationSpeed;
 
+        private IUpdateService _updateService;
+
         public Transform Target { get; set; }
-        
-        private void FixedUpdate()
+
+        public void Construct(IUpdateService updateService) => 
+            _updateService = updateService;
+
+        private void Start() => 
+            _updateService.OnFixedUpdate += OnFixedUpdate;
+
+        private void OnDestroy() => 
+            _updateService.OnFixedUpdate -= OnFixedUpdate;
+
+        private void OnFixedUpdate()
         {
             if(Target != null)
                 Follow(Target);

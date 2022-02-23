@@ -3,6 +3,7 @@ using CodeBase.Infrastructure;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Input;
+using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
@@ -21,6 +22,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly IStaticDataService _staticDataService;
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
+        private readonly IPauseService _pauseService;
 
         private GameObject _uiRoot;
         
@@ -33,7 +35,8 @@ namespace CodeBase.Services.Factories.UI
             IPersistentDataService persistentDataService,
             IStaticDataService staticDataService,
             IInputService inputService,
-            ITweenService tweenService)
+            ITweenService tweenService,
+            IPauseService pauseService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
@@ -41,9 +44,10 @@ namespace CodeBase.Services.Factories.UI
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
+            _pauseService = pauseService;
         }
 
-        public LoadingCurtain LoadLoadingMenuCurtain()
+        public LoadingCurtain LoadMenuCurtain()
         {
             LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLoadingMenuCurtain());
             curtain.Construct(_tweenService);
@@ -72,7 +76,7 @@ namespace CodeBase.Services.Factories.UI
         {
             GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), _uiRoot.transform);
             
-            settings.GetComponentInChildren<BackButton>()?.Construct(backEvent);
+            settings.GetComponentInChildren<BackButton>().Construct(backEvent);
             settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.InputData);
             
             return settings;
@@ -95,9 +99,9 @@ namespace CodeBase.Services.Factories.UI
             GameObject inputVariant = Object.Instantiate(prefab, HUD.ControlContainer);
             _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
             
-            HUD.gameObject.GetComponentInChildren<GeneratorPowerBar>()?.Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
-            HUD.gameObject.GetComponentInChildren<PlayerHealthBar>()?.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
-            HUD.gameObject.GetComponentInChildren<PauseButton>()?.Construct(this);
+            HUD.gameObject.GetComponentInChildren<GeneratorPowerBar>().Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
+            HUD.gameObject.GetComponentInChildren<PlayerHealthBar>().Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
+            HUD.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
 
             return HUD.gameObject;
         }
@@ -107,7 +111,8 @@ namespace CodeBase.Services.Factories.UI
             GameObject prefab = _assetProvider.LoadPauseWindow();
             GameObject window = Object.Instantiate(prefab, _uiRoot.transform);
             
-            window.GetComponentInChildren<HomeButton>()?.Construct(_stateMachine);
+            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
+            window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
         }
 
         public GameObject LoadSkipButton(MenuAnimator menuAnimator)

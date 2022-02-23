@@ -33,28 +33,24 @@ namespace CodeBase.UI
             Follow();
         }
 
-        private void Follow() => 
-            _mark.position = GetMarkPosition();
+        private void Follow() =>
+            Movement();
 
-        private Vector3 GetMarkPosition()
+        private void Movement()
         {
-            Vector3 point = _camera.WorldToScreenPoint(Target.position);
+            Vector3 screenPoint = _camera.WorldToScreenPoint(Target.position);
             
-            if(_camera.IsPointVisible(point, _offset))
+            if(!_camera.IsPointVisible(screenPoint, _offset))
             {
-                return point;
-            }
-            else
-            {
-                if(point.z < 0)
+                if(screenPoint.z < 0)
                 {
-                    point.x = Screen.width - point.x;
-                    point.y = Screen.height - point.y;
+                    screenPoint.x = Screen.width - screenPoint.x;
+                    screenPoint.y = Screen.height - screenPoint.y;
                 }
                 
-                point -= _screenCenter;
+                screenPoint -= _screenCenter;
                 
-                float angle = Mathf.Atan2(point.y, point.x);
+                float angle = Mathf.Atan2(screenPoint.y, screenPoint.x);
                 angle -= 90f * Mathf.Deg2Rad;
 
                 float cos = Mathf.Cos(angle);
@@ -63,19 +59,21 @@ namespace CodeBase.UI
                 
                 float boundsY = (cos > 0f) ? _screenBounds.y : -_screenBounds.y;
                 
-                point.Set(boundsY / cotangent, boundsY, 0f);
+                screenPoint.Set(boundsY / cotangent, boundsY, 0f);
                 
-                if(point.x > _screenBounds.x)
+                if(screenPoint.x > _screenBounds.x)
                 {
-                    point.Set(_screenBounds.x, _screenBounds.x * cotangent, 0f);
+                    screenPoint.Set(_screenBounds.x, _screenBounds.x * cotangent, 0f);
                 }
-                else if(point.x < -_screenBounds.x)
+                else if(screenPoint.x < -_screenBounds.x)
                 {
-                    point.Set(-_screenBounds.x, -_screenBounds.x * cotangent, 0f);
+                    screenPoint.Set(-_screenBounds.x, -_screenBounds.x * cotangent, 0f);
                 }
 
-                return point + _screenCenter;
+                screenPoint += _screenCenter;
             }
+
+            _mark.position = screenPoint;
         }
     }
 }

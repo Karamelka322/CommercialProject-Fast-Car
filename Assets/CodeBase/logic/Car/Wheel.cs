@@ -1,4 +1,6 @@
 using CodeBase.Infrastructure;
+using CodeBase.Services.Pause;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
@@ -12,19 +14,19 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private WheelCollider _collider;
 
-        private IUpdatable _updatable;
-        
+        private IUpdateService _updateService;
+
         private Vector3 _position;
         private Quaternion _rotation;
 
-        public void Construct(IUpdatable updatable) => 
-            _updatable = updatable;
+        public void Construct(IUpdateService updateService) => 
+            _updateService = updateService;
 
         private void Start() => 
-            _updatable.OnUpdate += OnUpdate;
+            _updateService.OnUpdate += OnUpdate;
 
         private void OnDestroy() => 
-            _updatable.OnUpdate -= OnUpdate;
+            _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate() => 
             SetPositionRelativeToCollider();

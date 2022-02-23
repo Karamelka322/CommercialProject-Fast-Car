@@ -1,5 +1,5 @@
-using CodeBase.Infrastructure;
 using CodeBase.Services.Input;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Logic.Player
@@ -11,19 +11,19 @@ namespace CodeBase.Logic.Player
         private Car.Car _car;
 
         private IInputService _inputService;
-        private IUpdatable _updatable;
+        private IUpdateService _updateService;
 
-        public void Construct(IInputService inputService, IUpdatable updatable)
+        public void Construct(IInputService inputService, IUpdateService updateService)
         {
             _inputService = inputService;
-            _updatable = updatable;
+            _updateService = updateService;
         }
 
         private void Start() => 
-            _updatable.OnUpdate += OnUpdate;
+            _updateService.OnUpdate += OnUpdate;
 
         private void OnDestroy() => 
-            _updatable.OnUpdate -= OnUpdate;
+            _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate()
         {

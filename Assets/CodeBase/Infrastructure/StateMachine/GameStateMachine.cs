@@ -7,10 +7,12 @@ using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
+using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Update;
 
 namespace CodeBase.Infrastructure
 {
@@ -44,7 +46,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IPersistentDataService>(),
                     services.Single<IStaticDataService>(),
                     services.Single<ILevelFactory>(),
-                    services.Single<IRandomService>()),
+                    services.Single<IRandomService>(),
+                    services.Single<IUpdateService>()),
                 
                 [typeof(LoopLevelState)] = new LoopLevelState(
                     services.Single<ILevelFactory>(),
@@ -52,7 +55,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IUIFactory>(),
                     services.Single<IRandomService>(),
                     services.Single<IPersistentDataService>(),
-                    updatable)
+                    services.Single<IUpdateService>(),
+                    services.Single<IPauseService>())
             };
         }
 

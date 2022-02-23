@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Extension;
 using CodeBase.Infrastructure;
+using CodeBase.Services.Update;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,19 +17,19 @@ namespace CodeBase.Logic.Enemy
         private NavMeshAgent _navMeshAgent;
 
         private Transform _target;
-        private IUpdatable _updatable;
+        private IUpdateService _updateService;
 
-        public void Construct(IUpdatable updatable, Transform target)
+        public void Construct(IUpdateService updateService, Transform target)
         {
-            _updatable = updatable;
+            _updateService = updateService;
             _target = target;
         }
         
         private void Start() => 
-            _updatable.OnUpdate += OnUpdate;
+            _updateService.OnUpdate += OnUpdate;
 
         private void OnDisable() => 
-            _updatable.OnUpdate -= OnUpdate;
+            _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate()
         {

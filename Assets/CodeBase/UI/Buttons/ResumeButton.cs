@@ -1,3 +1,4 @@
+using CodeBase.Services.Pause;
 using UnityEngine;
 
 namespace CodeBase.UI.Buttons
@@ -6,11 +7,16 @@ namespace CodeBase.UI.Buttons
     {
         [SerializeField] 
         private GameObject _window;
-        
+
+        private IPauseService _pauseService;
+
+        public void Construct(IPauseService pauseService) => 
+            _pauseService = pauseService;
+
         protected override void OnClickButton()
         {
+            _pauseService.SetPause(false);
             Destroy(_window);
-            Time.timeScale = 1;
         }
     }
 }

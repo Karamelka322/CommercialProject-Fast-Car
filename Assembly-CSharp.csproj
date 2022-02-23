@@ -72,7 +72,6 @@
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
      <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\GameRunner.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\IInputModule.cs" />
@@ -96,7 +95,6 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\InputPersistentData.cs" />
-     <Compile Include="Assets\CodeBase\UI\Marker.cs" />
      <Compile Include="Assets\CodeBase\UI\LoadingCurtain.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\IState.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
@@ -169,6 +167,11 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

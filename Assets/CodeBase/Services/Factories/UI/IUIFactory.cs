@@ -7,7 +7,7 @@ namespace CodeBase.Services.Factories.UI
 {
     public interface IUIFactory : IService
     {
-        LoadingCurtain LoadLoadingMenuCurtain();
+        LoadingCurtain LoadMenuCurtain();
         LoadingCurtain LoadLoadingLevelCurtain();
         GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator);
         GameObject LoadUIRoot();

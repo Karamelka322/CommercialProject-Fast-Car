@@ -2,8 +2,10 @@ using CodeBase.Logic.Item;
 using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.UI;
+using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
+using CodeBase.Services.Update;
 using CodeBase.UI;
 using UnityEngine;
 
@@ -12,33 +14,44 @@ namespace CodeBase.Infrastructure.States
     public class LoopLevelState : IUpdateableState
     {
         private readonly IPersistentDataService _persistentDataService;
+        private readonly IUpdateService _updateService;
+        private readonly IPauseService _pauseService;
         private readonly IRandomService _randomService;
         private readonly IEnemyFactory _enemyFactory;
         private readonly ILevelFactory _levelFactory;
         private readonly IUIFactory _uiFactory;
-        private readonly IUpdatable _updatable;
 
         private Capsule _capsule;
 
-        public LoopLevelState(ILevelFactory levelFactory, IEnemyFactory enemyFactory, IUIFactory uiFactory, IRandomService randomService, IPersistentDataService persistentDataService, IUpdatable updatable)
+        public LoopLevelState(
+            ILevelFactory levelFactory,
+            IEnemyFactory enemyFactory,
+            IUIFactory uiFactory,
+            IRandomService randomService,
+            IPersistentDataService persistentDataService,
+            IUpdateService updateService,
+            IPauseService pauseService)
         {
             _persistentDataService = persistentDataService;
+            _updateService = updateService;
+            _pauseService = pauseService;
             _randomService = randomService;
             _levelFactory = levelFactory;
             _enemyFactory = enemyFactory;
             _uiFactory = uiFactory;
-            _updatable = updatable;
         }
 
         public void Enter() => 
-            _updatable.OnUpdate += OnUpdate;
+            _updateService.OnUpdate += OnUpdate;
 
         public void Exit()
         {
-            _updatable.OnUpdate -= OnUpdate;
+            _updateService.OnUpdate -= OnUpdate;
             
             _persistentDataService.PlayerData.SessionData.PlayerData.ResetHealth();
             _persistentDataService.PlayerData.SessionData.GeneratorData.ResetPower();
+            
+            _pauseService.Clenup();
         }
 
         public void OnUpdate()

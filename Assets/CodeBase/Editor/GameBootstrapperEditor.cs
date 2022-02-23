@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace CodeBase.Editor
 {
-    [CustomEditor(typeof(GameRunner))]
-    public class GameRunnerEditor : UnityEditor.Editor
+    [CustomEditor(typeof(GameBootstrapper))]
+    public class GameBootstrapperEditor : UnityEditor.Editor
     {
         private const string DeveloperDataKey = "DeveloperData";
 
@@ -30,8 +30,6 @@ namespace CodeBase.Editor
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             if (Application.isPlaying == false)
             {
                 EditorGUILayout.Space();

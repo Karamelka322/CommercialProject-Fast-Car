@@ -27,7 +27,7 @@ namespace CodeBase.Services.LoadScene
 
             while (!asyncOperation.isDone)
                 yield return null;
-            
+
             onLoaded?.Invoke();
         }
     }

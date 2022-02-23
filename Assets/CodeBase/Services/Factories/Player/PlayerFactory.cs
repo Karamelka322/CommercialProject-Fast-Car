@@ -3,9 +3,11 @@ using CodeBase.Infrastructure;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Player;
 using CodeBase.Services.Input;
+using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Player
@@ -16,27 +18,35 @@ namespace CodeBase.Services.Factories.Player
         private readonly IStaticDataService _staticDataService;
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
-        private readonly IUpdatable _updatable;
+        private readonly IUpdateService _updateService;
+        private readonly IPauseService _pauseService;
 
         public GameObject Player { get; private set; }
         
-        public PlayerFactory(IStaticDataService staticDataService, IInputService inputService, ITweenService tweenService, IUpdatable updatable, IPersistentDataService persistentDataService)
+        public PlayerFactory(
+            IStaticDataService staticDataService,
+            IInputService inputService,
+            ITweenService tweenService,
+            IUpdateService updateService,
+            IPersistentDataService persistentDataService,
+            IPauseService pauseService)
         {
             _persistentDataService = persistentDataService;
+            _pauseService = pauseService;
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
-            _updatable = updatable;
+            _updateService = updateService;
         }
 
         public GameObject CreatePlayer(PlayerTypeId typeId, Vector3 at)
         {
             PlayerStaticData playerStaticData = _staticDataService.ForPlayer(typeId);
 
-            GameObject player = Object.Instantiate(playerStaticData.Prefab.gameObject, at, Quaternion.identity);
+            GameObject player = InstantiateRegister(at, playerStaticData);
             
             if(player.TryGetComponent(out PlayerMovement movement))
-                movement.Construct(_inputService, _updatable);
+                movement.Construct(_inputService, _updateService);
 
             if(player.TryGetComponent(out PlayerHook hook))
                 hook.Construct(_tweenService);
@@ -45,9 +55,16 @@ namespace CodeBase.Services.Factories.Player
                 health.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
 
             foreach (Wheel wheel in player.GetComponentsInChildren<Wheel>()) 
-                wheel.Construct(_updatable);
+                wheel.Construct(_updateService);
 
             return Player = player;
+        }
+
+        private GameObject InstantiateRegister(Vector3 at, PlayerStaticData playerStaticData)
+        {
+            GameObject gameObject = Object.Instantiate(playerStaticData.Prefab.gameObject, at, Quaternion.identity);
+            _pauseService.Register(gameObject);
+            return gameObject;
         }
     }
 }
