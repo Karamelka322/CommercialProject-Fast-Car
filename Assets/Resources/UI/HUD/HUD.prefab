@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 8495847952650422612}
   - component: {fileID: 8158403440975881190}
   m_Layer: 5
-  m_Name: Waypoints_container
+  m_Name: Waymarkers_container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9006888561053256010}
   m_Layer: 5
-  m_Name: Control_container
+  m_Name: Input_container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,7 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0deeeb698d42eb8309e6f7f092bb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlContainer: {fileID: 9006888561053256010}
+  _generatorPowerBar: {fileID: 2197677514849143703}
+  _playerHealthBar: {fileID: 6133479824593780483}
+  _inputContainer: {fileID: 9006888561053256010}
 --- !u!1 &4729999622555195995
 GameObject:
   m_ObjectHideFlags: 0

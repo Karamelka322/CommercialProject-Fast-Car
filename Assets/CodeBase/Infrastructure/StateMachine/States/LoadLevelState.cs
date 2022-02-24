@@ -3,10 +3,10 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Camera;
 using CodeBase.Scene;
+using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
-using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
@@ -29,12 +29,12 @@ namespace CodeBase.Infrastructure.States
         private readonly ISceneLoaderService _sceneLoaderService;
         private readonly IUIFactory _uiFactory;
         private readonly IPlayerFactory _playerFactory;
-        private readonly IInputService _inputService;
         private readonly IPersistentDataService _persistentDataService;
         private readonly IStaticDataService _staticDataService;
         private readonly ILevelFactory _levelFactory;
         private readonly IRandomService _randomService;
         private readonly IUpdateService _updateService;
+        private readonly IReadWriteDataService _readWriteDataService;
 
         private LevelStaticData _levelStaticData;
 
@@ -43,23 +43,23 @@ namespace CodeBase.Infrastructure.States
             ISceneLoaderService sceneLoaderService,
             IUIFactory uiFactory,
             IPlayerFactory playerFactory,
-            IInputService inputService,
             IPersistentDataService persistentDataService,
             IStaticDataService staticDataService,
             ILevelFactory levelFactory,
             IRandomService randomService,
-            IUpdateService updateService)
+            IUpdateService updateService,
+            IReadWriteDataService readWriteDataService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoaderService = sceneLoaderService;
             _uiFactory = uiFactory;
             _playerFactory = playerFactory;
-            _inputService = inputService;
             _persistentDataService = persistentDataService;
             _staticDataService = staticDataService;
             _levelFactory = levelFactory;
             _randomService = randomService;
             _updateService = updateService;
+            _readWriteDataService = readWriteDataService;
         }
 
         public void Enter()
@@ -77,32 +77,26 @@ namespace CodeBase.Infrastructure.States
             }
         }
 
-        public void Exit()
-        {
-            _inputService.Clenup();
+        public void Exit() => 
+            HideCurtain();
 
-            HideCurtain(DestroyCurtain);
-        }
-
-        private void LoadLevelScene()
-        {
+        private void LoadLevelScene() => 
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
-        }
 
-        private void LoadGeometry()
-        {
-            Camera.main.GetComponent<CameraFollow>().Construct(_updateService);
+        private void LoadGeometry() => 
             _sceneLoaderService.Load(_levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
-        }
 
         private void OnLoaded()
         {
-            InitHUD();
-            InitUIRoot();
-            InitGenerator();
-
             GameObject player = InitPlayer();
             CameraFollow(player);
+            
+            GameObject generator = InitGenerator();
+            InitHUD(generator, player);
+            
+            InitUIRoot();
+
+            _readWriteDataService.InformReaders();
             
             EnterLoopLevelState();
         }
@@ -110,13 +104,13 @@ namespace CodeBase.Infrastructure.States
         private void EnterLoopLevelState() => 
             _gameStateMachine.Enter<LoopLevelState>();
 
-        private void InitHUD() => 
-            _uiFactory.LoadHUD();
+        private void InitHUD(GameObject generator, GameObject player) => 
+            _uiFactory.LoadHUD(generator, player);
 
         private void InitUIRoot() => 
             _uiFactory.LoadUIRoot();
 
-        private void InitGenerator() => 
+        private GameObject InitGenerator() => 
             _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
 
         private GameObject InitPlayer() => 
@@ -126,18 +120,19 @@ namespace CodeBase.Infrastructure.States
         {
             if (Camera.main.TryGetComponent(out CameraFollow cameraFollow))
             {
+                cameraFollow.Construct(_updateService);
                 cameraFollow.Target = player.transform;
             }
         }
 
         private void LoadCurtain() => 
-            _uiFactory.LoadLoadingLevelCurtain();
+            _uiFactory.LoadLevelCurtain();
 
         private void ShowCurtain(Action callBack) => 
             _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);
 
-        private void HideCurtain(Action callBack) => 
-            _uiFactory.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, callBack);
+        private void HideCurtain() => 
+            _uiFactory.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
 
         private void DestroyCurtain() => 
             Object.Destroy(_uiFactory.LoadingCurtain.gameObject);

@@ -1,7 +1,10 @@
 using System;
 using CodeBase.Infrastructure;
+using CodeBase.Logic.Level.Generator;
+using CodeBase.Logic.Player;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
@@ -23,8 +26,9 @@ namespace CodeBase.Services.Factories.UI
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
         private readonly IPauseService _pauseService;
+        private readonly IReadWriteDataService _readWriteDataService;
 
-        private GameObject _uiRoot;
+        private Transform _uiRoot;
         
         public LoadingCurtain LoadingCurtain { get; private set; }
         public HUD HUD { get; private set; }
@@ -36,7 +40,8 @@ namespace CodeBase.Services.Factories.UI
             IStaticDataService staticDataService,
             IInputService inputService,
             ITweenService tweenService,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            IReadWriteDataService readWriteDataService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
@@ -45,25 +50,26 @@ namespace CodeBase.Services.Factories.UI
             _inputService = inputService;
             _tweenService = tweenService;
             _pauseService = pauseService;
+            _readWriteDataService = readWriteDataService;
         }
 
         public LoadingCurtain LoadMenuCurtain()
         {
-            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLoadingMenuCurtain());
+            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadMenuCurtain());
             curtain.Construct(_tweenService);
             return LoadingCurtain = curtain;
         }
 
-        public LoadingCurtain LoadLoadingLevelCurtain()
+        public LoadingCurtain LoadLevelCurtain()
         {
-            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLoadingLevelCurtain());
+            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLevelCurtain());
             curtain.Construct(_tweenService);
             return LoadingCurtain = curtain;
         }
 
         public GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator)
         {
-            GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), _uiRoot.transform);
+            GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), _uiRoot);
             
             mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, menuAnimator);
             mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(menuAnimator);
@@ -74,7 +80,7 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadSettingsInMenu(Action backEvent)
         {
-            GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), _uiRoot.transform);
+            GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), _uiRoot);
             
             settings.GetComponentInChildren<BackButton>().Construct(backEvent);
             settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.InputData);
@@ -84,26 +90,29 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadGarageInMenu(Action backEvent)
         {
-            GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), _uiRoot.transform);
+            GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), _uiRoot);
             
             garage.GetComponentInChildren<BackButton>().Construct(backEvent);
             
             return garage;
         }
 
-        public GameObject LoadHUD()
+        public void LoadHUD(GameObject generator, GameObject player)
         {
             HUD = Object.Instantiate(_assetProvider.LoadHUD());
-
-            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.InputData.Type);
-            GameObject inputVariant = Object.Instantiate(prefab, HUD.ControlContainer);
-            _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
+            _readWriteDataService.Register(HUD.gameObject);
             
-            HUD.gameObject.GetComponentInChildren<GeneratorPowerBar>().Construct(_persistentDataService.PlayerData.SessionData.GeneratorData);
-            HUD.gameObject.GetComponentInChildren<PlayerHealthBar>().Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
-            HUD.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
+            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.InputData.Type);
+            GameObject inputVariant = Object.Instantiate(prefab, HUD.InputContainer);
+            _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
 
-            return HUD.gameObject;
+            if (generator.TryGetComponent(out GeneratorPower generatorPower))
+                HUD.GeneratorPowerBar.Construct(generatorPower);
+
+            if (player.TryGetComponent(out PlayerHealth playerHealth))
+                HUD.PlayerHealthBar.Construct(playerHealth);
+            
+            HUD.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
         }
 
         public void LoadPauseWindow()
@@ -113,18 +122,16 @@ namespace CodeBase.Services.Factories.UI
             
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
             window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
+            window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
         }
 
-        public GameObject LoadSkipButton(MenuAnimator menuAnimator)
+        public void LoadSkipButton(MenuAnimator menuAnimator)
         {
-            SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), _uiRoot.transform);
-            
+            SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), _uiRoot);
             skipButton.Construct(menuAnimator);
-            
-            return skipButton.gameObject;
         }
 
-        public GameObject LoadUIRoot() => 
-            _uiRoot = Object.Instantiate(_assetProvider.LoadUIRoot());
+        public void LoadUIRoot() => 
+            _uiRoot = Object.Instantiate(_assetProvider.LoadUIRoot()).transform;
     }
 }

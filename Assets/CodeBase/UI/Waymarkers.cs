@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.UI
 {
-    public class Waypoints : MonoBehaviour
+    public class Waymarkers : MonoBehaviour
     {
         [SerializeField] 
         private RectTransform _mark;

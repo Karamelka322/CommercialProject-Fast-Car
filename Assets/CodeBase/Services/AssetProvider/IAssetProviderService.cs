@@ -9,8 +9,8 @@ namespace CodeBase.Services.AssetProvider
 {
     public interface IAssetProviderService : IService
     {
-        LoadingCurtain LoadLoadingMenuCurtain();
-        LoadingCurtain LoadLoadingLevelCurtain();
+        LoadingCurtain LoadMenuCurtain();
+        LoadingCurtain LoadLevelCurtain();
 
         PlayerStaticData[] LoadPlayerStaticData();
         LevelStaticData[] LoadLevelStaticData();

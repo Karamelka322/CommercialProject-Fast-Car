@@ -8,15 +8,15 @@ namespace CodeBase.Services.Factories.UI
     public interface IUIFactory : IService
     {
         LoadingCurtain LoadMenuCurtain();
-        LoadingCurtain LoadLoadingLevelCurtain();
+        LoadingCurtain LoadLevelCurtain();
         GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator);
-        GameObject LoadUIRoot();
-        GameObject LoadSkipButton(MenuAnimator menuAnimator);
+        void LoadUIRoot();
+        void LoadSkipButton(MenuAnimator menuAnimator);
         LoadingCurtain LoadingCurtain { get; }
         HUD HUD { get; }
         GameObject LoadSettingsInMenu(Action backEvent);
         GameObject LoadGarageInMenu(Action backEvent);
-        GameObject LoadHUD();
+        void LoadHUD(GameObject generator, GameObject player);
         void LoadPauseWindow();
     }
 }

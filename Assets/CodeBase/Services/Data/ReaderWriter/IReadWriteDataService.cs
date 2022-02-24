@@ -1,4 +1,3 @@
-using CodeBase.Data.Perseistent;
 using UnityEngine;
 
 namespace CodeBase.Services.Data.ReaderWriter
@@ -7,6 +6,6 @@ namespace CodeBase.Services.Data.ReaderWriter
     {
         void Register(GameObject gameObject);
         void Clenup();
-        void InformReaders(PlayerPersistentData persistentData);
+        void InformReaders();
     }
 }

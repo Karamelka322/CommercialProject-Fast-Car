@@ -1,7 +1,7 @@
 using CodeBase.Data.Static.Player;
-using CodeBase.Infrastructure;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Player;
+using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
@@ -14,12 +14,12 @@ namespace CodeBase.Services.Factories.Player
 {
     public class PlayerFactory : IPlayerFactory
     {
-        private readonly IPersistentDataService _persistentDataService;
         private readonly IStaticDataService _staticDataService;
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
         private readonly IUpdateService _updateService;
         private readonly IPauseService _pauseService;
+        private readonly IReadWriteDataService _readWriteDataService;
 
         public GameObject Player { get; private set; }
         
@@ -28,11 +28,11 @@ namespace CodeBase.Services.Factories.Player
             IInputService inputService,
             ITweenService tweenService,
             IUpdateService updateService,
-            IPersistentDataService persistentDataService,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            IReadWriteDataService readWriteDataService)
         {
-            _persistentDataService = persistentDataService;
             _pauseService = pauseService;
+            _readWriteDataService = readWriteDataService;
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
@@ -43,27 +43,25 @@ namespace CodeBase.Services.Factories.Player
         {
             PlayerStaticData playerStaticData = _staticDataService.ForPlayer(typeId);
 
-            GameObject player = InstantiateRegister(at, playerStaticData);
+            Player = InstantiateRegister(at, playerStaticData);
             
-            if(player.TryGetComponent(out PlayerMovement movement))
+            if(Player.TryGetComponent(out PlayerMovement movement))
                 movement.Construct(_inputService, _updateService);
 
-            if(player.TryGetComponent(out PlayerHook hook))
+            if(Player.TryGetComponent(out PlayerHook hook))
                 hook.Construct(_tweenService);
          
-            if(player.TryGetComponent(out PlayerHealth health))
-                health.Construct(_persistentDataService.PlayerData.SessionData.PlayerData);
-
-            foreach (Wheel wheel in player.GetComponentsInChildren<Wheel>()) 
+            foreach (Wheel wheel in Player.GetComponentsInChildren<Wheel>()) 
                 wheel.Construct(_updateService);
 
-            return Player = player;
+            return Player;
         }
 
         private GameObject InstantiateRegister(Vector3 at, PlayerStaticData playerStaticData)
         {
             GameObject gameObject = Object.Instantiate(playerStaticData.Prefab.gameObject, at, Quaternion.identity);
             _pauseService.Register(gameObject);
+            _readWriteDataService.Register(gameObject);
             return gameObject;
         }
     }

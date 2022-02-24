@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Services.Update;
 using UnityEngine;
 
@@ -23,11 +22,11 @@ namespace CodeBase.Logic.Camera
 
         public Transform Target { get; set; }
 
-        public void Construct(IUpdateService updateService) => 
+        public void Construct(IUpdateService updateService)
+        {
             _updateService = updateService;
-
-        private void Start() => 
             _updateService.OnFixedUpdate += OnFixedUpdate;
+        }
 
         private void OnDestroy() => 
             _updateService.OnFixedUpdate -= OnFixedUpdate;

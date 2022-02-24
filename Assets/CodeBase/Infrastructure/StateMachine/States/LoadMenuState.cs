@@ -18,6 +18,8 @@ namespace CodeBase.Infrastructure.States
 
         private readonly ISceneLoaderService _sceneLoader;
         private readonly IUIFactory _uiFactory;
+
+        private bool _isFirstLoad = true;
         
         public LoadMenuState(ISceneLoaderService sceneLoader, IUIFactory uiFactory)
         {
@@ -49,9 +51,18 @@ namespace CodeBase.Infrastructure.States
             
             UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
             scene.FindComponentInRootGameObjects<MenuUIViewer>()?.Construct(_uiFactory);
-            scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayOpenMenu();
             
-            HideCurtain(DestroyCurtain);
+            if(_isFirstLoad)
+            {
+                _isFirstLoad = false;
+                scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayOpenMenu();
+            }
+            else
+            {
+                scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayIdleMenu();
+            }
+            
+            HideCurtain();
         }
 
         private void LoadCurtain() => 
@@ -60,8 +71,8 @@ namespace CodeBase.Infrastructure.States
         private void ShowCurtain(Action callBack) => 
             _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);
 
-        private void HideCurtain(Action callBack) => 
-            _uiFactory?.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, callBack);
+        private void HideCurtain() => 
+            _uiFactory?.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
 
         private void DestroyCurtain() => 
             Object.Destroy(_uiFactory.LoadingCurtain.gameObject);

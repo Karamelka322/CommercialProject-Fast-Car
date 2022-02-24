@@ -13,5 +13,11 @@ namespace CodeBase.Data.Perseistent
             PlayerData = new PlayerSessionData();
             GeneratorData = new GeneratorSessionData();
         }
+        
+        public void Reset()
+        {
+            PlayerData.Health = PlayerData.MaxHealth;
+            GeneratorData.Power = GeneratorSessionData.MaxPower;
+        }
     }
 }

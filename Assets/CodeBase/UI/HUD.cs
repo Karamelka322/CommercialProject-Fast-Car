@@ -5,8 +5,16 @@ namespace CodeBase.UI
     public class HUD : MonoBehaviour
     {
         [SerializeField] 
-        private Transform _controlContainer;
+        private GeneratorPowerBar _generatorPowerBar;
+        
+        [SerializeField] 
+        private PlayerHealthBar _playerHealthBar;
 
-        public Transform ControlContainer => _controlContainer;
+        [SerializeField] 
+        private Transform _inputContainer;
+
+        public Transform InputContainer => _inputContainer;
+        public GeneratorPowerBar GeneratorPowerBar => _generatorPowerBar;
+        public PlayerHealthBar PlayerHealthBar => _playerHealthBar;
     }
 }

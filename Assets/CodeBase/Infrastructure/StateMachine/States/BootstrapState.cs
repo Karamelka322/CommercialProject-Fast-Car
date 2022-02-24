@@ -52,8 +52,8 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
             _services.RegisterSingle<IInputService>(new InputService());
 
-            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService());
             _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
+            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
 
@@ -63,15 +63,16 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(
                 _services.Single<IAssetProviderService>(),
                 _services.Single<ITweenService>(),
-                _services.Single<IPersistentDataService>()));
+                _services.Single<IUpdateService>(),
+                _services.Single<IReadWriteDataService>()));
             
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
                 _services.Single<IStaticDataService>(),
                 _services.Single<IInputService>(),
                 _services.Single<ITweenService>(),
                 _services.Single<IUpdateService>(),
-                _services.Single<IPersistentDataService>(),
-                _services.Single<IPauseService>()));
+                _services.Single<IPauseService>(),
+                _services.Single<IReadWriteDataService>()));
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IGameStateMachine>(),
@@ -80,7 +81,8 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IStaticDataService>(),
                 _services.Single<IInputService>(),
                 _services.Single<ITweenService>(),
-                _services.Single<IPauseService>()));
+                _services.Single<IPauseService>(),
+                _services.Single<IReadWriteDataService>()));
             
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
                 _services.Single<IAssetProviderService>(),

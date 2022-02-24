@@ -1,21 +1,28 @@
 using CodeBase.Data.Perseistent;
+using CodeBase.Logic.Player;
+using CodeBase.Services.Data.ReaderWriter;
 
 namespace CodeBase.UI
 {
-    public class PlayerHealthBar : UIBar
+    public class PlayerHealthBar : UIBar, IReadData
     {
-        private PlayerSessionData _playerSessionData;
+        private PlayerHealth _playerHealth;
 
-        public void Construct(PlayerSessionData playerSessionData) => 
-            _playerSessionData = playerSessionData;
+        private float _maxHealth;
+        
+        public void Construct(PlayerHealth playerHealth) => 
+            _playerHealth = playerHealth;
 
         private void Start() => 
-            _playerSessionData.ChangeHealth += OnChangeHealth;
+            _playerHealth.OnChangeHealth += OnChangeHealth;
 
         private void OnDisable() => 
-            _playerSessionData.ChangeHealth -= OnChangeHealth;
+            _playerHealth.OnChangeHealth -= OnChangeHealth;
 
         private void OnChangeHealth(float health) => 
-            Fill = health / _playerSessionData.MaxHealth;
+            Fill = health / _maxHealth;
+
+        public void ReadData(PlayerPersistentData persistentData) => 
+            _maxHealth = persistentData.SessionData.PlayerData.MaxHealth;
     }
 }

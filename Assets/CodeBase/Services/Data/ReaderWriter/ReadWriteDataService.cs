@@ -1,13 +1,20 @@
 using System.Collections.Generic;
-using CodeBase.Data.Perseistent;
+using CodeBase.Services.PersistentProgress;
 using UnityEngine;
 
 namespace CodeBase.Services.Data.ReaderWriter
 {
     public class ReadWriteDataService : IReadWriteDataService
     {
-        private List<IReadData> _readers { get; } = new List<IReadData>();
         private List<IWriteData> _writers { get; } = new List<IWriteData>();
+        private List<IReadData> _readers { get; } = new List<IReadData>();
+
+        private readonly IPersistentDataService _persistentDataService;
+
+        public ReadWriteDataService(IPersistentDataService persistentDataService)
+        {
+            _persistentDataService = persistentDataService;
+        }
 
         public void Register(GameObject gameObject)
         {
@@ -18,10 +25,10 @@ namespace CodeBase.Services.Data.ReaderWriter
                 RegisterWriter(writer);
         }
 
-        public void InformReaders(PlayerPersistentData persistentData)
+        public void InformReaders()
         {
             foreach (IReadData reader in _readers) 
-                reader.ReadData(persistentData);
+                reader.ReadData(_persistentDataService.PlayerData);
         }
 
         public void Clenup()
@@ -29,7 +36,7 @@ namespace CodeBase.Services.Data.ReaderWriter
             _readers.Clear();
             _writers.Clear();
         }
-
+        
         private void RegisterReader(IReadData readerData) =>
             _readers.Add(readerData);
 

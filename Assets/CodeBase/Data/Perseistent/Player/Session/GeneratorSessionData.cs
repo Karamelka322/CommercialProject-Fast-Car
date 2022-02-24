@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace CodeBase.Data.Perseistent
 {
@@ -11,22 +10,5 @@ namespace CodeBase.Data.Perseistent
 
         public float Power;
         public float PowerSpeedChange;
-
-        public Action<float> ChangePower;
-
-        public void AddPower(float value)
-        {
-            Power = Mathf.Clamp(Power + value, MinPower, MaxPower);
-            ChangePower?.Invoke(Power);
-        }
-
-        public void ReducePower(float value)
-        {
-            Power = Mathf.Clamp(Power - value, MinPower, MaxPower);
-            ChangePower?.Invoke(Power);
-        }
-
-        public void ResetPower() => 
-            Power = MaxPower;
     }
 }

@@ -9,7 +9,7 @@ namespace CodeBase.Services.AssetProvider
 {
     public class AssetProviderService : IAssetProviderService
     {
-        public LoadingCurtain LoadLoadingMenuCurtain() => 
+        public LoadingCurtain LoadMenuCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingMenuPath);
 
         public GameObject LoadSettingsInMenu() => 
@@ -42,7 +42,7 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadEnemy() => 
             Resources.Load<GameObject>(AssetPath.EnemyPath);
 
-        public LoadingCurtain LoadLoadingLevelCurtain() => 
+        public LoadingCurtain LoadLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);
 
         public GameObject LoadUIRoot() => 

@@ -1,21 +1,26 @@
 using CodeBase.Data.Perseistent;
+using CodeBase.Logic.Level.Generator;
+using CodeBase.Services.Data.ReaderWriter;
 
 namespace CodeBase.UI
 {
-    public class GeneratorPowerBar : UIBar
+    public class GeneratorPowerBar : UIBar, IReadData
     {
-        private GeneratorSessionData _generatorSessionData;
-
-        public void Construct(GeneratorSessionData generatorSessionData) =>
-            _generatorSessionData = generatorSessionData;
+        private GeneratorPower _generatorPower;
         
+        public void Construct(GeneratorPower generatorPower) => 
+            _generatorPower = generatorPower;
+
         private void Start() => 
-            _generatorSessionData.ChangePower += OnChangePower;
+            _generatorPower.OnChangePower += OnChangePower;
 
         private void OnDestroy() => 
-            _generatorSessionData.ChangePower -= OnChangePower;
+            _generatorPower.OnChangePower -= OnChangePower;
 
         private void OnChangePower(float power) => 
             Fill = power / GeneratorSessionData.MaxPower;
+
+        public void ReadData(PlayerPersistentData persistentData) => 
+            Fill = persistentData.SessionData.GeneratorData.Power / GeneratorSessionData.MaxPower;
     }
 }
