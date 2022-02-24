@@ -28,8 +28,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly IPauseService _pauseService;
         private readonly IReadWriteDataService _readWriteDataService;
 
-        private Transform _uiRoot;
-        
+        public Transform UIRoot { get; private set; }
         public LoadingCurtain LoadingCurtain { get; private set; }
         public HUD HUD { get; private set; }
         
@@ -69,7 +68,7 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator)
         {
-            GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), _uiRoot);
+            GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), UIRoot);
             
             mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, menuAnimator);
             mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(menuAnimator);
@@ -80,7 +79,7 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadSettingsInMenu(Action backEvent)
         {
-            GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), _uiRoot);
+            GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), UIRoot);
             
             settings.GetComponentInChildren<BackButton>().Construct(backEvent);
             settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.InputData);
@@ -90,7 +89,7 @@ namespace CodeBase.Services.Factories.UI
 
         public GameObject LoadGarageInMenu(Action backEvent)
         {
-            GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), _uiRoot);
+            GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), UIRoot);
             
             garage.GetComponentInChildren<BackButton>().Construct(backEvent);
             
@@ -118,7 +117,7 @@ namespace CodeBase.Services.Factories.UI
         public void LoadPauseWindow()
         {
             GameObject prefab = _assetProvider.LoadPauseWindow();
-            GameObject window = Object.Instantiate(prefab, _uiRoot.transform);
+            GameObject window = Object.Instantiate(prefab, UIRoot.transform);
             
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
             window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
@@ -127,11 +126,11 @@ namespace CodeBase.Services.Factories.UI
 
         public void LoadSkipButton(MenuAnimator menuAnimator)
         {
-            SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), _uiRoot);
+            SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), UIRoot);
             skipButton.Construct(menuAnimator);
         }
 
         public void LoadUIRoot() => 
-            _uiRoot = Object.Instantiate(_assetProvider.LoadUIRoot()).transform;
+            UIRoot = Object.Instantiate(_assetProvider.LoadUIRoot()).transform;
     }
 }

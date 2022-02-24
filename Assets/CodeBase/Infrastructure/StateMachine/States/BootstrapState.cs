@@ -9,6 +9,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
+using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
@@ -45,6 +46,7 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IReplayService>(new ReplayService());
             _services.RegisterSingle<IUpdateService>(new UpdateService(_updatable));
             _services.RegisterSingle<ITweenService>(new TweenService(_corutineRunner));
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
@@ -72,7 +74,9 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<ITweenService>(),
                 _services.Single<IUpdateService>(),
                 _services.Single<IPauseService>(),
-                _services.Single<IReadWriteDataService>()));
+                _services.Single<IReadWriteDataService>(),
+                _services.Single<IReplayService>(),
+                _services.Single<IRandomService>()));
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IGameStateMachine>(),

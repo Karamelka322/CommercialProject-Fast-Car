@@ -1,11 +1,12 @@
 using CodeBase.Logic.World;
 using CodeBase.Services.Pause;
+using CodeBase.Services.Replay;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(Motor), typeof(SteeringGear), typeof(Rigidbody))]
-    public class Car : MonoBehaviour, IPauseHandler
+    public class Car : MonoBehaviour, IPauseHandler, IReplayHandler
     {
         [SerializeField] 
         private Motor _motor;
@@ -53,6 +54,12 @@ namespace CodeBase.Logic.Car
 
             _rigidbody.velocity = _velocity;
             _rigidbody.angularVelocity = _angularVelocity;
+        }
+
+        public void OnReplay()
+        {
+            _velocity = Vector3.zero;
+            _angularVelocity = Vector3.zero;
         }
     }
 }

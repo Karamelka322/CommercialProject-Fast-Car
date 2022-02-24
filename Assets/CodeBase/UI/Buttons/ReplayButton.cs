@@ -9,9 +9,7 @@ namespace CodeBase.UI.Buttons
         public void Construct(IGameStateMachine gameStateMachine) => 
             _gameStateMachine = gameStateMachine;
 
-        protected override void OnClickButton()
-        {
-            //_gameStateMachine.Enter<ReplayLevelState>();
-        }
+        protected override void OnClickButton() => 
+            _gameStateMachine.Enter<ReplayLevelState>();
     }
 }

@@ -11,6 +11,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
+using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Update;
@@ -63,7 +64,10 @@ namespace CodeBase.Infrastructure
                     services.Single<IPlayerFactory>()),
                 
                 [typeof(ReplayLevelState)] = new ReplayLevelState(
-                    services.Single<IGameStateMachine>()),
+                    services.Single<IGameStateMachine>(),
+                    services.Single<IReplayService>(),
+                    services.Single<IUIFactory>(),
+                    services.Single<IPauseService>()),
             };
         }
 

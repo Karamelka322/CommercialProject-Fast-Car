@@ -72,7 +72,7 @@ namespace CodeBase.Infrastructure.States
             
             _readWriteDataService.Clenup();
             _inputService.Clenup();
-            _pauseService.Clenup();
+            //_pauseService.Clenup();
         }
 
         private void InitEnemy() => 

@@ -14,6 +14,7 @@ namespace CodeBase.Services.Factories.UI
         void LoadSkipButton(MenuAnimator menuAnimator);
         LoadingCurtain LoadingCurtain { get; }
         HUD HUD { get; }
+        Transform UIRoot { get; }
         GameObject LoadSettingsInMenu(Action backEvent);
         GameObject LoadGarageInMenu(Action backEvent);
         void LoadHUD(GameObject generator, GameObject player);

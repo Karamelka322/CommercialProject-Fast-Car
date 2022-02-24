@@ -4,7 +4,8 @@ using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
-using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Random;
+using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
@@ -20,6 +21,8 @@ namespace CodeBase.Services.Factories.Player
         private readonly IUpdateService _updateService;
         private readonly IPauseService _pauseService;
         private readonly IReadWriteDataService _readWriteDataService;
+        private readonly IReplayService _replayService;
+        private readonly IRandomService _randomService;
 
         public GameObject Player { get; private set; }
         
@@ -29,10 +32,14 @@ namespace CodeBase.Services.Factories.Player
             ITweenService tweenService,
             IUpdateService updateService,
             IPauseService pauseService,
-            IReadWriteDataService readWriteDataService)
+            IReadWriteDataService readWriteDataService,
+            IReplayService replayService,
+            IRandomService randomService)
         {
             _pauseService = pauseService;
             _readWriteDataService = readWriteDataService;
+            _replayService = replayService;
+            _randomService = randomService;
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
@@ -45,6 +52,9 @@ namespace CodeBase.Services.Factories.Player
 
             Player = InstantiateRegister(at, playerStaticData);
             
+            if(Player.TryGetComponent(out PlayerPrefab player))
+                player.Construct(_randomService);
+
             if(Player.TryGetComponent(out PlayerMovement movement))
                 movement.Construct(_inputService, _updateService);
 
@@ -62,6 +72,7 @@ namespace CodeBase.Services.Factories.Player
             GameObject gameObject = Object.Instantiate(playerStaticData.Prefab.gameObject, at, Quaternion.identity);
             _pauseService.Register(gameObject);
             _readWriteDataService.Register(gameObject);
+            _replayService.Register(gameObject);
             return gameObject;
         }
     }

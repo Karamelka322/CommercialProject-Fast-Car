@@ -60,6 +60,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\GeometryStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\GeneratorSessionData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
@@ -147,6 +148,7 @@
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReaderWriter\ReadWriteDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\IInputElement.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
@@ -172,8 +174,9 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\ReplayService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\IReplayHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\IReplayService.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
