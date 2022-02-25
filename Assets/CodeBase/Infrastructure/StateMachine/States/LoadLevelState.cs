@@ -8,10 +8,12 @@ using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
+using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Update;
+using CodeBase.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -35,9 +37,10 @@ namespace CodeBase.Infrastructure.States
         private readonly IRandomService _randomService;
         private readonly IUpdateService _updateService;
         private readonly IReadWriteDataService _readWriteDataService;
+        private readonly IPauseService _pauseService;
 
-        private LevelStaticData _levelStaticData;
-
+        private LoadingCurtain _curtain;
+        
         public LoadLevelState(
             IGameStateMachine gameStateMachine,
             ISceneLoaderService sceneLoaderService,
@@ -48,7 +51,8 @@ namespace CodeBase.Infrastructure.States
             ILevelFactory levelFactory,
             IRandomService randomService,
             IUpdateService updateService,
-            IReadWriteDataService readWriteDataService)
+            IReadWriteDataService readWriteDataService,
+            IPauseService pauseService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoaderService = sceneLoaderService;
@@ -60,21 +64,13 @@ namespace CodeBase.Infrastructure.States
             _randomService = randomService;
             _updateService = updateService;
             _readWriteDataService = readWriteDataService;
+            _pauseService = pauseService;
         }
 
         public void Enter()
         {
-            _levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.LevelData.Type);
-            
-            if(_uiFactory.LoadingCurtain == null)
-            {
-                LoadCurtain();
-                ShowCurtain(LoadLevelScene);
-            }
-            else
-            {
-                LoadLevelScene();
-            }
+            LoadCurtain();
+            ShowCurtain(LoadLevelScene);
         }
 
         public void Exit() => 
@@ -83,8 +79,11 @@ namespace CodeBase.Infrastructure.States
         private void LoadLevelScene() => 
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
 
-        private void LoadGeometry() => 
-            _sceneLoaderService.Load(_levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
+        private void LoadGeometry()
+        {
+            LevelStaticData levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.LevelData.Type);
+            _sceneLoaderService.Load(levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
+        }
 
         private void OnLoaded()
         {
@@ -97,6 +96,7 @@ namespace CodeBase.Infrastructure.States
             InitUIRoot();
 
             _readWriteDataService.InformReaders();
+            _pauseService.SetPause(false);
             
             EnterLoopLevelState();
         }
@@ -122,19 +122,20 @@ namespace CodeBase.Infrastructure.States
             {
                 cameraFollow.Construct(_updateService);
                 cameraFollow.Target = player.transform;
+                cameraFollow.MoveToTarget();
             }
         }
 
         private void LoadCurtain() => 
-            _uiFactory.LoadLevelCurtain();
+            _curtain = _uiFactory.LoadLevelCurtain();
 
-        private void ShowCurtain(Action callBack) => 
-            _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);
+        private void ShowCurtain(Action onShow) => 
+            _curtain.Show(SpeedShowCurtain, DelayShowCurtain, onShow);
 
         private void HideCurtain() => 
-            _uiFactory.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
+            _curtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
 
         private void DestroyCurtain() => 
-            Object.Destroy(_uiFactory.LoadingCurtain.gameObject);
+            Object.Destroy(_curtain.gameObject);
     }
 }

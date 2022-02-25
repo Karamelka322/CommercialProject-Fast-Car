@@ -4,6 +4,9 @@ using CodeBase.Scene;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
+using CodeBase.Services.Pause;
+using CodeBase.Services.Replay;
+using CodeBase.UI;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -18,29 +21,31 @@ namespace CodeBase.Infrastructure.States
 
         private readonly ISceneLoaderService _sceneLoader;
         private readonly IUIFactory _uiFactory;
+        private readonly IPauseService _pauseService;
+        private readonly IReplayService _replayService;
 
         private bool _isFirstLoad = true;
+        private LoadingCurtain _curtain;
         
-        public LoadMenuState(ISceneLoaderService sceneLoader, IUIFactory uiFactory)
+        public LoadMenuState(ISceneLoaderService sceneLoader, IUIFactory uiFactory, IPauseService pauseService, IReplayService replayService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
+            _pauseService = pauseService;
+            _replayService = replayService;
         }
 
         public void Enter()
         {
-            if(_uiFactory.LoadingCurtain == null)
-            {
-                LoadCurtain();
-                ShowCurtain(LoadScene);
-            }
-            else
-            {
-                LoadScene();
-            }
+            LoadCurtain();
+            ShowCurtain(LoadScene);
         }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _pauseService.Clenup();
+            _replayService.Clenup();
+        }
 
         private void LoadScene() => 
             _sceneLoader.Load(SceneNameConstant.Menu, LoadSceneMode.Single, OnLoaded);
@@ -66,15 +71,15 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void LoadCurtain() => 
-            _uiFactory.LoadMenuCurtain();
+            _curtain = _uiFactory.LoadMenuCurtain();
 
-        private void ShowCurtain(Action callBack) => 
-            _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);
+        private void ShowCurtain(Action onShow) => 
+            _curtain.Show(SpeedShowCurtain, DelayShowCurtain, onShow);
 
         private void HideCurtain() => 
-            _uiFactory?.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
+            _curtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
 
         private void DestroyCurtain() => 
-            Object.Destroy(_uiFactory.LoadingCurtain.gameObject);
+            Object.Destroy(_curtain.gameObject);
     }
 }

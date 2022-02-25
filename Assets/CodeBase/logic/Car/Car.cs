@@ -17,10 +17,25 @@ namespace CodeBase.Logic.Car
         [SerializeField]
         private Point _centerOfMass;
 
+        [Space]
         [SerializeField] 
         private Rigidbody _rigidbody;
+        
+        [Space]
+        [SerializeField] 
+        private WheelCollider _frontLeftWheel;
+        
+        [SerializeField] 
+        private WheelCollider _frontRightWheel;
+
+        [SerializeField] 
+        private WheelCollider _rearLeftWheel;
+
+        [SerializeField] 
+        private WheelCollider _rearRightWheel;
 
         public float Speed => _rigidbody.velocity.magnitude;
+        public bool IsGrounded => _frontLeftWheel.isGrounded || _frontRightWheel.isGrounded || _rearLeftWheel.isGrounded || _rearRightWheel.isGrounded;
 
         private Vector3 _velocity;
         private Vector3 _angularVelocity;

@@ -29,7 +29,6 @@ namespace CodeBase.Services.Factories.UI
         private readonly IReadWriteDataService _readWriteDataService;
 
         public Transform UIRoot { get; private set; }
-        public LoadingCurtain LoadingCurtain { get; private set; }
         public HUD HUD { get; private set; }
         
         public UIFactory(
@@ -56,14 +55,14 @@ namespace CodeBase.Services.Factories.UI
         {
             LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadMenuCurtain());
             curtain.Construct(_tweenService);
-            return LoadingCurtain = curtain;
+            return curtain;
         }
 
         public LoadingCurtain LoadLevelCurtain()
         {
             LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLevelCurtain());
             curtain.Construct(_tweenService);
-            return LoadingCurtain = curtain;
+            return curtain;
         }
 
         public GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator)
@@ -122,6 +121,12 @@ namespace CodeBase.Services.Factories.UI
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
             window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
             window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
+        }
+
+        public GameObject LoadTimer()
+        {
+            GameObject prefab = _assetProvider.LoadTimer();
+            return Object.Instantiate(prefab, UIRoot);
         }
 
         public void LoadSkipButton(MenuAnimator menuAnimator)

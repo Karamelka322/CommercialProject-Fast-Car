@@ -37,22 +37,31 @@ namespace CodeBase.Logic.Camera
                 Follow(Target);
         }
 
-        private void Follow(in Transform target)
+        public void MoveToTarget()
         {
-            Movement(target);
-            Rotation(target);
+            if (Target != null)
+            {
+                Movement(Target, 1f);
+                Rotation(Target, 1f);
+            }
         }
 
-        private void Movement(Transform target)
+        private void Follow(in Transform target)
         {
-            Vector3 nextPosition = Vector3.Lerp(transform.position, target.position + _movementOffset, Time.deltaTime * _movementSpeed);
+            Movement(target, Time.deltaTime * _movementSpeed);
+            Rotation(target, Time.deltaTime * _rotationSpeed);
+        }
+
+        private void Movement(Transform target, float speed)
+        {
+            Vector3 nextPosition = Vector3.Lerp(transform.position, target.position + _movementOffset, speed);
             transform.position = nextPosition;
         }
 
-        private void Rotation(Transform target)
+        private void Rotation(Transform target, float speed)
         {
             Vector3 direction = (target.position + _rotationOffset) - transform.position;
-            Quaternion nextRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * _rotationSpeed);
+            Quaternion nextRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), speed);
             transform.rotation = nextRotation;
         }
     }

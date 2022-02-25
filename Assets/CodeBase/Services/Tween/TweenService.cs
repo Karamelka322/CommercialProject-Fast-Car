@@ -35,6 +35,18 @@ namespace CodeBase.Services.Tween
             StartRegisterCoroutine<T>(Hide(canvasGroup, speed, delay, done));
         }
 
+        public void Timer<T>(float time, Action callBack)
+        {
+            TryStopUnregisterCoroutine<T>();
+            StartRegisterCoroutine<T>(StartTimer(time, callBack));
+        }
+
+        private static IEnumerator StartTimer(float time, Action callBack)
+        {
+            yield return new WaitForSeconds(time);
+            callBack?.Invoke();
+        }
+
         private void TryStopUnregisterCoroutine<T>()
         {
             if (_dictionary.TryGetValue(typeof(T), out Coroutine coroutine)) 

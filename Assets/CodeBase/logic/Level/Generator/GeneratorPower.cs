@@ -2,18 +2,22 @@ using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Logic.Item;
 using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Logic.Level.Generator
 {
-    public class GeneratorPower : MonoBehaviour, IReadData, IWriteData
+    public class GeneratorPower : MonoBehaviour, IReadData, IWriteData, IReplayHandler
     {
         [SerializeField] 
         private GeneratorHook _hook;
 
         private IUpdateService _updateService;
 
+        private float _startPower;
+        private float _startSpeed;
+        
         private float _speed;
         private float _power;
 
@@ -59,14 +63,25 @@ namespace CodeBase.Logic.Level.Generator
 
         public void ReadData(PlayerPersistentData persistentData)
         {
-            _power = persistentData.SessionData.GeneratorData.Power;
-            _speed = persistentData.SessionData.GeneratorData.PowerSpeedChange;
+            _startPower = persistentData.SessionData.GeneratorData.Power;
+            _startSpeed = persistentData.SessionData.GeneratorData.PowerSpeedChange;
+
+            _power = _startPower;
+            _speed = _startSpeed;
         }
 
         public void WriteData(PlayerPersistentData persistentData)
         {
             persistentData.SessionData.GeneratorData.Power = _power;
             persistentData.SessionData.GeneratorData.PowerSpeedChange = _speed;
+        }
+
+        public void OnReplay()
+        {
+            _power = _startPower;
+            _speed = _startSpeed;
+            
+            OnChangePower?.Invoke(_power);
         }
     }
 }

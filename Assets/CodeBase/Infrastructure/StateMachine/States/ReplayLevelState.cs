@@ -1,8 +1,11 @@
 using System;
 using CodeBase.Infrastructure.States;
+using CodeBase.Logic.Camera;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
+using CodeBase.UI;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Infrastructure
@@ -16,9 +19,11 @@ namespace CodeBase.Infrastructure
 
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IReplayService _replayService;
-        private readonly IPauseService _pauseService;
         private readonly IUIFactory _uiFactory;
+        private readonly IPauseService _pauseService;
 
+        private LoadingCurtain _curtain;
+        
         public ReplayLevelState(IGameStateMachine gameStateMachine, IReplayService replayService, IUIFactory uiFactory, IPauseService pauseService)
         {
             _gameStateMachine = gameStateMachine;
@@ -29,48 +34,49 @@ namespace CodeBase.Infrastructure
 
         public void Enter()
         {
-            if(_uiFactory.LoadingCurtain == null)
-            {
-                LoadCurtain();
-                ShowCurtain(ReplayLevel);
-            }
-            else
-            {
-                ReplayLevel();
-            }
+            LoadCurtain();
+            ShowCurtain(ReplayLevel);
         }
+
+        public void Exit() => 
+            HideCurtain();
 
         private void ReplayLevel()
         {
             _replayService.InformHandlers();
             _pauseService.SetPause(false);
             
+            ResetCamera();
             ClearUIRoot();
+            
             EnterLoopLevelState();
+        }
+
+        private static void ResetCamera()
+        {
+            if (Camera.main.TryGetComponent(out CameraFollow cameraFollow))
+                cameraFollow.MoveToTarget();
         }
 
         private void ClearUIRoot()
         {
-            for (int i = 0; i < _uiFactory.UIRoot.childCount; i++) 
+            for (int i = 0; i < _uiFactory.UIRoot.childCount; i++)
                 Object.Destroy(_uiFactory.UIRoot.GetChild(0).gameObject);
         }
-
+        
         private void EnterLoopLevelState() => 
             _gameStateMachine.Enter<LoopLevelState>();
-
-        public void Exit() => 
-            HideCurtain();
-
+        
         private void LoadCurtain() => 
-            _uiFactory.LoadMenuCurtain();
+            _curtain = _uiFactory.LoadMenuCurtain();
 
-        private void ShowCurtain(Action callBack) => 
-            _uiFactory.LoadingCurtain.Show(SpeedShowCurtain, DelayShowCurtain, callBack);
+        private void ShowCurtain(Action onShow) => 
+            _curtain.Show(SpeedShowCurtain, DelayShowCurtain, onShow);
 
         private void HideCurtain() => 
-            _uiFactory?.LoadingCurtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
+            _curtain.Hide(SpeedHideCurtain, DelayHideCurtain, DestroyCurtain);
 
         private void DestroyCurtain() => 
-            Object.Destroy(_uiFactory.LoadingCurtain.gameObject);
+            Object.Destroy(_curtain.gameObject);
     }
 }

@@ -24,5 +24,6 @@ namespace CodeBase.Services.AssetProvider
         public const string CapsulePath = "Level/Capsule";
         
         public const string PauseWindowPath = "UI/Pause_window";
+        public const string TimerPath = "UI/Timer";
     }
 }

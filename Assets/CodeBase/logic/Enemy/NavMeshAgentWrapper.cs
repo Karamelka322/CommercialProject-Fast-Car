@@ -1,6 +1,5 @@
 using System;
 using CodeBase.Extension;
-using CodeBase.Infrastructure;
 using CodeBase.Services.Update;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,6 +18,16 @@ namespace CodeBase.Logic.Enemy
         private Transform _target;
         private IUpdateService _updateService;
 
+        public bool Enabled
+        {
+            get => _navMeshAgent.enabled;
+            set
+            {
+                _navMeshAgent.enabled = value;
+                enabled = value;
+            }
+        }
+
         public void Construct(IUpdateService updateService, Transform target)
         {
             _updateService = updateService;
@@ -28,7 +37,7 @@ namespace CodeBase.Logic.Enemy
         private void Start() => 
             _updateService.OnUpdate += OnUpdate;
 
-        private void OnDisable() => 
+        private void OnDestroy() => 
             _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate()
@@ -36,7 +45,8 @@ namespace CodeBase.Logic.Enemy
             ResetPosition();
             ResetRotation();
 
-            UpdateDestination();
+            if(_navMeshAgent.enabled)
+                UpdateDestination();
         }
 
         public float GetNormalizeAngle() => 

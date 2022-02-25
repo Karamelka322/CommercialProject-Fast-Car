@@ -1,5 +1,3 @@
-using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.States;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Enemy;
 using CodeBase.Services.Update;
@@ -9,11 +7,9 @@ namespace CodeBase.Services.Factories.Enemy
 {
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField] 
-        private Car _car;
+        [SerializeField] private Car _car;
 
-        [SerializeField] 
-        private NavMeshAgentWrapper _navMeshAgentWrapper;
+        [SerializeField] private NavMeshAgentWrapper _navMeshAgentWrapper;
 
         private IUpdateService _updateService;
 
@@ -26,14 +22,16 @@ namespace CodeBase.Services.Factories.Enemy
         public void Construct(IUpdateService updateService) =>
             _updateService = updateService;
 
-        private void Start() => 
+        private void Start() =>
             _updateService.OnUpdate += OnUpdate;
 
-        private void OnDisable() => 
+        private void OnDisable() =>
             _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate()
         {
+            ToggleActivityMeshAgent();
+
             if (IsStopped() == false)
             {
                 MovingForward();
@@ -44,45 +42,57 @@ namespace CodeBase.Services.Factories.Enemy
             }
         }
 
+        private void ToggleActivityMeshAgent()
+        {
+            if (!_car.IsGrounded && _navMeshAgentWrapper.Enabled)
+            {
+                _navMeshAgentWrapper.Enabled = false;
+            }
+            else if (_car.IsGrounded && !_navMeshAgentWrapper.Enabled)
+            {
+                _navMeshAgentWrapper.Enabled = true;
+            }
+        }
+
         private bool IsStopped()
         {
             if (IsSleepStopwatch())
             {
                 UpdateTimer();
 
-                if (IsSleepTimer()) 
+                if (IsSleepTimer())
                     ResetStopwatch();
             }
             else
             {
                 ResetTimer();
 
-                if(IsSleepTimer())
+                if (IsSleepTimer())
                     UpdateStopwatch();
             }
-            
+
             return IsTimerRun();
         }
 
-        private void UpdateTimer() => 
+        private void UpdateTimer() =>
             _timer = Mathf.Clamp(_timer - Time.deltaTime, 0, BackwardsMovementDuration);
 
-        private void UpdateStopwatch() => 
+        private void UpdateStopwatch() =>
             _stopwatch = Mathf.Clamp(_stopwatch + (_car.Speed < 4f ? Time.deltaTime : -_stopwatch), 0, StopDuration);
 
-        private void ResetTimer() => 
+        private void ResetTimer() =>
             _timer = BackwardsMovementDuration;
 
-        private void ResetStopwatch() => 
+        private void ResetStopwatch() =>
             _stopwatch = 0;
 
-        private bool IsSleepStopwatch() => 
+        private bool IsSleepStopwatch() =>
             _stopwatch == StopDuration;
 
-        private bool IsSleepTimer() => 
+        private bool IsSleepTimer() =>
             _timer == BackwardsMovementDuration || _timer == 0;
 
-        private bool IsTimerRun() => 
+        private bool IsTimerRun() =>
             _timer < BackwardsMovementDuration;
 
         private void MovingForward()

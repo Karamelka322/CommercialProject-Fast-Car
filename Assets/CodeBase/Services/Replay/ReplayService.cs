@@ -12,7 +12,7 @@ namespace CodeBase.Services.Replay
             foreach (IReplayHandler handler in gameObject.GetComponentsInParent<IReplayHandler>())
                 _handlers.Add(handler);
         }
-
+        
         public void InformHandlers()
         {
             Cleaning();
@@ -28,11 +28,15 @@ namespace CodeBase.Services.Replay
         {
             for (int i = 0; i < _handlers.Count; i++)
             {
-                if(_handlers[i] != null)
-                    continue;
-                
-                _handlers.RemoveAt(i);
-                i--;
+                try
+                {
+                    _handlers[i].name.Equals(_handlers[i].name);
+                }
+                catch (MissingReferenceException exception)
+                {
+                    _handlers.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }

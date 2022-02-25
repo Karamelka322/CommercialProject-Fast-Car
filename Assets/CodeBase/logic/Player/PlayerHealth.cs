@@ -47,6 +47,8 @@ namespace CodeBase.Logic.Player
         {
             _health = _startHealth;
             _maxHealth = _startMaxHealth;
+            
+            OnChangeHealth?.Invoke(_health);
         }
     }
 }

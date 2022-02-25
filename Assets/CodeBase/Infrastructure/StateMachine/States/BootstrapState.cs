@@ -35,11 +35,8 @@ namespace CodeBase.Infrastructure.States
             RegisterServices();
         }
 
-        public void Enter()
-        {
-            LoadAndShowCurtain();
+        public void Enter() => 
             EnterLoadPersistentDataState();
-        }
 
         public void Exit() => 
             _services.Single<IUpdateService>().Enable();
@@ -61,12 +58,14 @@ namespace CodeBase.Infrastructure.States
 
             _services.RegisterSingle<IPauseService>(new PauseService(_services.Single<IUpdateService>()));
             _services.RegisterSingle<IRandomService>(new RandomService(_services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>()));
-            
+
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(
                 _services.Single<IAssetProviderService>(),
                 _services.Single<ITweenService>(),
                 _services.Single<IUpdateService>(),
-                _services.Single<IReadWriteDataService>()));
+                _services.Single<IReadWriteDataService>(),
+                _services.Single<IRandomService>(),
+                _services.Single<IReplayService>()));
             
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
                 _services.Single<IStaticDataService>(),
@@ -91,11 +90,9 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
                 _services.Single<IAssetProviderService>(),
                 _services.Single<IUpdateService>(),
-                _services.Single<IPauseService>()));
+                _services.Single<IPauseService>(),
+                _services.Single<IReplayService>()));
         }
-
-        private void LoadAndShowCurtain() => 
-            _services.Single<IUIFactory>().LoadMenuCurtain().Show();
         
         private void EnterLoadPersistentDataState() => 
             _stateMachine.Enter<LoadPersistentDataState>();

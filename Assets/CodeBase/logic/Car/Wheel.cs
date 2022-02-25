@@ -1,5 +1,3 @@
-using CodeBase.Infrastructure;
-using CodeBase.Services.Pause;
 using CodeBase.Services.Update;
 using UnityEngine;
 
@@ -37,10 +35,22 @@ namespace CodeBase.Logic.Car
         public void SteerAngle(float angle) => 
             _collider.steerAngle = angle;
 
+        public void Block() => 
+            _collider.brakeTorque = 100000;
+
+        public void Unlock() => 
+            _collider.brakeTorque = 0;
+
+        public void ResetSteerAngle()
+        {
+            _collider.steerAngle = 0;
+            _mesh.rotation =Quaternion.identity;
+        }
+
         private void SetPositionRelativeToCollider()
         {
             _collider.GetWorldPose(out _position, out _rotation);
-            
+
             _mesh.position = _position;
             _mesh.rotation = _rotation;
         }

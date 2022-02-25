@@ -14,6 +14,7 @@ using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 
 namespace CodeBase.Infrastructure
@@ -37,7 +38,9 @@ namespace CodeBase.Infrastructure
                 
                 [typeof(LoadMenuState)] = new LoadMenuState(
                     services.Single<ISceneLoaderService>(),
-                    services.Single<IUIFactory>()),
+                    services.Single<IUIFactory>(),
+                    services.Single<IPauseService>(),
+                    services.Single<IReplayService>()),
                 
                 [typeof(LoadLevelState)] = new LoadLevelState(
                     services.Single<IGameStateMachine>(),
@@ -49,7 +52,8 @@ namespace CodeBase.Infrastructure
                     services.Single<ILevelFactory>(),
                     services.Single<IRandomService>(),
                     services.Single<IUpdateService>(),
-                    services.Single<IReadWriteDataService>()),
+                    services.Single<IReadWriteDataService>(),
+                    services.Single<IPauseService>()),
                 
                 [typeof(LoopLevelState)] = new LoopLevelState(
                     services.Single<ILevelFactory>(),
@@ -58,10 +62,11 @@ namespace CodeBase.Infrastructure
                     services.Single<IRandomService>(),
                     services.Single<IPersistentDataService>(),
                     services.Single<IUpdateService>(),
-                    services.Single<IPauseService>(),
                     services.Single<IReadWriteDataService>(),
                     services.Single<IInputService>(),
-                    services.Single<IPlayerFactory>()),
+                    services.Single<IPlayerFactory>(),
+                    services.Single<ITweenService>(),
+                    services.Single<IPauseService>()),
                 
                 [typeof(ReplayLevelState)] = new ReplayLevelState(
                     services.Single<IGameStateMachine>(),

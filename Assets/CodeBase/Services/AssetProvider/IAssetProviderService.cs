@@ -29,5 +29,6 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadGenerator();
         Capsule LoadCapsule();
         GameObject LoadPauseWindow();
+        GameObject LoadTimer();
     }
 }

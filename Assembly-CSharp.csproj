@@ -96,6 +96,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerMovement.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\ISaveLoadDataService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\IReplayService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\InputPersistentData.cs" />
      <Compile Include="Assets\CodeBase\UI\LoadingCurtain.cs" />
@@ -142,6 +143,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\ICorutineRunner.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\IReplayHandler.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\PlayButton.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\BackButton.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
@@ -153,6 +155,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Services\Replay\ReplayService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
@@ -174,9 +177,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Services\Replay\ReplayService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Replay\IReplayHandler.cs" />
-     <Compile Include="Assets\CodeBase\Services\Replay\IReplayService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

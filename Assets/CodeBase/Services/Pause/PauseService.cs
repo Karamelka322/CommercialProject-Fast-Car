@@ -66,11 +66,15 @@ namespace CodeBase.Services.Pause
         {
             for (int i = 0; i < _handlers.Count; i++)
             {
-                if (_handlers[i] != null)
-                    continue;
-                
-                _handlers.RemoveAt(i);
-                i--;
+                try
+                {
+                    _handlers[i].name.Equals(_handlers[i].name);
+                }
+                catch (MissingReferenceException exception)
+                {
+                    _handlers.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
