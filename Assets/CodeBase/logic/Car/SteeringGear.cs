@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using CodeBase.Services.Replay;
 using UnityEngine;
 
@@ -16,8 +17,23 @@ namespace CodeBase.Logic.Car
 
         [SerializeField, Min(0)] 
         private int _speedRotation;
-        
-        public int SteerAngle => _steerAngle;
+
+        public int SteerAngle
+        {
+            get => _steerAngle;
+            
+            [Editor]
+            set => _steerAngle = value;
+        }
+
+        public int SpeedRotation
+        {
+            get => _speedRotation;
+            
+            [Editor]
+            set => _speedRotation = value;
+        }
+
         private float _nowAngle;
         
         public void Angle(float angle)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level
   m_EditorClassIdentifier: 
-  Type: 1
+  LevelType: 1
   PowerChangeSpeed: 2
   Geometry:
     SceneName: City_Geometry
@@ -25,3 +25,13 @@ MonoBehaviour:
     - {x: 3, y: 0, z: -5}
     EnemySpawnPoints:
     - {x: -116, y: 6, z: 0}
+  Periodicity:
+    SpawnEnemyStaticData:
+    - EnemyType: 0
+      DifficultyType: 0
+      Period:
+        Max: 0
+        Min: 0
+      Range:
+        Max: 0
+        Min: 0

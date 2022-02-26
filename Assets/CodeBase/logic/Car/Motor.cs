@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
 using UnityEngine;
@@ -18,7 +19,22 @@ namespace CodeBase.Logic.Car
         [SerializeField, Min(0)]
         private int _speedAcceleration;
 
-        public int Power => _power;
+        public int Power
+        {
+            get => _power;
+            
+            [Editor]
+            set => _power = value;
+        }
+
+        public int Acceleration
+        {
+            get => _speedAcceleration;
+            
+            [Editor]
+            set => _speedAcceleration = value;
+        }
+
         private float _nowTorque;
 
         public void Torque(float torque)

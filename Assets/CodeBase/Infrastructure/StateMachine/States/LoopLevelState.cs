@@ -70,8 +70,6 @@ namespace CodeBase.Infrastructure.States
             Object.Destroy(_timer);
             _updateService.OnUpdate += OnUpdate;
             _pauseService.SetPause(false);
-
-            InitEnemy();
         }
 
         public void OnUpdate()

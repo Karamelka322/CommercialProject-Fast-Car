@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Data.Static.Level;
 using CodeBase.Logic.Enemy;
 using CodeBase.Logic.Item;
@@ -11,19 +12,22 @@ namespace CodeBase.Editor
     [CustomEditor(typeof(LevelStaticData))]
     public class LevelStaticDataEditor : UnityEditor.Editor
     {
+        private LevelStaticData _levelStaticData;
+
+        private void OnEnable() => 
+            _levelStaticData = target as LevelStaticData;
+
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            LevelStaticData levelStaticData = target as LevelStaticData;
-            
             if (GUILayout.Button("Collect"))
             {
-                FillPlayerSpawnPoints(levelStaticData);
-                FillGeneratorSpawnPoints(levelStaticData);
-                FillEnemySpawnPoints(levelStaticData);
-                FillCapsuleSpawnPoints(levelStaticData);
-                FillSceneName(levelStaticData);
+                FillPlayerSpawnPoints(_levelStaticData);
+                FillGeneratorSpawnPoints(_levelStaticData);
+                FillEnemySpawnPoints(_levelStaticData);
+                FillCapsuleSpawnPoints(_levelStaticData);
+                FillSceneName(_levelStaticData);
             }
             
             EditorUtility.SetDirty(target);

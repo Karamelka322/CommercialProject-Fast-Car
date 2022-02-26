@@ -47,7 +47,7 @@ namespace CodeBase.Services.StaticData
 
             for (int i = 0; i < staticDatas.Length; i++)
             {
-                if (staticDatas[i].Type == typeId)
+                if (staticDatas[i].LevelType == typeId)
                     return staticDatas[i];
             }
 

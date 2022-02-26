@@ -68,7 +68,7 @@ namespace CodeBase.Services.Pause
             {
                 try
                 {
-                    _handlers[i].name.Equals(_handlers[i].name);
+                    string.IsNullOrEmpty(_handlers[i].name);
                 }
                 catch (MissingReferenceException exception)
                 {

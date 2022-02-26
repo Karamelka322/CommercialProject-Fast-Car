@@ -42,11 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\CodeBase\Editor\Tools.cs" />
-     <Compile Include="Assets\CodeBase\Editor\PointEditor.cs" />
-     <Compile Include="Assets\CodeBase\Editor\EditorBootstrapper.cs" />
-     <Compile Include="Assets\CodeBase\Editor\LevelStaticDataEditor.cs" />
-     <Compile Include="Assets\CodeBase\Editor\NavMeshAgentWrapperEditor.cs" />
-     <Compile Include="Assets\CodeBase\Editor\GameBootstrapperEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Logic\World\PointEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Indrastructure\EditorBootstrapper.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Data\LevelStaticDataEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Logic\NavMeshAgentWrapperEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Indrastructure\GameBootstrapperEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Data\EnemyStaticDataEditor.cs" />
      <Reference Include="UnityEngine">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
