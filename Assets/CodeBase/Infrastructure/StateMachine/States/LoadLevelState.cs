@@ -82,7 +82,7 @@ namespace CodeBase.Infrastructure.States
         private void LoadGeometry()
         {
             LevelStaticData levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
-            _sceneLoaderService.Load(levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
+            _sceneLoaderService.Load(levelStaticData.SceneName, LoadSceneMode.Additive, OnLoaded);
         }
 
         private void OnLoaded()

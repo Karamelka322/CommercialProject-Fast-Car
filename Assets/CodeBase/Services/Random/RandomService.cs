@@ -44,16 +44,16 @@ namespace CodeBase.Services.Random
         }
         
         private List<Vector3> TryLoadEnemuSpawnPoints() => 
-            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Geometry.EnemySpawnPoints : _levelStaticData.Geometry.EnemySpawnPoints;
+            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Enemy.EnemySpawnPoints : _levelStaticData.Enemy.EnemySpawnPoints;
 
         private List<Vector3> TryLoadGeneratorSpawnPoints() => 
-            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Geometry.GeneratorSpawnPoints : _levelStaticData.Geometry.GeneratorSpawnPoints;
+            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Generator.GeneratorSpawnPoints : _levelStaticData.Generator.GeneratorSpawnPoints;
 
         private List<Vector3> TryLoadPlayerSpawnPoints() => 
-            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Geometry.PlayerSpawnPoints : _levelStaticData.Geometry.PlayerSpawnPoints;
+            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).PlayerSpawnPoints : _levelStaticData.PlayerSpawnPoints;
 
         private List<Vector3> TryLoadCapsuleSpawnPoints() => 
-            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Geometry.CapsuleSpawnPoints : _levelStaticData.Geometry.CapsuleSpawnPoints;
+            IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Capsule.CapsuleSpawnPoints : _levelStaticData.Capsule.CapsuleSpawnPoints;
 
         private bool IsCurrentLevelStaticData() => 
             _levelStaticData == null || _levelStaticData.LevelType == _persistentDataService.PlayerData.ProgressData.LevelType;

@@ -1,6 +1,7 @@
 using CodeBase.Data.Static.Enemy;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Enemy;
+using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace CodeBase.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(EnemyStaticData))]
-    public class EnemyStaticDataEditor : UnityEditor.Editor
+    public class EnemyStaticDataEditor : OdinEditor
     {
         private EnemyStaticData _staticData;
         
@@ -18,7 +19,7 @@ namespace CodeBase.Editor
         private int _steerAngle;
         private int _speedRotation;
 
-        private void OnEnable() => 
+        protected override void OnEnable() => 
             _staticData = target as EnemyStaticData;
 
         public override void OnInspectorGUI()

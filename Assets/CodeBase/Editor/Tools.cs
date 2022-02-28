@@ -5,7 +5,7 @@ namespace CodeBase.Editor
 {
     public static class Tools
     {
-        [MenuItem("Tools/Clear Player Data")]
+        [MenuItem("Tools/Game/Clear Player Data")]
         public static void ClearPlayerData()
         {
             PlayerPrefs.DeleteAll();

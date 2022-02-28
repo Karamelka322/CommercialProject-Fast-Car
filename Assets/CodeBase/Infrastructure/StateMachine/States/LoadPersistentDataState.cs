@@ -77,7 +77,7 @@ namespace CodeBase.Infrastructure.States
                         GeneratorData =
                         {
                             Power = GeneratorSessionData.MaxPower,
-                            PowerSpeedChange = levelStaticData.PowerChangeSpeed
+                            PowerSpeedChange = levelStaticData.Generator.PowerChangeSpeed
                         }
                     }
                 }
