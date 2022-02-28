@@ -5,14 +5,14 @@ namespace CodeBase.Data.Perseistent
     [Serializable]
     public class PlayerPersistentData
     {
-        public InputPersistentData InputData;
-        public LevelPersistentData LevelData;
+        public SettingsPersistentData SettingsData;
+        public ProgressPersistentData ProgressData;
         public SessionPersistentData SessionData;
 
         public PlayerPersistentData()
         {
-            InputData = new InputPersistentData();
-            LevelData = new LevelPersistentData();
+            SettingsData = new SettingsPersistentData();
+            ProgressData = new ProgressPersistentData();
             SessionData = new SessionPersistentData();
         }
     }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
 using CodeBase.Services.Data.ReaderWriter;
-using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -13,6 +12,7 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
+using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
@@ -56,17 +56,13 @@ namespace CodeBase.Infrastructure
                     services.Single<IPauseService>()),
                 
                 [typeof(LoopLevelState)] = new LoopLevelState(
-                    services.Single<ILevelFactory>(),
-                    services.Single<IEnemyFactory>(),
                     services.Single<IUIFactory>(),
-                    services.Single<IRandomService>(),
                     services.Single<IPersistentDataService>(),
-                    services.Single<IUpdateService>(),
                     services.Single<IReadWriteDataService>(),
                     services.Single<IInputService>(),
-                    services.Single<IPlayerFactory>(),
                     services.Single<ITweenService>(),
-                    services.Single<IPauseService>()),
+                    services.Single<IPauseService>(),
+                    services.Single<ISpawnerService>()),
                 
                 [typeof(ReplayLevelState)] = new ReplayLevelState(
                     services.Single<IGameStateMachine>(),

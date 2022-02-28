@@ -30,8 +30,8 @@ MonoBehaviour:
     - EnemyType: 0
       DifficultyType: 0
       Period:
-        Max: 0
+        Max: 20
         Min: 0
       Range:
-        Max: 0
+        Max: 4
         Min: 0

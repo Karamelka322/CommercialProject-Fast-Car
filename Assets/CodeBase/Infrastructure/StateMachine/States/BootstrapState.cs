@@ -11,6 +11,7 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
+using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
@@ -92,6 +93,13 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IUpdateService>(),
                 _services.Single<IPauseService>(),
                 _services.Single<IReplayService>()));
+            
+            _services.RegisterSingle<ISpawnerService>(new SpawnerService(
+                _services.Single<IUpdateService>(),
+                _services.Single<IRandomService>(),
+                _services.Single<IUIFactory>(),
+                _services.Single<ILevelFactory>(),
+                _services.Single<IPersistentDataService>()));
         }
         
         private void EnterLoadPersistentDataState() => 

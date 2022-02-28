@@ -4,8 +4,8 @@ using CodeBase.Data.Static;
 namespace CodeBase.Data.Perseistent
 {
     [Serializable]
-    public class InputPersistentData
+    public class SettingsPersistentData
     {
-        public InputTypeId Type;
+        public InputTypeId InputType;
     }
 }

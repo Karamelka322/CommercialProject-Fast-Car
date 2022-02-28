@@ -56,9 +56,9 @@ namespace CodeBase.Services.Random
             IsCurrentLevelStaticData() ? (_levelStaticData = LoadLevelStaticData()).Geometry.CapsuleSpawnPoints : _levelStaticData.Geometry.CapsuleSpawnPoints;
 
         private bool IsCurrentLevelStaticData() => 
-            _levelStaticData == null || _levelStaticData.LevelType == _persistentDataService.PlayerData.LevelData.Type;
+            _levelStaticData == null || _levelStaticData.LevelType == _persistentDataService.PlayerData.ProgressData.LevelType;
 
         private LevelStaticData LoadLevelStaticData() => 
-            _staticDataService.ForLevel(_persistentDataService.PlayerData.LevelData.Type);
+            _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
     }
 }

@@ -6,18 +6,21 @@ namespace CodeBase.Data.Perseistent
     public class SessionPersistentData
     {
         public PlayerSessionData PlayerData;
-        public GeneratorSessionData GeneratorData;
+        public LevelSessionData LevelData;
 
+        public float StopwatchTime;
+        
         public SessionPersistentData()
         {
             PlayerData = new PlayerSessionData();
-            GeneratorData = new GeneratorSessionData();
+            LevelData = new LevelSessionData();
         }
         
         public void Reset()
         {
+            StopwatchTime = 0;
             PlayerData.Health = PlayerData.MaxHealth;
-            GeneratorData.Power = GeneratorSessionData.MaxPower;
+            LevelData.GeneratorData.Power = GeneratorSessionData.MaxPower;
         }
     }
 }

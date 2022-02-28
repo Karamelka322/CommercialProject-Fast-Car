@@ -63,8 +63,8 @@ namespace CodeBase.Logic.Level.Generator
 
         public void ReadData(PlayerPersistentData persistentData)
         {
-            _startPower = persistentData.SessionData.GeneratorData.Power;
-            _startSpeed = persistentData.SessionData.GeneratorData.PowerSpeedChange;
+            _startPower = persistentData.SessionData.LevelData.GeneratorData.Power;
+            _startSpeed = persistentData.SessionData.LevelData.GeneratorData.PowerSpeedChange;
 
             _power = _startPower;
             _speed = _startSpeed;
@@ -72,8 +72,8 @@ namespace CodeBase.Logic.Level.Generator
 
         public void WriteData(PlayerPersistentData persistentData)
         {
-            persistentData.SessionData.GeneratorData.Power = _power;
-            persistentData.SessionData.GeneratorData.PowerSpeedChange = _speed;
+            persistentData.SessionData.LevelData.GeneratorData.Power = _power;
+            persistentData.SessionData.LevelData.GeneratorData.PowerSpeedChange = _speed;
         }
 
         public void OnReplay()

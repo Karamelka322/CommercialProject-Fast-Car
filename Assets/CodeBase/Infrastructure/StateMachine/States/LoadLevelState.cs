@@ -81,7 +81,7 @@ namespace CodeBase.Infrastructure.States
 
         private void LoadGeometry()
         {
-            LevelStaticData levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.LevelData.Type);
+            LevelStaticData levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
             _sceneLoaderService.Load(levelStaticData.Geometry.SceneName, LoadSceneMode.Additive, OnLoaded);
         }
 
@@ -127,8 +127,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void LoadCurtain() => 
-            _curtain = _uiFactory.LoadLevelCurtain();
-
+            _curtain = _uiFactory.LoadLevelCurtain();  
         private void ShowCurtain(Action onShow) => 
             _curtain.Show(SpeedShowCurtain, DelayShowCurtain, onShow);
 

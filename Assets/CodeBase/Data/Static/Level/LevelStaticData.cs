@@ -8,13 +8,16 @@ namespace CodeBase.Data.Static.Level
     public class LevelStaticData : ScriptableObject
     {
         public LevelTypeId LevelType;
+
+        [Space] 
+        public bool Generator;
         
         [Space, Header("Generator"), Min(0)]
         public float PowerChangeSpeed;
         
         [Space]
         public GeometryStaticData Geometry;
-
+        
         [Space] 
         public PeriodicityStaticData Periodicity;
     }

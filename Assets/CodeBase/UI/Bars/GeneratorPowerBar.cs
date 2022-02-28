@@ -21,6 +21,6 @@ namespace CodeBase.UI
             Fill = power / GeneratorSessionData.MaxPower;
 
         public void ReadData(PlayerPersistentData persistentData) => 
-            Fill = persistentData.SessionData.GeneratorData.Power / GeneratorSessionData.MaxPower;
+            Fill = persistentData.SessionData.LevelData.GeneratorData.Power / GeneratorSessionData.MaxPower;
     }
 }

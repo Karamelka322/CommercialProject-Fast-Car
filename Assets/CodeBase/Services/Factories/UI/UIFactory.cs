@@ -81,7 +81,7 @@ namespace CodeBase.Services.Factories.UI
             GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), UIRoot);
             
             settings.GetComponentInChildren<BackButton>().Construct(backEvent);
-            settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.InputData);
+            settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.SettingsData);
             
             return settings;
         }
@@ -100,9 +100,9 @@ namespace CodeBase.Services.Factories.UI
             HUD = Object.Instantiate(_assetProvider.LoadHUD());
             _readWriteDataService.Register(HUD.gameObject);
             
-            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.InputData.Type);
+            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.SettingsData.InputType);
             GameObject inputVariant = Object.Instantiate(prefab, HUD.InputContainer);
-            _inputService.RegisterInput(_persistentDataService.PlayerData.InputData.Type, inputVariant);
+            _inputService.RegisterInput(_persistentDataService.PlayerData.SettingsData.InputType, inputVariant);
 
             if (generator.TryGetComponent(out GeneratorPower generatorPower))
                 HUD.GeneratorPowerBar.Construct(generatorPower);

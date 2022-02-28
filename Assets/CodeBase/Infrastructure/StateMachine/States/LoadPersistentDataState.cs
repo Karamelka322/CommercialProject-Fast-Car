@@ -54,14 +54,14 @@ namespace CodeBase.Infrastructure.States
             
             return new PlayerPersistentData
             {
-                InputData =
+                SettingsData =
                 {
-                    Type = InputTypeId.Buttons
+                    InputType = InputTypeId.Buttons
                 },
                 
-                LevelData =
+                ProgressData =
                 {
-                    Type = LevelTypeId.Level_1,
+                    LevelType = LevelTypeId.Level_1,
                 },
                 
                 SessionData =
@@ -72,10 +72,13 @@ namespace CodeBase.Infrastructure.States
                         Health = playerStaticData.Health
                     },
                     
-                    GeneratorData =
+                    LevelData =
                     {
-                        Power = GeneratorSessionData.MaxPower,
-                        PowerSpeedChange = levelStaticData.PowerChangeSpeed
+                        GeneratorData =
+                        {
+                            Power = GeneratorSessionData.MaxPower,
+                            PowerSpeedChange = levelStaticData.PowerChangeSpeed
+                        }
                     }
                 }
             };

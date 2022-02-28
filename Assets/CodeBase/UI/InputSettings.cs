@@ -17,13 +17,13 @@ namespace CodeBase.UI
         [SerializeField]
         private InputSettingToggle _areas;
 
-        private InputPersistentData _inputData;
+        private SettingsPersistentData _settingsData;
 
-        public void Construct(InputPersistentData inputData) => 
-            _inputData = inputData;
+        public void Construct(SettingsPersistentData settingsData) => 
+            _settingsData = settingsData;
 
         private void Start() => 
-            SwitchInputSetting(_inputData.Type);
+            SwitchInputSetting(_settingsData.InputType);
 
         private void OnEnable()
         {
@@ -41,7 +41,7 @@ namespace CodeBase.UI
 
         private void SwitchInputSetting(InputTypeId typeId)
         {
-            _inputData.Type = typeId;
+            _settingsData.InputType = typeId;
 
             if (typeId == InputTypeId.Joystick)
             {
