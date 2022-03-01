@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Editor;
+using CodeBase.Services.AssetProvider;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace CodeBase.Data.Static.Level
         [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0)]
         public float PowerChangeSpeed;
         
-        [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), ValidateInput("CheckGeneratorSpawnPoints", "Empty")]
+        [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), InfoBox("Empty", InfoMessageType.Error, "CheckGeneratorSpawnPoints")]
         public List<Vector3> GeneratorSpawnPoints;
         
         
@@ -36,7 +37,11 @@ namespace CodeBase.Data.Static.Level
         
         [UsedImplicitly]
         private bool CheckGeneratorSpawnPoints() => 
-            GeneratorSpawnPoints.Count != 0;
+            GeneratorSpawnPoints == null || GeneratorSpawnPoints.Count == 0;
+        
+        [ShowIf("CheckGeneratorSpawnPoints"), Button("Generate Spawn Point"), GUIColor(0.5f, 0.7f, 1f)]
+        private void GenerateSpawnPoint() => 
+            Object.Instantiate(Resources.Load<GeneratorSpawnPoint>(AssetPath.GeneratorSpawnPointPath), Vector3.zero, Quaternion.identity);
 #endif
     }
 }

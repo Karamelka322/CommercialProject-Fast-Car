@@ -2,7 +2,6 @@ using CodeBase.Data.Perseistent;
 using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
-using CodeBase.Data.Static.Player;
 using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
@@ -49,7 +48,6 @@ namespace CodeBase.Infrastructure.States
 
         private PlayerPersistentData NewPlayerPersistentData()
         {
-            PlayerStaticData playerStaticData = _staticDataService.ForPlayer(PlayerTypeId.Default);
             LevelStaticData levelStaticData = _staticDataService.ForLevel(LevelTypeId.Level_1);
             
             return new PlayerPersistentData
@@ -66,14 +64,18 @@ namespace CodeBase.Infrastructure.States
                 
                 SessionData =
                 {
+                    StopwatchTime = 0,
+                    
                     PlayerData =
                     {
-                        MaxHealth = playerStaticData.Health,
-                        Health = playerStaticData.Health
+                        MaxHealth = 0,
+                        Health = 0
                     },
                     
                     LevelData =
                     {
+                        CurrentLevelConfig = null,
+                        
                         GeneratorData =
                         {
                             Power = GeneratorSessionData.MaxPower,

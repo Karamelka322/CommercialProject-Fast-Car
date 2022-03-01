@@ -25,5 +25,9 @@ namespace CodeBase.Services.AssetProvider
         
         public const string PauseWindowPath = "UI/Pause_window";
         public const string TimerPath = "UI/Timer";
+
+        public const string EnemySpawnPointPath = "Level/SpawnPoint/EnemySpawnPoint";
+        public const string CapsuleSpawnPointPath = "Level/SpawnPoint/CapsuleSpawnPoint";
+        public const string GeneratorSpawnPointPath = "Level/SpawnPoint/GeneratorSpawnPoint";
     }
 }

@@ -7,17 +7,17 @@ namespace CodeBase.Logic.Enemy
     {
         [SerializeField] 
         private int _health;
-        
+
+        private int _maxHealth;
+
+#if UNITY_EDITOR
         public int Health
         {
-            get => _health;
-            
             [Editor]
             set => _health = value;
         }
+#endif
 
-        private int _maxHealth;
-        
         private void Awake() => 
             _maxHealth = _health;
 

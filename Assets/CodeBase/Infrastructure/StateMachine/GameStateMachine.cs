@@ -53,7 +53,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IRandomService>(),
                     services.Single<IUpdateService>(),
                     services.Single<IReadWriteDataService>(),
-                    services.Single<IPauseService>()),
+                    services.Single<IPauseService>(),
+                    services.Single<ISpawnerService>()),
                 
                 [typeof(LoopLevelState)] = new LoopLevelState(
                     services.Single<IUIFactory>(),
@@ -62,7 +63,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IInputService>(),
                     services.Single<ITweenService>(),
                     services.Single<IPauseService>(),
-                    services.Single<ISpawnerService>()),
+                    services.Single<ISpawnerService>(),
+                    services.Single<IUpdateService>()),
                 
                 [typeof(ReplayLevelState)] = new ReplayLevelState(
                     services.Single<IGameStateMachine>(),

@@ -1,3 +1,4 @@
+using CodeBase.Data.Static.Level;
 using UnityEngine;
 
 namespace CodeBase.Services.Random
@@ -8,5 +9,6 @@ namespace CodeBase.Services.Random
         Vector3 PlayerSpawnPoint();
         Vector3 GeneratorSpawnPoint();
         Vector3 EnemySpawnPoint();
+        void SetConfig(LevelStaticData levelCongig);
     }
 }

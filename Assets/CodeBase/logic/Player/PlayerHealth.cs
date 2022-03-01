@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using CodeBase.Data.Perseistent;
 using CodeBase.Services.Data.ReaderWriter;
 using CodeBase.Services.Replay;
@@ -8,13 +9,30 @@ namespace CodeBase.Logic.Player
 {
     public class PlayerHealth : MonoBehaviour, IReadData, IWriteData, IReplayHandler
     {
+        [SerializeField]
+        private float _health;
+        
+        private float _maxHealth;
+        
         private float _startHealth;
         private float _startMaxHealth;
 
-        private float _health;
-        private float _maxHealth;
-
         public event Action<float> OnChangeHealth;
+
+#if UNITY_EDITOR
+        public float Health
+        {
+            [Editor]
+            set => _health = value;
+        }
+#endif
+        
+        private void Awake()
+        {
+            _maxHealth = _health;
+            _startHealth = _health;
+            _startMaxHealth = _health;
+        }
 
         public void AddHealth(float value)
         {
@@ -30,6 +48,9 @@ namespace CodeBase.Logic.Player
 
         public void ReadData(PlayerPersistentData persistentData)
         {
+            if(persistentData.SessionData == null)
+                return;
+            
             _startHealth = persistentData.SessionData.PlayerData.Health;
             _startMaxHealth = persistentData.SessionData.PlayerData.MaxHealth;
 

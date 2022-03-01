@@ -6,17 +6,19 @@ using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.Tween;
+using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
-    public class LoopLevelState : IState
+    public class LoopLevelState : IUpdateableState
     {
         private const int DelayEnterTime = 3;
         
         private readonly IPersistentDataService _persistentDataService;
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly ISpawnerService _spawnerService;
+        private readonly IUpdateService _updateService;
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
         private readonly IPauseService _pauseService;
@@ -32,7 +34,8 @@ namespace CodeBase.Infrastructure.States
             IInputService inputService,
             ITweenService tweenService,
             IPauseService pauseService,
-            ISpawnerService spawnerService)
+            ISpawnerService spawnerService,
+            IUpdateService updateService)
         {
             _persistentDataService = persistentDataService;
             _readWriteDataService = readWriteDataService;
@@ -40,11 +43,14 @@ namespace CodeBase.Infrastructure.States
             _tweenService = tweenService;
             _pauseService = pauseService;
             _spawnerService = spawnerService;
+            _updateService = updateService;
             _uiFactory = uiFactory;
         }
 
         public void Enter()
         {
+            _updateService.OnUpdate += OnUpdate;
+            
             InitUITimer();
             SetPause(true);
             DelayEnter();
@@ -60,15 +66,23 @@ namespace CodeBase.Infrastructure.States
             SetSpawner(true);
         }
 
+        public void OnUpdate() => 
+            AddTimeInStopwatch(Time.deltaTime);
+
         public void Exit()
         {
+            _updateService.OnUpdate -= OnUpdate;
+
             ResetSessionData();
             SetSpawner(false);
-                
-            _spawnerService.Clenup();
+
             _readWriteDataService.Clenup();
+            _spawnerService.Clenup();
             _inputService.Clenup();
         }
+        
+        private void AddTimeInStopwatch(float time) => 
+            _persistentDataService.PlayerData.SessionData.StopwatchTime += time;
 
         private void ResetSessionData() => 
             _persistentDataService.PlayerData.SessionData.Reset();

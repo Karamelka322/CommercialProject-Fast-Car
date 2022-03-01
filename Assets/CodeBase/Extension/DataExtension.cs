@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CodeBase.Extension
 {
@@ -14,5 +17,32 @@ namespace CodeBase.Extension
 
         public static T DeserializeFromJson<T>(this string json) => 
             JsonUtility.FromJson<T>(json);
+
+        public static int NumberEmptyIndexes<T>(this IReadOnlyList<T> array) where T : Object
+        {
+            int counter = 0;
+            
+            for (int i = 0; i < array.Count; i++)
+            {
+                if (array[i] == null)
+                    counter++;
+            }
+
+            return counter;
+        }
+
+        public static int GetEmptyIndex<T>(this IReadOnlyList<T> array) where T : Object
+        {
+            for (int i = 0; i < array.Count; i++)
+            {
+                if (array[i] == null)
+                    return i;
+            }
+
+            throw new ArgumentOutOfRangeException();
+        }
+
+        public static Vector3 Random(this List<Vector3> list) => 
+            list[UnityEngine.Random.Range(0, list.Count)];
     }
 }

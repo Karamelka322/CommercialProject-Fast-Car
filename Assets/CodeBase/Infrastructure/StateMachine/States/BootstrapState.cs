@@ -58,7 +58,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
 
             _services.RegisterSingle<IPauseService>(new PauseService(_services.Single<IUpdateService>()));
-            _services.RegisterSingle<IRandomService>(new RandomService(_services.Single<IPersistentDataService>(), _services.Single<IStaticDataService>()));
+            _services.RegisterSingle<IRandomService>(new RandomService());
 
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(
                 _services.Single<IAssetProviderService>(),
@@ -97,9 +97,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<ISpawnerService>(new SpawnerService(
                 _services.Single<IUpdateService>(),
                 _services.Single<IRandomService>(),
-                _services.Single<IUIFactory>(),
-                _services.Single<ILevelFactory>(),
-                _services.Single<IPersistentDataService>()));
+                _services.Single<ILevelFactory>()));
         }
         
         private void EnterLoadPersistentDataState() => 

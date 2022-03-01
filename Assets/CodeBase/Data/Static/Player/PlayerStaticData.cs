@@ -1,4 +1,8 @@
+using CodeBase.Logic.Car;
 using CodeBase.Logic.Player;
+using JetBrains.Annotations;
+using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace CodeBase.Data.Static.Player
@@ -7,9 +11,77 @@ namespace CodeBase.Data.Static.Player
     public class PlayerStaticData : ScriptableObject
     {
         public PlayerTypeId Type;
+        
+        [Space, InlineEditor(InlineEditorModes.LargePreview), Required("Empty")]
         public PlayerPrefab Prefab;
         
-        [Header("Stats"), Min(1)]
-        public float Health;
+#if UNITY_EDITOR
+        
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab")]
+        private float Health;
+
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0)]
+        private int MotorPower;
+        
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0)]
+        private int Acceleration;
+        
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSteerAngle"), MinValue(0)]
+        private int SteerAngle;
+        
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0)]
+        private int SpeedRotation;
+        
+        [UsedImplicitly]
+        private void SetSpeedRotation()
+        {
+            SteeringGear steeringGear = Prefab.GetComponent<SteeringGear>();
+            steeringGear.SpeedRotation = SpeedRotation;
+            EditorUtility.SetDirty(steeringGear);
+            
+            AssetDatabase.SaveAssets();
+        }
+
+        [UsedImplicitly]
+        private void SetSteerAngle()
+        {
+            SteeringGear steeringGear = Prefab.GetComponent<SteeringGear>();
+            steeringGear.SteerAngle = SteerAngle;
+            EditorUtility.SetDirty(steeringGear);
+            
+            AssetDatabase.SaveAssets();
+        }
+
+        [UsedImplicitly]
+        private void SetAcceleration()
+        {
+            Motor motor = Prefab.GetComponent<Motor>();
+            motor.Acceleration = Acceleration;
+            EditorUtility.SetDirty(motor);
+            
+            AssetDatabase.SaveAssets();
+        }
+
+        [UsedImplicitly]
+        private void SetMotorPower()
+        {
+            Motor motor = Prefab.GetComponent<Motor>();
+            motor.Power = MotorPower;
+            EditorUtility.SetDirty(motor);
+            
+            AssetDatabase.SaveAssets();
+        }
+
+        [UsedImplicitly]
+        private void SetHealth()
+        {
+            PlayerHealth health = Prefab.GetComponent<PlayerHealth>();
+            health.Health = Health;
+            EditorUtility.SetDirty(health);
+            
+            AssetDatabase.SaveAssets();
+        }
+        
+#endif
     }
 }

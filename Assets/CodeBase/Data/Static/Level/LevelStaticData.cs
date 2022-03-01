@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CodeBase.Logic.Player;
 using JetBrains.Annotations;
@@ -13,25 +15,59 @@ namespace CodeBase.Data.Static.Level
     [CreateAssetMenu(menuName = "Static Data/Level", fileName = "Level", order = 51)]
     public class LevelStaticData : ScriptableObject
     {
-        [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), ValidateInput("CheckLevelType", "Already in use!")]
+        [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), InfoBox("Already in use!", InfoMessageType.Error, "CheckLevelType")]
         public LevelTypeId LevelType;
 
-        [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), ValidateInput("CheckSceneName", "It is not geometry scene name!")] 
+        [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), InfoBox("It is not geometry scene name!", InfoMessageType.Error, "CheckSceneName"), ValueDropdown("GetAllSceneNames")] 
         public string SceneName;
 
-        [PropertySpace(SpaceBefore = 10, SpaceAfter = 10), ReadOnly, FoldoutGroup("Level"), GUIColor(1f, 1f, 0), ValidateInput("CheckPlayerSpawnPoints", "Empty")]
+        [PropertySpace(SpaceBefore = 10, SpaceAfter = 10), ReadOnly, FoldoutGroup("Level"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error,"CheckPlayerSpawnPoints")]
         public List<Vector3> PlayerSpawnPoints;
 
         [FoldoutGroup("Using"), Toggle("UsingGenerator")]
         public GeneratorSpawnConfig Generator;
 
-        [FoldoutGroup("Using"), Toggle("UsingCapsule")]
+        [FoldoutGroup("Using"), Toggle("UsingCapsule"), OnCollectionChanged("OnUsingCapsuleChanged")]
         public CapsuleSpawnConfig Capsule;
 
         [FoldoutGroup("Using"), Toggle("UsingEnemy")]
         public EnemySpawnConfig Enemy;
 
 #if UNITY_EDITOR
+        
+                
+        [UsedImplicitly]
+        private void OnUsingCapsuleChanged()
+        {
+            Debug.Log("Yes");
+            
+            if (Capsule.UsingCapsule == false)
+            {
+                Capsule.Quantity = 0;
+                Capsule.CapsuleSpawnPoints.Clear();
+            }
+        }
+        
+        [UsedImplicitly]
+        private static IEnumerable GetAllSceneNames()
+        {
+            List<string> files = Directory.GetFiles(Application.dataPath + "/Scenes/Geometry/").ToList();
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                if (files[i].EndsWith(".unity"))
+                {
+                    files[i] = files[i].Substring(files[i].LastIndexOf("/") + 1).Replace(".unity", "");
+                }
+                else
+                {
+                    files.RemoveAt(i);
+                    i--;
+                }
+            }
+            
+            return files;
+        }
 
         [UsedImplicitly, Button("Collect"), FoldoutGroup("Level"), GUIColor(0.5f, 0.7f, 1f)]
         private void FillLevelData()
@@ -86,29 +122,34 @@ namespace CodeBase.Data.Static.Level
                     continue;
 
                 if (levelStaticDatas[i].LevelType == LevelType)
-                    return false;
+                    return true;
             }
 
-            return true;
+            return false;
         }
 
         [UsedImplicitly]
         private bool CheckSceneName() => 
-            AssetDatabase.LoadAssetAtPath<SceneAsset>($"Assets/Scenes/Geometry/{SceneName}.unity");
+            !AssetDatabase.LoadAssetAtPath<SceneAsset>($"Assets/Scenes/Geometry/{SceneName}.unity");
 
         [UsedImplicitly]
         private bool CheckPlayerSpawnPoints() => 
-            PlayerSpawnPoints.Count != 0;
+            PlayerSpawnPoints == null || PlayerSpawnPoints.Count == 0;
+
+        [ShowIf("CheckPlayerSpawnPoints"), Button("Generate Spawn Point"), FoldoutGroup("Level"), GUIColor(0.5f, 0.7f, 1f)]
+        private void GenerateSpawnPoint() => 
+            Instantiate(Resources.Load<PlayerSpawnPoint>("Level/SpawnPoint/PlayerSpawnPoint"), Vector3.zero, Quaternion.identity);
+        
 #endif
     }
 
     [Serializable]
     public struct MaxMinValue
     {
-        [HorizontalGroup("MaxMin")]
+        [HorizontalGroup]
         public float Max;
         
-        [HorizontalGroup("MaxMin")]
+        [HorizontalGroup]
         public float Min;
     }
 }

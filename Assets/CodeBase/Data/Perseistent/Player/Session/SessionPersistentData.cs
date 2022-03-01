@@ -7,7 +7,7 @@ namespace CodeBase.Data.Perseistent
     {
         public PlayerSessionData PlayerData;
         public LevelSessionData LevelData;
-
+        
         public float StopwatchTime;
         
         public SessionPersistentData()

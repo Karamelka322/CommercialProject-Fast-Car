@@ -107,6 +107,7 @@
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemySpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
@@ -164,10 +165,12 @@
      <Compile Include="Assets\CodeBase\Services\Replay\ReplayService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\CapsuleSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
      <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
      <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SkipButton.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
@@ -184,9 +187,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\GeneratorSpawnConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\CapsuleSpawnConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemySpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\ISpawnerService.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

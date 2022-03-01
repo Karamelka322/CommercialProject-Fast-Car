@@ -11,6 +11,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
+using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Update;
 using CodeBase.UI;
@@ -38,7 +39,9 @@ namespace CodeBase.Infrastructure.States
         private readonly IUpdateService _updateService;
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IPauseService _pauseService;
+        private readonly ISpawnerService _spawnerService;
 
+        private LevelStaticData _currentLevel;
         private LoadingCurtain _curtain;
         
         public LoadLevelState(
@@ -52,7 +55,8 @@ namespace CodeBase.Infrastructure.States
             IRandomService randomService,
             IUpdateService updateService,
             IReadWriteDataService readWriteDataService,
-            IPauseService pauseService)
+            IPauseService pauseService,
+            ISpawnerService spawnerService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoaderService = sceneLoaderService;
@@ -65,28 +69,35 @@ namespace CodeBase.Infrastructure.States
             _updateService = updateService;
             _readWriteDataService = readWriteDataService;
             _pauseService = pauseService;
+            _spawnerService = spawnerService;
         }
 
         public void Enter()
         {
             LoadCurtain();
-            ShowCurtain(LoadLevelScene);
+            ShowCurtain(OnShowCurtain);
         }
 
         public void Exit() => 
             HideCurtain();
 
+        private void OnShowCurtain()
+        {
+            SetCurrentLevel();
+            LoadLevelScene();
+        }
+
         private void LoadLevelScene() => 
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
 
-        private void LoadGeometry()
-        {
-            LevelStaticData levelStaticData = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
-            _sceneLoaderService.Load(levelStaticData.SceneName, LoadSceneMode.Additive, OnLoaded);
-        }
+        private void LoadGeometry() => 
+            _sceneLoaderService.Load(_currentLevel.SceneName, LoadSceneMode.Additive, OnLoaded);
 
         private void OnLoaded()
         {
+            _randomService.SetConfig(_currentLevel);
+            _spawnerService.SetConfig(_currentLevel);
+            
             GameObject player = InitPlayer();
             CameraFollow(player);
             
@@ -94,12 +105,15 @@ namespace CodeBase.Infrastructure.States
             InitHUD(generator, player);
             
             InitUIRoot();
-
+            
             _readWriteDataService.InformReaders();
             _pauseService.SetPause(false);
             
             EnterLoopLevelState();
         }
+
+        private void SetCurrentLevel() => 
+            _currentLevel = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
 
         private void EnterLoopLevelState() => 
             _gameStateMachine.Enter<LoopLevelState>();

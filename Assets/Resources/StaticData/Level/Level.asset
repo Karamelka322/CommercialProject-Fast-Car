@@ -12,28 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level
   m_EditorClassIdentifier: 
-  LevelType: 2
+  LevelType: 0
   SceneName: City_Geometry
-  UsingGenerator: 1
-  PowerChangeSpeed: 2
-  GeneratorSpawnPoints:
-  - {x: -106, y: 6, z: -79}
-  Geometry:
-    SceneName: City_Geometry
+  PlayerSpawnPoints:
+  - {x: 3, y: 0, z: -5}
+  Generator:
+    UsingGenerator: 1
+    PowerChangeSpeed: 2
+    GeneratorSpawnPoints:
+    - {x: -106, y: 6, z: -79}
+  Capsule:
+    UsingCapsule: 1
+    Quantity: 2
     CapsuleSpawnPoints:
     - {x: 37, y: 0, z: 19}
     - {x: 73, y: 0, z: -80}
-    PlayerSpawnPoints:
-    - {x: 3, y: 0, z: -5}
-    EnemySpawnPoints:
-    - {x: -116, y: 6, z: 0}
-  Periodicity:
-    SpawnEnemyStaticData:
+  Enemy:
+    UsingEnemy: 1
+    List:
     - EnemyType: 0
       DifficultyType: 0
-      Period:
-        Max: 0
-        Min: 0
-      Range:
-        Max: 4
-        Min: 0
+      Period: {x: 0, y: 32.668327}
+      Range: 3
+    - EnemyType: 0
+      DifficultyType: 0
+      Period: {x: 33.167084, y: 64.58853}
+      Range: 2
+    - EnemyType: 0
+      DifficultyType: 0
+      Period: {x: 71.07232, y: 100}
+      Range: 1
+    EnemySpawnPoints:
+    - {x: -116, y: 6, z: 0}
