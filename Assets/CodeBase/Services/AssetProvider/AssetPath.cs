@@ -14,6 +14,7 @@ namespace CodeBase.Services.AssetProvider
         public const string SettingsInMenuPath = "UI/Menu/Settings";
         public const string GarageInMenuPath = "UI/Menu/Garage";
         public const string SkipButtonPath = "UI/Menu/SkipButton";
+        public const string DefeatWindowPath = "UI/Defeat_window";
 
         public const string HUDPath = "UI/HUD/HUD";
         public const string JoystickInputPath = "UI/HUD/Input/Joystick";
@@ -22,7 +23,7 @@ namespace CodeBase.Services.AssetProvider
 
         public const string GeneratorPath = "Level/Generator";
         public const string CapsulePath = "Level/Capsule";
-        
+
         public const string PauseWindowPath = "UI/Pause_window";
         public const string TimerPath = "UI/Timer";
 

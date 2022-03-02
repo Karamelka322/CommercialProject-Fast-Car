@@ -190,6 +190,8 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\PlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\IAffectPlayerDefeat.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

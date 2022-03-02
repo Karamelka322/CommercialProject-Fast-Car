@@ -67,17 +67,7 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IReadWriteDataService>(),
                 _services.Single<IRandomService>(),
                 _services.Single<IReplayService>()));
-            
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
-                _services.Single<IStaticDataService>(),
-                _services.Single<IInputService>(),
-                _services.Single<ITweenService>(),
-                _services.Single<IUpdateService>(),
-                _services.Single<IPauseService>(),
-                _services.Single<IReadWriteDataService>(),
-                _services.Single<IReplayService>(),
-                _services.Single<IRandomService>()));
-            
+
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IGameStateMachine>(),
                 _services.Single<IAssetProviderService>(),
@@ -87,6 +77,17 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<ITweenService>(),
                 _services.Single<IPauseService>(),
                 _services.Single<IReadWriteDataService>()));
+            
+            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
+                _services.Single<IStaticDataService>(),
+                _services.Single<IInputService>(),
+                _services.Single<ITweenService>(),
+                _services.Single<IUpdateService>(),
+                _services.Single<IPauseService>(),
+                _services.Single<IReadWriteDataService>(),
+                _services.Single<IReplayService>(),
+                _services.Single<IRandomService>(),
+                _services.Single<IUIFactory>()));
             
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
                 _services.Single<IAssetProviderService>(),

@@ -42,6 +42,9 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadTimer() => 
             Resources.Load<GameObject>(AssetPath.TimerPath);
 
+        public GameObject LoadDefeatWindow() => 
+            Resources.Load<GameObject>(AssetPath.DefeatWindowPath);
+
         public GameObject LoadEnemy() => 
             Resources.Load<GameObject>(AssetPath.EnemyPath);
 

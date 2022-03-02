@@ -59,8 +59,6 @@ namespace CodeBase.Services.Data.ReadWrite
 
         public void Clenup()
         {
-            StopStreaming();
-            
             _singleReaders.Clear();
             _singleWriters.Clear();
             _streamingReaders.Clear();

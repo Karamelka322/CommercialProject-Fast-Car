@@ -77,8 +77,7 @@ namespace CodeBase.Infrastructure.States
             ResetSessionData();
             SetSpawner(false);
             SetStreamingData(false);
-
-            _readWriteDataService.Clenup();
+            
             _spawnerService.Clenup();
             _inputService.Clenup();
         }

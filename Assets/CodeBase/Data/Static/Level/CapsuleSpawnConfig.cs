@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CodeBase.Logic.Item;
 using CodeBase.Services.AssetProvider;
 using JetBrains.Annotations;
@@ -19,7 +18,7 @@ namespace CodeBase.Data.Static.Level
         public int Quantity;
         
         [Space, Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error , "CheckCapsuleSpawnPoints")]
-        public List<Vector3> CapsuleSpawnPoints;
+        public Vector3[] CapsuleSpawnPoints;
         
         
 #if UNITY_EDITOR
@@ -27,17 +26,16 @@ namespace CodeBase.Data.Static.Level
         [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10)]
         private void FillCapsuleSpawnPoints()
         {
-            CapsuleSpawnPoint[] generatorSpawnPoints = Object.FindObjectsOfType<CapsuleSpawnPoint>();
+            CapsuleSpawnPoint[] spawnPoints = Object.FindObjectsOfType<CapsuleSpawnPoint>();
+            CapsuleSpawnPoints = new Vector3[spawnPoints.Length];
 
-            CapsuleSpawnPoints.Clear();
-            
-            for (int i = 0; i < generatorSpawnPoints.Length; i++)
-                CapsuleSpawnPoints.Add(generatorSpawnPoints[i].WorldPosition);
+            for (int i = 0; i < CapsuleSpawnPoints.Length; i++) 
+                CapsuleSpawnPoints[i] = spawnPoints[i].WorldPosition;
         }
-        
+
         [UsedImplicitly]
         private bool CheckCapsuleSpawnPoints() => 
-            CapsuleSpawnPoints == null || CapsuleSpawnPoints.Count == 0;
+            CapsuleSpawnPoints == null || CapsuleSpawnPoints.Length == 0;
         
         [ShowIf("CheckCapsuleSpawnPoints"), Button("Generate Spawn Point"), GUIColor(0.5f, 0.7f, 1f)]
         private void GenerateSpawnPoint() => 
@@ -45,19 +43,19 @@ namespace CodeBase.Data.Static.Level
 
         [UsedImplicitly]
         private int MaxQuantity() => 
-            CapsuleSpawnPoints.Count;
+            CapsuleSpawnPoints.Length;
 
         [UsedImplicitly]
         private int MinQuantity()
         {
             if (UsingCapsule)
             {
-                return CapsuleSpawnPoints.Count >= 1 ? 1 : 0;
+                return CapsuleSpawnPoints.Length >= 1 ? 1 : 0;
             }
             else
             {
                 Quantity = 0;
-                CapsuleSpawnPoints.Clear();
+                CapsuleSpawnPoints = Array.Empty<Vector3>();
                 return 0;
             }
         }

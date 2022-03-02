@@ -2,6 +2,7 @@ using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Random;
@@ -23,6 +24,7 @@ namespace CodeBase.Services.Factories.Player
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IReplayService _replayService;
         private readonly IRandomService _randomService;
+        private readonly IUIFactory _uiFactory;
 
         public GameObject Player { get; private set; }
         
@@ -34,12 +36,14 @@ namespace CodeBase.Services.Factories.Player
             IPauseService pauseService,
             IReadWriteDataService readWriteDataService,
             IReplayService replayService,
-            IRandomService randomService)
+            IRandomService randomService,
+            IUIFactory uiFactory)
         {
             _pauseService = pauseService;
             _readWriteDataService = readWriteDataService;
             _replayService = replayService;
             _randomService = randomService;
+            _uiFactory = uiFactory;
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
@@ -61,6 +65,9 @@ namespace CodeBase.Services.Factories.Player
             if(Player.TryGetComponent(out PlayerHook hook))
                 hook.Construct(_tweenService);
          
+            if(Player.TryGetComponent(out PlayerDefeat victoryHandler))
+                victoryHandler.Construct(_uiFactory);
+            
             foreach (Wheel wheel in Player.GetComponentsInChildren<Wheel>()) 
                 wheel.Construct(_updateService);
 

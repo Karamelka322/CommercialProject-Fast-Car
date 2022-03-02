@@ -30,5 +30,6 @@ namespace CodeBase.Services.AssetProvider
         Capsule LoadCapsule();
         GameObject LoadPauseWindow();
         GameObject LoadTimer();
+        GameObject LoadDefeatWindow();
     }
 }

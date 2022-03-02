@@ -3,14 +3,9 @@ using CodeBase.Services.Data.ReadWrite;
 
 namespace CodeBase.UI
 {
-    public class PlayerHealthBar : UIBar, IStreamingReadData, ISingleReadData
+    public class PlayerHealthBar : UIBar, IStreamingReadData
     {
-        private float _maxHealth;
-        
-        public void SingleReadData(PlayerPersistentData persistentData) => 
-            _maxHealth = persistentData.SessionData.PlayerData.MaxHealth;
-
         public void StreamingReadData(PlayerPersistentData persistentData) => 
-            Fill = persistentData.SessionData.PlayerData.Health / _maxHealth;
+            Fill = persistentData.SessionData.PlayerData.Health / persistentData.SessionData.PlayerData.MaxHealth;
     }
 }

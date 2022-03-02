@@ -18,5 +18,6 @@ namespace CodeBase.Services.Factories.UI
         void LoadHUD();
         void LoadPauseWindow();
         GameObject LoadTimer();
+        void LoadDefeatWindow();
     }
 }

@@ -39,12 +39,10 @@ namespace CodeBase.Data.Static.Level
         [UsedImplicitly]
         private void OnUsingCapsuleChanged()
         {
-            Debug.Log("Yes");
-            
             if (Capsule.UsingCapsule == false)
             {
                 Capsule.Quantity = 0;
-                Capsule.CapsuleSpawnPoints.Clear();
+                Capsule.CapsuleSpawnPoints = Array.Empty<Vector3>();
             }
         }
         

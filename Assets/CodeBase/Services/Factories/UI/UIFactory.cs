@@ -1,6 +1,5 @@
 using System;
 using CodeBase.Infrastructure;
-using CodeBase.Logic.Level.Generator;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
@@ -118,6 +117,15 @@ namespace CodeBase.Services.Factories.UI
         {
             GameObject prefab = _assetProvider.LoadTimer();
             return Object.Instantiate(prefab, UIRoot);
+        }
+
+        public void LoadDefeatWindow()
+        {
+            GameObject prefab = _assetProvider.LoadDefeatWindow();
+            GameObject window = Object.Instantiate(prefab, UIRoot);
+            
+            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
+            window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
         }
 
         public void LoadSkipButton(MenuAnimator menuAnimator)

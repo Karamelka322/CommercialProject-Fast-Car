@@ -42,7 +42,10 @@ namespace CodeBase.Extension
             throw new ArgumentOutOfRangeException();
         }
 
-        public static Vector3 Random(this List<Vector3> list) => 
+        public static T Random<T>(this List<T> list) => 
             list[UnityEngine.Random.Range(0, list.Count)];
+
+        public static T Random<T>(this T[] array) => 
+            array[UnityEngine.Random.Range(0, array.Length)];
     }
 }

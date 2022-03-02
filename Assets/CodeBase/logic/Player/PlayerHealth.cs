@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Replay;
@@ -5,13 +6,14 @@ using UnityEngine;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerHealth : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler
+    public class PlayerHealth : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
     {
         [SerializeField]
         private float _health;
         
         private float _maxHealth;
-        
+        public event Action OnDefeat;
+
 #if UNITY_EDITOR
         public float Health
         {
@@ -26,8 +28,13 @@ namespace CodeBase.Logic.Player
         public void AddHealth(float value) => 
             _health = Mathf.Clamp(_health + value, 0, _maxHealth);
 
-        public void ReduceHealth(float value) => 
+        public void ReduceHealth(float value)
+        {
             _health = Mathf.Clamp(_health - value, 0, _maxHealth);
+            
+            if(_health == 0)
+                OnDefeat?.Invoke();
+        }
 
         public void SingleReadData(PlayerPersistentData persistentData)
         {

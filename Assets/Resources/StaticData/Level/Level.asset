@@ -18,6 +18,7 @@ MonoBehaviour:
   - {x: 3, y: 0, z: -5}
   Generator:
     UsingGenerator: 1
+    StartValuePower: 100
     PowerChangeSpeed: 2
     GeneratorSpawnPoints:
     - {x: -106, y: 6, z: -79}
