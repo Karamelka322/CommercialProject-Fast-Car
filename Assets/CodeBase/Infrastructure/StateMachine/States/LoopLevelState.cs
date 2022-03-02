@@ -1,5 +1,5 @@
 using CodeBase.Logic.Item;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
@@ -64,6 +64,7 @@ namespace CodeBase.Infrastructure.States
             DestroyUITimer();
             SetPause(false);
             SetSpawner(true);
+            SetStreamingData(true);
         }
 
         public void OnUpdate() => 
@@ -75,12 +76,13 @@ namespace CodeBase.Infrastructure.States
 
             ResetSessionData();
             SetSpawner(false);
+            SetStreamingData(false);
 
             _readWriteDataService.Clenup();
             _spawnerService.Clenup();
             _inputService.Clenup();
         }
-        
+
         private void AddTimeInStopwatch(float time) => 
             _persistentDataService.PlayerData.SessionData.StopwatchTime += time;
 
@@ -102,6 +104,14 @@ namespace CodeBase.Infrastructure.States
                 _spawnerService.Enable();
             else
                 _spawnerService.Disable();
+        }
+
+        private void SetStreamingData(bool isActive)
+        {
+            if (isActive)
+                _readWriteDataService.StartStreaming();
+            else
+                _readWriteDataService.StopStreaming();
         }
     }
 }

@@ -16,6 +16,9 @@ namespace CodeBase.Data.Static.Level
         public bool UsingGenerator;
         
         [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0)]
+        public int StartValuePower;
+        
+        [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0)]
         public float PowerChangeSpeed;
         
         [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), InfoBox("Empty", InfoMessageType.Error, "CheckGeneratorSpawnPoints")]

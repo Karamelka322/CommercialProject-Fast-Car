@@ -5,7 +5,6 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
-using CodeBase.Services.StaticData;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -14,14 +13,12 @@ namespace CodeBase.Infrastructure.States
         private readonly IGameStateMachine _stateMachine;
         private readonly IPersistentDataService _progressService;
         private readonly ISaveLoadDataService _saveLoadDataService;
-        private readonly IStaticDataService _staticDataService;
 
-        public LoadPersistentDataState(IGameStateMachine stateMachine, IPersistentDataService progressService, ISaveLoadDataService saveLoadDataService, IStaticDataService staticDataService)
+        public LoadPersistentDataState(IGameStateMachine stateMachine, IPersistentDataService progressService, ISaveLoadDataService saveLoadDataService)
         {
             _stateMachine = stateMachine;
             _progressService = progressService;
             _saveLoadDataService = saveLoadDataService;
-            _staticDataService = staticDataService;
         }
 
         public void Enter()
@@ -46,10 +43,8 @@ namespace CodeBase.Infrastructure.States
         private void LoadPlayerPersistenDataOrInitNew() => 
             _progressService.PlayerData = _saveLoadDataService.LoadPlayerData() ?? NewPlayerPersistentData();
 
-        private PlayerPersistentData NewPlayerPersistentData()
+        private static PlayerPersistentData NewPlayerPersistentData()
         {
-            LevelStaticData levelStaticData = _staticDataService.ForLevel(LevelTypeId.Level_1);
-            
             return new PlayerPersistentData
             {
                 SettingsData =
@@ -68,8 +63,8 @@ namespace CodeBase.Infrastructure.States
                     
                     PlayerData =
                     {
+                        Health = 0,
                         MaxHealth = 0,
-                        Health = 0
                     },
                     
                     LevelData =
@@ -78,10 +73,9 @@ namespace CodeBase.Infrastructure.States
                         
                         GeneratorData =
                         {
-                            Power = GeneratorSessionData.MaxPower,
-                            PowerSpeedChange = levelStaticData.Generator.PowerChangeSpeed
+                            Power = 0,
                         }
-                    }
+                    },
                 }
             };
         }

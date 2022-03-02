@@ -31,7 +31,23 @@ namespace CodeBase.Data.Static.Player
         
         [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0)]
         private int SpeedRotation;
+
+        private bool isFirstLoad;
         
+        private void OnValidate()
+        {
+            if(isFirstLoad)
+                return;
+            
+            Health = Prefab.GetComponent<PlayerHealth>().Health;
+            MotorPower = Prefab.GetComponent<Motor>().Power;
+            Acceleration = Prefab.GetComponent<Motor>().Acceleration;
+            SteerAngle = Prefab.GetComponent<SteeringGear>().SteerAngle;
+            SpeedRotation = Prefab.GetComponent<SteeringGear>().SpeedRotation;
+
+            isFirstLoad = true;
+        }
+
         [UsedImplicitly]
         private void SetSpeedRotation()
         {

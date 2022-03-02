@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using UnityEngine;
 
 namespace CodeBase.Logic.Enemy
@@ -13,7 +12,7 @@ namespace CodeBase.Logic.Enemy
 #if UNITY_EDITOR
         public int Health
         {
-            [Editor]
+            get => _health;
             set => _health = value;
         }
 #endif

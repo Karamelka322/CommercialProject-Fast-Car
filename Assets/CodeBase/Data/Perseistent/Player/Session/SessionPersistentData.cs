@@ -18,9 +18,12 @@ namespace CodeBase.Data.Perseistent
         
         public void Reset()
         {
+            LevelData.CurrentLevelConfig = null;
+            
             StopwatchTime = 0;
-            PlayerData.Health = PlayerData.MaxHealth;
-            LevelData.GeneratorData.Power = GeneratorSessionData.MaxPower;
+            PlayerData.Health = 0;
+            PlayerData.MaxHealth = 0;
+            LevelData.GeneratorData.Power = 0;
         }
     }
 }

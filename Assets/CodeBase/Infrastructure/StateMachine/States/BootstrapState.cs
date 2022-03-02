@@ -1,5 +1,5 @@
 using CodeBase.Services.AssetProvider;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
@@ -53,7 +53,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IInputService>(new InputService());
 
             _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
-            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService(_services.Single<IPersistentDataService>()));
+            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService(_services.Single<IPersistentDataService>(), _services.Single<IUpdateService>()));
             _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
 

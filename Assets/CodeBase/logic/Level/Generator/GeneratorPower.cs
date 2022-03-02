@@ -1,38 +1,25 @@
-using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Logic.Item;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using UnityEngine;
 
 namespace CodeBase.Logic.Level.Generator
 {
-    public class GeneratorPower : MonoBehaviour, IReadData, IWriteData, IReplayHandler
+    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler
     {
         [SerializeField] 
         private GeneratorHook _hook;
 
+        private float _power;
+        private int _startValuePower;
+        private float _powerSpeedChange;
+
         private IUpdateService _updateService;
 
-        private float _startPower;
-        private float _startSpeed;
-        
-        private float _speed;
-        private float _power;
-
-        public event Action<float> OnChangePower;
-        
         public void Construct(IUpdateService updateService) => 
             _updateService = updateService;
-
-        private void OnUpdate()
-        {
-            if(_power == 0)
-                return;
-
-            ReducePower(Time.deltaTime * _speed);
-        }
 
         private void Start()
         {
@@ -46,42 +33,34 @@ namespace CodeBase.Logic.Level.Generator
             _hook.OnCapsuleLift -= OnCapsuleLift;
         }
 
+        private void OnUpdate()
+        {
+            if(_power == 0)
+                return;
+
+            ReducePower(Time.deltaTime * _powerSpeedChange);
+        }
+
         private void OnCapsuleLift(Capsule capsule) =>
             AddPower(capsule.Power);
 
-        private void AddPower(float value)
+        private void AddPower(float value) => 
+            _power = Mathf.Clamp(_power + value, 0, _startValuePower);
+
+        private void ReducePower(float value) => 
+            _power = Mathf.Clamp(_power - value, 0, _startValuePower);
+
+        public void SingleReadData(PlayerPersistentData persistentData)
         {
-            _power = Mathf.Clamp(_power + value, GeneratorSessionData.MinPower, GeneratorSessionData.MaxPower);
-            OnChangePower?.Invoke(_power);
+            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Generator.StartValuePower;
+            _powerSpeedChange = persistentData.SessionData.LevelData.CurrentLevelConfig.Generator.PowerChangeSpeed;
+            _power = _startValuePower;
         }
 
-        private void ReducePower(float value)
-        {
-            _power = Mathf.Clamp(_power - value, GeneratorSessionData.MinPower, GeneratorSessionData.MaxPower);
-            OnChangePower?.Invoke(_power);
-        }
-
-        public void ReadData(PlayerPersistentData persistentData)
-        {
-            _startPower = persistentData.SessionData.LevelData.GeneratorData.Power;
-            _startSpeed = persistentData.SessionData.LevelData.GeneratorData.PowerSpeedChange;
-
-            _power = _startPower;
-            _speed = _startSpeed;
-        }
-
-        public void WriteData(PlayerPersistentData persistentData)
-        {
+        public void StreamingWriteData(PlayerPersistentData persistentData) => 
             persistentData.SessionData.LevelData.GeneratorData.Power = _power;
-            persistentData.SessionData.LevelData.GeneratorData.PowerSpeedChange = _speed;
-        }
 
-        public void OnReplay()
-        {
-            _power = _startPower;
-            _speed = _startSpeed;
-            
-            OnChangePower?.Invoke(_power);
-        }
+        public void OnReplay() => 
+            _power = _startValuePower;
     }
 }

@@ -1,10 +1,9 @@
 using System;
 using CodeBase.Infrastructure;
 using CodeBase.Logic.Level.Generator;
-using CodeBase.Logic.Player;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
@@ -29,8 +28,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly IReadWriteDataService _readWriteDataService;
 
         public Transform UIRoot { get; private set; }
-        public HUD HUD { get; private set; }
-        
+
         public UIFactory(
             IGameStateMachine stateMachine,
             IAssetProviderService assetProvider,
@@ -95,22 +93,15 @@ namespace CodeBase.Services.Factories.UI
             return garage;
         }
 
-        public void LoadHUD(GameObject generator, GameObject player)
+        public void LoadHUD()
         {
-            HUD = Object.Instantiate(_assetProvider.LoadHUD());
-            _readWriteDataService.Register(HUD.gameObject);
+            HUD hud = InstantiateRegister(_assetProvider.LoadHUD());
             
             GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.SettingsData.InputType);
-            GameObject inputVariant = Object.Instantiate(prefab, HUD.InputContainer);
+            GameObject inputVariant = Object.Instantiate(prefab, hud.InputContainer);
             _inputService.RegisterInput(_persistentDataService.PlayerData.SettingsData.InputType, inputVariant);
 
-            if (generator.TryGetComponent(out GeneratorPower generatorPower))
-                HUD.GeneratorPowerBar.Construct(generatorPower);
-
-            if (player.TryGetComponent(out PlayerHealth playerHealth))
-                HUD.PlayerHealthBar.Construct(playerHealth);
-            
-            HUD.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
+            hud.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
         }
 
         public void LoadPauseWindow()
@@ -137,5 +128,12 @@ namespace CodeBase.Services.Factories.UI
 
         public void LoadUIRoot() => 
             UIRoot = Object.Instantiate(_assetProvider.LoadUIRoot()).transform;
+
+        private T InstantiateRegister<T>(T prefab) where T : MonoBehaviour
+        {
+            T monoBehaviour = Object.Instantiate(prefab);
+            _readWriteDataService.Register(monoBehaviour.gameObject);
+            return monoBehaviour;
+        }
     }
 }

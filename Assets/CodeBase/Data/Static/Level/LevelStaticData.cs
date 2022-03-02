@@ -142,14 +142,4 @@ namespace CodeBase.Data.Static.Level
         
 #endif
     }
-
-    [Serializable]
-    public struct MaxMinValue
-    {
-        [HorizontalGroup]
-        public float Max;
-        
-        [HorizontalGroup]
-        public float Min;
-    }
 }

@@ -3,7 +3,7 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Camera;
 using CodeBase.Scene;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -101,8 +101,8 @@ namespace CodeBase.Infrastructure.States
             GameObject player = InitPlayer();
             CameraFollow(player);
             
-            GameObject generator = InitGenerator();
-            InitHUD(generator, player);
+            InitGenerator();
+            InitHUD();
             
             InitUIRoot();
             
@@ -111,15 +111,18 @@ namespace CodeBase.Infrastructure.States
             
             EnterLoopLevelState();
         }
-
-        private void SetCurrentLevel() => 
+        
+        private void SetCurrentLevel()
+        {
             _currentLevel = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
+            _persistentDataService.PlayerData.SessionData.LevelData.CurrentLevelConfig = _currentLevel;
+        }
 
         private void EnterLoopLevelState() => 
             _gameStateMachine.Enter<LoopLevelState>();
 
-        private void InitHUD(GameObject generator, GameObject player) => 
-            _uiFactory.LoadHUD(generator, player);
+        private void InitHUD() => 
+            _uiFactory.LoadHUD();
 
         private void InitUIRoot() => 
             _uiFactory.LoadUIRoot();

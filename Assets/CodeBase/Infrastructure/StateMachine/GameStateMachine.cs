@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
-using CodeBase.Services.Data.ReaderWriter;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -33,8 +33,7 @@ namespace CodeBase.Infrastructure
                 [typeof(LoadPersistentDataState)] = new LoadPersistentDataState(
                     services.Single<IGameStateMachine>(),
                     services.Single<IPersistentDataService>(),
-                    services.Single<ISaveLoadDataService>(),
-                    services.Single<IStaticDataService>()),
+                    services.Single<ISaveLoadDataService>()),
                 
                 [typeof(LoadMenuState)] = new LoadMenuState(
                     services.Single<ISceneLoaderService>(),
