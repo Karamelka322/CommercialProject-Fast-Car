@@ -15,19 +15,23 @@ MonoBehaviour:
   LevelType: 0
   SceneName: City_Geometry
   PlayerSpawnPoints:
-  - {x: 3, y: 0, z: -5}
+  - Position: {x: 3, y: 0, z: -5}
+    Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
   Generator:
     UsingGenerator: 1
     StartValuePower: 100
     PowerChangeSpeed: 2
     GeneratorSpawnPoints:
-    - {x: -106, y: 6, z: -79}
+    - Position: {x: -106, y: 6, z: -79}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
   Capsule:
     UsingCapsule: 1
     Quantity: 2
     CapsuleSpawnPoints:
-    - {x: 37, y: 0, z: 19}
-    - {x: 73, y: 0, z: -80}
+    - Position: {x: 37, y: 0, z: 19}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
+    - Position: {x: 73, y: 0, z: -80}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
   Enemy:
     UsingEnemy: 1
     List:
@@ -44,4 +48,5 @@ MonoBehaviour:
       Period: {x: 71.07232, y: 100}
       Range: 1
     EnemySpawnPoints:
-    - {x: -116, y: 6, z: 0}
+    - Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: 0, y: 0, z: 0, w: 0}

@@ -12,6 +12,6 @@ namespace CodeBase.Logic.Level.Generator
             _randomService = randomService;
 
         public void OnReplay() => 
-            transform.position = _randomService.GeneratorSpawnPoint();
+            transform.position = _randomService.GeneratorSpawnPoint().Position;
     }
 }

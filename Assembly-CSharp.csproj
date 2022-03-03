@@ -68,6 +68,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\IAffectPlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
@@ -113,6 +114,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\PlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Scene\SceneNameConstant.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
@@ -165,6 +167,7 @@
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Services\Replay\ReplayService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\CapsuleSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
@@ -187,11 +190,14 @@
      <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\PlayerDefeat.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\IAffectPlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
+     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

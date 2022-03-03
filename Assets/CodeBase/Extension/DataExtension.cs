@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Services.Random;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -47,5 +48,89 @@ namespace CodeBase.Extension
 
         public static T Random<T>(this T[] array) => 
             array[UnityEngine.Random.Range(0, array.Length)];
+
+        public static SpawnPointData[] ConvertSpawnPointDataToPointData(this PointData[] array)
+        {
+            SpawnPointData[] spawnPointDatas = new SpawnPointData[array.Length];
+
+            for (int i = 0; i < spawnPointDatas.Length; i++) 
+                spawnPointDatas[i] = new SpawnPointData(false, array[i]);
+
+            return spawnPointDatas;
+        }
+
+        public static PointData[] ConvertPointDataToSpawnPointData(this SpawnPointData[] array)
+        {
+            PointData[] spawnPointDatas = new PointData[array.Length];
+
+            for (int i = 0; i < spawnPointDatas.Length; i++) 
+                spawnPointDatas[i] = new PointData(array[i].Point.Position, array[i].Point.Rotation);
+
+            return spawnPointDatas;
+        }
+
+        public static int GetNumberUnlockedSpawnPoints(this SpawnPointData[] spawnPointDatas)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < spawnPointDatas.Length; i++)
+            {
+                if (spawnPointDatas[i].IsLocked == false) 
+                    counter++;
+            }
+
+            return counter;
+        }
+
+        public static PointData[] GetUnblockedSpawnPoints(this SpawnPointData[] spawnPointDatas)
+        {
+            int numberUnlockedSpawnPoints = spawnPointDatas.GetNumberUnlockedSpawnPoints();
+            
+            if (numberUnlockedSpawnPoints == spawnPointDatas.Length)
+            {
+                return spawnPointDatas.ConvertPointDataToSpawnPointData();
+            }
+            else
+            {
+                PointData[] points = new PointData[numberUnlockedSpawnPoints];
+
+                int counter = 0;
+            
+                for (int i = 0; i < spawnPointDatas.Length; i++)
+                {
+                    if (spawnPointDatas[i].IsLocked == false)
+                    {
+                        points[counter] = spawnPointDatas[i].Point;
+                        counter++;
+                    }
+                }
+            
+                return points;   
+            }
+        }
+
+        public static void BlockSpawnPoint(this SpawnPointData[] spawnPointDatas, PointData point)
+        {
+            for (int i = 0; i < spawnPointDatas.Length; i++)
+            {
+                if (spawnPointDatas[i].Point == point)
+                {
+                    spawnPointDatas[i].IsLocked = true;
+                    break;
+                }
+            }
+        }
+
+        public static void UnlockSpawnPoint(this SpawnPointData[] spawnPointDatas, PointData point)
+        {
+            for (int i = 0; i < spawnPointDatas.Length; i++)
+            {
+                if (spawnPointDatas[i].Point == point)
+                {
+                    spawnPointDatas[i].IsLocked = false;
+                    break;
+                }
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using CodeBase.Data.Static.Enemy;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Item;
@@ -14,7 +15,7 @@ namespace CodeBase.Services.AssetProvider
 
         PlayerStaticData[] LoadPlayerStaticData();
         LevelStaticData[] LoadLevelStaticData();
-        GameObject LoadEnemy();
+        EnemyStaticData[] LoadEnemies();
 
         GameObject LoadUIRoot();
         GameObject LoadMainButtonInMenu();

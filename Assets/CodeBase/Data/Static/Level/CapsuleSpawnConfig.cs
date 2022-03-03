@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Logic.Item;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace CodeBase.Data.Static.Level
         public int Quantity;
         
         [Space, Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error , "CheckCapsuleSpawnPoints")]
-        public Vector3[] CapsuleSpawnPoints;
+        public PointData[] CapsuleSpawnPoints;
         
         
 #if UNITY_EDITOR
@@ -27,10 +28,10 @@ namespace CodeBase.Data.Static.Level
         private void FillCapsuleSpawnPoints()
         {
             CapsuleSpawnPoint[] spawnPoints = Object.FindObjectsOfType<CapsuleSpawnPoint>();
-            CapsuleSpawnPoints = new Vector3[spawnPoints.Length];
+            CapsuleSpawnPoints = new PointData[spawnPoints.Length];
 
             for (int i = 0; i < CapsuleSpawnPoints.Length; i++) 
-                CapsuleSpawnPoints[i] = spawnPoints[i].WorldPosition;
+                CapsuleSpawnPoints[i] = new PointData(spawnPoints[i].WorldPosition, spawnPoints[i].WorldRotation);
         }
 
         [UsedImplicitly]
@@ -55,7 +56,7 @@ namespace CodeBase.Data.Static.Level
             else
             {
                 Quantity = 0;
-                CapsuleSpawnPoints = Array.Empty<Vector3>();
+                CapsuleSpawnPoints = Array.Empty<PointData>();
                 return 0;
             }
         }

@@ -1,9 +1,10 @@
-using UnityEngine;
+using CodeBase.Data.Static.Enemy;
+using CodeBase.Services.Random;
 
 namespace CodeBase.Services.Factories.Enemy
 {
     public interface IEnemyFactory : IService
     {
-        void CreateEnemy(Transform player, Vector3 at);
+        void CreateEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType, PointData point);
     }
 }

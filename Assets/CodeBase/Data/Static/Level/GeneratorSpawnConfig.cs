@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Editor;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace CodeBase.Data.Static.Level
         public float PowerChangeSpeed;
         
         [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), InfoBox("Empty", InfoMessageType.Error, "CheckGeneratorSpawnPoints")]
-        public List<Vector3> GeneratorSpawnPoints;
+        public PointData[] GeneratorSpawnPoints;
         
         
 #if UNITY_EDITOR
@@ -32,15 +33,15 @@ namespace CodeBase.Data.Static.Level
         {
             GeneratorSpawnPoint[] generatorSpawnPoints = Object.FindObjectsOfType<GeneratorSpawnPoint>();
 
-            GeneratorSpawnPoints.Clear();
+            GeneratorSpawnPoints = new PointData[generatorSpawnPoints.Length];
             
             for (int i = 0; i < generatorSpawnPoints.Length; i++)
-                GeneratorSpawnPoints.Add(generatorSpawnPoints[i].WorldPosition);
+                GeneratorSpawnPoints[i] = new PointData(generatorSpawnPoints[i].WorldPosition, generatorSpawnPoints[i].WorldRotation);
         }
         
         [UsedImplicitly]
         private bool CheckGeneratorSpawnPoints() => 
-            GeneratorSpawnPoints == null || GeneratorSpawnPoints.Count == 0;
+            GeneratorSpawnPoints == null || GeneratorSpawnPoints.Length == 0;
         
         [ShowIf("CheckGeneratorSpawnPoints"), Button("Generate Spawn Point"), GUIColor(0.5f, 0.7f, 1f)]
         private void GenerateSpawnPoint() => 

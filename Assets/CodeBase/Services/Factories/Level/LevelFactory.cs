@@ -35,10 +35,10 @@ namespace CodeBase.Services.Factories.Level
             _replayService = replayService;
         }
 
-        public GameObject LoadGenerator(Vector3 at)
+        public GameObject LoadGenerator(PointData spawnPoint)
         {
             GameObject prefab = _assetProviderService.LoadGenerator();
-            GameObject generator = InstantiateRegister(at, prefab);
+            GameObject generator = InstantiateRegister(prefab, spawnPoint);
 
             if (generator.TryGetComponent(out GeneratorPrefab generatorPrefab)) 
                 generatorPrefab.Construct(_randomService);
@@ -52,22 +52,22 @@ namespace CodeBase.Services.Factories.Level
             return generator;
         }
 
-        public Capsule LoadCapsule(Vector3 at)
+        public Capsule LoadCapsule(PointData spawnPoint)
         {
             Capsule prefab = _assetProviderService.LoadCapsule();
-            return InstantiateRegister(at, prefab);
+            return InstantiateRegister(prefab, spawnPoint);
         }
 
-        private Capsule InstantiateRegister(Vector3 at, Capsule prefab)
+        private Capsule InstantiateRegister(Capsule prefab, PointData spawnPoint)
         {
-            Capsule capsule = Object.Instantiate(prefab, at, Quaternion.identity);
+            Capsule capsule = Object.Instantiate(prefab, spawnPoint.Position, spawnPoint.Rotation);
             _replayService.Register(capsule.gameObject);
             return capsule;
         }
 
-        private GameObject InstantiateRegister(Vector3 at, GameObject prefab)
+        private GameObject InstantiateRegister(GameObject prefab, PointData spawnPoint)
         {
-            GameObject gameObject = Object.Instantiate(prefab, at, Quaternion.identity);
+            GameObject gameObject = Object.Instantiate(prefab, spawnPoint.Position, spawnPoint.Rotation);
             _readWriteDataService.Register(gameObject);
             _replayService.Register(gameObject);
             return gameObject;

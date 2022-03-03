@@ -1,7 +1,5 @@
-using System;
 using CodeBase.Data.Static.Level;
-using CodeBase.Extension;
-using CodeBase.Logic.Item;
+using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Random;
 using CodeBase.Services.Update;
@@ -11,25 +9,21 @@ namespace CodeBase.Services.Spawner
     public class SpawnerService : ISpawnerService
     {
         private readonly IUpdateService _updateService;
-        private readonly IRandomService _randomService;
-        private readonly ILevelFactory _levelFactory;
 
-        private LevelStaticData _config;
-        
-        private Capsule[] _capsules;
+        private readonly ICapsuleSpawnerModule _capsuleSpawnerModule;
+        private readonly IEnemySpawnerModule _enemySpawnerModule;
 
-        public SpawnerService(IUpdateService updateService, IRandomService randomService, ILevelFactory levelFactory)
+        public SpawnerService(IUpdateService updateService, IRandomService randomService, ILevelFactory levelFactory, IEnemyFactory enemyFactory)
         {
             _updateService = updateService;
-            _randomService = randomService;
-            _levelFactory = levelFactory;
+            
+            _capsuleSpawnerModule = new CapsuleSpawnerModule(randomService, levelFactory);
+            _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory);
         }
 
         public void SetConfig(LevelStaticData levelConfig)
         {
-            _config = levelConfig;
-
-            _capsules = new Capsule[levelConfig.Capsule.Quantity];
+            _capsuleSpawnerModule.SetConfig(levelConfig);
         }
 
         public void Enable() => 
@@ -37,31 +31,18 @@ namespace CodeBase.Services.Spawner
 
         private void OnUpdate()
         {
-            if(_config == null)
-                return;
-            
-            TrySpawnCapsule();
+            _capsuleSpawnerModule.TrySpawnCapsule();
+            _enemySpawnerModule.TrySpawnEnemy();
         }
+
 
         public void Disable() => 
             _updateService.OnUpdate -= OnUpdate;
 
-        public void Clenup() => 
-            _capsules = Array.Empty<Capsule>();
-
-        private void TrySpawnCapsule()
+        public void Clenup()
         {
-            if (IsSpawnedCapsule())
-                _capsules[_capsules.GetEmptyIndex()] = LoadCapsule();
+            _capsuleSpawnerModule.ClenupModule();
+            _enemySpawnerModule.ClenupModule();
         }
-
-        private bool IsSpawnedCapsule() => 
-            _config.Capsule.UsingCapsule && _capsules.NumberEmptyIndexes() != 0;
-
-        private Capsule LoadCapsule() => 
-            _levelFactory.LoadCapsule(_randomService.CapsuleSpawnPoint());
-
-        // private void InitEnemy() => 
-        //     _enemyFactory.CreateEnemy(_playerFactory.Player.transform, _randomService.EnemySpawnPoint());
     }
 }

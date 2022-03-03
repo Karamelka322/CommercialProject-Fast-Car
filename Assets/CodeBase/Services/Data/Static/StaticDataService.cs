@@ -1,9 +1,8 @@
-using CodeBase.Data;
 using CodeBase.Data.Static;
+using CodeBase.Data.Static.Enemy;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Services.AssetProvider;
-using CodeBase.Services.Input;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData
@@ -49,6 +48,19 @@ namespace CodeBase.Services.StaticData
             {
                 if (staticDatas[i].LevelType == typeId)
                     return staticDatas[i];
+            }
+
+            return default;
+        }
+
+        public EnemyStaticData ForEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType)
+        {
+            EnemyStaticData[] enemies = _assetProviderService.LoadEnemies();
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if (enemies[i].EnemyType == enemyType && enemies[i].DifficultyType == difficultyType)
+                    return enemies[i];
             }
 
             return default;

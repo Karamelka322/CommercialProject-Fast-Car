@@ -5,10 +5,14 @@ namespace CodeBase.Services.Random
 {
     public interface IRandomService : IService
     {
-        Vector3 CapsuleSpawnPoint();
+        PointData CapsuleSpawnPoint();
         Vector3 PlayerSpawnPoint();
-        Vector3 GeneratorSpawnPoint();
-        Vector3 EnemySpawnPoint();
+        PointData GeneratorSpawnPoint();
+        PointData EnemySpawnPoint();
         void SetConfig(LevelStaticData levelCongig);
+        void BindObjectToSpawnPoint(Object obj, PointData point);
+        int GetNumberUnlockedCapsuleSpawnPoints();
+        int GetNumberInlockedEnemySpawnPoints();
+        void BindTimeToSpawnPoint(float time, PointData point);
     }
 }

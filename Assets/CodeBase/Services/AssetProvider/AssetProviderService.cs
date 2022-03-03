@@ -1,3 +1,4 @@
+using CodeBase.Data.Static.Enemy;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Item;
@@ -45,8 +46,8 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadDefeatWindow() => 
             Resources.Load<GameObject>(AssetPath.DefeatWindowPath);
 
-        public GameObject LoadEnemy() => 
-            Resources.Load<GameObject>(AssetPath.EnemyPath);
+        public EnemyStaticData[] LoadEnemies() => 
+            Resources.LoadAll<EnemyStaticData>(AssetPath.EnemiesPath);
 
         public LoadingCurtain LoadLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);

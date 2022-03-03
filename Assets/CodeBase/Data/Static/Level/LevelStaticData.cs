@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CodeBase.Logic.Player;
+using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEditor;
@@ -22,7 +23,7 @@ namespace CodeBase.Data.Static.Level
         public string SceneName;
 
         [PropertySpace(SpaceBefore = 10, SpaceAfter = 10), ReadOnly, FoldoutGroup("Level"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error,"CheckPlayerSpawnPoints")]
-        public List<Vector3> PlayerSpawnPoints;
+        public PointData[] PlayerSpawnPoints;
 
         [FoldoutGroup("Using"), Toggle("UsingGenerator")]
         public GeneratorSpawnConfig Generator;
@@ -42,7 +43,7 @@ namespace CodeBase.Data.Static.Level
             if (Capsule.UsingCapsule == false)
             {
                 Capsule.Quantity = 0;
-                Capsule.CapsuleSpawnPoints = Array.Empty<Vector3>();
+                Capsule.CapsuleSpawnPoints = Array.Empty<PointData>();
             }
         }
         
@@ -101,11 +102,11 @@ namespace CodeBase.Data.Static.Level
         private void FillPlayerSpawnPoints()
         {
             PlayerSpawnPoint[] generatorSpawnPoints = FindObjectsOfType<PlayerSpawnPoint>();
-            
-            PlayerSpawnPoints.Clear();
+
+            PlayerSpawnPoints = new PointData[generatorSpawnPoints.Length];
             
             for (int i = 0; i < generatorSpawnPoints.Length; i++)
-                PlayerSpawnPoints.Add(generatorSpawnPoints[i].WorldPosition);
+                PlayerSpawnPoints[i] = new PointData(generatorSpawnPoints[i].WorldPosition, generatorSpawnPoints[i].WorldRotation);
         }
 
 
@@ -132,7 +133,7 @@ namespace CodeBase.Data.Static.Level
 
         [UsedImplicitly]
         private bool CheckPlayerSpawnPoints() => 
-            PlayerSpawnPoints == null || PlayerSpawnPoints.Count == 0;
+            PlayerSpawnPoints == null || PlayerSpawnPoints.Length == 0;
 
         [ShowIf("CheckPlayerSpawnPoints"), Button("Generate Spawn Point"), FoldoutGroup("Level"), GUIColor(0.5f, 0.7f, 1f)]
         private void GenerateSpawnPoint() => 

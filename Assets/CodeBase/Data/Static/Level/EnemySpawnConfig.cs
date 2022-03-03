@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Logic.Enemy;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace CodeBase.Data.Static.Level
         public List<SpawnEnemyStaticData> List;
         
         [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error, "CheckEnemySpawnPoints")]
-        public List<Vector3> EnemySpawnPoints;
+        public PointData[] EnemySpawnPoints;
 
         
 #if UNITY_EDITOR
@@ -28,16 +29,16 @@ namespace CodeBase.Data.Static.Level
         private void FillEnemySpawnPoints()
         {
             EnemySpawnPoint[] generatorSpawnPoints = Object.FindObjectsOfType<EnemySpawnPoint>();
-            
-            EnemySpawnPoints.Clear();
+
+            EnemySpawnPoints = new PointData[generatorSpawnPoints.Length];
             
             for (int i = 0; i < generatorSpawnPoints.Length; i++)
-                EnemySpawnPoints.Add(generatorSpawnPoints[i].WorldPosition);
+                EnemySpawnPoints[i] = new PointData(generatorSpawnPoints[i].WorldPosition, generatorSpawnPoints[i].WorldRotation);
         }
         
         [UsedImplicitly]
         private bool CheckEnemySpawnPoints() => 
-            EnemySpawnPoints == null || EnemySpawnPoints.Count == 0;
+            EnemySpawnPoints == null || EnemySpawnPoints.Length == 0;
         
         [ShowIf("CheckEnemySpawnPoints"), Button("Generate Spawn Point"), GUIColor(0.5f, 0.7f, 1f)]
         private void GenerateSpawnPoint() => 
