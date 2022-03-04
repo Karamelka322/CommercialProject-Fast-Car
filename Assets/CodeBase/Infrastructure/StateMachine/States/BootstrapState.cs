@@ -101,7 +101,9 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IUpdateService>(),
                 _services.Single<IRandomService>(),
                 _services.Single<ILevelFactory>(),
-                _services.Single<IEnemyFactory>()));
+                _services.Single<IEnemyFactory>(),
+                _services.Single<IPersistentDataService>(),
+                _corutineRunner));
         }
         
         private void EnterLoadPersistentDataState() => 

@@ -1,6 +1,8 @@
 using CodeBase.Data.Static.Level;
+using CodeBase.Infrastructure;
 using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
+using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Update;
 
@@ -13,17 +15,24 @@ namespace CodeBase.Services.Spawner
         private readonly ICapsuleSpawnerModule _capsuleSpawnerModule;
         private readonly IEnemySpawnerModule _enemySpawnerModule;
 
-        public SpawnerService(IUpdateService updateService, IRandomService randomService, ILevelFactory levelFactory, IEnemyFactory enemyFactory)
+        public SpawnerService(
+            IUpdateService updateService,
+            IRandomService randomService,
+            ILevelFactory levelFactory,
+            IEnemyFactory enemyFactory,
+            IPersistentDataService persistentDataService,
+            ICorutineRunner corutineRunner)
         {
             _updateService = updateService;
             
             _capsuleSpawnerModule = new CapsuleSpawnerModule(randomService, levelFactory);
-            _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory);
+            _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory, persistentDataService, corutineRunner);
         }
 
         public void SetConfig(LevelStaticData levelConfig)
         {
             _capsuleSpawnerModule.SetConfig(levelConfig);
+            _enemySpawnerModule.SetConfig(levelConfig);
         }
 
         public void Enable() => 
@@ -34,7 +43,6 @@ namespace CodeBase.Services.Spawner
             _capsuleSpawnerModule.TrySpawnCapsule();
             _enemySpawnerModule.TrySpawnEnemy();
         }
-
 
         public void Disable() => 
             _updateService.OnUpdate -= OnUpdate;

@@ -32,7 +32,7 @@ namespace CodeBase.Data.Static.Level
         public CapsuleSpawnConfig Capsule;
 
         [FoldoutGroup("Using"), Toggle("UsingEnemy")]
-        public EnemySpawnConfig Enemy;
+        public EnemiesSpawnConfig Enemy;
 
 #if UNITY_EDITOR
         

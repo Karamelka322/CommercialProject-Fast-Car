@@ -25,8 +25,8 @@ namespace CodeBase.Services.Random
         {
             _config = levelConfig;
 
-            _capsuleSpawnPoints = _config.Capsule.CapsuleSpawnPoints.ConvertSpawnPointDataToPointData();
-            _enemySpawnPoints = _config.Enemy.EnemySpawnPoints.ConvertSpawnPointDataToPointData();
+            _capsuleSpawnPoints = levelConfig.Capsule.CapsuleSpawnPoints.ConvertSpawnPointDataToPointData();
+            _enemySpawnPoints = levelConfig.Enemy.EnemySpawnPoints.ConvertSpawnPointDataToPointData();
         }
 
         public PointData CapsuleSpawnPoint() => 

@@ -50,6 +50,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\UI\UIFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
      <Compile Include="Assets\CodeBase\Scene\Menu\MenuAnimator.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\PauseButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\AreasInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Scene\Menu\MenuUIViewer.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerCollision.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\UIButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\GeneratorPowerBar.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
@@ -97,6 +99,7 @@
      <Compile Include="Assets\CodeBase\Services\Input\Variant\JoystickInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\ISaveLoadDataService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
      <Compile Include="Assets\CodeBase\Services\Replay\IReplayService.cs" />
@@ -109,7 +112,7 @@
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemySpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemiesSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
@@ -117,6 +120,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\Defeat\PlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Scene\SceneNameConstant.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
+     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Level\ILevelFactory.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPower.cs" />
@@ -130,6 +134,7 @@
      <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetPath.cs" />
@@ -140,7 +145,7 @@
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
      <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\SpawnEnemyStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemySpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
@@ -184,6 +189,7 @@
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
+     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
@@ -192,12 +198,6 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
-     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

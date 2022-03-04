@@ -34,19 +34,15 @@ MonoBehaviour:
       Rotation: {x: -0, y: -0, z: -0, w: 1}
   Enemy:
     UsingEnemy: 1
-    List:
+    Enemies:
     - EnemyType: 0
       DifficultyType: 0
-      Period: {x: 0, y: 32.668327}
-      Range: 3
-    - EnemyType: 0
-      DifficultyType: 0
-      Period: {x: 33.167084, y: 64.58853}
-      Range: 2
-    - EnemyType: 0
-      DifficultyType: 0
-      Period: {x: 71.07232, y: 100}
-      Range: 1
+      Period: {x: 0, y: 4.9534855}
+      Range: 1.2
     EnemySpawnPoints:
-    - Position: {x: 0, y: 0, z: 0}
-      Rotation: {x: 0, y: 0, z: 0, w: 0}
+    - Position: {x: 17, y: 6, z: -60}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
+    - Position: {x: -39, y: 14, z: 39}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}
+    - Position: {x: -116, y: 6, z: 0}
+      Rotation: {x: -0, y: -0, z: -0, w: 1}

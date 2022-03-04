@@ -24,6 +24,9 @@ namespace CodeBase.Services.Spawner
 
         public void SetConfig(LevelStaticData levelConfig)
         {
+            if(levelConfig.Capsule.UsingCapsule == false)
+                return;
+
             _config = levelConfig;
             _capsules = new Capsule[levelConfig.Capsule.Quantity];
         }
