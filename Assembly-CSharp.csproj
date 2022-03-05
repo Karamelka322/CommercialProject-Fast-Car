@@ -198,6 +198,9 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\UI\Stopwatch.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

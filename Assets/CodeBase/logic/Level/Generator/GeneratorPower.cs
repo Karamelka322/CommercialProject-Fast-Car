@@ -1,5 +1,7 @@
+using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Logic.Item;
+using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
@@ -7,7 +9,7 @@ using UnityEngine;
 
 namespace CodeBase.Logic.Level.Generator
 {
-    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler
+    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
     {
         [SerializeField] 
         private GeneratorHook _hook;
@@ -17,6 +19,8 @@ namespace CodeBase.Logic.Level.Generator
         private float _powerSpeedChange;
 
         private IUpdateService _updateService;
+        
+        public event Action OnDefeat;
 
         public void Construct(IUpdateService updateService) => 
             _updateService = updateService;
@@ -47,8 +51,13 @@ namespace CodeBase.Logic.Level.Generator
         private void AddPower(float value) => 
             _power = Mathf.Clamp(_power + value, 0, _startValuePower);
 
-        private void ReducePower(float value) => 
+        private void ReducePower(float value)
+        {
             _power = Mathf.Clamp(_power - value, 0, _startValuePower);
+            
+            if(_power == 0)
+                OnDefeat?.Invoke();
+        }
 
         public void SingleReadData(PlayerPersistentData persistentData)
         {

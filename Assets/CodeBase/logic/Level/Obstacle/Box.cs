@@ -7,6 +7,6 @@ namespace CodeBase.Logic.Level.Obstacle
         [SerializeField, Min(1)] 
         private float _demage = 1;
 
-        public float Demage => _demage;
+        public float Damage => _demage;
     }
 }

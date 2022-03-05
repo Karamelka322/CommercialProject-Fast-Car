@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Services.Random;
+using CodeBase.Services.Spawner;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -132,5 +133,8 @@ namespace CodeBase.Extension
                 }
             }
         }
+
+        public static string ConvertToDateTime(this float value) => 
+            new DateTime().AddSeconds(value).ToString("mm:ss:ff");
     }
 }

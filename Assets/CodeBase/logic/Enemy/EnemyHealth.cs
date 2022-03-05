@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Logic.Enemy
@@ -8,7 +9,8 @@ namespace CodeBase.Logic.Enemy
         private int _health;
 
         private int _maxHealth;
-
+        public event Action<float> OnChangeHealth;
+        
 #if UNITY_EDITOR
         public int Health
         {
@@ -20,10 +22,16 @@ namespace CodeBase.Logic.Enemy
         private void Awake() => 
             _maxHealth = _health;
 
-        public void AddHealth(float value) => 
+        public void AddHealth(float value)
+        {
             _health = (int)Mathf.Clamp(_health + value, 0, _maxHealth);
+            OnChangeHealth?.Invoke(_health);
+        }
 
-        public void ReduceHealth(float value) => 
+        public void ReduceHealth(float value)
+        {
             _health = (int)Mathf.Clamp(_health - value, 0, _maxHealth);
+            OnChangeHealth?.Invoke(_health);
+        }
     }
 }

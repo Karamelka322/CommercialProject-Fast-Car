@@ -1,7 +1,9 @@
 using CodeBase.Logic.Item;
 using CodeBase.Logic.Level.Generator;
+using CodeBase.Logic.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Tween;
@@ -18,6 +20,7 @@ namespace CodeBase.Services.Factories.Level
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IRandomService _randomService;
         private readonly IReplayService _replayService;
+        private readonly IUIFactory _uiFactory;
 
         public LevelFactory(
             IAssetProviderService assetProviderService,
@@ -25,7 +28,8 @@ namespace CodeBase.Services.Factories.Level
             IUpdateService updateService,
             IReadWriteDataService readWriteDataService,
             IRandomService randomService,
-            IReplayService replayService)
+            IReplayService replayService,
+            IUIFactory uiFactory)
         {
             _assetProviderService = assetProviderService;
             _tweenService = tweenService;
@@ -33,6 +37,7 @@ namespace CodeBase.Services.Factories.Level
             _readWriteDataService = readWriteDataService;
             _randomService = randomService;
             _replayService = replayService;
+            _uiFactory = uiFactory;
         }
 
         public GameObject LoadGenerator(PointData spawnPoint)
@@ -48,6 +53,9 @@ namespace CodeBase.Services.Factories.Level
             
             if (generator.TryGetComponent(out GeneratorPower power)) 
                 power.Construct(_updateService);
+            
+            if(generator.TryGetComponent(out PlayerDefeat playerDefeat))
+                playerDefeat.Construct(_uiFactory);
 
             return generator;
         }

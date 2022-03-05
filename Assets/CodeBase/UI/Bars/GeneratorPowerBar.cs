@@ -1,9 +1,10 @@
 using CodeBase.Data.Perseistent;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Replay;
 
 namespace CodeBase.UI
 {
-    public class GeneratorPowerBar : UIBar, IStreamingReadData, ISingleReadData
+    public class GeneratorPowerBar : UIBar, IStreamingReadData, ISingleReadData, IReplayHandler
     {
         private int _startValuePower;
         
@@ -12,5 +13,8 @@ namespace CodeBase.UI
 
         public void StreamingReadData(PlayerPersistentData persistentData) => 
             Fill = persistentData.SessionData.LevelData.GeneratorData.Power / _startValuePower;
+
+        public void OnReplay() => 
+            Fill = 1;
     }
 }

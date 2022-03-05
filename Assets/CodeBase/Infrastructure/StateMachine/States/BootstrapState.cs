@@ -60,14 +60,6 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IPauseService>(new PauseService(_services.Single<IUpdateService>()));
             _services.RegisterSingle<IRandomService>(new RandomService(_corutineRunner));
 
-            _services.RegisterSingle<ILevelFactory>(new LevelFactory(
-                _services.Single<IAssetProviderService>(),
-                _services.Single<ITweenService>(),
-                _services.Single<IUpdateService>(),
-                _services.Single<IReadWriteDataService>(),
-                _services.Single<IRandomService>(),
-                _services.Single<IReplayService>()));
-
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IGameStateMachine>(),
                 _services.Single<IAssetProviderService>(),
@@ -76,8 +68,18 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IInputService>(),
                 _services.Single<ITweenService>(),
                 _services.Single<IPauseService>(),
-                _services.Single<IReadWriteDataService>()));
+                _services.Single<IReadWriteDataService>(),
+                _services.Single<IReplayService>()));
             
+            _services.RegisterSingle<ILevelFactory>(new LevelFactory(
+                _services.Single<IAssetProviderService>(),
+                _services.Single<ITweenService>(),
+                _services.Single<IUpdateService>(),
+                _services.Single<IReadWriteDataService>(),
+                _services.Single<IRandomService>(),
+                _services.Single<IReplayService>(),
+                _services.Single<IUIFactory>()));
+
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
                 _services.Single<IStaticDataService>(),
                 _services.Single<IInputService>(),

@@ -991,6 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 3505706404394940952}
   _impulseForCollision: 9
+  _damage: 1
 --- !u!114 &3505706404394940952
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace CodeBase.Services.Replay
 
         public void Register(GameObject gameObject)
         {
-            foreach (IReplayHandler handler in gameObject.GetComponentsInParent<IReplayHandler>())
+            foreach (IReplayHandler handler in gameObject.GetComponentsInChildren<IReplayHandler>())
                 _handlers.Add(handler);
         }
         

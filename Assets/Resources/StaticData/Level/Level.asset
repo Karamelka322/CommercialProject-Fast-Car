@@ -37,8 +37,8 @@ MonoBehaviour:
     Enemies:
     - EnemyType: 0
       DifficultyType: 0
-      Period: {x: 0, y: 4.9534855}
-      Range: 1.2
+      Period: {x: 0, y: 20.040234}
+      Range: 20
     EnemySpawnPoints:
     - Position: {x: 17, y: 6, z: -60}
       Rotation: {x: -0, y: -0, z: -0, w: 1}

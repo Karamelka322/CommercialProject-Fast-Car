@@ -75,7 +75,8 @@ namespace CodeBase.Services.Spawner
                 _enemyFactory.CreateEnemy(enemySpawnConfigs[i].EnemyType, enemySpawnConfigs[i].DifficultyType, spawnPoint + Vector3.up);
                 _randomService.BindTimeToSpawnPoint(TimeSpawnEnemy, spawnPoint);
 
-                BlockSpawnConfigForWhile(enemySpawnConfigs[i]);       
+                if(enemySpawnConfigs[i].Period.x - enemySpawnConfigs[i].Period.y < enemySpawnConfigs[i].Range)
+                    BlockSpawnConfigForWhile(enemySpawnConfigs[i]); 
             }
         }
 

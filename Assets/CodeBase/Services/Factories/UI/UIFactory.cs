@@ -6,6 +6,7 @@ using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.UI;
@@ -25,6 +26,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly ITweenService _tweenService;
         private readonly IPauseService _pauseService;
         private readonly IReadWriteDataService _readWriteDataService;
+        private readonly IReplayService _replayService;
 
         public Transform UIRoot { get; private set; }
 
@@ -36,7 +38,8 @@ namespace CodeBase.Services.Factories.UI
             IInputService inputService,
             ITweenService tweenService,
             IPauseService pauseService,
-            IReadWriteDataService readWriteDataService)
+            IReadWriteDataService readWriteDataService,
+            IReplayService replayService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
@@ -46,6 +49,7 @@ namespace CodeBase.Services.Factories.UI
             _tweenService = tweenService;
             _pauseService = pauseService;
             _readWriteDataService = readWriteDataService;
+            _replayService = replayService;
         }
 
         public LoadingCurtain LoadMenuCurtain()
@@ -141,6 +145,7 @@ namespace CodeBase.Services.Factories.UI
         {
             T monoBehaviour = Object.Instantiate(prefab);
             _readWriteDataService.Register(monoBehaviour.gameObject);
+            _replayService.Register(monoBehaviour.gameObject);
             return monoBehaviour;
         }
     }
