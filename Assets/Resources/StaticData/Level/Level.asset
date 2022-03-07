@@ -19,7 +19,7 @@ MonoBehaviour:
     Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
   Generator:
     UsingGenerator: 1
-    StartValuePower: 100
+    StartValuePower: 30
     PowerChangeSpeed: 2
     GeneratorSpawnPoints:
     - Position: {x: -106, y: 6, z: -79}

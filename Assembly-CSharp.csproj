@@ -59,6 +59,8 @@
      <Compile Include="Assets\CodeBase\Services\Input\Element\ButtonInputElement.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IReadWriteDataService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
+     <Compile Include="Assets\CodeBase\UI\Stopwatch.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\LevelSessionData.cs" />
@@ -181,6 +183,7 @@
      <Compile Include="Assets\CodeBase\UI\Buttons\SkipButton.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
      <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
@@ -198,9 +201,6 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\UI\Stopwatch.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
