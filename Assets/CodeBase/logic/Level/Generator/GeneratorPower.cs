@@ -3,13 +3,15 @@ using CodeBase.Data.Perseistent;
 using CodeBase.Logic.Item;
 using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Logic.Level.Generator
 {
-    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
+    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat, IPlayerDefeatHandler, IPlayerVictoryHandler
     {
         [SerializeField] 
         private GeneratorHook _hook;
@@ -17,6 +19,7 @@ namespace CodeBase.Logic.Level.Generator
         private float _power;
         private int _startValuePower;
         private float _powerSpeedChange;
+        private bool _changePower = true;
 
         private IUpdateService _updateService;
         
@@ -39,7 +42,7 @@ namespace CodeBase.Logic.Level.Generator
 
         private void OnUpdate()
         {
-            if(_power == 0)
+            if(_power == 0 || _changePower == false)
                 return;
 
             ReducePower(Time.deltaTime * _powerSpeedChange);
@@ -55,7 +58,7 @@ namespace CodeBase.Logic.Level.Generator
         {
             _power = Mathf.Clamp(_power - value, 0, _startValuePower);
             
-            if(_power == 0)
+            if(_power == 0) 
                 OnDefeat?.Invoke();
         }
 
@@ -69,7 +72,16 @@ namespace CodeBase.Logic.Level.Generator
         public void StreamingWriteData(PlayerPersistentData persistentData) => 
             persistentData.SessionData.LevelData.GeneratorData.Power = _power;
 
-        public void OnReplay() => 
+        public void OnReplay()
+        {
             _power = _startValuePower;
+            _changePower = true;
+        }
+
+        void IPlayerDefeatHandler.OnDefeat() => 
+            _changePower = false;
+
+        public void OnVictory() => 
+            _changePower = false;
     }
 }

@@ -1,8 +1,9 @@
+using CodeBase.Services.Defeat;
+
 namespace CodeBase.Services.Pause
 {
-    public interface IPauseHandler
+    public interface IPauseHandler : IHandler
     {
-        string name { get; }
         void OnEnabledPause();
         void OnDisabledPause();
     }

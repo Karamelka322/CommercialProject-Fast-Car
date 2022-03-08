@@ -13,8 +13,10 @@ namespace CodeBase.Services.AssetProvider
         public const string MainButtonInMenuPath = "UI/Menu/Menu";
         public const string SettingsInMenuPath = "UI/Menu/Settings";
         public const string GarageInMenuPath = "UI/Menu/Garage";
-        public const string SkipButtonPath = "UI/Menu/SkipButton";
-        public const string DefeatWindowPath = "UI/Defeat_window";
+
+        public const string VictoryWindowPath = "UI/Windows/Victory_window";
+        public const string DefeatWindowPath = "UI/Windows/Defeat_window";
+        public const string PauseWindowPath = "UI/Windows/Pause_window";
 
         public const string HUDPath = "UI/HUD/HUD";
         public const string JoystickInputPath = "UI/HUD/Input/Joystick";
@@ -24,7 +26,7 @@ namespace CodeBase.Services.AssetProvider
         public const string GeneratorPath = "Level/Generator";
         public const string CapsulePath = "Level/Capsule";
 
-        public const string PauseWindowPath = "UI/Pause_window";
+        public const string SkipButtonPath = "UI/Menu/SkipButton";
         public const string TimerPath = "UI/Timer";
 
         public const string EnemySpawnPointPath = "Level/SpawnPoint/EnemySpawnPoint";

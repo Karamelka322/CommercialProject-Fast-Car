@@ -110,7 +110,7 @@ namespace CodeBase.Services.Factories.UI
         public void LoadPauseWindow()
         {
             GameObject prefab = _assetProvider.LoadPauseWindow();
-            GameObject window = Object.Instantiate(prefab, UIRoot.transform);
+            GameObject window = InstantiateRegister(prefab, UIRoot);
             
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
             window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
@@ -126,10 +126,18 @@ namespace CodeBase.Services.Factories.UI
         public void LoadDefeatWindow()
         {
             GameObject prefab = _assetProvider.LoadDefeatWindow();
-            GameObject window = Object.Instantiate(prefab, UIRoot);
+            GameObject window = InstantiateRegister(prefab, UIRoot);
             
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
             window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
+        }
+
+        public void LoadVictoryWindow()
+        {
+            GameObject prefab = _assetProvider.LoadVictoryWindow();
+            GameObject window = InstantiateRegister(prefab, UIRoot);
+            
+            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
         }
 
         public void LoadSkipButton(MenuAnimator menuAnimator)
@@ -147,6 +155,13 @@ namespace CodeBase.Services.Factories.UI
             _readWriteDataService.Register(monoBehaviour.gameObject);
             _replayService.Register(monoBehaviour.gameObject);
             return monoBehaviour;
+        }
+        
+        private GameObject InstantiateRegister(GameObject prefab, Transform parent)
+        {
+            GameObject obj = Object.Instantiate(prefab, parent);
+            _replayService.Register(obj);
+            return obj;
         }
     }
 }

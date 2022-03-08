@@ -1,5 +1,6 @@
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
@@ -15,6 +16,7 @@ using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -44,6 +46,8 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IVictoryService>(new VictoryService());
+            _services.RegisterSingle<IDefeatService>(new DefeatService());
             _services.RegisterSingle<IReplayService>(new ReplayService());
             _services.RegisterSingle<IUpdateService>(new UpdateService(_updatable));
             _services.RegisterSingle<ITweenService>(new TweenService(_corutineRunner));
@@ -78,7 +82,9 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IReadWriteDataService>(),
                 _services.Single<IRandomService>(),
                 _services.Single<IReplayService>(),
-                _services.Single<IUIFactory>()));
+                _services.Single<IUIFactory>(),
+                _services.Single<IDefeatService>(),
+                _services.Single<IVictoryService>()));
 
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
                 _services.Single<IStaticDataService>(),
@@ -89,7 +95,9 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IReadWriteDataService>(),
                 _services.Single<IReplayService>(),
                 _services.Single<IRandomService>(),
-                _services.Single<IUIFactory>()));
+                _services.Single<IUIFactory>(),
+                _services.Single<IDefeatService>(),
+                _services.Single<IVictoryService>()));
             
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
                 _services.Single<IAssetProviderService>(),
@@ -97,10 +105,11 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IPauseService>(),
                 _services.Single<IReplayService>(),
                 _services.Single<IPlayerFactory>(),
-                _services.Single<IStaticDataService>()));
+                _services.Single<IStaticDataService>(),
+                _services.Single<IDefeatService>(),
+                _services.Single<IVictoryService>()));
             
             _services.RegisterSingle<ISpawnerService>(new SpawnerService(
-                _services.Single<IUpdateService>(),
                 _services.Single<IRandomService>(),
                 _services.Single<ILevelFactory>(),
                 _services.Single<IEnemyFactory>(),

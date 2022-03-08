@@ -22,6 +22,9 @@ namespace CodeBase.Data.Static.Level
         [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), InfoBox("It is not geometry scene name!", InfoMessageType.Error, "CheckSceneName"), ValueDropdown("GetAllSceneNames")] 
         public string SceneName;
 
+        [FoldoutGroup("Level"), GUIColor(0.8f, 0.8f, 0), MinValue(1), MaxValue(999)]
+        public int VictoryTime;
+
         [PropertySpace(SpaceBefore = 10, SpaceAfter = 10), ReadOnly, FoldoutGroup("Level"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error,"CheckPlayerSpawnPoints")]
         public PointData[] PlayerSpawnPoints;
 

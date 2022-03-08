@@ -47,8 +47,6 @@ namespace CodeBase.Infrastructure
             _pauseService.SetPause(false);
             
             ResetCamera();
-            ClearUIRoot();
-            
             EnterLoopLevelState();
         }
 
@@ -58,12 +56,6 @@ namespace CodeBase.Infrastructure
                 cameraFollow.MoveToTarget();
         }
 
-        private void ClearUIRoot()
-        {
-            for (int i = 0; i < _uiFactory.UIRoot.childCount; i++)
-                Object.Destroy(_uiFactory.UIRoot.GetChild(0).gameObject);
-        }
-        
         private void EnterLoopLevelState() => 
             _gameStateMachine.Enter<LoopLevelState>();
         

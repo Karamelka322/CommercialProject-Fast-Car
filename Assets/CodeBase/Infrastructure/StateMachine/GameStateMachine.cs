@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -16,6 +17,7 @@ using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 
 namespace CodeBase.Infrastructure
 {
@@ -63,7 +65,9 @@ namespace CodeBase.Infrastructure
                     services.Single<ITweenService>(),
                     services.Single<IPauseService>(),
                     services.Single<ISpawnerService>(),
-                    services.Single<IUpdateService>()),
+                    services.Single<IUpdateService>(),
+                    services.Single<IDefeatService>(),
+                    services.Single<IVictoryService>()),
                 
                 [typeof(ReplayLevelState)] = new ReplayLevelState(
                     services.Single<IGameStateMachine>(),

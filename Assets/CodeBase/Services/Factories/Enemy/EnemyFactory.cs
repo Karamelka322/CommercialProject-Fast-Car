@@ -2,12 +2,14 @@ using CodeBase.Data.Static.Enemy;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Enemy;
 using CodeBase.Services.AssetProvider;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Enemy
@@ -20,14 +22,18 @@ namespace CodeBase.Services.Factories.Enemy
         private readonly IReplayService _replayService;
         private readonly IPlayerFactory _playerFactory;
         private readonly IStaticDataService _staticDataService;
+        private readonly IDefeatService _defeatService;
+        private readonly IVictoryService _victoryService;
 
         public EnemyFactory(
-            IAssetProviderService assetProviderService, 
+            IAssetProviderService assetProviderService,
             IUpdateService updateService,
             IPauseService pauseService,
             IReplayService replayService,
             IPlayerFactory playerFactory,
-            IStaticDataService staticDataService)
+            IStaticDataService staticDataService,
+            IDefeatService defeatService, 
+            IVictoryService victoryService)
         {
             _assetProviderService = assetProviderService;
             _updateService = updateService;
@@ -35,6 +41,8 @@ namespace CodeBase.Services.Factories.Enemy
             _replayService = replayService;
             _playerFactory = playerFactory;
             _staticDataService = staticDataService;
+            _defeatService = defeatService;
+            _victoryService = victoryService;
         }
 
         public void CreateEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType, PointData spawnPoint)
@@ -56,6 +64,8 @@ namespace CodeBase.Services.Factories.Enemy
             GameObject gameObject = Object.Instantiate(prefab, spawnPoint.Position, spawnPoint.Rotation);
             _pauseService.Register(gameObject);
             _replayService.Register(gameObject);
+            _defeatService.Register(gameObject);
+            _victoryService.Register(gameObject);
             return gameObject;
         }
     }

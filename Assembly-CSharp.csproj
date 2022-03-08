@@ -71,7 +71,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\IAffectPlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Services\Defeat\IAffectPlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
@@ -119,7 +119,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\Defeat\PlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Scene\SceneNameConstant.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
      <Compile Include="Assets\CodeBase\Data\PointData.cs" />
@@ -201,6 +201,19 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Defeat\DefeatService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Defeat\IPlayerDefeatHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\Defeat\IDefeatService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\DefeatWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\PauseWindow.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\Victory\VictoryService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Victory\IVictoryService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Victory\IAffectPlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Victory\IPlayerVictoryHandler.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\VictoryWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\NextLevelButton.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

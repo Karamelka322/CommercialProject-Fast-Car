@@ -3,11 +3,13 @@ using CodeBase.Logic.Level.Generator;
 using CodeBase.Logic.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Level
@@ -21,6 +23,8 @@ namespace CodeBase.Services.Factories.Level
         private readonly IRandomService _randomService;
         private readonly IReplayService _replayService;
         private readonly IUIFactory _uiFactory;
+        private readonly IDefeatService _defeatService;
+        private readonly IVictoryService _victoryService;
 
         public LevelFactory(
             IAssetProviderService assetProviderService,
@@ -29,7 +33,9 @@ namespace CodeBase.Services.Factories.Level
             IReadWriteDataService readWriteDataService,
             IRandomService randomService,
             IReplayService replayService,
-            IUIFactory uiFactory)
+            IUIFactory uiFactory,
+            IDefeatService defeatService,
+            IVictoryService victoryService)
         {
             _assetProviderService = assetProviderService;
             _tweenService = tweenService;
@@ -38,6 +44,8 @@ namespace CodeBase.Services.Factories.Level
             _randomService = randomService;
             _replayService = replayService;
             _uiFactory = uiFactory;
+            _defeatService = defeatService;
+            _victoryService = victoryService;
         }
 
         public GameObject LoadGenerator(PointData spawnPoint)
@@ -78,6 +86,8 @@ namespace CodeBase.Services.Factories.Level
             GameObject gameObject = Object.Instantiate(prefab, spawnPoint.Position, spawnPoint.Rotation);
             _readWriteDataService.Register(gameObject);
             _replayService.Register(gameObject);
+            _defeatService.Register(gameObject);
+            _victoryService.Register(gameObject);
             return gameObject;
         }
     }

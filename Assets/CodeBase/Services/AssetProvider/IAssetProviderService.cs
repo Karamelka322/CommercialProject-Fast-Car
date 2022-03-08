@@ -32,5 +32,6 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadPauseWindow();
         GameObject LoadTimer();
         GameObject LoadDefeatWindow();
+        GameObject LoadVictoryWindow();
     }
 }

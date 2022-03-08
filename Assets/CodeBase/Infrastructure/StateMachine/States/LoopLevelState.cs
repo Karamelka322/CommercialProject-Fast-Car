@@ -1,5 +1,6 @@
 using CodeBase.Logic.Item;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
@@ -7,6 +8,7 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
@@ -19,6 +21,8 @@ namespace CodeBase.Infrastructure.States
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly ISpawnerService _spawnerService;
         private readonly IUpdateService _updateService;
+        private readonly IDefeatService _defeatService;
+        private readonly IVictoryService _victoryService;
         private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
         private readonly IPauseService _pauseService;
@@ -35,7 +39,9 @@ namespace CodeBase.Infrastructure.States
             ITweenService tweenService,
             IPauseService pauseService,
             ISpawnerService spawnerService,
-            IUpdateService updateService)
+            IUpdateService updateService,
+            IDefeatService defeatService,
+            IVictoryService victoryService)
         {
             _persistentDataService = persistentDataService;
             _readWriteDataService = readWriteDataService;
@@ -44,6 +50,8 @@ namespace CodeBase.Infrastructure.States
             _pauseService = pauseService;
             _spawnerService = spawnerService;
             _updateService = updateService;
+            _defeatService = defeatService;
+            _victoryService = victoryService;
             _uiFactory = uiFactory;
         }
 
@@ -63,20 +71,27 @@ namespace CodeBase.Infrastructure.States
         {
             DestroyUITimer();
             SetPause(false);
-            SetSpawner(true);
             SetStreamingData(true);
         }
 
-        public void OnUpdate() => 
+        public void OnUpdate()
+        {
+            if (_defeatService.IsDefeat || _victoryService.IsVictory) 
+                return;
+            
             AddTimeInStopwatch(Time.deltaTime);
+            _spawnerService.RealTimeSpawn();
+        }
 
         public void Exit()
         {
             _updateService.OnUpdate -= OnUpdate;
 
             ResetSessionData();
-            SetSpawner(false);
             SetStreamingData(false);
+            
+            _defeatService.SetDefeat(false);
+            _victoryService.SetVictory(false);
             
             _spawnerService.Clenup();
             _inputService.Clenup();
@@ -96,14 +111,6 @@ namespace CodeBase.Infrastructure.States
 
         private void DestroyUITimer() => 
             Object.Destroy(_timer);
-
-        private void SetSpawner(bool isActive)
-        {
-            if(isActive)
-                _spawnerService.Enable();
-            else
-                _spawnerService.Disable();
-        }
 
         private void SetStreamingData(bool isActive)
         {

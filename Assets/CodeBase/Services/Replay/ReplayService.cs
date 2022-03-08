@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CodeBase.Extension;
 using UnityEngine;
 
 namespace CodeBase.Services.Replay
@@ -15,29 +16,21 @@ namespace CodeBase.Services.Replay
         
         public void InformHandlers()
         {
-            Cleaning();
-
-            for (int i = 0; i < _handlers.Count; i++) 
-                _handlers[i].OnReplay();
-        }
-
-        public void Clenup() => 
-            _handlers.Clear();
-
-        private void Cleaning()
-        {
             for (int i = 0; i < _handlers.Count; i++)
             {
-                try
+                if(_handlers[i].IsNullHandler() == false)
                 {
-                    string.IsNullOrEmpty(_handlers[i].name);
+                    _handlers[i].OnReplay();
                 }
-                catch (MissingReferenceException exception)
+                else
                 {
                     _handlers.RemoveAt(i);
                     i--;
                 }
             }
         }
+
+        public void Clenup() => 
+            _handlers.Clear();
     }
 }

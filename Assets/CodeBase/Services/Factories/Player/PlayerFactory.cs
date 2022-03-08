@@ -2,6 +2,7 @@ using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
@@ -10,6 +11,7 @@ using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
+using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Player
@@ -25,6 +27,8 @@ namespace CodeBase.Services.Factories.Player
         private readonly IReplayService _replayService;
         private readonly IRandomService _randomService;
         private readonly IUIFactory _uiFactory;
+        private readonly IDefeatService _defeatService;
+        private readonly IVictoryService _victoryService;
 
         public GameObject Player { get; private set; }
         
@@ -37,13 +41,17 @@ namespace CodeBase.Services.Factories.Player
             IReadWriteDataService readWriteDataService,
             IReplayService replayService,
             IRandomService randomService,
-            IUIFactory uiFactory)
+            IUIFactory uiFactory,
+            IDefeatService defeatService,
+            IVictoryService victoryService)
         {
             _pauseService = pauseService;
             _readWriteDataService = readWriteDataService;
             _replayService = replayService;
             _randomService = randomService;
             _uiFactory = uiFactory;
+            _defeatService = defeatService;
+            _victoryService = victoryService;
             _staticDataService = staticDataService;
             _inputService = inputService;
             _tweenService = tweenService;
@@ -65,8 +73,11 @@ namespace CodeBase.Services.Factories.Player
             if(Player.TryGetComponent(out PlayerHook hook))
                 hook.Construct(_tweenService);
          
-            if(Player.TryGetComponent(out PlayerDefeat victoryHandler))
-                victoryHandler.Construct(_uiFactory);
+            if(Player.TryGetComponent(out PlayerDefeat defeat))
+                defeat.Construct(_uiFactory);
+            
+            if(Player.TryGetComponent(out PlayerVictory victory))
+                victory.Construct(_uiFactory);
             
             foreach (Wheel wheel in Player.GetComponentsInChildren<Wheel>()) 
                 wheel.Construct(_updateService);
@@ -80,6 +91,8 @@ namespace CodeBase.Services.Factories.Player
             _pauseService.Register(gameObject);
             _readWriteDataService.Register(gameObject);
             _replayService.Register(gameObject);
+            _defeatService.Register(gameObject);
+            _victoryService.Register(gameObject);
             return gameObject;
         }
     }

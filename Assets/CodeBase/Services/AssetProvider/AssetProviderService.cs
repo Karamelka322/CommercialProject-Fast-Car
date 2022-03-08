@@ -46,6 +46,9 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadDefeatWindow() => 
             Resources.Load<GameObject>(AssetPath.DefeatWindowPath);
 
+        public GameObject LoadVictoryWindow() => 
+            Resources.Load<GameObject>(AssetPath.VictoryWindowPath);
+
         public EnemyStaticData[] LoadEnemies() => 
             Resources.LoadAll<EnemyStaticData>(AssetPath.EnemiesPath);
 

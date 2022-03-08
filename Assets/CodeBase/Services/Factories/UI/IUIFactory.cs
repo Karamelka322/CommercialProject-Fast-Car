@@ -19,5 +19,6 @@ namespace CodeBase.Services.Factories.UI
         void LoadPauseWindow();
         GameObject LoadTimer();
         void LoadDefeatWindow();
+        void LoadVictoryWindow();
     }
 }

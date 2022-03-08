@@ -1,8 +1,9 @@
+using CodeBase.Services.Defeat;
+
 namespace CodeBase.Services.Replay
 {
-    public interface IReplayHandler
+    public interface IReplayHandler : IHandler
     {
-        string name { get; }
         void OnReplay();
     }
 }

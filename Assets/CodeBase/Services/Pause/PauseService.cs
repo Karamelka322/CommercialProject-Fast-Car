@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CodeBase.Extension;
 using CodeBase.Services.Update;
 using UnityEngine;
 
@@ -47,35 +48,26 @@ namespace CodeBase.Services.Pause
 
         private void InformHandlers()
         {
-            Cleaning();
-            
             for (int i = 0; i < _handlers.Count; i++)
             {
-                if (IsPause)
+                if (_handlers[i].IsNullHandler() == false)
                 {
-                    _handlers[i].OnEnabledPause();
+                    Inform(_handlers[i]);
                 }
                 else
-                {
-                    _handlers[i].OnDisabledPause();
-                }
-            }
-        }
-
-        private void Cleaning()
-        {
-            for (int i = 0; i < _handlers.Count; i++)
-            {
-                try
-                {
-                    string.IsNullOrEmpty(_handlers[i].name);
-                }
-                catch (MissingReferenceException exception)
                 {
                     _handlers.RemoveAt(i);
                     i--;
                 }
             }
+        }
+
+        private void Inform(IPauseHandler handler)
+        {
+            if (IsPause)
+                handler.OnEnabledPause();
+            else
+                handler.OnDisabledPause();
         }
     }
 }
