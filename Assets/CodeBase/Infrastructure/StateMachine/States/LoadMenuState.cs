@@ -7,6 +7,7 @@ using CodeBase.Services.LoadScene;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
 using CodeBase.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 

@@ -8,6 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/1a/6c4fd29a/Coroutine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/39/0d0764ea/MaterialPropertyBlock.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3197ad6d70a84de78c60779ae26120116a00/de/c3aa5615/RectTransformUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
@@ -34,6 +35,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/36/7105468f/SerializeField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.postprocessing@3.1.1/PostProcessing/Runtime/PostProcessRenderContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Course Project-Mobile-Game-Architecture/src/KnowledgeIsPower/Assets/CodeBase/Data/PlayerProgress.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc1d04d811fc4873ab7d8d9d4daddcc9568788/97/cef97259/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Post Processing/Saturation/SaturationPostEffect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/f7/ed4849e4/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9244fb8344e84288877b43b45b29c242143a00/b8/8c9ed177/Vector3.cs" root0="SKIP_HIGHLIGHTING" />

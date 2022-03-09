@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Infrastructure;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Random;
 using UnityEngine;
@@ -32,10 +33,10 @@ namespace CodeBase.Extension
 
             return counter;
         }
-
-        public static int GetEmptyIndex<T>(this IReadOnlyList<T> array) where T : Object
+        
+        public static int GetEmptyIndex<T>(this T[] array) where T : Object
         {
-            for (int i = 0; i < array.Count; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 if (array[i] == null)
                     return i;

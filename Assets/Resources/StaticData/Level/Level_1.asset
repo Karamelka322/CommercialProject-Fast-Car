@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelType: 0
   SceneName: City_Geometry
-  VictoryTime: 20
+  VictoryTime: 5
   PlayerSpawnPoints:
   - Position: {x: 3, y: 0, z: -5}
     Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
@@ -39,7 +39,7 @@ MonoBehaviour:
     - EnemyType: 0
       DifficultyType: 0
       Period: {x: 0, y: 20.040234}
-      Range: 20
+      Range: 2
     EnemySpawnPoints:
     - Position: {x: 17, y: 6, z: -60}
       Rotation: {x: -0, y: -0, z: -0, w: 1}

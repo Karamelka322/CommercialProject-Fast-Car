@@ -7,5 +7,6 @@ namespace CodeBase.Services.Spawner
         void SetConfig(LevelStaticData levelConfig);
         void Clenup();
         void RealTimeSpawn();
+        void Reset();
     }
 }

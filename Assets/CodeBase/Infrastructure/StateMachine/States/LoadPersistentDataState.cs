@@ -1,3 +1,5 @@
+using System;
+using CodeBase.Data;
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
@@ -54,7 +56,7 @@ namespace CodeBase.Infrastructure.States
                 
                 ProgressData =
                 {
-                    LevelType = LevelTypeId.Level_1,
+                    Levels = GetLevels(),
                 },
                 
                 SessionData =
@@ -78,6 +80,21 @@ namespace CodeBase.Infrastructure.States
                     },
                 }
             };
+        }
+
+        private static KeyValue<LevelTypeId, bool>[] GetLevels()
+        {
+            string[] names = Enum.GetNames(typeof(LevelTypeId));
+            
+            KeyValue<LevelTypeId,bool>[] levels = new KeyValue<LevelTypeId, bool>[names.Length];
+
+            for (int i = 0; i < levels.Length; i++)
+            {
+                levels[i].Key = (LevelTypeId)Enum.Parse(typeof(LevelTypeId), names[i]);
+                levels[i].Value = false;
+            }
+            
+            return levels;
         }
 
 #if UNITY_EDITOR

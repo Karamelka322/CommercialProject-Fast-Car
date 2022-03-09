@@ -1,15 +1,13 @@
-using System;
 using CodeBase.Logic.Car;
 using CodeBase.Logic.Enemy;
 using CodeBase.Services.Defeat;
-using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.Enemy
 {
-    public class EnemyMovement : MonoBehaviour, IReplayHandler, IPlayerDefeatHandler, IPlayerVictoryHandler
+    public class EnemyMovement : MonoBehaviour, IPlayerDefeatHandler, IPlayerVictoryHandler
     {
         [SerializeField] private Car _car;
 
@@ -110,10 +108,7 @@ namespace CodeBase.Services.Factories.Enemy
             _car.Rotation(-_navMeshAgentWrapper.GetNormalizeAngle());
             _car.Movement(-_navMeshAgentWrapper.GetNormalizeSpeed());
         }
-
-        public void OnReplay() => 
-            _updateService.OnUpdate += OnUpdate;
-
+        
         public void OnDefeat()
         {
             _updateService.OnUpdate -= OnUpdate;

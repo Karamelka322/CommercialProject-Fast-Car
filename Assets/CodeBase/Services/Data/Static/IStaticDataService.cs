@@ -10,7 +10,7 @@ namespace CodeBase.Services.StaticData
     {
         PlayerStaticData ForPlayer(PlayerTypeId typeId);
         GameObject ForInput(InputTypeId typeId);
-        LevelStaticData ForLevel(LevelTypeId levelDataType);
         EnemyStaticData ForEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType);
+        LevelStaticData ForLevel(LevelTypeId typeId);
     }
 }

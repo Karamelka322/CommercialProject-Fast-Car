@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using CodeBase.Data;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Camera;
@@ -114,8 +116,21 @@ namespace CodeBase.Infrastructure.States
         
         private void SetCurrentLevel()
         {
-            _currentLevel = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.LevelType);
+            _currentLevel = _staticDataService.ForLevel(GetLastLevel());
             _persistentDataService.PlayerData.SessionData.LevelData.CurrentLevelConfig = _currentLevel;
+        }
+
+        private LevelTypeId GetLastLevel()
+        {
+            KeyValue<LevelTypeId,bool>[] levels = _persistentDataService.PlayerData.ProgressData.Levels;
+
+            foreach (KeyValue<LevelTypeId, bool> level in levels)
+            {
+                if (level.Value == false)
+                    return level.Key;
+            }
+
+            return levels.Last().Key;
         }
 
         private void EnterLoopLevelState() => 

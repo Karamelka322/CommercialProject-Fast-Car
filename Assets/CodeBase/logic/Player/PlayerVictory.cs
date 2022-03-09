@@ -1,5 +1,7 @@
 using System;
+using CodeBase.Data;
 using CodeBase.Data.Perseistent;
+using CodeBase.Data.Static.Level;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Victory;
@@ -22,8 +24,22 @@ namespace CodeBase.Logic.Player
             if (IsVictory(persistentData))
             {
                 _isVictory = true;
+                SetPassedInLastLevel(persistentData.ProgressData.Levels);
+
                 _uiFactory.LoadVictoryWindow();
                 OnVictory?.Invoke();
+            }
+        }
+
+        private static void SetPassedInLastLevel(in KeyValue<LevelTypeId, bool>[] levels)
+        {
+            for (int i = 0; i < levels.Length; i++)
+            {
+                if (levels[i].Value == false)
+                {
+                    levels[i].Value = true;
+                    return;
+                }
             }
         }
 

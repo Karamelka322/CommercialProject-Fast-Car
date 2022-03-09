@@ -150,7 +150,7 @@
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
-     <Compile Include="Assets\CodeBase\SizeValue.cs" />
+     <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
      <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Defeat\IDefeatService.cs" />
@@ -215,6 +215,7 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

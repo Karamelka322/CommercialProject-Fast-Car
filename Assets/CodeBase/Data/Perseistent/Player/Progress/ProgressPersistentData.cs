@@ -6,6 +6,6 @@ namespace CodeBase.Data.Perseistent
     [Serializable]
     public class ProgressPersistentData
     {
-        public LevelTypeId LevelType;
+        public KeyValue<LevelTypeId, bool>[] Levels;
     }
 }

@@ -40,5 +40,8 @@ namespace CodeBase.Services.Spawner
             _capsuleSpawnerModule.ClenupModule();
             _enemySpawnerModule.ClenupModule();
         }
+
+        public void Reset() => 
+            _enemySpawnerModule.ResetModule();
     }
 }

@@ -42,7 +42,7 @@ namespace CodeBase.Services.Spawner
             _config = null;
             _capsules = Array.Empty<Capsule>();
         }
-
+        
         private void SpawnCapsule() => 
             _capsules[_capsules.GetEmptyIndex()] = LoadCapsule();
 

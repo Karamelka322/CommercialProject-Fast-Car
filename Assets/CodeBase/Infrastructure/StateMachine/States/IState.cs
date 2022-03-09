@@ -12,7 +12,7 @@ namespace CodeBase.Infrastructure.States
 
     public interface IUnloadState : IExitState
     {
-        void Unload<T>() where T : class, IState;
+        void Unload<TState>() where TState : class, IState;
     }
     
     public interface IEnterState

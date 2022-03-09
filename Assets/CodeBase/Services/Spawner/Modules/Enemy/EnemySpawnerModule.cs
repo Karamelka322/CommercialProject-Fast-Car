@@ -19,9 +19,9 @@ namespace CodeBase.Services.Spawner
         private readonly IRandomService _randomService;
         private readonly IEnemyFactory _enemyFactory;
 
-        private EnemySpawnConfig[] _spawnData;
         private LevelStaticData _config;
-
+        private EnemySpawnConfig[] _spawnData;
+        
         private float StopwatchTime => _persistentDataService.PlayerData.SessionData.StopwatchTime;
 
         public EnemySpawnerModule(IRandomService randomService, IEnemyFactory enemyFactory, IPersistentDataService persistentDataService, ICorutineRunner corutineRunner)
@@ -53,6 +53,12 @@ namespace CodeBase.Services.Spawner
             _spawnData = Array.Empty<EnemySpawnConfig>();
         }
 
+        public void ResetModule()
+        {
+            for (int i = 0; i < _spawnData.Length; i++) 
+                _spawnData[i].IsLocked = false;
+        }
+
         private bool IsSpawnedEnemy(out List<EnemySpawnConfig> enemySpawnConfig)
         {
             if (_config != null && _config.Enemy.UsingEnemy && _randomService.GetNumberInlockedEnemySpawnPoints() > 0)
@@ -67,7 +73,7 @@ namespace CodeBase.Services.Spawner
             }
         }
 
-        private void SpawnEnemy(IReadOnlyList<EnemySpawnConfig> enemySpawnConfigs)
+        private void SpawnEnemy(in List<EnemySpawnConfig> enemySpawnConfigs)
         {
             for (int i = 0; i < enemySpawnConfigs.Count; i++)
             {
@@ -75,10 +81,13 @@ namespace CodeBase.Services.Spawner
                 _enemyFactory.CreateEnemy(enemySpawnConfigs[i].EnemyType, enemySpawnConfigs[i].DifficultyType, spawnPoint + Vector3.up);
                 _randomService.BindTimeToSpawnPoint(TimeSpawnEnemy, spawnPoint);
 
-                if(enemySpawnConfigs[i].Period.x - enemySpawnConfigs[i].Period.y < enemySpawnConfigs[i].Range)
-                    BlockSpawnConfigForWhile(enemySpawnConfigs[i]); 
+                if(IsBlockSpawnConfig(enemySpawnConfigs[i])) 
+                    BlockSpawnConfigForWhile(enemySpawnConfigs[i]);
             }
         }
+
+        private static bool IsBlockSpawnConfig(EnemySpawnConfig config) => 
+            config.Period.y - config.Period.x > config.Range;
 
         private List<EnemySpawnConfig> GetSpawnConfigs()
         {
@@ -92,14 +101,8 @@ namespace CodeBase.Services.Spawner
                 }
             }
 
-            if (_configs.Count == 0 && _spawnData[_spawnData.Length - 1].Period.y < StopwatchTime) 
-                SetInfinityPeriod();
-
             return _configs;
         }
-
-        private void SetInfinityPeriod() => 
-            _spawnData[_spawnData.Length - 1].Period.y = int.MaxValue;
 
         private void BlockSpawnConfigForWhile(in EnemySpawnConfig enemySpawnConfig) => 
             _corutineRunner.StartCoroutine(BlockSpawnConfig(enemySpawnConfig));

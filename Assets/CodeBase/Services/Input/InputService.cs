@@ -19,7 +19,7 @@ namespace CodeBase.Services.Input
         public void RegisterInput(InputTypeId typeId, GameObject gameObject)
         {
             Module.CurrentInputVariant = GetCore(typeId);
-
+            
             foreach (IButtonInputElement inputElement in gameObject.GetComponentsInChildren<IButtonInputElement>())
                 _buttons.Add(inputElement.Id, inputElement);
             
@@ -41,6 +41,8 @@ namespace CodeBase.Services.Input
 
         public void Clenup()
         {
+            Module.CurrentInputVariant = null;
+            
             _buttons.Clear();
             _areas.Clear();
             _joysticks.Clear();

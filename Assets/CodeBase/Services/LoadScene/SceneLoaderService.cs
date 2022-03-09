@@ -20,9 +20,6 @@ namespace CodeBase.Services.LoadScene
 
         private static IEnumerator LoadScene(string name, LoadSceneMode mode, Action onLoaded = null)
         {
-            if (SceneManager.GetActiveScene().name == name) 
-                onLoaded?.Invoke();
-
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name, mode);
 
             while (!asyncOperation.isDone)

@@ -18,6 +18,7 @@ using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -61,7 +62,6 @@ namespace CodeBase.Infrastructure
                     services.Single<IUIFactory>(),
                     services.Single<IPersistentDataService>(),
                     services.Single<IReadWriteDataService>(),
-                    services.Single<IInputService>(),
                     services.Single<ITweenService>(),
                     services.Single<IPauseService>(),
                     services.Single<ISpawnerService>(),
@@ -108,7 +108,7 @@ namespace CodeBase.Infrastructure
             TState state = GetState<TState>();
             _exitState = state;
             
-            return  state;
+            return state;
         }
 
         private TState GetState<TState>() where TState : class, IExitState => 

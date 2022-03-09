@@ -27,10 +27,10 @@ namespace CodeBase.Services.Update
             _updatable.OnFixedUpdate -= FixedUpdate;
         }
 
-        private void FixedUpdate() => 
-            OnFixedUpdate?.Invoke();
-
         private void Update() => 
             OnUpdate?.Invoke();
+
+        private void FixedUpdate() => 
+            OnFixedUpdate?.Invoke();
     }
 }

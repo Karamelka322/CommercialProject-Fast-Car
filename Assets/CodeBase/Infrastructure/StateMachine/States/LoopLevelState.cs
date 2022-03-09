@@ -2,7 +2,6 @@ using CodeBase.Logic.Item;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
-using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Spawner;
@@ -23,7 +22,6 @@ namespace CodeBase.Infrastructure.States
         private readonly IUpdateService _updateService;
         private readonly IDefeatService _defeatService;
         private readonly IVictoryService _victoryService;
-        private readonly IInputService _inputService;
         private readonly ITweenService _tweenService;
         private readonly IPauseService _pauseService;
         private readonly IUIFactory _uiFactory;
@@ -35,7 +33,6 @@ namespace CodeBase.Infrastructure.States
             IUIFactory uiFactory,
             IPersistentDataService persistentDataService,
             IReadWriteDataService readWriteDataService,
-            IInputService inputService,
             ITweenService tweenService,
             IPauseService pauseService,
             ISpawnerService spawnerService,
@@ -45,7 +42,6 @@ namespace CodeBase.Infrastructure.States
         {
             _persistentDataService = persistentDataService;
             _readWriteDataService = readWriteDataService;
-            _inputService = inputService;
             _tweenService = tweenService;
             _pauseService = pauseService;
             _spawnerService = spawnerService;
@@ -58,7 +54,7 @@ namespace CodeBase.Infrastructure.States
         public void Enter()
         {
             _updateService.OnUpdate += OnUpdate;
-            
+
             InitUITimer();
             SetPause(true);
             DelayEnter();
@@ -87,8 +83,9 @@ namespace CodeBase.Infrastructure.States
         {
             _updateService.OnUpdate -= OnUpdate;
 
-            ResetSessionData();
             SetStreamingData(false);
+            
+            _spawnerService.Reset();
             
             _defeatService.SetDefeat(false);
             _victoryService.SetVictory(false);
@@ -96,10 +93,7 @@ namespace CodeBase.Infrastructure.States
 
         private void AddTimeInStopwatch(float time) => 
             _persistentDataService.PlayerData.SessionData.StopwatchTime += time;
-
-        private void ResetSessionData() => 
-            _persistentDataService.PlayerData.SessionData.Clenup();
-
+        
         private void SetPause(bool isPause) => 
             _pauseService.SetPause(isPause);
 

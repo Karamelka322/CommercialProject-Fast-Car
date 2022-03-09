@@ -8,6 +8,7 @@ using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.Victory;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -48,12 +49,12 @@ namespace CodeBase.Infrastructure
             _randomService = randomService;
         }
 
-        public void Unload<T>() where T : class, IState
+        public void Unload<TNextState>() where TNextState : class, IState
         {
             ClenupServices();
             ClenupData();
             
-            EnterNextState<T>();
+            EnterNextState<TNextState>();
         }
 
         public void Exit() { }
@@ -73,7 +74,7 @@ namespace CodeBase.Infrastructure
         private void ClenupData() => 
             _persistentDataService.PlayerData.SessionData.Clenup();
 
-        private void EnterNextState<T>() where T : class, IState => 
-            _gameStateMachine.Enter<T>();
+        private void EnterNextState<TNextState>() where TNextState : class, IState => 
+            _gameStateMachine.Enter<TNextState>();
     }
 }
