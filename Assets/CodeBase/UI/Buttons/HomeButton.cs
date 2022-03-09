@@ -11,6 +11,6 @@ namespace CodeBase.UI.Buttons
             _gameStateMachine = gameStateMachine;
 
         protected override void OnClickButton() => 
-            _gameStateMachine.Enter<LoadMenuState>();
+            _gameStateMachine.Enter<UnloadLevelState, LoadMenuState>();
     }
 }

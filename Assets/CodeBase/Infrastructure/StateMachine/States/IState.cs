@@ -9,6 +9,11 @@ namespace CodeBase.Infrastructure.States
     {
         void OnUpdate();
     }
+
+    public interface IUnloadState : IExitState
+    {
+        void Unload<T>() where T : class, IState;
+    }
     
     public interface IEnterState
     {

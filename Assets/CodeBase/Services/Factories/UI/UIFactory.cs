@@ -138,6 +138,7 @@ namespace CodeBase.Services.Factories.UI
             GameObject window = InstantiateRegister(prefab, UIRoot);
             
             window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
+            window.GetComponentInChildren<NextLevelButton>().Construct(_stateMachine);
         }
 
         public void LoadSkipButton(MenuAnimator menuAnimator)

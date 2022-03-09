@@ -92,16 +92,13 @@ namespace CodeBase.Infrastructure.States
             
             _defeatService.SetDefeat(false);
             _victoryService.SetVictory(false);
-            
-            _spawnerService.Clenup();
-            _inputService.Clenup();
         }
 
         private void AddTimeInStopwatch(float time) => 
             _persistentDataService.PlayerData.SessionData.StopwatchTime += time;
 
         private void ResetSessionData() => 
-            _persistentDataService.PlayerData.SessionData.Reset();
+            _persistentDataService.PlayerData.SessionData.Clenup();
 
         private void SetPause(bool isPause) => 
             _pauseService.SetPause(isPause);

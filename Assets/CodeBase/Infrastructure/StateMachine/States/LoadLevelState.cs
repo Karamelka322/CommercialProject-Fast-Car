@@ -127,7 +127,7 @@ namespace CodeBase.Infrastructure.States
         private void InitUIRoot() => 
             _uiFactory.LoadUIRoot();
 
-        private GameObject InitGenerator() => 
+        private void InitGenerator() => 
             _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
 
         private GameObject InitPlayer() => 

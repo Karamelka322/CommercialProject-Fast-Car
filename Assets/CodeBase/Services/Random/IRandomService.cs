@@ -14,5 +14,6 @@ namespace CodeBase.Services.Random
         int GetNumberUnlockedCapsuleSpawnPoints();
         int GetNumberInlockedEnemySpawnPoints();
         void BindTimeToSpawnPoint(float time, PointData point);
+        void Clenup();
     }
 }

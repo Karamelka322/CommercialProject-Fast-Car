@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using CodeBase.Data.Static.Level;
 using CodeBase.Extension;
@@ -53,6 +54,12 @@ namespace CodeBase.Services.Random
         public void BindTimeToSpawnPoint(float time, PointData point) => 
             _corutineRunner.StartCoroutine(BindTime(time, _enemySpawnPoints, point));
 
+        public void Clenup()
+        {
+            _capsuleSpawnPoints = Array.Empty<SpawnPointData>();
+            _enemySpawnPoints = Array.Empty<SpawnPointData>();
+        }
+        
         private static IEnumerator BindObject(Object obj, SpawnPointData[] spawnPointDatas, PointData point)
         {
             spawnPointDatas.BlockSpawnPoint(point);

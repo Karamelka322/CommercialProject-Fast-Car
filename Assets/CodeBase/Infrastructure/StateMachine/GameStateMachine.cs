@@ -23,12 +23,12 @@ namespace CodeBase.Infrastructure
 {
     public class GameStateMachine : IGameStateMachine
     {
-        private readonly Dictionary<Type, IState> _states;
+        private readonly Dictionary<Type, IExitState> _states;
         private IExitState _exitState;
         
         public GameStateMachine(AllServices services, ICorutineRunner corutineRunner, IUpdatable updatable)
         {
-            _states = new Dictionary<Type, IState>
+            _states = new Dictionary<Type, IExitState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner, updatable),
                 
@@ -74,6 +74,18 @@ namespace CodeBase.Infrastructure
                     services.Single<IReplayService>(),
                     services.Single<IUIFactory>(),
                     services.Single<IPauseService>()),
+                
+                [typeof(UnloadLevelState)] = new UnloadLevelState(
+                    services.Single<IGameStateMachine>(),
+                    services.Single<ISpawnerService>(),
+                    services.Single<IInputService>(),
+                    services.Single<IVictoryService>(),
+                    services.Single<IDefeatService>(),
+                    services.Single<IReplayService>(),
+                    services.Single<IPersistentDataService>(),
+                    services.Single<IReadWriteDataService>(),
+                    services.Single<IPauseService>(),
+                    services.Single<IRandomService>()),
             };
         }
 
@@ -81,6 +93,12 @@ namespace CodeBase.Infrastructure
         {
             IState state = ChangeState<TState>();
             state.Enter();
+        }
+        
+        public void Enter<TUnloadState, TNextState>() where TUnloadState : class, IUnloadState where TNextState : class, IState
+        {
+            IUnloadState state = ChangeState<TUnloadState>();
+            state.Unload<TNextState>();
         }
         
         private TState ChangeState<TState>() where TState : class, IExitState
