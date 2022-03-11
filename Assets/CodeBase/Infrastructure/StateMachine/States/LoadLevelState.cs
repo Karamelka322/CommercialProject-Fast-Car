@@ -93,7 +93,7 @@ namespace CodeBase.Infrastructure.States
             _sceneLoaderService.Load(SceneNameConstant.Level, LoadSceneMode.Single, LoadGeometry);
 
         private void LoadGeometry() => 
-            _sceneLoaderService.Load(_currentLevel.SceneName, LoadSceneMode.Additive, OnLoaded);
+            _sceneLoaderService.Load(_currentLevel.Level.SceneName, LoadSceneMode.Additive, OnLoaded);
 
         private void OnLoaded()
         {
@@ -146,7 +146,7 @@ namespace CodeBase.Infrastructure.States
             _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
 
         private GameObject InitPlayer() => 
-            _playerFactory.CreatePlayer(PlayerTypeId.Default, _randomService.PlayerSpawnPoint());
+            _playerFactory.CreatePlayer(PlayerTypeId.Demon, _randomService.PlayerSpawnPoint());
         
         private void CameraFollow(GameObject player)
         {

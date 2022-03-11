@@ -50,7 +50,6 @@
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.Config.xml" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Editor.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\Plugins\Monqo Sci-Fi Car\READ ME!.txt" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />

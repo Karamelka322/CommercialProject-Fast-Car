@@ -34,11 +34,11 @@ namespace CodeBase.Services.Spawner
 
         public void SetConfig(LevelStaticData levelConfig)
         {
-            if(levelConfig.Enemy.UsingEnemy == false)
+            if(levelConfig.Spawn.Enemy.UsingEnemy == false)
                 return;
             
             _config = levelConfig;
-            _spawnData = Copy(levelConfig.Enemy.Enemies);
+            _spawnData = Copy(levelConfig.Spawn.Enemy.Enemies);
         }
 
         public void TrySpawnEnemy()
@@ -61,7 +61,7 @@ namespace CodeBase.Services.Spawner
 
         private bool IsSpawnedEnemy(out List<EnemySpawnConfig> enemySpawnConfig)
         {
-            if (_config != null && _config.Enemy.UsingEnemy && _randomService.GetNumberInlockedEnemySpawnPoints() > 0)
+            if (_config != null && _config.Spawn.Enemy.UsingEnemy && _randomService.GetNumberInlockedEnemySpawnPoints() > 0)
             {
                 enemySpawnConfig = GetSpawnConfigs();
                 return true;

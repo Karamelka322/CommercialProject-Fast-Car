@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType: 0
   DifficultyType: 0
-  Prefab: {fileID: 4166016090126556362, guid: 74564fc1d6be0b749af9ed0c40118b13, type: 3}
+  Prefab: {fileID: 8720948370857708513, guid: 4bdcde72b8e192346be22a4fdadb8342, type: 3}

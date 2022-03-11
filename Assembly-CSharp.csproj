@@ -68,7 +68,9 @@
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadDataService.cs" />
+     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Victory\IAffectPlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
@@ -120,7 +122,7 @@
      <Compile Include="Assets\CodeBase\Services\Victory\IPlayerVictoryHandler.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemiesSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemiesSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
@@ -155,7 +157,7 @@
      <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Defeat\IDefeatService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\EnemySpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
@@ -187,13 +189,13 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Defeat\IPlayerDefeatHandler.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\CapsuleSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
      <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
      <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SkipButton.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\GeneratorSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
@@ -214,8 +216,10 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
-     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

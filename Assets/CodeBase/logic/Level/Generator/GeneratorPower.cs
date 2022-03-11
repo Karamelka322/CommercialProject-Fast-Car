@@ -64,8 +64,8 @@ namespace CodeBase.Logic.Level.Generator
 
         public void SingleReadData(PlayerPersistentData persistentData)
         {
-            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Generator.StartValuePower;
-            _powerSpeedChange = persistentData.SessionData.LevelData.CurrentLevelConfig.Generator.PowerChangeSpeed;
+            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator.StartValuePower;
+            _powerSpeedChange = persistentData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator.PowerChangeSpeed;
             _power = _startValuePower;
         }
 

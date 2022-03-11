@@ -307,21 +307,6 @@
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="GitHub.Logging">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Logging.dll</HintPath>
-     </Reference>
-     <Reference Include="sfw.net">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\sfw.net.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.Unity.45">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Unity.45.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.UnityShim">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.UnityShim.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.Api.45">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Api.45.dll</HintPath>
-     </Reference>
      <Reference Include="nunit.framework">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
@@ -738,10 +723,6 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{5c73cb8b-0999-f337-32b0-f1f9d27111c6}</Project>
       <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{a4a2fe78-2317-39b2-8591-9bbe789d11ba}</Project>
-      <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{414e2968-c97c-3103-27f6-3c7eaa214639}</Project>

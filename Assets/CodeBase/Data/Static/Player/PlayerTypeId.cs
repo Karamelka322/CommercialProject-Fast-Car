@@ -2,6 +2,7 @@ namespace CodeBase.Data.Static.Player
 {
     public enum PlayerTypeId
     {
-        Default = 0,
+        Demon = 0,
+        Falcon = 1,
     }
 }

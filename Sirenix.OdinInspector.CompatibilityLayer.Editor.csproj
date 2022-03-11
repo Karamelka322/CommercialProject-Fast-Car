@@ -312,21 +312,6 @@
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="GitHub.Logging">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Logging.dll</HintPath>
-     </Reference>
-     <Reference Include="sfw.net">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\sfw.net.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.Unity.45">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Unity.45.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.UnityShim">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.UnityShim.dll</HintPath>
-     </Reference>
-     <Reference Include="GitHub.Api.45">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\GitHub\Editor\GitHub.Api.45.dll</HintPath>
-     </Reference>
      <Reference Include="nunit.framework">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>

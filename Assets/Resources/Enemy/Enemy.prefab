@@ -1032,7 +1032,7 @@ MonoBehaviour:
   _rearLeftWheel: {fileID: 5879808516794590579}
   _rearRightWheel: {fileID: 4475612848846813649}
   _power: 800
-  _speedAcceleration: 10
+  _speedAcceleration: 13
 --- !u!1 &6889084145525484015
 GameObject:
   m_ObjectHideFlags: 0

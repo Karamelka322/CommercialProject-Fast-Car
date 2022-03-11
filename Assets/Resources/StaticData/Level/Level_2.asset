@@ -12,38 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level_2
   m_EditorClassIdentifier: 
-  LevelType: 1
-  SceneName: Village_Geometry
-  VictoryTime: 5
-  PlayerSpawnPoints:
-  - Position: {x: 3, y: 0, z: -5}
-    Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
-  Generator:
-    UsingGenerator: 1
-    StartValuePower: 100
-    PowerChangeSpeed: 2
-    GeneratorSpawnPoints:
-    - Position: {x: -65, y: 8, z: -44}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
-  Capsule:
-    UsingCapsule: 1
-    Quantity: 1
-    CapsuleSpawnPoints:
-    - Position: {x: 19, y: 0, z: 20}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
-    - Position: {x: -74, y: 2, z: -1}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
-  Enemy:
-    UsingEnemy: 1
-    Enemies:
-    - EnemyType: 0
-      DifficultyType: 0
-      Period: {x: 0, y: 40.320965}
-      Range: 8
-    EnemySpawnPoints:
-    - Position: {x: -148, y: 2, z: 0}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
-    - Position: {x: -39, y: 5, z: 47}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
-    - Position: {x: 13, y: 0, z: -52}
-      Rotation: {x: -0, y: -0, z: -0, w: 1}
+  Level:
+    Type: 1
+    SceneName: Village_Geometry
+    VictoryTime: 10
+    PlayerSpawnPoints:
+    - Position: {x: -128, y: 0, z: -47}
+      Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
+  Spawn:
+    Generator:
+      UsingGenerator: 1
+      StartValuePower: 100
+      PowerChangeSpeed: 2
+      GeneratorSpawnPoints:
+      - Position: {x: -49, y: 6, z: -44}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Capsule:
+      UsingCapsule: 1
+      Quantity: 1
+      CapsuleSpawnPoints:
+      - Position: {x: 19, y: 0, z: 20}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -74, y: 2, z: -1}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Enemy:
+      UsingEnemy: 1
+      Enemies:
+      - EnemyType: 0
+        DifficultyType: 0
+        Period: {x: 0, y: 36.695282}
+        Range: 5.1
+      EnemySpawnPoints:
+      - Position: {x: -148, y: 2, z: 0}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -39, y: 5, z: 47}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 13, y: 0, z: -52}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+  Reward:
+    Car:
+      UsingRewardCar: 1
+      Car: 0

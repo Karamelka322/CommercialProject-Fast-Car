@@ -24,11 +24,11 @@ namespace CodeBase.Services.Spawner
 
         public void SetConfig(LevelStaticData levelConfig)
         {
-            if(levelConfig.Capsule.UsingCapsule == false)
+            if(levelConfig.Spawn.Capsule.UsingCapsule == false)
                 return;
 
             _config = levelConfig;
-            _capsules = new Capsule[levelConfig.Capsule.Quantity];
+            _capsules = new Capsule[levelConfig.Spawn.Capsule.Quantity];
         }
 
         public void TrySpawnCapsule()
@@ -47,7 +47,7 @@ namespace CodeBase.Services.Spawner
             _capsules[_capsules.GetEmptyIndex()] = LoadCapsule();
 
         private bool IsSpawnedCapsule() => 
-            _config != null && _config.Capsule.UsingCapsule && _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
+            _config != null && _config.Spawn.Capsule.UsingCapsule && _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
 
         private Capsule LoadCapsule()
         {

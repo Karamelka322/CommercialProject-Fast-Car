@@ -9,7 +9,7 @@ namespace CodeBase.UI
         private int _startValuePower;
         
         public void SingleReadData(PlayerPersistentData persistentData) => 
-            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Generator.StartValuePower;
+            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator.StartValuePower;
 
         public void StreamingReadData(PlayerPersistentData persistentData) => 
             Fill = persistentData.SessionData.LevelData.GeneratorData.Power / _startValuePower;

@@ -44,6 +44,6 @@ namespace CodeBase.Logic.Player
         }
 
         private bool IsVictory(PlayerPersistentData persistentData) => 
-            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.VictoryTime < persistentData.SessionData.StopwatchTime;
+            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.Level.VictoryTime < persistentData.SessionData.StopwatchTime;
     }
 }

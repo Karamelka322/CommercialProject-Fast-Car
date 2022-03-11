@@ -18,35 +18,29 @@ namespace CodeBase.Data.Static.Enemy
 
 #if UNITY_EDITOR
 
-        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab")]
+        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab"), DelayedProperty]
         private int Health;
         
-        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0)]
+        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0), DelayedProperty]
         private int MotorPower;
         
-        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0)]
+        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0), DelayedProperty]
         private int Acceleration;
         
-        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSteerAngle"), MinValue(0)]
+        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSteerAngle"), MinValue(0), DelayedProperty]
         private int SteerAngle;
         
-        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0)]
+        [ShowIf("IsCarType"), BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0), DelayedProperty]
         private int SpeedRotation;
 
-        private bool isFirstLoad;
-        
-        private void OnValidate()
+
+        private void OnEnable()
         {
-            if(isFirstLoad)
-                return;
-            
             Health = Prefab.GetComponent<EnemyHealth>().Health;
             MotorPower = Prefab.GetComponent<Motor>().Power;
             Acceleration = Prefab.GetComponent<Motor>().Acceleration;
             SteerAngle = Prefab.GetComponent<SteeringGear>().SteerAngle;
             SpeedRotation = Prefab.GetComponent<SteeringGear>().SpeedRotation;
-
-            isFirstLoad = true;
         }
         
         [UsedImplicitly]

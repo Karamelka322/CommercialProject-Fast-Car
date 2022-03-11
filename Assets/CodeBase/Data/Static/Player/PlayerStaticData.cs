@@ -17,35 +17,29 @@ namespace CodeBase.Data.Static.Player
         
 #if UNITY_EDITOR
         
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab")]
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab"), DelayedProperty]
         private float Health;
 
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0)]
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0), DelayedProperty]
         private int MotorPower;
         
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0)]
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0), DelayedProperty]
         private int Acceleration;
         
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSteerAngle"), MinValue(0)]
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSteerAngle"), MinValue(0), DelayedProperty]
         private int SteerAngle;
         
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0)]
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0), DelayedProperty]
         private int SpeedRotation;
 
-        private bool isFirstLoad;
-        
-        private void OnValidate()
+
+        private void OnEnable()
         {
-            if(isFirstLoad)
-                return;
-            
             Health = Prefab.GetComponent<PlayerHealth>().Health;
             MotorPower = Prefab.GetComponent<Motor>().Power;
             Acceleration = Prefab.GetComponent<Motor>().Acceleration;
             SteerAngle = Prefab.GetComponent<SteeringGear>().SteerAngle;
             SpeedRotation = Prefab.GetComponent<SteeringGear>().SpeedRotation;
-
-            isFirstLoad = true;
         }
 
         [UsedImplicitly]
