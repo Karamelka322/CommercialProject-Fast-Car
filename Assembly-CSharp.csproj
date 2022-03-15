@@ -128,6 +128,7 @@
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardConfig.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\NextLevelButton.cs" />
      <Compile Include="Assets\CodeBase\Scene\SceneNameConstant.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
@@ -161,6 +162,7 @@
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleWriteData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\StaticDataService.cs" />
@@ -169,6 +171,7 @@
      <Compile Include="Assets\CodeBase\Logic\Car\SteeringGear.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\EditorInputModule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\ICorutineRunner.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Services\Replay\IReplayHandler.cs" />
@@ -211,15 +214,12 @@
      <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
@@ -457,6 +457,9 @@
      </Reference>
      <Reference Include="Sirenix.Utilities">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.dll</HintPath>
+     </Reference>
+     <Reference Include="RainbowCore">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Serialization">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.dll</HintPath>

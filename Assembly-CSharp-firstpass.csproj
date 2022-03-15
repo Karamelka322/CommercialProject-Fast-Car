@@ -69,6 +69,7 @@
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\Plugins\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\Plugins\RainbowAssets\!Core\NOTICES.txt" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Sprites\EmojiOne.json" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Sprite.shader" />

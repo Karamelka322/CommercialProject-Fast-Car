@@ -290,8 +290,14 @@
      <Reference Include="Sirenix.Utilities">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.dll</HintPath>
      </Reference>
+     <Reference Include="RainbowCore">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
+     </Reference>
      <Reference Include="Sirenix.Serialization">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.dll</HintPath>
+     </Reference>
+     <Reference Include="RainbowFolders">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\RainbowFolders\Editor\Assemblies\RainbowFolders.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
