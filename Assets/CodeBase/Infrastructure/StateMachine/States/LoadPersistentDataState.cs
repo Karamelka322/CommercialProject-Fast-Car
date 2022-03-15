@@ -4,6 +4,7 @@ using CodeBase.Data.Perseistent;
 using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
 using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
@@ -56,7 +57,11 @@ namespace CodeBase.Infrastructure.States
                 
                 ProgressData =
                 {
+                    Players = GetPlayers(),
                     Levels = GetLevels(),
+                    
+                    CurrentPlayer = PlayerTypeId.Demon,
+                    CurrentLevel = LevelTypeId.Level_1,
                 },
                 
                 SessionData =
@@ -81,7 +86,22 @@ namespace CodeBase.Infrastructure.States
                 }
             };
         }
+        
+        private static KeyValue<PlayerTypeId, bool>[] GetPlayers()
+        {
+            string[] names = Enum.GetNames(typeof(PlayerTypeId));
+            
+            KeyValue<PlayerTypeId, bool>[] players = new KeyValue<PlayerTypeId, bool>[names.Length];
 
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].Key = (PlayerTypeId)Enum.Parse(typeof(PlayerTypeId), names[i]);
+                players[i].Value = i == 0;
+            }
+            
+            return players;
+        }
+        
         private static KeyValue<LevelTypeId, bool>[] GetLevels()
         {
             string[] names = Enum.GetNames(typeof(LevelTypeId));
@@ -91,7 +111,7 @@ namespace CodeBase.Infrastructure.States
             for (int i = 0; i < levels.Length; i++)
             {
                 levels[i].Key = (LevelTypeId)Enum.Parse(typeof(LevelTypeId), names[i]);
-                levels[i].Value = false;
+                levels[i].Value = i == 0;
             }
             
             return levels;

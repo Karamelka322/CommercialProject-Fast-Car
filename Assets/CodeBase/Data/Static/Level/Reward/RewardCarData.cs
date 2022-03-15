@@ -13,7 +13,7 @@ namespace CodeBase.Data.Static.Level
         public bool UsingRewardCar;
 
         [OnValueChanged("OnPlayerTypeIdChanged"), GUIColor(0.8f, 0.8f, 0)]
-        public PlayerTypeId Car;
+        public PlayerTypeId Type;
         
 #if UNITY_EDITOR
 
@@ -33,7 +33,7 @@ namespace CodeBase.Data.Static.Level
 
             for (int i = 0; i < staticData.Length; i++)
             {
-                if (staticData[i].Type == Car) 
+                if (staticData[i].Type == Type) 
                     return staticData[i].Prefab.gameObject;
             }
 

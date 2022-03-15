@@ -12,8 +12,11 @@ namespace CodeBase.Data.Static.Player
     {
         public PlayerTypeId Type;
         
-        [Space, InlineEditor(InlineEditorModes.LargePreview), Required("Empty")]
+        [Space, Required("Empty"), ValidateInput("CheckType", "Not correct type")]
         public PlayerPrefab Prefab;
+        
+        [InlineEditor(InlineEditorModes.LargePreview), Required("Empty"), ValidateInput("CheckType", "Not correct type")]
+        public PlayerPreview Preview;
         
 #if UNITY_EDITOR
         
@@ -41,6 +44,10 @@ namespace CodeBase.Data.Static.Player
             SteerAngle = Prefab.GetComponent<SteeringGear>().SteerAngle;
             SpeedRotation = Prefab.GetComponent<SteeringGear>().SpeedRotation;
         }
+
+        [UsedImplicitly]
+        public bool CheckType() =>
+            (Prefab != null && Type == Prefab.Type) && (Preview != null && Type == Preview.Type);
 
         [UsedImplicitly]
         private void SetSpeedRotation()

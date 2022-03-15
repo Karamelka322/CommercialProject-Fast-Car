@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Falcon
   m_EditorClassIdentifier: 
   Type: 1
-  Prefab: {fileID: 6765002174677897145, guid: f27dda49b2c4c6c4b8152f61c5dbc80b, type: 3}
+  Prefab: {fileID: 3162278574424037026, guid: eb62ec25c77e15542a435905e6df6ad9, type: 3}
+  Preview: {fileID: 7953099424032427019, guid: 98a19a79b9b7f4d4c915ea08e4dd5119, type: 3}

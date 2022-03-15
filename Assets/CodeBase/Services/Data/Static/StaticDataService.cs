@@ -11,6 +11,8 @@ namespace CodeBase.Services.StaticData
     {
         private readonly IAssetProviderService _assetProviderService;
 
+        public LevelStaticData[] Levels => _assetProviderService.LoadLevelStaticData();
+        
         public StaticDataService(IAssetProviderService assetProviderService)
         {
             _assetProviderService = assetProviderService;
@@ -42,7 +44,7 @@ namespace CodeBase.Services.StaticData
 
         public LevelStaticData ForLevel(LevelTypeId typeId)
         {
-            LevelStaticData[] staticDatas = _assetProviderService.LoadLevelStaticData();
+            LevelStaticData[] staticDatas = Levels;
 
             for (int i = 0; i < staticDatas.Length; i++)
             {

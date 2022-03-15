@@ -1,12 +1,14 @@
 using CodeBase.Logic.Item;
 using CodeBase.Logic.Level.Generator;
 using CodeBase.Logic.Player;
+using CodeBase.Logic.World;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
+using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
@@ -25,6 +27,7 @@ namespace CodeBase.Services.Factories.Level
         private readonly IUIFactory _uiFactory;
         private readonly IDefeatService _defeatService;
         private readonly IVictoryService _victoryService;
+        private readonly IStaticDataService _staticDataService;
 
         public LevelFactory(
             IAssetProviderService assetProviderService,
@@ -35,7 +38,8 @@ namespace CodeBase.Services.Factories.Level
             IReplayService replayService,
             IUIFactory uiFactory,
             IDefeatService defeatService,
-            IVictoryService victoryService)
+            IVictoryService victoryService,
+            IStaticDataService staticDataService)
         {
             _assetProviderService = assetProviderService;
             _tweenService = tweenService;
@@ -46,6 +50,7 @@ namespace CodeBase.Services.Factories.Level
             _uiFactory = uiFactory;
             _defeatService = defeatService;
             _victoryService = victoryService;
+            _staticDataService = staticDataService;
         }
 
         public GameObject LoadGenerator(PointData spawnPoint)
@@ -62,8 +67,14 @@ namespace CodeBase.Services.Factories.Level
             if (generator.TryGetComponent(out GeneratorPower power)) 
                 power.Construct(_updateService);
             
+            if(generator.TryGetComponent(out GeneratorBasket basket))
+                basket.Construct(_staticDataService);
+
             if(generator.TryGetComponent(out PlayerDefeat playerDefeat))
                 playerDefeat.Construct(_uiFactory);
+
+            foreach (RandomRotate rotator in generator.GetComponentsInChildren<RandomRotate>()) 
+                rotator.Constuct(_updateService);
 
             return generator;
         }

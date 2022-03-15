@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerVictory : MonoBehaviour, IAffectPlayerVictory, IStreamingReadData
+    public class PlayerVictory : MonoBehaviour, IAffectPlayerVictory, IStreamingReadData, ISingleWriteData
     {
         private IUIFactory _uiFactory;
         private bool _isVictory;
@@ -24,23 +24,21 @@ namespace CodeBase.Logic.Player
             if (IsVictory(persistentData))
             {
                 _isVictory = true;
-                SetPassedInLastLevel(persistentData.ProgressData.Levels);
-
                 _uiFactory.LoadVictoryWindow();
                 OnVictory?.Invoke();
             }
         }
 
-        private static void SetPassedInLastLevel(in KeyValue<LevelTypeId, bool>[] levels)
+        public void SingleWriteData(PlayerPersistentData persistentData)
         {
-            for (int i = 0; i < levels.Length; i++)
-            {
-                if (levels[i].Value == false)
-                {
-                    levels[i].Value = true;
-                    return;
-                }
-            }
+            if (!_isVictory)
+                return;
+
+            // KeyValue<LevelTypeId,bool>[] levels = persistentData.ProgressData.Levels;
+            //
+            // LevelTypeId typeId = LevelTypeId.Level_2;
+            //
+            // typeId++;
         }
 
         private bool IsVictory(PlayerPersistentData persistentData) => 

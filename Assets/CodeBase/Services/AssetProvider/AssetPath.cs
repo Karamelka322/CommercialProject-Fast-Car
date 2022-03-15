@@ -23,7 +23,7 @@ namespace CodeBase.Services.AssetProvider
         public const string ButtonsInputPath = "UI/HUD/Input/Buttons";
         public const string AreasInputPath = "UI/HUD/Input/Areas";
 
-        public const string GeneratorPath = "Level/Generator";
+        public const string GeneratorPath = "Level/Generator/Generator";
         public const string CapsulePath = "Level/Capsule";
 
         public const string SkipButtonPath = "UI/Menu/SkipButton";

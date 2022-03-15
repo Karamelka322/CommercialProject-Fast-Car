@@ -1,0 +1,59 @@
+using CodeBase.Data.Perseistent;
+using CodeBase.Data.Static.Level;
+using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.StaticData;
+using UnityEngine;
+
+namespace CodeBase.Logic.Level.Generator
+{
+    public class GeneratorBasket : MonoBehaviour, ISingleReadData
+    {
+        [SerializeField] 
+        private Transform _centerBasket;
+        
+        private IStaticDataService _staticDataService;
+
+        public void Construct(IStaticDataService staticDataService) => 
+            _staticDataService = staticDataService;
+
+        public void SingleReadData(PlayerPersistentData persistentData)
+        {
+            if (TryGetRewardCar(persistentData, out GameObject prefab)) 
+                InstantiateReward(prefab);
+        }
+
+        private bool TryGetRewardCar(PlayerPersistentData persistentData, out GameObject prefab)
+        {
+            RewardConfig config = persistentData.SessionData.LevelData.CurrentLevelConfig.Reward;
+
+            if (config.Car.UsingRewardCar)
+            {
+                prefab = _staticDataService.ForPlayer(config.Car.Type).Preview.gameObject;
+                return true;
+            }
+            else
+            {
+                LevelTypeId currentLevel = persistentData.SessionData.LevelData.CurrentLevelConfig.Level.Type;
+                LevelStaticData[] staticDatas = _staticDataService.Levels;
+
+                for (int i = 0; i < staticDatas.Length; i++)
+                {
+                    if (!IsUsingRewardCar(staticDatas[i], currentLevel))
+                        continue;
+                    
+                    prefab = _staticDataService.ForPlayer(staticDatas[i].Reward.Car.Type).Preview.gameObject;
+                    return true;
+                }
+            }
+
+            prefab = default;
+            return false;
+        }
+
+        private static bool IsUsingRewardCar(LevelStaticData staticData, LevelTypeId currentLevel) => 
+            staticData.Level.Type > currentLevel && staticData.Reward.Car.UsingRewardCar;
+
+        private void InstantiateReward(GameObject reward) => 
+            Instantiate(reward, _centerBasket);
+    }
+}

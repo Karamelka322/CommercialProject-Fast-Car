@@ -84,7 +84,8 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IReplayService>(),
                 _services.Single<IUIFactory>(),
                 _services.Single<IDefeatService>(),
-                _services.Single<IVictoryService>()));
+                _services.Single<IVictoryService>(),
+                _services.Single<IStaticDataService>()));
 
             _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
                 _services.Single<IStaticDataService>(),

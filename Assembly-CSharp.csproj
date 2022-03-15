@@ -79,6 +79,7 @@
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
@@ -146,12 +147,14 @@
      <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorBasket.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetPath.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
      <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
@@ -220,6 +223,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

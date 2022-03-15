@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using CodeBase.Data;
 using CodeBase.Data.Static.Level;
-using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Camera;
 using CodeBase.Scene;
 using CodeBase.Services.Data.ReadWrite;
@@ -116,21 +115,8 @@ namespace CodeBase.Infrastructure.States
         
         private void SetCurrentLevel()
         {
-            _currentLevel = _staticDataService.ForLevel(GetLastLevel());
+            _currentLevel = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.CurrentLevel);
             _persistentDataService.PlayerData.SessionData.LevelData.CurrentLevelConfig = _currentLevel;
-        }
-
-        private LevelTypeId GetLastLevel()
-        {
-            KeyValue<LevelTypeId,bool>[] levels = _persistentDataService.PlayerData.ProgressData.Levels;
-
-            foreach (KeyValue<LevelTypeId, bool> level in levels)
-            {
-                if (level.Value == false)
-                    return level.Key;
-            }
-
-            return levels.Last().Key;
         }
 
         private void EnterLoopLevelState() => 
@@ -146,7 +132,7 @@ namespace CodeBase.Infrastructure.States
             _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
 
         private GameObject InitPlayer() => 
-            _playerFactory.CreatePlayer(PlayerTypeId.Demon, _randomService.PlayerSpawnPoint());
+            _playerFactory.CreatePlayer(_persistentDataService.PlayerData.ProgressData.CurrentPlayer, _randomService.PlayerSpawnPoint());
         
         private void CameraFollow(GameObject player)
         {
