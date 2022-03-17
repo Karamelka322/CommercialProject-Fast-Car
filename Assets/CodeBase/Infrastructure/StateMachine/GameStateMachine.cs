@@ -73,7 +73,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IGameStateMachine>(),
                     services.Single<IReplayService>(),
                     services.Single<IUIFactory>(),
-                    services.Single<IPauseService>()),
+                    services.Single<IPauseService>(),
+                    services.Single<IPersistentDataService>()),
                 
                 [typeof(UnloadLevelState)] = new UnloadLevelState(
                     services.Single<IGameStateMachine>(),
@@ -85,7 +86,8 @@ namespace CodeBase.Infrastructure
                     services.Single<IPersistentDataService>(),
                     services.Single<IReadWriteDataService>(),
                     services.Single<IPauseService>(),
-                    services.Single<IRandomService>()),
+                    services.Single<IRandomService>(),
+                    services.Single<ISaveLoadDataService>()),
             };
         }
 

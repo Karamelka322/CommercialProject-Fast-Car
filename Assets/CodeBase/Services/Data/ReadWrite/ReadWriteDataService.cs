@@ -36,10 +36,16 @@ namespace CodeBase.Services.Data.ReadWrite
                 RegisterStreamingWriter(writer);
         }
 
-        public void InformReaders()
+        public void InformSingleReaders()
         {
             foreach (ISingleReadData reader in _singleReaders) 
                 reader.SingleReadData(_persistentDataService.PlayerData);
+        }
+        
+        public void InformSingleWriters()
+        {
+            foreach (ISingleWriteData writer in _singleWriters) 
+                writer.SingleWriteData(_persistentDataService.PlayerData);
         }
 
         public void StartStreaming() => 

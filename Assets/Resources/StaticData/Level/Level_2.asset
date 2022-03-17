@@ -15,7 +15,7 @@ MonoBehaviour:
   Level:
     Type: 1
     SceneName: Village_Geometry
-    VictoryTime: 30
+    VictoryTime: 20
     PlayerSpawnPoints:
     - Position: {x: -128, y: 0, z: -47}
       Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}

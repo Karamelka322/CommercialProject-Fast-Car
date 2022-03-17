@@ -107,7 +107,7 @@ namespace CodeBase.Infrastructure.States
             
             InitUIRoot();
             
-            _readWriteDataService.InformReaders();
+            _readWriteDataService.InformSingleReaders();
             _pauseService.SetPause(false);
             
             EnterLoopLevelState();

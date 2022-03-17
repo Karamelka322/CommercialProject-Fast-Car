@@ -1,7 +1,7 @@
 using System;
-using CodeBase.Data;
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Static.Level;
+using CodeBase.Extension;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Victory;
@@ -34,12 +34,15 @@ namespace CodeBase.Logic.Player
             if (!_isVictory)
                 return;
 
-            // KeyValue<LevelTypeId,bool>[] levels = persistentData.ProgressData.Levels;
-            //
-            // LevelTypeId typeId = LevelTypeId.Level_2;
-            //
-            // typeId++;
+            TrySetPassedLevel(ref persistentData.ProgressData);
+            SwitchLevel(ref persistentData.ProgressData.CurrentLevel);
         }
+
+        private static void TrySetPassedLevel(ref ProgressPersistentData progressData) => 
+            progressData.Levels.TrySetValueToKey(progressData.CurrentLevel, true);
+
+        private static void SwitchLevel(ref LevelTypeId currentLevel) => 
+            currentLevel = (int)currentLevel < Enum.GetNames(typeof(LevelTypeId)).Length - 1 ? currentLevel + 1 : currentLevel;
 
         private bool IsVictory(PlayerPersistentData persistentData) => 
             _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.Level.VictoryTime < persistentData.SessionData.StopwatchTime;

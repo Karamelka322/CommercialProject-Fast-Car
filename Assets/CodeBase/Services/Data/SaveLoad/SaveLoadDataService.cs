@@ -18,11 +18,11 @@ namespace CodeBase.Services.SaveLoad
             _progressService = progressService;
         }
 
-        public PlayerPersistentData LoadPlayerData() => 
-            PlayerPrefs.GetString(PlayerDataKey).DeserializeFromJson<PlayerPersistentData>();
-
         public DeveloperPersistentData LoadDeveloperData() => 
             PlayerPrefs.GetString(DeveloperDataKey).DeserializeFromJson<DeveloperPersistentData>();
+
+        public PlayerPersistentData LoadPlayerData() => 
+            PlayerPrefs.GetString(PlayerDataKey).DeserializeFromJson<PlayerPersistentData>();
 
         public void SavePlayerData() => 
             PlayerPrefs.SetString(PlayerDataKey, _progressService.PlayerData.SerializeToJson());

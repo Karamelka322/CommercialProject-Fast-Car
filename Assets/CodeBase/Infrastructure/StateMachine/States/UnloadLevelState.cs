@@ -6,9 +6,9 @@ using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
+using CodeBase.Services.SaveLoad;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.Victory;
-using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -18,6 +18,7 @@ namespace CodeBase.Infrastructure
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IPauseService _pauseService;
         private readonly IRandomService _randomService;
+        private readonly ISaveLoadDataService _saveLoadDataService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ISpawnerService _spawnerService;
         private readonly IInputService _inputService;
@@ -35,7 +36,8 @@ namespace CodeBase.Infrastructure
             IPersistentDataService persistentDataService,
             IReadWriteDataService readWriteDataService,
             IPauseService pauseService,
-            IRandomService randomService)
+            IRandomService randomService,
+            ISaveLoadDataService saveLoadDataService)
         {
             _gameStateMachine = gameStateMachine;
             _spawnerService = spawnerService;
@@ -47,14 +49,22 @@ namespace CodeBase.Infrastructure
             _readWriteDataService = readWriteDataService;
             _pauseService = pauseService;
             _randomService = randomService;
+            _saveLoadDataService = saveLoadDataService;
         }
 
         public void Unload<TNextState>() where TNextState : class, IState
         {
+            ClenupPlayerSessionData();
+            SavePlayerData();
             ClenupServices();
-            ClenupData();
-            
+
             EnterNextState<TNextState>();
+        }
+
+        private void SavePlayerData()
+        {
+            _readWriteDataService.InformSingleWriters();
+            _saveLoadDataService.SavePlayerData();
         }
 
         public void Exit() { }
@@ -71,7 +81,7 @@ namespace CodeBase.Infrastructure
             _randomService.Clenup();
         }
 
-        private void ClenupData() => 
+        private void ClenupPlayerSessionData() => 
             _persistentDataService.PlayerData.SessionData.Clenup();
 
         private void EnterNextState<TNextState>() where TNextState : class, IState => 

@@ -98,6 +98,7 @@
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
+     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\GeneratorPowerBar.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\JoystickInputElement.cs" />
@@ -223,7 +224,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
+     <Compile Include="Assets\CodeBase\Extension\KeyValueExtension.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

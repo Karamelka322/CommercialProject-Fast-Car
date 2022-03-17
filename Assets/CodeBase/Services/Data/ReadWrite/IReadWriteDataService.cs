@@ -6,8 +6,9 @@ namespace CodeBase.Services.Data.ReadWrite
     {
         void Register(GameObject gameObject);
         void Clenup();
-        void InformReaders();
+        void InformSingleReaders();
         void StartStreaming();
         void StopStreaming();
+        void InformSingleWriters();
     }
 }
