@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Data.Static.Player;
 using CodeBase.Extension;
+using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.Factories.Player;
@@ -67,8 +68,7 @@ namespace CodeBase.Infrastructure.States
             
             InitPreviewPlayer(mediator.MenuAnimator);
             
-            mediator.RebindMenuAnimator();
-            mediator.StartPlayAnimator(_isFirstLoad);
+            mediator.ChangeMenuState(_isFirstLoad? MenuState.Intro : MenuState.MainMenu);
             
             HideCurtain();
         }

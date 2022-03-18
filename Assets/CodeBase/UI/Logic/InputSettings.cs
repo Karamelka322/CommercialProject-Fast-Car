@@ -1,12 +1,13 @@
-using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Static;
+using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.PersistentProgress;
 using CodeBase.UI.Toggles;
 using UnityEngine;
 
 namespace CodeBase.UI
 {
-    public class InputSettings : MonoBehaviour
+    public class InputSettings : MonoBehaviour, ISingleWriteData
     {
         [SerializeField] 
         private InputSettingToggle _joystick;
@@ -17,13 +18,13 @@ namespace CodeBase.UI
         [SerializeField]
         private InputSettingToggle _areas;
 
-        private SettingsPersistentData _settingsData;
+        private InputTypeId CurrentInput;
 
-        public void Construct(SettingsPersistentData settingsData) => 
-            _settingsData = settingsData;
+        public void Construct(IPersistentDataService persistentDataService) => 
+            SwitchInputSetting(persistentDataService.PlayerData.SettingsData.InputType);
 
-        private void Start() => 
-            SwitchInputSetting(_settingsData.InputType);
+        public void SingleWriteData(PlayerPersistentData persistentData) => 
+            persistentData.SettingsData.InputType = CurrentInput;
 
         private void OnEnable()
         {
@@ -41,7 +42,7 @@ namespace CodeBase.UI
 
         private void SwitchInputSetting(InputTypeId typeId)
         {
-            _settingsData.InputType = typeId;
+            CurrentInput = typeId;
 
             if (typeId == InputTypeId.Joystick)
             {

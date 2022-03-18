@@ -10,7 +10,7 @@ namespace CodeBase.UI.Logic
     public class SwitchPlayerCar : MonoBehaviour
     {
         [SerializeField] 
-        private ButtonWrapper _black;
+        private ButtonWrapper _closeButton;
         
         [SerializeField] 
         private ButtonWrapper _switchLeft;
@@ -45,7 +45,7 @@ namespace CodeBase.UI.Logic
             _switchLeft.OnClick += OnSwitchLeft;
             _switchRight.OnClick += OnSwitchRight;
             _select.OnClick += OnSelect;
-            _black.OnClick += OnClickBlack;
+            _closeButton.OnClick += OnClickCloseButton;
         }
 
         public void OnDestroy()
@@ -53,7 +53,7 @@ namespace CodeBase.UI.Logic
             _switchLeft.OnClick -= OnSwitchLeft;
             _switchRight.OnClick -= OnSwitchRight;
             _select.OnClick -= OnSelect;
-            _black.OnClick -= OnClickBlack;
+            _closeButton.OnClick -= OnClickCloseButton;
         }
 
         private void OnSwitchLeft()
@@ -78,7 +78,7 @@ namespace CodeBase.UI.Logic
             }
         }
 
-        private void OnClickBlack()
+        private void OnClickCloseButton()
         {
             if (IsHideSelectButton() == false) 
                 SwitchCar(CurrentPlayerType);

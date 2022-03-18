@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CodeBase.UI.Windows
 {
-    public class GarageWindow : MonoBehaviour
+    public class SettingsWindow : MonoBehaviour
     {
         [SerializeField] 
         private ButtonWrapper _closeButton;

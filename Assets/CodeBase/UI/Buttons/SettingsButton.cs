@@ -1,3 +1,4 @@
+using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
 
 namespace CodeBase.UI.Buttons
@@ -10,6 +11,6 @@ namespace CodeBase.UI.Buttons
             _mediator = mediator;
 
         protected override void OnClickButton() => 
-            _mediator.PlayOpenSettings();
+            _mediator.ChangeMenuState(MenuState.Settings);
     }
 }

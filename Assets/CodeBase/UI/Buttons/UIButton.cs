@@ -9,7 +9,7 @@ namespace CodeBase.UI.Buttons
         [SerializeField] 
         private Button _button;
 
-        private void Awake() => 
+        protected virtual void Awake() => 
             _button.onClick.AddListener(OnClickButton);
 
         protected abstract void OnClickButton();

@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Infrastructure;
+using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
@@ -13,6 +14,7 @@ using CodeBase.Services.Tween;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using CodeBase.UI.Logic;
+using CodeBase.UI.Windows;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -68,35 +70,29 @@ namespace CodeBase.Services.Factories.UI
             return curtain;
         }
 
-        public GameObject LoadMainButtonInMenu(IMediator mediator)
+        public void LoadMainButtonInMenu(IMediator mediator)
         {
             GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), UIRoot);
             
             mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, mediator);
             mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(mediator);
             mainButtonInMenu.GetComponentInChildren<GarageButton>().Construct(mediator);
-            
-            return mainButtonInMenu;
         }
 
-        public GameObject LoadSettingsInMenu(IMediator mediator, Action backEvent)
+        public void LoadSettingsInMenu(IMediator mediator)
         {
-            GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), UIRoot);
+            SettingsWindow window = Object.Instantiate(_assetProvider.LoadSettingsWindow(), UIRoot);
             
-            settings.GetComponentInChildren<BackButton>().Construct(backEvent);
-            settings.GetComponentInChildren<InputSettings>().Construct(_persistentDataService.PlayerData.SettingsData);
-            
-            return settings;
+            window.Construct(mediator);
+            window.GetComponentInChildren<InputSettings>().Construct(_persistentDataService);
         }
 
-        public GameObject LoadGarageWindow(IMediator mediator, Action backEvent)
+        public void LoadGarageWindow(IMediator mediator)
         {
-            GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), UIRoot);
+            GarageWindow window = Object.Instantiate(_assetProvider.LoadGarageWindow(), UIRoot);
             
-            garage.GetComponentInChildren<BackButton>().Construct(backEvent);
-            garage.GetComponentInChildren<SwitchPlayerCar>().Constuct(_persistentDataService, mediator);
-            
-            return garage;
+            window.Construct(mediator);
+            window.GetComponentInChildren<SwitchPlayerCar>().Constuct(_persistentDataService, mediator);
         }
 
         public void LoadHUD()
@@ -144,10 +140,10 @@ namespace CodeBase.Services.Factories.UI
             window.GetComponentInChildren<NextLevelButton>().Construct(_stateMachine);
         }
 
-        public void LoadSkipButton(MenuAnimator menuAnimator)
+        public void LoadSkipButton(IMediator mediator)
         {
             SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), UIRoot);
-            skipButton.Construct(menuAnimator);
+            skipButton.Construct(mediator);
         }
 
         public void LoadUIRoot() => 

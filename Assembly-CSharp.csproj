@@ -184,7 +184,6 @@
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\PlayButton.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\BackButton.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\DefeatWindow.cs" />
@@ -229,9 +228,11 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\ButtonWrapper.cs" />
-     <Compile Include="Assets\CodeBase\Mediator\Mediator.cs" />
+     <Compile Include="Assets\CodeBase\Mediator\MenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\Garage.cs" />
      <Compile Include="Assets\CodeBase\Data\MeshData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

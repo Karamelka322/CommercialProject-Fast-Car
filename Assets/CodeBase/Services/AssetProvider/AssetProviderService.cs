@@ -4,6 +4,7 @@ using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Item;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
+using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Services.AssetProvider
@@ -13,11 +14,11 @@ namespace CodeBase.Services.AssetProvider
         public LoadingCurtain LoadMenuCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingMenuPath);
 
-        public GameObject LoadSettingsInMenu() => 
-            Resources.Load<GameObject>(AssetPath.SettingsInMenuPath);
+        public SettingsWindow LoadSettingsWindow() => 
+            Resources.Load<SettingsWindow>(AssetPath.SettingsInMenuPath);
 
-        public GameObject LoadGarageInMenu() => 
-            Resources.Load<GameObject>(AssetPath.GarageInMenuPath);
+        public GarageWindow LoadGarageWindow() => 
+            Resources.Load<GarageWindow>(AssetPath.GarageInMenuPath);
 
         public HUD LoadHUD() => 
             Resources.Load<HUD>(AssetPath.HUDPath);

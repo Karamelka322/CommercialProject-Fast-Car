@@ -1,5 +1,5 @@
 using System;
-using CodeBase.Extension;
+using CodeBase.Logic.Menu;
 using UnityEngine;
 
 namespace CodeBase.Scene.Menu
@@ -7,6 +7,9 @@ namespace CodeBase.Scene.Menu
     [RequireComponent(typeof(Animator))]
     public class MenuAnimator : MonoBehaviour
     {
+        [SerializeField] 
+        private MenuStates _menuStates;
+
         [SerializeField]
         private Animator _animator;
 
@@ -20,67 +23,74 @@ namespace CodeBase.Scene.Menu
         private static readonly int PlayOpenGarageParameter = Animator.StringToHash("PlayOpenGarage");
         private static readonly int PlayCloseGarageParameter = Animator.StringToHash("PlayCloseGarage");
 
-        public event Action StartPlayOpenMenu;
-        public event Action StartPlayIdleMenu;
-        public event Action StartPlayCloseMenu;
-        
-        public event Action StartPlayOpenSettings;
-        public event Action StartPlayCloseSettings;
-        
-        public event Action StartPlayOpenGarage;
-        public event Action StartPlayCloseGarage;
+        private void Start() => 
+            _menuStates.OnChangeState += OnChangeState;
 
-        public void StartPlayAnimator(bool isFirstPlay)
+        private void OnDestroy() => 
+            _menuStates.OnChangeState -= OnChangeState;
+
+        private void OnChangeState(MenuState state)
         {
-            if (isFirstPlay)
-                PlayOpenMenu();
-            else
-                PlayIdleMenu();
+            switch (state)
+            {
+                case MenuState.Intro:
+                {
+                    Rebind();
+                    PlayOpenMenu();
+                }
+                    break;
+                
+                case MenuState.MainMenu:
+                {
+                    PlayIdleMenu();
+                }
+                    break;
+
+                case MenuState.Garage:
+                {
+                    PlayOpenGarage();
+                }
+                    break;
+
+                case MenuState.Settings:
+                {
+                    PlayOpenSettings();
+                }
+                    break;
+
+                case MenuState.PlayGame:
+                {
+                    PlayCloseMenu();
+                }
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
+            }
         }
-        
-        public void Rebind() => 
+
+        private void Rebind() => 
             _animator.Rebind();
 
-        public void PlayOpenMenu()
-        {
+        private void PlayOpenMenu() => 
             _animator.SetTrigger(id: PlayOpenMenuParameter);
-            StartPlayOpenMenu?.Invoke();
-        }
 
-        public void PlayIdleMenu()
-        {
+        private void PlayIdleMenu() => 
             _animator.SetTrigger(id: PlayIdleMenuParameter);
-            StartPlayIdleMenu?.Invoke();
-        }
 
-        public void PlayCloseMenu()
-        {
+        private void PlayCloseMenu() => 
             _animator.SetTrigger(id: PlayCloseMenuParameter);
-            StartPlayCloseMenu?.Invoke();
-        }
 
-        public void PlayOpenSettings()
-        {
+        private void PlayOpenSettings() => 
             _animator.SetTrigger(id: PlayOpenSettingsParameter);
-            StartPlayOpenSettings?.Invoke();
-        }
 
-        public void PlayCloseSettings()
-        {
-            _animator.SetTrigger(id: PlayCloseSettingsParameter);
-            StartPlayCloseSettings?.Invoke();
-        }
-
-        public void PlayOpenGarage()
-        {
+        private void PlayOpenGarage() => 
             _animator.SetTrigger(id: PlayOpenGarageParameter);
-            StartPlayOpenGarage?.Invoke();
-        }
-        
-        public void PlayCloseGarage()
-        {
+
+        private void PlayCloseSettings() => 
+            _animator.SetTrigger(id: PlayCloseSettingsParameter);
+
+        private void PlayCloseGarage() => 
             _animator.SetTrigger(id: PlayCloseGarageParameter);
-            StartPlayCloseGarage?.Invoke();
-        }
     }
 }

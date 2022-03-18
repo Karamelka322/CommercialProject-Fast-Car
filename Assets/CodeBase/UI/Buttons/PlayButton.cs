@@ -1,7 +1,7 @@
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.States;
+using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
-using CodeBase.Scene.Menu;
 
 namespace CodeBase.UI.Buttons
 {
@@ -19,7 +19,7 @@ namespace CodeBase.UI.Buttons
         protected override void OnClickButton()
         {
             _stateMachine.Enter<LoadLevelState>();
-            _mediator.PlayCloseMenu();
+            _mediator.ChangeMenuState(MenuState.PlayGame);
         }
     }
 }

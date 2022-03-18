@@ -4,6 +4,7 @@ using CodeBase.Data.Static.Player;
 using CodeBase.Logic.Item;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
+using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Services.AssetProvider
@@ -20,8 +21,8 @@ namespace CodeBase.Services.AssetProvider
         GameObject LoadUIRoot();
         GameObject LoadMainButtonInMenu();
         SkipButton LoadSkipButton();
-        GameObject LoadSettingsInMenu();
-        GameObject LoadGarageInMenu();
+        SettingsWindow LoadSettingsWindow();
+        GarageWindow LoadGarageWindow();
 
         HUD LoadHUD();
         GameObject LoadJoystickInput();
