@@ -11,6 +11,7 @@ using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
+using CodeBase.Services.Reward;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
@@ -60,6 +61,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService(_services.Single<IPersistentDataService>(), _services.Single<IUpdateService>()));
             _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
             _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
+            _services.RegisterSingle<IRewardService>(new RewardService(_services.Single<IPersistentDataService>()));
 
             _services.RegisterSingle<IPauseService>(new PauseService(_services.Single<IUpdateService>()));
             _services.RegisterSingle<IRandomService>(new RandomService(_corutineRunner));
@@ -98,8 +100,9 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IRandomService>(),
                 _services.Single<IUIFactory>(),
                 _services.Single<IDefeatService>(),
-                _services.Single<IVictoryService>()));
-            
+                _services.Single<IVictoryService>(),
+                _services.Single<IRewardService>()));
+
             _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
                 _services.Single<IAssetProviderService>(),
                 _services.Single<IUpdateService>(),

@@ -54,6 +54,8 @@ namespace CodeBase.Infrastructure
 
         public void Unload<TNextState>() where TNextState : class, IState
         {
+            _readWriteDataService.InformSingleWriters();
+
             ClenupPlayerSessionData();
             SavePlayerData();
             ClenupServices();
@@ -61,11 +63,8 @@ namespace CodeBase.Infrastructure
             EnterNextState<TNextState>();
         }
 
-        private void SavePlayerData()
-        {
-            _readWriteDataService.InformSingleWriters();
+        private void SavePlayerData() => 
             _saveLoadDataService.SavePlayerData();
-        }
 
         public void Exit() { }
 

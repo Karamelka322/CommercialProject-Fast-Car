@@ -1,4 +1,5 @@
 using System;
+using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
 using CodeBase.UI;
 using UnityEngine;
@@ -9,12 +10,11 @@ namespace CodeBase.Services.Factories.UI
     {
         LoadingCurtain LoadMenuCurtain();
         LoadingCurtain LoadLevelCurtain();
-        GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator);
         void LoadUIRoot();
         void LoadSkipButton(MenuAnimator menuAnimator);
-        Transform UIRoot { get; }
-        GameObject LoadSettingsInMenu(Action backEvent);
-        GameObject LoadGarageInMenu(Action backEvent);
+        GameObject LoadMainButtonInMenu(IMediator mediator);
+        GameObject LoadSettingsInMenu(IMediator mediator, Action backEvent);
+        GameObject LoadGarageWindow(IMediator mediator, Action backEvent);
         void LoadHUD();
         void LoadPauseWindow();
         GameObject LoadTimer();

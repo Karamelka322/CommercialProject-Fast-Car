@@ -1,5 +1,5 @@
 using System;
-using JetBrains.Annotations;
+using CodeBase.Extension;
 using UnityEngine;
 
 namespace CodeBase.Scene.Menu
@@ -30,9 +30,16 @@ namespace CodeBase.Scene.Menu
         public event Action StartPlayOpenGarage;
         public event Action StartPlayCloseGarage;
 
-        [UsedImplicitly]
-        public void IdleMenu() => 
-            StartPlayIdleMenu?.Invoke();
+        public void StartPlayAnimator(bool isFirstPlay)
+        {
+            if (isFirstPlay)
+                PlayOpenMenu();
+            else
+                PlayIdleMenu();
+        }
+        
+        public void Rebind() => 
+            _animator.Rebind();
 
         public void PlayOpenMenu()
         {

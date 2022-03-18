@@ -6,10 +6,13 @@ namespace CodeBase.Scene.Menu
     public class MenuUIViewer : MonoBehaviour
     {
         [SerializeField]
+        private Mediator.Mediator _mediator;
+
+        [SerializeField]
         private MenuAnimator _menuAnimator;
 
         private IUIFactory _factory;
-        
+
         private GameObject _currentUI;
 
         public void Construct(IUIFactory factory) => 
@@ -44,19 +47,19 @@ namespace CodeBase.Scene.Menu
         private void ViewUIInMenu()
         {
             if(_currentUI == null)
-                _currentUI = _factory.LoadMainButtonInMenu(_menuAnimator);
+                _currentUI = _factory.LoadMainButtonInMenu(_mediator);
         }
 
         private void ViewUIInSettings()
         {
             DestroyCurrentUI();
-            _currentUI = _factory.LoadSettingsInMenu(_menuAnimator.PlayCloseSettings);
+            _currentUI = _factory.LoadSettingsInMenu(_mediator, _menuAnimator.PlayCloseSettings);
         }
 
         private void ViewUIInGarage()
         {
             DestroyCurrentUI();
-            _currentUI = _factory.LoadGarageInMenu(_menuAnimator.PlayCloseGarage);
+            _currentUI = _factory.LoadGarageWindow(_mediator, _menuAnimator.PlayCloseGarage);
         }
 
         private void ViewSkipButton() => 

@@ -1,15 +1,15 @@
-using CodeBase.Scene.Menu;
+using CodeBase.Mediator;
 
 namespace CodeBase.UI.Buttons
 {
     public class SettingsButton : UIButton
     {
-        private MenuAnimator _menuAnimator;
-        
-        public void Construct(MenuAnimator menuAnimator) => 
-            _menuAnimator = menuAnimator;
+        private IMediator _mediator;
+
+        public void Construct(IMediator mediator) => 
+            _mediator = mediator;
 
         protected override void OnClickButton() => 
-            _menuAnimator.PlayOpenSettings();
+            _mediator.PlayOpenSettings();
     }
 }

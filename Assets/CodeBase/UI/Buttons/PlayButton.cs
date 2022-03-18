@@ -1,5 +1,6 @@
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.States;
+using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
 
 namespace CodeBase.UI.Buttons
@@ -7,18 +8,18 @@ namespace CodeBase.UI.Buttons
     public class PlayButton : UIButton
     {
         private IGameStateMachine _stateMachine;
-        private MenuAnimator _animator;
+        private IMediator _mediator;
 
-        public void Construct(IGameStateMachine stateMachine, MenuAnimator animator)
+        public void Construct(IGameStateMachine stateMachine, IMediator mediator)
         {
             _stateMachine = stateMachine;
-            _animator = animator;
+            _mediator = mediator;
         }
 
         protected override void OnClickButton()
         {
             _stateMachine.Enter<LoadLevelState>();
-            _animator.PlayCloseMenu();
+            _mediator.PlayCloseMenu();
         }
     }
 }

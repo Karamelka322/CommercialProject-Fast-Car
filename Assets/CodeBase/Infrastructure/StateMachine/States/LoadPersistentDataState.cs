@@ -5,7 +5,6 @@ using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Data.Static;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
-using CodeBase.Scene;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
 
@@ -13,6 +12,8 @@ namespace CodeBase.Infrastructure.States
 {
     public class LoadPersistentDataState : IState
     {
+        private const string LevelSceneName = "Level";
+        
         private readonly IGameStateMachine _stateMachine;
         private readonly IPersistentDataService _progressService;
         private readonly ISaveLoadDataService _saveLoadDataService;
@@ -118,6 +119,7 @@ namespace CodeBase.Infrastructure.States
         }
 
 #if UNITY_EDITOR
+
         private void LoadDeveloperPersistentDataOrInitNew() => 
             _progressService.DeveloperData = _saveLoadDataService.LoadDeveloperData() ?? NewDeveloperPersistentData();
 
@@ -130,7 +132,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private bool IsInitialScene() => 
-            _progressService.DeveloperData.FirstScene == SceneNameConstant.Level;
+            _progressService.DeveloperData.FirstScene == LevelSceneName;
 
         private void EnterLoadLevelState() => 
             _stateMachine.Enter<LoadLevelState>();

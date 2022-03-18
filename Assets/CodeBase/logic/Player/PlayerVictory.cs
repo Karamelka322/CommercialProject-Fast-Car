@@ -1,9 +1,11 @@
 using System;
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Static.Level;
+using CodeBase.Data.Static.Player;
 using CodeBase.Extension;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.UI;
+using CodeBase.Services.Reward;
 using CodeBase.Services.Victory;
 using UnityEngine;
 
@@ -11,13 +13,18 @@ namespace CodeBase.Logic.Player
 {
     public class PlayerVictory : MonoBehaviour, IAffectPlayerVictory, IStreamingReadData, ISingleWriteData
     {
+        private IRewardService _rewardService;
         private IUIFactory _uiFactory;
+        
         private bool _isVictory;
 
         public event Action OnVictory;
 
-        public void Construct(IUIFactory uiFactory) => 
+        public void Construct(IUIFactory uiFactory, IRewardService rewardService)
+        {
+            _rewardService = rewardService;
             _uiFactory = uiFactory;
+        }
 
         public void StreamingReadData(PlayerPersistentData persistentData)
         {
@@ -36,6 +43,9 @@ namespace CodeBase.Logic.Player
 
             TrySetPassedLevel(ref persistentData.ProgressData);
             SwitchLevel(ref persistentData.ProgressData.CurrentLevel);
+            
+            _rewardService.TakeRewardToCompletingLevel();
+            persistentData.ProgressData.CurrentPlayer = PlayerTypeId.Falcon;
         }
 
         private static void TrySetPassedLevel(ref ProgressPersistentData progressData) => 

@@ -41,8 +41,8 @@ namespace CodeBase.Infrastructure
                 [typeof(LoadMenuState)] = new LoadMenuState(
                     services.Single<ISceneLoaderService>(),
                     services.Single<IUIFactory>(),
-                    services.Single<IPauseService>(),
-                    services.Single<IReplayService>()),
+                    services.Single<IPlayerFactory>(),
+                    services.Single<IPersistentDataService>()),
                 
                 [typeof(LoadLevelState)] = new LoadLevelState(
                     services.Single<IGameStateMachine>(),

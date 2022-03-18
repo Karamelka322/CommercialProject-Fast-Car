@@ -10,6 +10,7 @@ namespace CodeBase.Editor
     [CustomEditor(typeof(GameBootstrapper))]
     public class GameBootstrapperEditor : UnityEditor.Editor
     {
+        private const string LevelSceneName = "Level";
         private const string DeveloperDataKey = "DeveloperData";
 
         private static FirstSceneId _firstSceneId;
@@ -20,7 +21,7 @@ namespace CodeBase.Editor
         private void OnEnable()
         {
             _developerData = LoadDeveloperPersistentDataOrInstNew();
-            _firstSceneId = _developerData.FirstScene == SceneNameConstant.Level ? FirstSceneId.Level : FirstSceneId.Menu;
+            _firstSceneId = _developerData.FirstScene == LevelSceneName ? FirstSceneId.Level : FirstSceneId.Menu;
             
             SetHeaderStyle();
         }
@@ -38,7 +39,7 @@ namespace CodeBase.Editor
                 EditorGUILayout.PrefixLabel("Developer Settings", _headerStyle, _headerStyle);
 
                 _firstSceneId = (FirstSceneId)EditorGUILayout.EnumPopup("First Scene", _firstSceneId);
-                _developerData.FirstScene = _firstSceneId == FirstSceneId.Level ? SceneNameConstant.Level : "";
+                _developerData.FirstScene = _firstSceneId == FirstSceneId.Level ? LevelSceneName : "";
             }
         }
 

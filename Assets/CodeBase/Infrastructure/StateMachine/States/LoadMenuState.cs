@@ -1,13 +1,13 @@
 using System;
+using CodeBase.Data.Static.Player;
 using CodeBase.Extension;
-using CodeBase.Scene;
+using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
+using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
-using CodeBase.Services.Pause;
-using CodeBase.Services.Replay;
+using CodeBase.Services.PersistentProgress;
 using CodeBase.UI;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -15,25 +15,33 @@ namespace CodeBase.Infrastructure.States
 {
     public class LoadMenuState : IState
     {
+        private const string MenuSceneName = "Menu";
+
         private const float SpeedShowCurtain = 1f;
         private const float DelayShowCurtain = 0f;
         private const float SpeedHideCurtain = 1f;
         private const float DelayHideCurtain = 0.5f;
 
+        private readonly IPersistentDataService _persistentDataService;
         private readonly ISceneLoaderService _sceneLoader;
+        private readonly IPlayerFactory _playerFactory;
         private readonly IUIFactory _uiFactory;
-        private readonly IPauseService _pauseService;
-        private readonly IReplayService _replayService;
 
+        private PlayerTypeId CurrentPlayer => _persistentDataService.PlayerData.ProgressData.CurrentPlayer;
+        
         private bool _isFirstLoad = true;
         private LoadingCurtain _curtain;
-        
-        public LoadMenuState(ISceneLoaderService sceneLoader, IUIFactory uiFactory, IPauseService pauseService, IReplayService replayService)
+
+        public LoadMenuState(
+            ISceneLoaderService sceneLoader,
+            IUIFactory uiFactory,
+            IPlayerFactory playerFactory,
+            IPersistentDataService persistentDataService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
-            _pauseService = pauseService;
-            _replayService = replayService;
+            _playerFactory = playerFactory;
+            _persistentDataService = persistentDataService;
         }
 
         public void Enter()
@@ -42,34 +50,31 @@ namespace CodeBase.Infrastructure.States
             ShowCurtain(LoadScene);
         }
 
-        public void Exit()
-        {
-            _pauseService.Clenup();
-            _replayService.Clenup();
-        }
+        public void Exit() => 
+            _isFirstLoad = false;
 
         private void LoadScene() => 
-            _sceneLoader.Load(SceneNameConstant.Menu, LoadSceneMode.Single, OnLoaded);
+            _sceneLoader.Load(MenuSceneName, LoadSceneMode.Single, OnLoaded);
 
         private void OnLoaded()
         {
             _uiFactory.LoadUIRoot();
             
-            UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
-            scene.FindComponentInRootGameObjects<MenuUIViewer>()?.Construct(_uiFactory);
+            IMediator mediator = SceneManager.GetActiveScene().FindComponentInRootGameObjects<IMediator>();
+
+            mediator.MenuUIViewer.Construct(_uiFactory);
+            mediator.Garage.Construct(_playerFactory);
             
-            if(_isFirstLoad)
-            {
-                _isFirstLoad = false;
-                scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayOpenMenu();
-            }
-            else
-            {
-                scene.FindComponentInRootGameObjects<MenuAnimator>()?.PlayIdleMenu();
-            }
+            InitPreviewPlayer(mediator.MenuAnimator);
+            
+            mediator.RebindMenuAnimator();
+            mediator.StartPlayAnimator(_isFirstLoad);
             
             HideCurtain();
         }
+
+        private void InitPreviewPlayer(in MenuAnimator menuAnimator) => 
+            _playerFactory.CreatePreviewPlayer(CurrentPlayer, menuAnimator.transform);
 
         private void LoadCurtain() => 
             _curtain = _uiFactory.LoadMenuCurtain();

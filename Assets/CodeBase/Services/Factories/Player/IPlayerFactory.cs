@@ -5,7 +5,10 @@ namespace CodeBase.Services.Factories.Player
 {
     public interface IPlayerFactory : IService
     {
-        GameObject CreatePlayer(PlayerTypeId typeId, Vector3 at);
         GameObject Player { get; }
+        GameObject PreviewPlayer { get; }
+        GameObject CreatePlayer(PlayerTypeId typeId, Vector3 at);
+        void CreatePreviewPlayer(PlayerTypeId typeId, Transform parent);
+        void RebuildBasePreviewPlayerObject(PlayerTypeId playerTypeId);
     }
 }

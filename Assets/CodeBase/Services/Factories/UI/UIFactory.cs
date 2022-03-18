@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Infrastructure;
+using CodeBase.Mediator;
 using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
@@ -11,6 +12,7 @@ using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
+using CodeBase.UI.Logic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -28,7 +30,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IReplayService _replayService;
 
-        public Transform UIRoot { get; private set; }
+        private Transform UIRoot;
 
         public UIFactory(
             IGameStateMachine stateMachine,
@@ -66,18 +68,18 @@ namespace CodeBase.Services.Factories.UI
             return curtain;
         }
 
-        public GameObject LoadMainButtonInMenu(MenuAnimator menuAnimator)
+        public GameObject LoadMainButtonInMenu(IMediator mediator)
         {
             GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), UIRoot);
             
-            mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, menuAnimator);
-            mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(menuAnimator);
-            mainButtonInMenu.GetComponentInChildren<GarageButton>().Construct(menuAnimator);
+            mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, mediator);
+            mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(mediator);
+            mainButtonInMenu.GetComponentInChildren<GarageButton>().Construct(mediator);
             
             return mainButtonInMenu;
         }
 
-        public GameObject LoadSettingsInMenu(Action backEvent)
+        public GameObject LoadSettingsInMenu(IMediator mediator, Action backEvent)
         {
             GameObject settings = Object.Instantiate(_assetProvider.LoadSettingsInMenu(), UIRoot);
             
@@ -87,11 +89,12 @@ namespace CodeBase.Services.Factories.UI
             return settings;
         }
 
-        public GameObject LoadGarageInMenu(Action backEvent)
+        public GameObject LoadGarageWindow(IMediator mediator, Action backEvent)
         {
             GameObject garage = Object.Instantiate(_assetProvider.LoadGarageInMenu(), UIRoot);
             
             garage.GetComponentInChildren<BackButton>().Construct(backEvent);
+            garage.GetComponentInChildren<SwitchPlayerCar>().Constuct(_persistentDataService, mediator);
             
             return garage;
         }
