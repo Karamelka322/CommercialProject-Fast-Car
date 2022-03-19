@@ -8,9 +8,9 @@ namespace CodeBase.UI.Buttons
     public class PlayButton : UIButton
     {
         private IGameStateMachine _stateMachine;
-        private IMediator _mediator;
+        private IMenuMediator _mediator;
 
-        public void Construct(IGameStateMachine stateMachine, IMediator mediator)
+        public void Construct(IGameStateMachine stateMachine, IMenuMediator mediator)
         {
             _stateMachine = stateMachine;
             _mediator = mediator;
@@ -18,7 +18,7 @@ namespace CodeBase.UI.Buttons
 
         protected override void OnClickButton()
         {
-            _stateMachine.Enter<LoadLevelState>();
+            _stateMachine.Enter<UnloadMenuState, LoadLevelState>();
             _mediator.ChangeMenuState(MenuState.PlayGame);
         }
     }

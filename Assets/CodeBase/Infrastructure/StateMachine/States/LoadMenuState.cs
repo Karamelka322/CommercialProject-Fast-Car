@@ -8,6 +8,7 @@ using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Window;
 using CodeBase.UI;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -24,6 +25,7 @@ namespace CodeBase.Infrastructure.States
         private const float DelayHideCurtain = 0.5f;
 
         private readonly IPersistentDataService _persistentDataService;
+        private readonly IWindowService _windowService;
         private readonly ISceneLoaderService _sceneLoader;
         private readonly IPlayerFactory _playerFactory;
         private readonly IUIFactory _uiFactory;
@@ -37,38 +39,50 @@ namespace CodeBase.Infrastructure.States
             ISceneLoaderService sceneLoader,
             IUIFactory uiFactory,
             IPlayerFactory playerFactory,
-            IPersistentDataService persistentDataService)
+            IPersistentDataService persistentDataService,
+            IWindowService windowService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
             _playerFactory = playerFactory;
             _persistentDataService = persistentDataService;
+            _windowService = windowService;
         }
 
         public void Enter()
         {
             LoadCurtain();
-            ShowCurtain(LoadScene);
+            ShowCurtain(OnShowCurtain);
         }
 
         public void Exit() => 
             _isFirstLoad = false;
 
-        private void LoadScene() => 
+        private void OnShowCurtain() => 
             _sceneLoader.Load(MenuSceneName, LoadSceneMode.Single, OnLoaded);
 
         private void OnLoaded()
         {
             _uiFactory.LoadUIRoot();
             
-            IMediator mediator = SceneManager.GetActiveScene().FindComponentInRootGameObjects<IMediator>();
+            IMenuMediator mediator = SceneManager.GetActiveScene().FindComponentInRootGameObjects<IMenuMediator>();
 
-            mediator.MenuUIViewer.Construct(_uiFactory);
+            mediator.MenuUIViewer.Construct(_windowService, _uiFactory);
             mediator.Garage.Construct(_playerFactory);
             
             InitPreviewPlayer(mediator.MenuAnimator);
-            
-            mediator.ChangeMenuState(_isFirstLoad? MenuState.Intro : MenuState.MainMenu);
+
+            if(_isFirstLoad)
+            {
+                mediator.RebindAnimator();
+                mediator.ChangeMenuState(MenuState.Intro);
+            }
+            else
+            {
+                mediator.RebindAnimator();
+                mediator.SkipIntro();
+                mediator.ChangeMenuState(MenuState.MainMenu);
+            }
             
             HideCurtain();
         }

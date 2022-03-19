@@ -19,10 +19,13 @@ namespace CodeBase.Services.AssetProvider
         EnemyStaticData[] LoadEnemies();
 
         GameObject LoadUIRoot();
-        GameObject LoadMainButtonInMenu();
         SkipButton LoadSkipButton();
+        
+        MainMenuWindow LoadMainMenuWindow();
         SettingsWindow LoadSettingsWindow();
         GarageWindow LoadGarageWindow();
+        GameObject LoadDefeatWindow();
+        GameObject LoadVictoryWindow();
 
         HUD LoadHUD();
         GameObject LoadJoystickInput();
@@ -32,7 +35,5 @@ namespace CodeBase.Services.AssetProvider
         Capsule LoadCapsule();
         GameObject LoadPauseWindow();
         GameObject LoadTimer();
-        GameObject LoadDefeatWindow();
-        GameObject LoadVictoryWindow();
     }
 }

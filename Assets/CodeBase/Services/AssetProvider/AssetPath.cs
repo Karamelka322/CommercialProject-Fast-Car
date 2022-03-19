@@ -7,17 +7,16 @@ namespace CodeBase.Services.AssetProvider
 
         public const string PlayerStaticDataPath = "StaticData/Player";
         public const string LevelStaticDataPath = "StaticData/Level";
-        public const string EnemiesPath = "StaticData/Enemy";
+        public const string EnemiesStaticDataPath = "StaticData/Enemy";
+        
+        public const string MainMenuWindowPath = "UI/Windows/Menu/MainMenuWindow";
+        public const string SettingsWindowPath = "UI/Windows/Menu/SettingsWindow";
+        public const string GarageWindowPath = "UI/Windows/Menu/GarageWindow";
+        public const string VictoryWindowPath = "UI/Windows/Level/VictoryWindow";
+        public const string DefeatWindowPath = "UI/Windows/Level/DefeatWindow";
+        public const string PauseWindowPath = "UI/Windows/Level/PauseWindow";
 
         public const string UIRootPath = "UI/UIRoot";
-        public const string MainButtonInMenuPath = "UI/Menu/Menu";
-        public const string SettingsInMenuPath = "UI/Menu/Settings";
-        public const string GarageInMenuPath = "UI/Menu/Garage";
-
-        public const string VictoryWindowPath = "UI/Windows/Victory_window";
-        public const string DefeatWindowPath = "UI/Windows/Defeat_window";
-        public const string PauseWindowPath = "UI/Windows/Pause_window";
-
         public const string HUDPath = "UI/HUD/HUD";
         public const string JoystickInputPath = "UI/HUD/Input/Joystick";
         public const string ButtonsInputPath = "UI/HUD/Input/Buttons";
@@ -26,7 +25,7 @@ namespace CodeBase.Services.AssetProvider
         public const string GeneratorPath = "Level/Generator/Generator";
         public const string CapsulePath = "Level/Capsule";
 
-        public const string SkipButtonPath = "UI/Menu/SkipButton";
+        public const string SkipButtonPath = "UI/SkipButton";
         public const string TimerPath = "UI/Timer";
 
         public const string EnemySpawnPointPath = "Level/SpawnPoint/EnemySpawnPoint";

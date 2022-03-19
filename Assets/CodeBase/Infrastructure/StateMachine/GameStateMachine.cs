@@ -18,7 +18,7 @@ using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
-using UnityEngine;
+using CodeBase.Services.Window;
 
 namespace CodeBase.Infrastructure
 {
@@ -42,7 +42,14 @@ namespace CodeBase.Infrastructure
                     services.Single<ISceneLoaderService>(),
                     services.Single<IUIFactory>(),
                     services.Single<IPlayerFactory>(),
-                    services.Single<IPersistentDataService>()),
+                    services.Single<IPersistentDataService>(),
+                    services.Single<IWindowService>()),
+                
+                [typeof(UnloadMenuState)] = new UnloadMenuState(
+                    services.Single<IGameStateMachine>(),
+                    services.Single<IWindowService>(),
+                    services.Single<IReadWriteDataService>(),
+                    services.Single<ISaveLoadDataService>()),
                 
                 [typeof(LoadLevelState)] = new LoadLevelState(
                     services.Single<IGameStateMachine>(),

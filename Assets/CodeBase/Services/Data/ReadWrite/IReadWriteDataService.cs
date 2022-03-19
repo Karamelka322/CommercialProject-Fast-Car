@@ -10,5 +10,7 @@ namespace CodeBase.Services.Data.ReadWrite
         void StartStreaming();
         void StopStreaming();
         void InformSingleWriters();
+        void InformSingleReaders(GameObject gameObject);
+        void InformSingleWriters(GameObject gameObject);
     }
 }

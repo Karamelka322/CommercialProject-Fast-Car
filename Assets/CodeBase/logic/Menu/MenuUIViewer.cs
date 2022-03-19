@@ -2,6 +2,8 @@ using System;
 using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
 using CodeBase.Services.Factories.UI;
+using CodeBase.Services.Window;
+using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Scene.Menu
@@ -14,10 +16,14 @@ namespace CodeBase.Scene.Menu
         [SerializeField] 
         private MenuStates _menuStates;
 
+        private IWindowService _windowService;
         private IUIFactory _factory;
 
-        public void Construct(IUIFactory factory) => 
+        public void Construct(IWindowService windowService, IUIFactory factory)
+        {
+            _windowService = windowService;
             _factory = factory;
+        }
 
         private void Start() => 
             _menuStates.OnChangeState += OnChangeState;
@@ -37,19 +43,19 @@ namespace CodeBase.Scene.Menu
                 
                 case MenuState.MainMenu:
                 {
-                    ViewUIInMenu();
+                    ShowMainMenuWindow();
                 } 
                     break;
 
                 case MenuState.Garage:
                 {
-                    ViewUIInGarage();
+                    ShowGarageWindow();
                 }
                     break;
 
                 case MenuState.Settings:
                 {
-                    ViewUIInSettings();
+                    ShowSettingsWindow();
                 }
                     break;
 
@@ -61,14 +67,29 @@ namespace CodeBase.Scene.Menu
             }
         }
 
-        private void ViewUIInMenu() => 
-            _factory.LoadMainButtonInMenu(_mediator);
+        private void ShowMainMenuWindow()
+        {
+            if (_windowService.CheckWindow<MainMenuWindow>())
+                _windowService.ShowWindow<MainMenuWindow>();
+            else
+                _factory.LoadMainMenuWindow(_mediator);
+        }
 
-        private void ViewUIInSettings() => 
-            _factory.LoadSettingsInMenu(_mediator);
+        private void ShowSettingsWindow()
+        {
+            if (_windowService.CheckWindow<SettingsWindow>())
+                _windowService.ShowWindow<SettingsWindow>();
+            else
+                _factory.LoadSettingsWindow(_mediator);
+        }
 
-        private void ViewUIInGarage() => 
-            _factory.LoadGarageWindow(_mediator);
+        private void ShowGarageWindow()
+        {
+            if (_windowService.CheckWindow<SettingsWindow>())
+                _windowService.ShowWindow<SettingsWindow>();
+            else
+                _factory.LoadGarageWindow(_mediator);
+        }
 
         private void ViewSkipButton() => 
             _factory.LoadSkipButton(_mediator);

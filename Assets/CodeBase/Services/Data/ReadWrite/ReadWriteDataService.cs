@@ -35,16 +35,28 @@ namespace CodeBase.Services.Data.ReadWrite
             foreach (IStreamingWriteData writer in gameObject.GetComponentsInChildren<IStreamingWriteData>())
                 RegisterStreamingWriter(writer);
         }
-
+        
         public void InformSingleReaders()
         {
             foreach (ISingleReadData reader in _singleReaders) 
                 reader.SingleReadData(_persistentDataService.PlayerData);
         }
         
+        public void InformSingleReaders(GameObject gameObject)
+        {
+            foreach (ISingleReadData reader in gameObject.GetComponentsInChildren<ISingleReadData>())
+                reader.SingleReadData(_persistentDataService.PlayerData);
+        }
+        
         public void InformSingleWriters()
         {
             foreach (ISingleWriteData writer in _singleWriters) 
+                writer.SingleWriteData(_persistentDataService.PlayerData);
+        }
+
+        public void InformSingleWriters(GameObject gameObject)
+        {
+            foreach (ISingleWriteData writer in gameObject.GetComponentsInChildren<ISingleWriteData>())
                 writer.SingleWriteData(_persistentDataService.PlayerData);
         }
 

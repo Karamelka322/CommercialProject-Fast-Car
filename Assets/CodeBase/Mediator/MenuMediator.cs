@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeBase.Mediator
 {
-    internal class MenuMediator : MonoBehaviour, IMediator
+    internal class MenuMediator : MonoBehaviour, IMenuMediator
     {
         [Required, SceneObjectsOnly, SerializeField] private MenuStates _menuStates;
         [Required, SceneObjectsOnly, SerializeField] private MenuUIViewer _menuUIViewer; public MenuUIViewer MenuUIViewer => _menuUIViewer;
@@ -15,14 +15,8 @@ namespace CodeBase.Mediator
         
         public void ChangePlayerCar(PlayerTypeId playerTypeId) => _garage.ChangePlayerCar(playerTypeId);
         public void ChangeMenuState(MenuState state) => _menuStates.CurrentState = state;
-    }
 
-    public interface IMediator
-    {
-        MenuUIViewer MenuUIViewer { get; }
-        MenuAnimator MenuAnimator { get; }
-        Garage Garage { get; }
-        void ChangePlayerCar(PlayerTypeId playerTypeId);
-        void ChangeMenuState(MenuState state);
+        public void SkipIntro() => _menuAnimator.SkipIntro();
+        public void RebindAnimator() => _menuAnimator.Rebind();
     }
 }

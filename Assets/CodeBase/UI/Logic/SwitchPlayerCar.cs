@@ -1,13 +1,14 @@
 using System;
+using CodeBase.Data.Perseistent;
 using CodeBase.Data.Static.Player;
 using CodeBase.Mediator;
-using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Data.ReadWrite;
 using CodeBase.UI.Buttons;
 using UnityEngine;
 
 namespace CodeBase.UI.Logic
 {
-    public class SwitchPlayerCar : MonoBehaviour
+    public class SwitchPlayerCar : MonoBehaviour, ISingleReadData, ISingleWriteData
     {
         [SerializeField] 
         private ButtonWrapper _closeButton;
@@ -21,24 +22,13 @@ namespace CodeBase.UI.Logic
         [SerializeField] 
         private ButtonWrapper _select;
         
-        private IPersistentDataService _persistentDataService;
-        private PlayerTypeId _playerType;
-        private IMediator _mediator;
+        private PlayerTypeId _currentPlayerType;
+        private PlayerTypeId _selectedPlayerType;
+        
+        private IMenuMediator _mediator;
 
-        private PlayerTypeId CurrentPlayerType
-        {
-            get => _persistentDataService.PlayerData.ProgressData.CurrentPlayer;
-            set => _persistentDataService.PlayerData.ProgressData.CurrentPlayer = value;
-        }
-
-        public void Constuct(IPersistentDataService persistentDataService, IMediator mediator)
-        {
-            _persistentDataService = persistentDataService;
+        public void Constuct(IMenuMediator mediator) => 
             _mediator = mediator;
-            _playerType = CurrentPlayerType;
-            
-            HideAndShowButtons();
-        }
 
         public void Start()
         {
@@ -56,13 +46,24 @@ namespace CodeBase.UI.Logic
             _closeButton.OnClick -= OnClickCloseButton;
         }
 
+        public void SingleReadData(PlayerPersistentData persistentData)
+        {
+            _currentPlayerType = persistentData.ProgressData.CurrentPlayer;
+            _selectedPlayerType = persistentData.ProgressData.CurrentPlayer;
+            
+            HideAndShowButtons();
+        }
+
+        public void SingleWriteData(PlayerPersistentData persistentData) => 
+            persistentData.ProgressData.CurrentPlayer = _currentPlayerType;
+
         private void OnSwitchLeft()
         {
             if (IsSwitchLeft())
             {
-                _playerType--;
+                _selectedPlayerType--;
 
-                SwitchCar(_playerType);
+                SwitchCar(_selectedPlayerType);
                 HideAndShowButtons();
             }
         }
@@ -71,17 +72,23 @@ namespace CodeBase.UI.Logic
         {
             if (IsSwitchRight())
             {
-                _playerType++;
+                _selectedPlayerType++;
 
-                SwitchCar(_playerType);
+                SwitchCar(_selectedPlayerType);
                 HideAndShowButtons();
             }
         }
 
         private void OnClickCloseButton()
         {
-            if (IsHideSelectButton() == false) 
-                SwitchCar(CurrentPlayerType);
+            if (_currentPlayerType != _selectedPlayerType) 
+                SwitchCar(_currentPlayerType);
+        }
+
+        private void OnSelect()
+        {
+            _currentPlayerType = _selectedPlayerType;
+            _select.Disable();;
         }
 
         private void SwitchCar(PlayerTypeId playerTypeId) => 
@@ -93,71 +100,35 @@ namespace CodeBase.UI.Logic
             HideAndShowSwitchLeftButton();
             HideAndShowSwitchRightButton();
         }
-        
 
         private bool IsSwitchLeft() => 
-            _playerType != 0;
+            _selectedPlayerType != 0;
 
-        private bool IsHideSwitchLeftButton() => 
-            _playerType == 0;
-
-        private void HideSwitchLeftButton() => 
-            _switchLeft.Disable();
-
-        private void ShowSwitchLeftButton() => 
-            _switchLeft.Enable();
+        private bool IsSwitchRight() => 
+            _selectedPlayerType != (PlayerTypeId)Enum.GetNames(typeof(PlayerTypeId)).Length - 1;
 
         private void HideAndShowSwitchLeftButton()
         {
-            if (IsHideSwitchLeftButton())
-                HideSwitchLeftButton();
+            if (_selectedPlayerType == 0)
+                _switchLeft.Disable();
             else
-                ShowSwitchLeftButton();
+                _switchLeft.Enable();
         }
-
-
-        private bool IsSwitchRight() => 
-            _playerType != (PlayerTypeId)Enum.GetNames(typeof(PlayerTypeId)).Length - 1;
-
-        private bool IsHideSwitchRightButton() => 
-            _playerType == (PlayerTypeId)Enum.GetNames(typeof(PlayerTypeId)).Length - 1;
-
-        private void HideSwitchRightButton() => 
-            _switchRight.Disable();
-
-        private void ShowSwitchRightButton() => 
-            _switchRight.Enable();
 
         private void HideAndShowSwitchRightButton()
         {
-            if (IsHideSwitchRightButton())
-                HideSwitchRightButton();
+            if (_selectedPlayerType == (PlayerTypeId)Enum.GetNames(typeof(PlayerTypeId)).Length - 1)
+                _switchRight.Disable();
             else
-                ShowSwitchRightButton();
+                _switchRight.Enable();
         }
-
-
-        private void OnSelect()
-        {
-            CurrentPlayerType = _playerType;
-            HideSelectButton();
-        }
-
-        private bool IsHideSelectButton() => 
-            CurrentPlayerType == _playerType;
-
-        private void HideSelectButton() => 
-            _select.Disable();
-
-        private void ShowSelectButton() => 
-            _select.Enable();
 
         private void HideAndShowSelectButton()
         {
-            if (IsHideSelectButton())
-                HideSelectButton();
+            if (_currentPlayerType == _selectedPlayerType)
+                _select.Disable();
             else
-                ShowSelectButton();
+                _select.Enable();
         }
     }
 }

@@ -1,30 +1,43 @@
 using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
-using CodeBase.UI.Buttons;
-using UnityEngine;
+using CodeBase.Services.Data.ReadWrite;
+using CodeBase.Services.Window;
 
 namespace CodeBase.UI.Windows
 {
-    public class GarageWindow : MonoBehaviour
+    public class GarageWindow : UIWindow
     {
-        [SerializeField] 
-        private ButtonWrapper _closeButton;
+        private IReadWriteDataService _readWriteDataService;
+        private IWindowService _windowService;
+        private IMenuMediator _mediator;
 
-        private IMediator _mediator;
-
-        public void Construct(IMediator mediator) => 
-            _mediator = mediator;
-
-        private void Start() => 
-            _closeButton.OnClick += CloseWindow;
-
-        private void OnDestroy() => 
-            _closeButton.OnClick -= CloseWindow;
-
-        private void CloseWindow()
+        public void Construct(IWindowService windowService, IReadWriteDataService readWriteDataService, IMenuMediator mediator)
         {
+            _readWriteDataService = readWriteDataService;
+            _windowService = windowService;
+            _mediator = mediator;
+        }
+
+        protected override void OnOpen()
+        {
+            _windowService.Register(this);
+            _readWriteDataService.InformSingleReaders(gameObject);
+        }
+
+        protected override void OnClose()
+        {
+            _windowService.Unregister(this);
+            _readWriteDataService.InformSingleWriters(gameObject);
+
             _mediator.ChangeMenuState(MenuState.MainMenu);
+            
             Destroy(gameObject);
         }
+
+        public override void Show() => 
+            gameObject.SetActive(true);
+
+        public override void Unshow() => 
+            gameObject.SetActive(false);
     }
 }

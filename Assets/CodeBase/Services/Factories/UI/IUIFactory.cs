@@ -9,10 +9,10 @@ namespace CodeBase.Services.Factories.UI
         LoadingCurtain LoadMenuCurtain();
         LoadingCurtain LoadLevelCurtain();
         void LoadUIRoot();
-        void LoadSkipButton(IMediator mediator);
-        void LoadMainButtonInMenu(IMediator mediator);
-        void LoadSettingsInMenu(IMediator mediator);
-        void LoadGarageWindow(IMediator mediator);
+        void LoadSkipButton(IMenuMediator mediator);
+        void LoadMainMenuWindow(IMenuMediator mediator);
+        void LoadSettingsWindow(IMenuMediator mediator);
+        void LoadGarageWindow(IMenuMediator mediator);
         void LoadHUD();
         void LoadPauseWindow();
         GameObject LoadTimer();

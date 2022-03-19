@@ -7,7 +7,7 @@ namespace CodeBase.UI.Buttons
     {
         private const float LifeTime = 15;
         
-        private IMediator _mediator;
+        private IMenuMediator _mediator;
 
         protected override void Awake()
         {
@@ -15,7 +15,7 @@ namespace CodeBase.UI.Buttons
             Invoke(nameof(OnClickButton), LifeTime);
         }
 
-        public void Construct(IMediator mediator) => 
+        public void Construct(IMenuMediator mediator) => 
             _mediator = mediator;
 
         protected override void OnClickButton()

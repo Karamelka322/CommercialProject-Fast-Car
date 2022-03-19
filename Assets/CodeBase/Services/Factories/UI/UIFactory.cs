@@ -1,8 +1,5 @@
-using System;
 using CodeBase.Infrastructure;
-using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
-using CodeBase.Scene.Menu;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
@@ -11,6 +8,7 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
+using CodeBase.Services.Window;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using CodeBase.UI.Logic;
@@ -31,6 +29,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly IPauseService _pauseService;
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IReplayService _replayService;
+        private readonly IWindowService _windowService;
 
         private Transform UIRoot;
 
@@ -43,7 +42,8 @@ namespace CodeBase.Services.Factories.UI
             ITweenService tweenService,
             IPauseService pauseService,
             IReadWriteDataService readWriteDataService,
-            IReplayService replayService)
+            IReplayService replayService,
+            IWindowService windowService)
         {
             _stateMachine = stateMachine;
             _assetProvider = assetProvider;
@@ -54,6 +54,7 @@ namespace CodeBase.Services.Factories.UI
             _pauseService = pauseService;
             _readWriteDataService = readWriteDataService;
             _replayService = replayService;
+            _windowService = windowService;
         }
 
         public LoadingCurtain LoadMenuCurtain()
@@ -70,29 +71,31 @@ namespace CodeBase.Services.Factories.UI
             return curtain;
         }
 
-        public void LoadMainButtonInMenu(IMediator mediator)
+        public void LoadMainMenuWindow(IMenuMediator mediator)
         {
-            GameObject mainButtonInMenu = Object.Instantiate(_assetProvider.LoadMainButtonInMenu(), UIRoot);
+            MainMenuWindow window = Object.Instantiate(_assetProvider.LoadMainMenuWindow(), UIRoot);
             
-            mainButtonInMenu.GetComponentInChildren<PlayButton>().Construct(_stateMachine, mediator);
-            mainButtonInMenu.GetComponentInChildren<SettingsButton>().Construct(mediator);
-            mainButtonInMenu.GetComponentInChildren<GarageButton>().Construct(mediator);
+            window.Construct(_windowService);
+            
+            window.GetComponentInChildren<PlayButton>().Construct(_stateMachine, mediator);
+            window.GetComponentInChildren<SettingsButton>().Construct(mediator);
+            window.GetComponentInChildren<GarageButton>().Construct(mediator);
         }
 
-        public void LoadSettingsInMenu(IMediator mediator)
+        public void LoadSettingsWindow(IMenuMediator mediator)
         {
             SettingsWindow window = Object.Instantiate(_assetProvider.LoadSettingsWindow(), UIRoot);
             
-            window.Construct(mediator);
+            window.Construct(_windowService, _readWriteDataService, mediator);
             window.GetComponentInChildren<InputSettings>().Construct(_persistentDataService);
         }
 
-        public void LoadGarageWindow(IMediator mediator)
+        public void LoadGarageWindow(IMenuMediator mediator)
         {
             GarageWindow window = Object.Instantiate(_assetProvider.LoadGarageWindow(), UIRoot);
             
-            window.Construct(mediator);
-            window.GetComponentInChildren<SwitchPlayerCar>().Constuct(_persistentDataService, mediator);
+            window.Construct(_windowService, _readWriteDataService, mediator);
+            window.GetComponentInChildren<SwitchPlayerCar>().Constuct(mediator);
         }
 
         public void LoadHUD()
@@ -140,7 +143,7 @@ namespace CodeBase.Services.Factories.UI
             window.GetComponentInChildren<NextLevelButton>().Construct(_stateMachine);
         }
 
-        public void LoadSkipButton(IMediator mediator)
+        public void LoadSkipButton(IMenuMediator mediator)
         {
             SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), UIRoot);
             skipButton.Construct(mediator);

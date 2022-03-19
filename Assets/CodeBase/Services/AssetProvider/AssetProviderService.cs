@@ -14,12 +14,6 @@ namespace CodeBase.Services.AssetProvider
         public LoadingCurtain LoadMenuCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingMenuPath);
 
-        public SettingsWindow LoadSettingsWindow() => 
-            Resources.Load<SettingsWindow>(AssetPath.SettingsInMenuPath);
-
-        public GarageWindow LoadGarageWindow() => 
-            Resources.Load<GarageWindow>(AssetPath.GarageInMenuPath);
-
         public HUD LoadHUD() => 
             Resources.Load<HUD>(AssetPath.HUDPath);
 
@@ -38,11 +32,19 @@ namespace CodeBase.Services.AssetProvider
         public Capsule LoadCapsule() => 
             Resources.Load<Capsule>(AssetPath.CapsulePath);
 
-        public GameObject LoadPauseWindow() => 
-            Resources.Load<GameObject>(AssetPath.PauseWindowPath);
-
         public GameObject LoadTimer() => 
             Resources.Load<GameObject>(AssetPath.TimerPath);
+
+        
+
+        public GarageWindow LoadGarageWindow() => 
+            Resources.Load<GarageWindow>(AssetPath.GarageWindowPath);
+
+        public SettingsWindow LoadSettingsWindow() => 
+            Resources.Load<SettingsWindow>(AssetPath.SettingsWindowPath);
+
+        public GameObject LoadPauseWindow() => 
+            Resources.Load<GameObject>(AssetPath.PauseWindowPath);
 
         public GameObject LoadDefeatWindow() => 
             Resources.Load<GameObject>(AssetPath.DefeatWindowPath);
@@ -50,17 +52,19 @@ namespace CodeBase.Services.AssetProvider
         public GameObject LoadVictoryWindow() => 
             Resources.Load<GameObject>(AssetPath.VictoryWindowPath);
 
+        public MainMenuWindow LoadMainMenuWindow() => 
+            Resources.Load<MainMenuWindow>(AssetPath.MainMenuWindowPath);
+
+        
+        
         public EnemyStaticData[] LoadEnemies() => 
-            Resources.LoadAll<EnemyStaticData>(AssetPath.EnemiesPath);
+            Resources.LoadAll<EnemyStaticData>(AssetPath.EnemiesStaticDataPath);
 
         public LoadingCurtain LoadLevelCurtain() => 
             Resources.Load<LoadingCurtain>(AssetPath.CurtainsLoadingLevelPath);
 
         public GameObject LoadUIRoot() => 
             Resources.Load<GameObject>(AssetPath.UIRootPath);
-
-        public GameObject LoadMainButtonInMenu() => 
-            Resources.Load<GameObject>(AssetPath.MainButtonInMenuPath);
 
         public SkipButton LoadSkipButton() => 
             Resources.Load<SkipButton>(AssetPath.SkipButtonPath);

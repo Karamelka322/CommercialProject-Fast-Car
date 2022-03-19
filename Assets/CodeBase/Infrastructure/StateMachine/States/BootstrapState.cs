@@ -18,6 +18,7 @@ using CodeBase.Services.StaticData;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
+using CodeBase.Services.Window;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -47,6 +48,7 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IWindowService>(new WindowService());
             _services.RegisterSingle<IVictoryService>(new VictoryService());
             _services.RegisterSingle<IDefeatService>(new DefeatService());
             _services.RegisterSingle<IReplayService>(new ReplayService());
@@ -75,7 +77,8 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<ITweenService>(),
                 _services.Single<IPauseService>(),
                 _services.Single<IReadWriteDataService>(),
-                _services.Single<IReplayService>()));
+                _services.Single<IReplayService>(),
+                _services.Single<IWindowService>()));
             
             _services.RegisterSingle<ILevelFactory>(new LevelFactory(
                 _services.Single<IAssetProviderService>(),

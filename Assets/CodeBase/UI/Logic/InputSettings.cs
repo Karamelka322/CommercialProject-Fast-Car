@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeBase.UI
 {
-    public class InputSettings : MonoBehaviour, ISingleWriteData
+    public class InputSettings : MonoBehaviour, ISingleReadData, ISingleWriteData
     {
         [SerializeField] 
         private InputSettingToggle _joystick;
@@ -23,9 +23,6 @@ namespace CodeBase.UI
         public void Construct(IPersistentDataService persistentDataService) => 
             SwitchInputSetting(persistentDataService.PlayerData.SettingsData.InputType);
 
-        public void SingleWriteData(PlayerPersistentData persistentData) => 
-            persistentData.SettingsData.InputType = CurrentInput;
-
         private void OnEnable()
         {
             _joystick.OnSelectToggle += SwitchInputSetting;
@@ -39,6 +36,12 @@ namespace CodeBase.UI
             _buttons.OnSelectToggle -= SwitchInputSetting;
             _areas.OnSelectToggle -= SwitchInputSetting;
         }
+
+        public void SingleWriteData(PlayerPersistentData persistentData) => 
+            persistentData.SettingsData.InputType = CurrentInput;
+
+        public void SingleReadData(PlayerPersistentData persistentData) => 
+            CurrentInput = persistentData.SettingsData.InputType;
 
         private void SwitchInputSetting(InputTypeId typeId)
         {

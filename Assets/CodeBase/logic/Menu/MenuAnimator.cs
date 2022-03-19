@@ -13,15 +13,14 @@ namespace CodeBase.Scene.Menu
         [SerializeField]
         private Animator _animator;
 
-        private static readonly int PlayOpenMenuParameter = Animator.StringToHash("PlayOpenMenu");
-        private static readonly int PlayIdleMenuParameter = Animator.StringToHash("PlayIdleMenu");
-        private static readonly int PlayCloseMenuParameter = Animator.StringToHash("PlayCloseMenu");
+        private static readonly int SkipHash = Animator.StringToHash("Skip");
         
-        private static readonly int PlayOpenSettingsParameter = Animator.StringToHash("PlayOpenSettings");
-        private static readonly int PlayCloseSettingsParameter = Animator.StringToHash("PlayCloseSettings");
-
-        private static readonly int PlayOpenGarageParameter = Animator.StringToHash("PlayOpenGarage");
-        private static readonly int PlayCloseGarageParameter = Animator.StringToHash("PlayCloseGarage");
+        private static readonly int IntroHash = Animator.StringToHash("Intro");
+        private static readonly int MainMenuHash = Animator.StringToHash("MainMenu");
+        private static readonly int PlayGameHash = Animator.StringToHash("PlayGame");
+        
+        private static readonly int SettingsHash = Animator.StringToHash("Settings");
+        private static readonly int GarageHash = Animator.StringToHash("Garage");
 
         private void Start() => 
             _menuStates.OnChangeState += OnChangeState;
@@ -29,38 +28,43 @@ namespace CodeBase.Scene.Menu
         private void OnDestroy() => 
             _menuStates.OnChangeState -= OnChangeState;
 
+        public void Rebind() => 
+            _animator.Rebind();
+
+        public void SkipIntro() => 
+            _animator.SetTrigger(id: SkipHash);
+
         private void OnChangeState(MenuState state)
         {
             switch (state)
             {
                 case MenuState.Intro:
                 {
-                    Rebind();
-                    PlayOpenMenu();
+                    PlayIntro();
                 }
                     break;
                 
                 case MenuState.MainMenu:
                 {
-                    PlayIdleMenu();
+                    PlayMainMenu();
                 }
                     break;
 
                 case MenuState.Garage:
                 {
-                    PlayOpenGarage();
+                    PlayGarage();
                 }
                     break;
 
                 case MenuState.Settings:
                 {
-                    PlayOpenSettings();
+                    PlaySettings();
                 }
                     break;
 
                 case MenuState.PlayGame:
                 {
-                    PlayCloseMenu();
+                    PlayGame();
                 }
                     break;
                 
@@ -69,28 +73,19 @@ namespace CodeBase.Scene.Menu
             }
         }
 
-        private void Rebind() => 
-            _animator.Rebind();
+        private void PlayIntro() => 
+            _animator.SetTrigger(id: IntroHash);
 
-        private void PlayOpenMenu() => 
-            _animator.SetTrigger(id: PlayOpenMenuParameter);
+        private void PlayMainMenu() => 
+            _animator.SetTrigger(id: MainMenuHash);
 
-        private void PlayIdleMenu() => 
-            _animator.SetTrigger(id: PlayIdleMenuParameter);
+        private void PlayGame() => 
+            _animator.SetTrigger(id: PlayGameHash);
 
-        private void PlayCloseMenu() => 
-            _animator.SetTrigger(id: PlayCloseMenuParameter);
+        private void PlaySettings() => 
+            _animator.SetTrigger(id: SettingsHash);
 
-        private void PlayOpenSettings() => 
-            _animator.SetTrigger(id: PlayOpenSettingsParameter);
-
-        private void PlayOpenGarage() => 
-            _animator.SetTrigger(id: PlayOpenGarageParameter);
-
-        private void PlayCloseSettings() => 
-            _animator.SetTrigger(id: PlayCloseSettingsParameter);
-
-        private void PlayCloseGarage() => 
-            _animator.SetTrigger(id: PlayCloseGarageParameter);
+        private void PlayGarage() => 
+            _animator.SetTrigger(id: GarageHash);
     }
 }
