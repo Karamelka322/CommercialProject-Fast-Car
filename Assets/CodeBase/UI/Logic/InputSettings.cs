@@ -4,6 +4,7 @@ using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.UI.Toggles;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI
 {
@@ -20,8 +21,11 @@ namespace CodeBase.UI
 
         private InputTypeId CurrentInput;
 
-        public void Construct(IPersistentDataService persistentDataService) => 
+        [Inject]
+        public void Construct(IPersistentDataService persistentDataService)
+        {
             SwitchInputSetting(persistentDataService.PlayerData.SettingsData.InputType);
+        }
 
         private void OnEnable()
         {

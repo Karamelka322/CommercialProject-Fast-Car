@@ -1,24 +1,22 @@
 using System;
 using CodeBase.Logic.Menu;
-using CodeBase.Mediator;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Window;
 using CodeBase.UI.Windows;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Scene.Menu
 {
     public class MenuUIViewer : MonoBehaviour
     {
-        [SerializeField]
-        private MenuMediator _mediator;
-
         [SerializeField] 
         private MenuStates _menuStates;
 
         private IWindowService _windowService;
         private IUIFactory _factory;
 
+        [Inject]
         public void Construct(IWindowService windowService, IUIFactory factory)
         {
             _windowService = windowService;
@@ -72,7 +70,7 @@ namespace CodeBase.Scene.Menu
             if (_windowService.CheckWindow<MainMenuWindow>())
                 _windowService.ShowWindow<MainMenuWindow>();
             else
-                _factory.LoadMainMenuWindow(_mediator);
+                _factory.LoadMainMenuWindow();
         }
 
         private void ShowSettingsWindow()
@@ -80,7 +78,7 @@ namespace CodeBase.Scene.Menu
             if (_windowService.CheckWindow<SettingsWindow>())
                 _windowService.ShowWindow<SettingsWindow>();
             else
-                _factory.LoadSettingsWindow(_mediator);
+                _factory.LoadSettingsWindow();
         }
 
         private void ShowGarageWindow()
@@ -88,10 +86,10 @@ namespace CodeBase.Scene.Menu
             if (_windowService.CheckWindow<SettingsWindow>())
                 _windowService.ShowWindow<SettingsWindow>();
             else
-                _factory.LoadGarageWindow(_mediator);
+                _factory.LoadGarageWindow();
         }
 
         private void ViewSkipButton() => 
-            _factory.LoadSkipButton(_mediator);
+            _factory.LoadSkipButton();
     }
 }

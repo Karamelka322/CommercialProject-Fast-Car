@@ -1,24 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.States;
-using CodeBase.Services.Data.ReadWrite;
-using CodeBase.Services.Defeat;
-using CodeBase.Services.Factories.Level;
-using CodeBase.Services.Factories.Player;
-using CodeBase.Services.Factories.UI;
-using CodeBase.Services.Input;
-using CodeBase.Services.LoadScene;
-using CodeBase.Services.Pause;
-using CodeBase.Services.PersistentProgress;
-using CodeBase.Services.Random;
-using CodeBase.Services.Replay;
-using CodeBase.Services.SaveLoad;
-using CodeBase.Services.Spawner;
-using CodeBase.Services.StaticData;
-using CodeBase.Services.Tween;
-using CodeBase.Services.Update;
-using CodeBase.Services.Victory;
-using CodeBase.Services.Window;
+using Zenject;
 
 namespace CodeBase.Infrastructure
 {
@@ -27,74 +10,21 @@ namespace CodeBase.Infrastructure
         private readonly Dictionary<Type, IExitState> _states;
         private IExitState _exitState;
         
-        public GameStateMachine(AllServices services, ICorutineRunner corutineRunner, IUpdatable updatable)
+        public GameStateMachine(DiContainer diContainer, ICorutineRunner corutineRunner, IUpdatable updatable)
         {
             _states = new Dictionary<Type, IExitState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, services, corutineRunner, updatable),
+                [typeof(BootstrapState)] = new BootstrapState(diContainer, this, corutineRunner, updatable),
                 
-                [typeof(LoadPersistentDataState)] = new LoadPersistentDataState(
-                    services.Single<IGameStateMachine>(),
-                    services.Single<IPersistentDataService>(),
-                    services.Single<ISaveLoadDataService>()),
+                [typeof(LoadPersistentDataState)] = diContainer.Instantiate<LoadPersistentDataState>(),
                 
-                [typeof(LoadMenuState)] = new LoadMenuState(
-                    services.Single<ISceneLoaderService>(),
-                    services.Single<IUIFactory>(),
-                    services.Single<IPlayerFactory>(),
-                    services.Single<IPersistentDataService>(),
-                    services.Single<IWindowService>()),
+                [typeof(LoadMenuState)] = diContainer.Instantiate<LoadMenuState>(),
+                [typeof(UnloadMenuState)] = diContainer.Instantiate<UnloadMenuState>(),
                 
-                [typeof(UnloadMenuState)] = new UnloadMenuState(
-                    services.Single<IGameStateMachine>(),
-                    services.Single<IWindowService>(),
-                    services.Single<IReadWriteDataService>(),
-                    services.Single<ISaveLoadDataService>()),
-                
-                [typeof(LoadLevelState)] = new LoadLevelState(
-                    services.Single<IGameStateMachine>(),
-                    services.Single<ISceneLoaderService>(),
-                    services.Single<IUIFactory>(),
-                    services.Single<IPlayerFactory>(),
-                    services.Single<IPersistentDataService>(),
-                    services.Single<IStaticDataService>(),
-                    services.Single<ILevelFactory>(),
-                    services.Single<IRandomService>(),
-                    services.Single<IUpdateService>(),
-                    services.Single<IReadWriteDataService>(),
-                    services.Single<IPauseService>(),
-                    services.Single<ISpawnerService>()),
-                
-                [typeof(LoopLevelState)] = new LoopLevelState(
-                    services.Single<IUIFactory>(),
-                    services.Single<IPersistentDataService>(),
-                    services.Single<IReadWriteDataService>(),
-                    services.Single<ITweenService>(),
-                    services.Single<IPauseService>(),
-                    services.Single<ISpawnerService>(),
-                    services.Single<IUpdateService>(),
-                    services.Single<IDefeatService>(),
-                    services.Single<IVictoryService>()),
-                
-                [typeof(ReplayLevelState)] = new ReplayLevelState(
-                    services.Single<IGameStateMachine>(),
-                    services.Single<IReplayService>(),
-                    services.Single<IUIFactory>(),
-                    services.Single<IPauseService>(),
-                    services.Single<IPersistentDataService>()),
-                
-                [typeof(UnloadLevelState)] = new UnloadLevelState(
-                    services.Single<IGameStateMachine>(),
-                    services.Single<ISpawnerService>(),
-                    services.Single<IInputService>(),
-                    services.Single<IVictoryService>(),
-                    services.Single<IDefeatService>(),
-                    services.Single<IReplayService>(),
-                    services.Single<IPersistentDataService>(),
-                    services.Single<IReadWriteDataService>(),
-                    services.Single<IPauseService>(),
-                    services.Single<IRandomService>(),
-                    services.Single<ISaveLoadDataService>()),
+                [typeof(LoadLevelState)] = diContainer.Instantiate<LoadLevelState>(),
+                [typeof(LoopLevelState)] = diContainer.Instantiate<LoopLevelState>(),
+                [typeof(ReplayLevelState)] = diContainer.Instantiate<ReplayLevelState>(),
+                [typeof(UnloadLevelState)] = diContainer.Instantiate<UnloadLevelState>(),
             };
         }
 

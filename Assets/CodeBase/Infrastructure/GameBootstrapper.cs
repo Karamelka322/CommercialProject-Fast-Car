@@ -1,25 +1,35 @@
-using System;
+using CodeBase.Services.AssetProvider;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameBootstrapper : MonoBehaviour, ICorutineRunner, IUpdatable
+    public class GameBootstrapper : MonoBehaviour
     {
-        private Game _game;
-
-        public event Action OnUpdate;
-        public event Action OnFixedUpdate;
-
         private void Awake()
         {
-            _game = new Game(this, this);
-            DontDestroyOnLoad(this);
+            ProjectContext projectContext = InitProjectContext();
+            GameUpdate gameUpdate = InitGameUpdate();
+            
+            InitGame(projectContext, gameUpdate);
         }
 
-        private void Update() => 
-            OnUpdate?.Invoke();
+        private static void InitGame(Context projectContext, GameUpdate gameUpdate) => 
+            new Game(projectContext.Container, gameUpdate, gameUpdate);
 
-        private void FixedUpdate() => 
-            OnFixedUpdate?.Invoke();
+        private static GameUpdate InitGameUpdate()
+        {
+            GameUpdate prefab = Resources.Load<GameUpdate>(AssetPath.GameUpdatePath);
+            GameUpdate gameUpdate = Instantiate(prefab);
+            return gameUpdate;
+        }
+
+        private static ProjectContext InitProjectContext()
+        {
+            ProjectContext prefab = Resources.Load<ProjectContext>(AssetPath.ProjectContextPath);
+            ProjectContext projectContext = Instantiate(prefab);
+            projectContext.Initialize();
+            return projectContext;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using CodeBase.Services.Window;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -6,8 +7,11 @@ namespace CodeBase.UI.Windows
     {
         private IWindowService _windowService;
 
-        public void Construct(IWindowService windowService) => 
+        [Inject]
+        public void Construct(IWindowService windowService)
+        {
             _windowService = windowService;
+        }
 
         protected override void OnOpen() => 
             _windowService.Register(this);

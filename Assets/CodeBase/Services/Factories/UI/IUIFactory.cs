@@ -1,5 +1,5 @@
-using CodeBase.Mediator;
 using CodeBase.UI;
+
 using UnityEngine;
 
 namespace CodeBase.Services.Factories.UI
@@ -9,10 +9,10 @@ namespace CodeBase.Services.Factories.UI
         LoadingCurtain LoadMenuCurtain();
         LoadingCurtain LoadLevelCurtain();
         void LoadUIRoot();
-        void LoadSkipButton(IMenuMediator mediator);
-        void LoadMainMenuWindow(IMenuMediator mediator);
-        void LoadSettingsWindow(IMenuMediator mediator);
-        void LoadGarageWindow(IMenuMediator mediator);
+        void LoadSkipButton();
+        void LoadMainMenuWindow();
+        void LoadSettingsWindow();
+        void LoadGarageWindow();
         void LoadHUD();
         void LoadPauseWindow();
         GameObject LoadTimer();

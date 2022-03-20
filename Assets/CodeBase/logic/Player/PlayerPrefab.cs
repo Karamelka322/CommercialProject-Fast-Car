@@ -2,6 +2,7 @@ using CodeBase.Data.Static.Player;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Player
 {
@@ -14,8 +15,11 @@ namespace CodeBase.Logic.Player
         
         public PlayerTypeId Type => _type;
         
-        public void Construct(IRandomService randomService) => 
+        [Inject]
+        public void Construct(IRandomService randomService)
+        {
             _randomService = randomService;
+        }
 
         public void OnReplay()
         {

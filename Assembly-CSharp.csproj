@@ -76,8 +76,8 @@
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IAffectPlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\UIWindow.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\SwitchPlayerCar.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
@@ -110,8 +110,8 @@
      <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\JoystickInputElement.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\IPauseService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Item\Item.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerTypeId.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Item.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\InputSettings.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\JoystickInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
@@ -136,7 +136,6 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemiesSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Reward\RewardService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\AllServices.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerDefeat.cs" />
@@ -165,10 +164,10 @@
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetPath.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
-     <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
      <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
+     <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
      <Compile Include="Assets\CodeBase\Mediator\MenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
@@ -178,8 +177,8 @@
      <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
-     <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
+     <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleWriteData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\StaticDataService.cs" />
@@ -241,6 +240,8 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Installers\MenuInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
@@ -467,11 +468,20 @@
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
      <Reference Include="Sirenix.OdinInspector.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.OdinInspector.Attributes">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Serialization.Config">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
@@ -479,11 +489,17 @@
      <Reference Include="Sirenix.Utilities">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     </Reference>
      <Reference Include="RainbowCore">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Serialization">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -842,9 +858,6 @@
      <Reference Include="Unity.Recorder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Postprocessing.Runtime">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.Recorder.Base">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
      </Reference>
@@ -853,12 +866,6 @@
      </Reference>
      <Reference Include="Unity.ProBuilder.AddOns.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -875,17 +882,26 @@
      <Reference Include="Unity.ProBuilder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Postprocessing.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Runtime">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Recorder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
@@ -896,9 +912,25 @@
       <Project>{414e2968-c97c-3103-27f6-3c7eaa214639}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{6a9f6b65-4f3b-7976-d6fb-f4b9a4e5dbab}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{29eb6eef-8507-e610-4037-5847cd7d1543}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{d68e1081-e53b-de60-df2e-be3ba0f7cb39}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{039c5e53-28c3-65e3-28c3-b85a6a8a4fc0}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{0cdf20d3-11cf-6cd2-6e23-fa7af980a984}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

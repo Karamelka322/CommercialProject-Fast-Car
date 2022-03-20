@@ -4,6 +4,7 @@ using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Player
 {
@@ -16,6 +17,7 @@ namespace CodeBase.Logic.Player
         private IInputService _inputService;
         private IUpdateService _updateService;
 
+        [Inject]
         public void Construct(IInputService inputService, IUpdateService updateService)
         {
             _inputService = inputService;

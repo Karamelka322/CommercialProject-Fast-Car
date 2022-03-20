@@ -5,6 +5,7 @@ using CodeBase.Mediator;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.UI.Buttons;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Logic
 {
@@ -27,8 +28,11 @@ namespace CodeBase.UI.Logic
         
         private IMenuMediator _mediator;
 
-        public void Constuct(IMenuMediator mediator) => 
+        [Inject]
+        public void Constuct(IMenuMediator mediator)
+        {
             _mediator = mediator;
+        }
 
         public void Start()
         {

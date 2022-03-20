@@ -1,5 +1,6 @@
 using CodeBase.Services.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Buttons
 {
@@ -10,8 +11,11 @@ namespace CodeBase.UI.Buttons
 
         private IPauseService _pauseService;
 
-        public void Construct(IPauseService pauseService) => 
+        [Inject]
+        public void Construct(IPauseService pauseService)
+        {
             _pauseService = pauseService;
+        }
 
         protected override void OnClickButton()
         {

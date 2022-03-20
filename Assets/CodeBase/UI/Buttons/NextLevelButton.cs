@@ -1,5 +1,6 @@
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.States;
+using Zenject;
 
 namespace CodeBase.UI.Buttons
 {
@@ -7,8 +8,11 @@ namespace CodeBase.UI.Buttons
     {
         private IGameStateMachine _gameStateMachine;
 
-        public void Construct(IGameStateMachine gameStateMachine) => 
+        [Inject]
+        public void Construct(IGameStateMachine gameStateMachine)
+        {
             _gameStateMachine = gameStateMachine;
+        }
 
         protected override void OnClickButton() => 
             _gameStateMachine.Enter<UnloadLevelState, LoadLevelState>();

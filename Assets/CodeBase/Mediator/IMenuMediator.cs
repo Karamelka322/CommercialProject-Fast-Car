@@ -6,9 +6,7 @@ namespace CodeBase.Mediator
 {
     public interface IMenuMediator
     {
-        MenuUIViewer MenuUIViewer { get; }
         MenuAnimator MenuAnimator { get; }
-        Garage Garage { get; }
         void ChangePlayerCar(PlayerTypeId playerTypeId);
         void ChangeMenuState(MenuState state);
         void SkipIntro();

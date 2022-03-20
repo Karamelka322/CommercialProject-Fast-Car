@@ -1,4 +1,5 @@
 using CodeBase.Infrastructure.States;
+using Zenject;
 
 namespace CodeBase.Infrastructure
 {
@@ -6,11 +7,9 @@ namespace CodeBase.Infrastructure
     {
         private readonly GameStateMachine _gameStateMachine;
 
-        public Game(ICorutineRunner corutineRunner, IUpdatable updatable)
+        public Game(in DiContainer diContainer, ICorutineRunner corutineRunner, IUpdatable updatable)
         {
-            AllServices services = new AllServices();
-            
-            _gameStateMachine = new GameStateMachine(services, corutineRunner, updatable);
+            _gameStateMachine = new GameStateMachine(diContainer, corutineRunner, updatable);
             _gameStateMachine.Enter<BootstrapState>();
         }
     }

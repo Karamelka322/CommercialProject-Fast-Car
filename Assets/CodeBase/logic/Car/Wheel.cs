@@ -1,5 +1,6 @@
 using CodeBase.Services.Update;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Car
 {
@@ -17,8 +18,11 @@ namespace CodeBase.Logic.Car
         private Vector3 _position;
         private Quaternion _rotation;
 
-        public void Construct(IUpdateService updateService) => 
+        [Inject]
+        public void Construct(IUpdateService updateService)
+        {
             _updateService = updateService;
+        }
 
         private void Start() => 
             _updateService.OnUpdate += OnUpdate;

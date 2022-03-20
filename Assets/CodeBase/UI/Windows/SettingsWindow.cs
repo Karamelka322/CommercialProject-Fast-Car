@@ -2,6 +2,7 @@ using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Window;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -11,6 +12,7 @@ namespace CodeBase.UI.Windows
         private IWindowService _windowService;
         private IMenuMediator _mediator;
 
+        [Inject]
         public void Construct(IWindowService windowService, IReadWriteDataService readWriteDataService, IMenuMediator mediator)
         {
             _readWriteDataService = readWriteDataService;

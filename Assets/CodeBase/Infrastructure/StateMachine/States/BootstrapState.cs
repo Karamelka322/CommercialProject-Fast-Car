@@ -19,23 +19,28 @@ using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using CodeBase.Services.Window;
+using Zenject;
 
 namespace CodeBase.Infrastructure.States
 {
     public class BootstrapState : IState
     {
-        private readonly AllServices _services;
-
         private readonly IGameStateMachine _stateMachine;
         private readonly ICorutineRunner _corutineRunner;
         private readonly IUpdatable _updatable;
+        
+        private readonly DiContainer _diContainer;
 
-        public BootstrapState(IGameStateMachine stateMachine, AllServices services, ICorutineRunner corutineRunner, IUpdatable updatable)
+        public BootstrapState(
+            DiContainer diContainer,
+            IGameStateMachine stateMachine,
+            ICorutineRunner corutineRunner,
+            IUpdatable updatable)
         {
             _stateMachine = stateMachine;
-            _services = services;
             _corutineRunner = corutineRunner;
             _updatable = updatable;
+            _diContainer = diContainer;
 
             RegisterServices();
         }
@@ -44,86 +49,38 @@ namespace CodeBase.Infrastructure.States
             EnterLoadPersistentDataState();
 
         public void Exit() => 
-            _services.Single<IUpdateService>().Enable();
+            _diContainer.Resolve<IUpdateService>().Enable();
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IWindowService>(new WindowService());
-            _services.RegisterSingle<IVictoryService>(new VictoryService());
-            _services.RegisterSingle<IDefeatService>(new DefeatService());
-            _services.RegisterSingle<IReplayService>(new ReplayService());
-            _services.RegisterSingle<IUpdateService>(new UpdateService(_updatable));
-            _services.RegisterSingle<ITweenService>(new TweenService(_corutineRunner));
-            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
-            _services.RegisterSingle<ISceneLoaderService>(new SceneLoaderService(_corutineRunner));
-            _services.RegisterSingle<IAssetProviderService>(new AssetProviderService());
-            _services.RegisterSingle<IInputService>(new InputService());
-
-            _services.RegisterSingle<IPersistentDataService>(new PersistentDataService());
-            _services.RegisterSingle<IReadWriteDataService>(new ReadWriteDataService(_services.Single<IPersistentDataService>(), _services.Single<IUpdateService>()));
-            _services.RegisterSingle<ISaveLoadDataService>(new SaveLoadDataService(_services.Single<IPersistentDataService>()));
-            _services.RegisterSingle<IStaticDataService>(new StaticDataService(_services.Single<IAssetProviderService>()));
-            _services.RegisterSingle<IRewardService>(new RewardService(_services.Single<IPersistentDataService>()));
-
-            _services.RegisterSingle<IPauseService>(new PauseService(_services.Single<IUpdateService>()));
-            _services.RegisterSingle<IRandomService>(new RandomService(_corutineRunner));
-
-            _services.RegisterSingle<IUIFactory>(new UIFactory(
-                _services.Single<IGameStateMachine>(),
-                _services.Single<IAssetProviderService>(),
-                _services.Single<IPersistentDataService>(),
-                _services.Single<IStaticDataService>(),
-                _services.Single<IInputService>(),
-                _services.Single<ITweenService>(),
-                _services.Single<IPauseService>(),
-                _services.Single<IReadWriteDataService>(),
-                _services.Single<IReplayService>(),
-                _services.Single<IWindowService>()));
+            _diContainer.Bind<IUpdatable>().FromInstance(_updatable).AsSingle();
+            _diContainer.Bind<ICorutineRunner>().FromInstance(_corutineRunner).AsSingle();
+            _diContainer.Bind<IGameStateMachine>().FromInstance(_stateMachine).AsSingle();
             
-            _services.RegisterSingle<ILevelFactory>(new LevelFactory(
-                _services.Single<IAssetProviderService>(),
-                _services.Single<ITweenService>(),
-                _services.Single<IUpdateService>(),
-                _services.Single<IReadWriteDataService>(),
-                _services.Single<IRandomService>(),
-                _services.Single<IReplayService>(),
-                _services.Single<IUIFactory>(),
-                _services.Single<IDefeatService>(),
-                _services.Single<IVictoryService>(),
-                _services.Single<IStaticDataService>()));
-
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(
-                _services.Single<IStaticDataService>(),
-                _services.Single<IInputService>(),
-                _services.Single<ITweenService>(),
-                _services.Single<IUpdateService>(),
-                _services.Single<IPauseService>(),
-                _services.Single<IReadWriteDataService>(),
-                _services.Single<IReplayService>(),
-                _services.Single<IRandomService>(),
-                _services.Single<IUIFactory>(),
-                _services.Single<IDefeatService>(),
-                _services.Single<IVictoryService>(),
-                _services.Single<IRewardService>()));
-
-            _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(
-                _services.Single<IAssetProviderService>(),
-                _services.Single<IUpdateService>(),
-                _services.Single<IPauseService>(),
-                _services.Single<IReplayService>(),
-                _services.Single<IPlayerFactory>(),
-                _services.Single<IStaticDataService>(),
-                _services.Single<IDefeatService>(),
-                _services.Single<IVictoryService>()));
+            _diContainer.Bind<IWindowService>().To<WindowService>().AsSingle();
+            _diContainer.Bind<IVictoryService>().To<VictoryService>().AsSingle();
+            _diContainer.Bind<IDefeatService>().To<DefeatService>().AsSingle();
+            _diContainer.Bind<IReplayService>().To<ReplayService>().AsSingle();
+            _diContainer.Bind<IUpdateService>().To<UpdateService>().AsSingle();
+            _diContainer.Bind<ITweenService>().To<TweenService>().AsSingle();
+            _diContainer.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
+            _diContainer.Bind<IAssetProviderService>().To<AssetProviderService>().AsSingle();
+            _diContainer.Bind<IInputService>().To<InputService>().AsSingle();
+            _diContainer.Bind<IPersistentDataService>().To<PersistentDataService>().AsSingle();
+            _diContainer.Bind<IReadWriteDataService>().To<ReadWriteDataService>().AsSingle();
+            _diContainer.Bind<ISaveLoadDataService>().To<SaveLoadDataService>().AsSingle();
+            _diContainer.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+            _diContainer.Bind<IRewardService>().To<RewardService>().AsSingle();
+            _diContainer.Bind<IPauseService>().To<PauseService>().AsSingle();
+            _diContainer.Bind<IRandomService>().To<RandomService>().AsSingle();
             
-            _services.RegisterSingle<ISpawnerService>(new SpawnerService(
-                _services.Single<IRandomService>(),
-                _services.Single<ILevelFactory>(),
-                _services.Single<IEnemyFactory>(),
-                _services.Single<IPersistentDataService>(),
-                _corutineRunner));
+            _diContainer.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            _diContainer.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
+            _diContainer.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
+            _diContainer.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
+            _diContainer.Bind<ISpawnerService>().To<SpawnerService>().AsSingle();
         }
-        
+
         private void EnterLoadPersistentDataState() => 
             _stateMachine.Enter<LoadPersistentDataState>();
     }

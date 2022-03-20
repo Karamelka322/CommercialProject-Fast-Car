@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Services.Tween;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI
 {
@@ -15,8 +16,11 @@ namespace CodeBase.UI
         private void Awake() => 
             DontDestroyOnLoad(this);
 
-        public void Construct(ITweenService tweenService) => 
+        [Inject]
+        public void Construct(ITweenService tweenService)
+        {
             _tweenService = tweenService;
+        }
 
         public void Show(float speed = 0, float delay = 0, Action done = null)
         {

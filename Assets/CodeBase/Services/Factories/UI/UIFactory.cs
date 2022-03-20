@@ -1,170 +1,122 @@
-using CodeBase.Infrastructure;
-using CodeBase.Mediator;
+using CodeBase.Data.Static;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
-using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
-using CodeBase.Services.Tween;
-using CodeBase.Services.Window;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
-using CodeBase.UI.Logic;
 using CodeBase.UI.Windows;
 using UnityEngine;
+using Zenject;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.Factories.UI
 {
     public class UIFactory : IUIFactory
     {
-        private readonly IGameStateMachine _stateMachine;
-        private readonly IAssetProviderService _assetProvider;
-        private readonly IPersistentDataService _persistentDataService;
-        private readonly IStaticDataService _staticDataService;
-        private readonly IInputService _inputService;
-        private readonly ITweenService _tweenService;
-        private readonly IPauseService _pauseService;
-        private readonly IReadWriteDataService _readWriteDataService;
-        private readonly IReplayService _replayService;
-        private readonly IWindowService _windowService;
+        private readonly DiContainer _diContainer;
 
         private Transform UIRoot;
 
-        public UIFactory(
-            IGameStateMachine stateMachine,
-            IAssetProviderService assetProvider,
-            IPersistentDataService persistentDataService,
-            IStaticDataService staticDataService,
-            IInputService inputService,
-            ITweenService tweenService,
-            IPauseService pauseService,
-            IReadWriteDataService readWriteDataService,
-            IReplayService replayService,
-            IWindowService windowService)
+        public UIFactory(DiContainer diContainer)
         {
-            _stateMachine = stateMachine;
-            _assetProvider = assetProvider;
-            _persistentDataService = persistentDataService;
-            _staticDataService = staticDataService;
-            _inputService = inputService;
-            _tweenService = tweenService;
-            _pauseService = pauseService;
-            _readWriteDataService = readWriteDataService;
-            _replayService = replayService;
-            _windowService = windowService;
+            _diContainer = diContainer;
         }
 
         public LoadingCurtain LoadMenuCurtain()
         {
-            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadMenuCurtain());
-            curtain.Construct(_tweenService);
-            return curtain;
+            LoadingCurtain prefab = _diContainer.Resolve<IAssetProviderService>().LoadMenuCurtain();
+            return _diContainer.InstantiatePrefabForComponent<LoadingCurtain>(prefab.gameObject);
         }
 
         public LoadingCurtain LoadLevelCurtain()
         {
-            LoadingCurtain curtain = Object.Instantiate(_assetProvider.LoadLevelCurtain());
-            curtain.Construct(_tweenService);
-            return curtain;
+            LoadingCurtain prefab = _diContainer.Resolve<IAssetProviderService>().LoadLevelCurtain();
+            return _diContainer.InstantiatePrefabForComponent<LoadingCurtain>(prefab.gameObject);
         }
 
-        public void LoadMainMenuWindow(IMenuMediator mediator)
+        public void LoadMainMenuWindow()
         {
-            MainMenuWindow window = Object.Instantiate(_assetProvider.LoadMainMenuWindow(), UIRoot);
-            
-            window.Construct(_windowService);
-            
-            window.GetComponentInChildren<PlayButton>().Construct(_stateMachine, mediator);
-            window.GetComponentInChildren<SettingsButton>().Construct(mediator);
-            window.GetComponentInChildren<GarageButton>().Construct(mediator);
+            MainMenuWindow prefab = _diContainer.Resolve<IAssetProviderService>().LoadMainMenuWindow(); 
+            _diContainer.InstantiatePrefab(prefab.gameObject, UIRoot);
         }
 
-        public void LoadSettingsWindow(IMenuMediator mediator)
+        public void LoadSettingsWindow()
         {
-            SettingsWindow window = Object.Instantiate(_assetProvider.LoadSettingsWindow(), UIRoot);
-            
-            window.Construct(_windowService, _readWriteDataService, mediator);
-            window.GetComponentInChildren<InputSettings>().Construct(_persistentDataService);
+            SettingsWindow prefab = _diContainer.Resolve<IAssetProviderService>().LoadSettingsWindow();
+            _diContainer.InstantiatePrefab(prefab, UIRoot);
         }
 
-        public void LoadGarageWindow(IMenuMediator mediator)
+        public void LoadGarageWindow()
         {
-            GarageWindow window = Object.Instantiate(_assetProvider.LoadGarageWindow(), UIRoot);
-            
-            window.Construct(_windowService, _readWriteDataService, mediator);
-            window.GetComponentInChildren<SwitchPlayerCar>().Constuct(mediator);
+            GarageWindow prefab = _diContainer.Resolve<IAssetProviderService>().LoadGarageWindow();
+            _diContainer.InstantiatePrefab(prefab, UIRoot);
         }
 
         public void LoadHUD()
         {
-            HUD hud = InstantiateRegister(_assetProvider.LoadHUD());
-            
-            GameObject prefab = _staticDataService.ForInput(_persistentDataService.PlayerData.SettingsData.InputType);
-            GameObject inputVariant = Object.Instantiate(prefab, hud.InputContainer);
-            _inputService.RegisterInput(_persistentDataService.PlayerData.SettingsData.InputType, inputVariant);
+            HUD hudPrefab = _diContainer.Resolve<IAssetProviderService>().LoadHUD();
+            HUD hud = InstantiateRegisterWindow(hudPrefab);
 
-            hud.gameObject.GetComponentInChildren<PauseButton>().Construct(this, _pauseService);
+            InputTypeId inputType = _diContainer.Resolve<IPersistentDataService>().PlayerData.SettingsData.InputType;
+            GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForInput(inputType);
+            GameObject inputVariant = Object.Instantiate(prefab, hud.InputContainer);
+            
+            _diContainer.Resolve<IInputService>().RegisterInput(inputType, inputVariant);
         }
 
         public void LoadPauseWindow()
         {
-            GameObject prefab = _assetProvider.LoadPauseWindow();
-            GameObject window = InstantiateRegister(prefab, UIRoot);
-            
-            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
-            window.GetComponentInChildren<ResumeButton>().Construct(_pauseService);
-            window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
+            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadPauseWindow();
+            InstantiateRegisterWindow(prefab, UIRoot);
         }
 
         public GameObject LoadTimer()
         {
-            GameObject prefab = _assetProvider.LoadTimer();
+            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadTimer();
             return Object.Instantiate(prefab, UIRoot);
         }
 
         public void LoadDefeatWindow()
         {
-            GameObject prefab = _assetProvider.LoadDefeatWindow();
-            GameObject window = InstantiateRegister(prefab, UIRoot);
-            
-            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
-            window.GetComponentInChildren<ReplayButton>().Construct(_stateMachine);
+            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadDefeatWindow();
+            InstantiateRegisterWindow(prefab, UIRoot);
         }
 
         public void LoadVictoryWindow()
         {
-            GameObject prefab = _assetProvider.LoadVictoryWindow();
-            GameObject window = InstantiateRegister(prefab, UIRoot);
+            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadVictoryWindow();
+            InstantiateRegisterWindow(prefab, UIRoot);
+        }
+
+        public void LoadSkipButton()
+        {
+            SkipButton prefab = _diContainer.Resolve<IAssetProviderService>().LoadSkipButton();
+            _diContainer.InstantiatePrefab(prefab, UIRoot);
+        }
+
+        public void LoadUIRoot()
+        {
+            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadUIRoot();
+            UIRoot = Object.Instantiate(prefab).transform;
+        }
+
+        private T InstantiateRegisterWindow<T>(T prefab) where T : MonoBehaviour
+        {
+            T monoBehaviour = _diContainer.InstantiatePrefabForComponent<T>(prefab);
             
-            window.GetComponentInChildren<HomeButton>().Construct(_stateMachine);
-            window.GetComponentInChildren<NextLevelButton>().Construct(_stateMachine);
-        }
-
-        public void LoadSkipButton(IMenuMediator mediator)
-        {
-            SkipButton skipButton = Object.Instantiate(_assetProvider.LoadSkipButton(), UIRoot);
-            skipButton.Construct(mediator);
-        }
-
-        public void LoadUIRoot() => 
-            UIRoot = Object.Instantiate(_assetProvider.LoadUIRoot()).transform;
-
-        private T InstantiateRegister<T>(T prefab) where T : MonoBehaviour
-        {
-            T monoBehaviour = Object.Instantiate(prefab);
-            _readWriteDataService.Register(monoBehaviour.gameObject);
-            _replayService.Register(monoBehaviour.gameObject);
+            _diContainer.Resolve<IReadWriteDataService>().Register(monoBehaviour.gameObject);
+            _diContainer.Resolve<IReplayService>().Register(monoBehaviour.gameObject);
+            
             return monoBehaviour;
         }
         
-        private GameObject InstantiateRegister(GameObject prefab, Transform parent)
+        private void InstantiateRegisterWindow(Object prefab, Transform parent)
         {
-            GameObject obj = Object.Instantiate(prefab, parent);
-            _replayService.Register(obj);
-            return obj;
+            GameObject obj = _diContainer.InstantiatePrefab(prefab, parent);
+            _diContainer.Resolve<IReplayService>().Register(obj);
         }
     }
 }

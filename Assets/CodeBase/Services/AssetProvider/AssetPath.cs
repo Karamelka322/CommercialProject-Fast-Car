@@ -2,13 +2,16 @@ namespace CodeBase.Services.AssetProvider
 {
     public static class AssetPath
     {
+        public const string GameUpdatePath = "Infrastructure/GameUpdate";
+        public const string ProjectContextPath = "Infrastructure/ProjectContext";
+
         public const string CurtainsLoadingMenuPath = "UI/Curtains/LoadingMenuCurtain";
         public const string CurtainsLoadingLevelPath = "UI/Curtains/LoadingLevelCurtain";
 
         public const string PlayerStaticDataPath = "StaticData/Player";
         public const string LevelStaticDataPath = "StaticData/Level";
         public const string EnemiesStaticDataPath = "StaticData/Enemy";
-        
+
         public const string MainMenuWindowPath = "UI/Windows/Menu/MainMenuWindow";
         public const string SettingsWindowPath = "UI/Windows/Menu/SettingsWindow";
         public const string GarageWindowPath = "UI/Windows/Menu/GarageWindow";

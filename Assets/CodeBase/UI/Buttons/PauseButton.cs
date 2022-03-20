@@ -1,5 +1,6 @@
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Pause;
+using Zenject;
 
 namespace CodeBase.UI.Buttons
 {
@@ -8,6 +9,7 @@ namespace CodeBase.UI.Buttons
         private IPauseService _pauseService;
         private IUIFactory _uiFactory;
 
+        [Inject]
         public void Construct(IUIFactory uiFactory, IPauseService pauseService)
         {
             _uiFactory = uiFactory;

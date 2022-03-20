@@ -11,6 +11,7 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Window;
 using CodeBase.UI;
 using UnityEngine.SceneManagement;
+using Zenject;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Infrastructure.States
@@ -64,12 +65,9 @@ namespace CodeBase.Infrastructure.States
         private void OnLoaded()
         {
             _uiFactory.LoadUIRoot();
-            
+
             IMenuMediator mediator = SceneManager.GetActiveScene().FindComponentInRootGameObjects<IMenuMediator>();
 
-            mediator.MenuUIViewer.Construct(_windowService, _uiFactory);
-            mediator.Garage.Construct(_playerFactory);
-            
             InitPreviewPlayer(mediator.MenuAnimator);
 
             if(_isFirstLoad)

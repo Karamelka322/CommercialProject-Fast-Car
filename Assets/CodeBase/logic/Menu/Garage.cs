@@ -1,6 +1,7 @@
 using CodeBase.Data.Static.Player;
 using CodeBase.Services.Factories.Player;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Menu
 {
@@ -8,8 +9,11 @@ namespace CodeBase.Logic.Menu
     {
         private IPlayerFactory _playerFactory;
 
-        public void Construct(IPlayerFactory playerFactory) => 
+        [Inject]
+        public void Construct(IPlayerFactory playerFactory)
+        {
             _playerFactory = playerFactory;
+        }
 
         public void ChangePlayerCar(PlayerTypeId playerTypeId) => 
             _playerFactory.RebuildBasePreviewPlayerObject(playerTypeId);

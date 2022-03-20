@@ -2,6 +2,7 @@ using CodeBase.Logic.Item;
 using CodeBase.Logic.World;
 using CodeBase.Services.Tween;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Player
 {
@@ -16,8 +17,11 @@ namespace CodeBase.Logic.Player
         private ITweenService _tweenService;
         private Item.Item _item;
 
-        public void Construct(ITweenService tweenService) => 
+        [Inject]
+        public void Construct(ITweenService tweenService)
+        {
             _tweenService = tweenService;
+        }
 
         private void OnEnable() => 
             _captureArea.OnAreaEnter += OnAreaEnter;

@@ -1,5 +1,6 @@
 using CodeBase.Logic.Menu;
 using CodeBase.Mediator;
+using Zenject;
 
 namespace CodeBase.UI.Buttons
 {
@@ -15,8 +16,11 @@ namespace CodeBase.UI.Buttons
             Invoke(nameof(OnClickButton), LifeTime);
         }
 
-        public void Construct(IMenuMediator mediator) => 
+        [Inject]
+        public void Construct(IMenuMediator mediator)
+        {
             _mediator = mediator;
+        }
 
         protected override void OnClickButton()
         {

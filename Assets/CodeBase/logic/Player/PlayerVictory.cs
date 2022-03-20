@@ -8,6 +8,7 @@ using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Reward;
 using CodeBase.Services.Victory;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Player
 {
@@ -20,6 +21,7 @@ namespace CodeBase.Logic.Player
 
         public event Action OnVictory;
 
+        [Inject]
         public void Construct(IUIFactory uiFactory, IRewardService rewardService)
         {
             _rewardService = rewardService;

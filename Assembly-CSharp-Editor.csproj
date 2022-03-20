@@ -43,9 +43,9 @@
   <ItemGroup>
      <Compile Include="Assets\CodeBase\Editor\Tools.cs" />
      <Compile Include="Assets\CodeBase\Editor\Logic\World\PointEditor.cs" />
-     <Compile Include="Assets\CodeBase\Editor\Indrastructure\EditorBootstrapper.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Infrastructure\EditorBootstrapper.cs" />
      <Compile Include="Assets\CodeBase\Editor\Logic\NavMeshAgentWrapperEditor.cs" />
-     <Compile Include="Assets\CodeBase\Editor\Indrastructure\GameBootstrapperEditor.cs" />
+     <Compile Include="Assets\CodeBase\Editor\Infrastructure\GameBootstrapperEditor.cs" />
      <Reference Include="UnityEngine">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -289,17 +289,29 @@
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
      <Reference Include="Sirenix.OdinInspector.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.OdinInspector.Attributes">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
      <Reference Include="Sirenix.Serialization.Config">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Utilities">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
      <Reference Include="RainbowCore">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
@@ -309,6 +321,9 @@
      </Reference>
      <Reference Include="RainbowFolders">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\RainbowAssets\RainbowFolders\Editor\Assemblies\RainbowFolders.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -676,9 +691,6 @@
      <Reference Include="Unity.Recorder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Postprocessing.Runtime">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.Recorder.Base">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
      </Reference>
@@ -687,12 +699,6 @@
      </Reference>
      <Reference Include="Unity.ProBuilder.AddOns.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -709,17 +715,26 @@
      <Reference Include="Unity.ProBuilder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Postprocessing.Editor">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Runtime">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Recorder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
@@ -734,9 +749,25 @@
       <Project>{414e2968-c97c-3103-27f6-3c7eaa214639}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{6a9f6b65-4f3b-7976-d6fb-f4b9a4e5dbab}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{29eb6eef-8507-e610-4037-5847cd7d1543}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{d68e1081-e53b-de60-df2e-be3ba0f7cb39}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{039c5e53-28c3-65e3-28c3-b85a6a8a4fc0}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{0cdf20d3-11cf-6cd2-6e23-fa7af980a984}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
