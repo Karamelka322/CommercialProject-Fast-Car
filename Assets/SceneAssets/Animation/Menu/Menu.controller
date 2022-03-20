@@ -358,7 +358,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Skip
+    m_ConditionEvent: MainMenu
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4780788791273976281}
@@ -983,6 +983,9 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
+    m_ConditionEvent: MainMenu
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
     m_ConditionEvent: Skip
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -1086,7 +1089,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Skip
+    m_ConditionEvent: MainMenu
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9150043292949280313}
@@ -1157,6 +1160,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: MainMenu
+    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Skip
     m_EventTreshold: 0
