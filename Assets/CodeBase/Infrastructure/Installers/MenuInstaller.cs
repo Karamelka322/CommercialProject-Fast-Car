@@ -18,7 +18,7 @@ namespace CodeBase.Infrastructure
             BindMediator();
         }
 
-        private void OnDestroy()
+        protected override void UninstallBindings()
         {
             UnbindMediator();
         }

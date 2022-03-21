@@ -85,6 +85,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Installers\MenuInstaller.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
@@ -154,6 +155,7 @@
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorHook.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\BootstrapState.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
@@ -240,8 +242,6 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\Installers\MenuInstaller.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

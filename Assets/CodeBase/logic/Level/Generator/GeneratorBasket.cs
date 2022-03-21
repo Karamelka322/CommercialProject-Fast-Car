@@ -3,6 +3,7 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.StaticData;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Level.Generator
 {
@@ -13,8 +14,11 @@ namespace CodeBase.Logic.Level.Generator
         
         private IStaticDataService _staticDataService;
 
-        public void Construct(IStaticDataService staticDataService) => 
+        [Inject]
+        public void Construct(IStaticDataService staticDataService)
+        {
             _staticDataService = staticDataService;
+        }
 
         public void SingleReadData(PlayerPersistentData persistentData)
         {

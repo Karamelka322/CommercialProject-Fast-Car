@@ -1,8 +1,10 @@
 using System;
 using CodeBase.Extension;
+using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Update;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace CodeBase.Logic.Enemy
 {
@@ -28,10 +30,11 @@ namespace CodeBase.Logic.Enemy
             }
         }
 
-        public void Construct(IUpdateService updateService, Transform target)
+        [Inject]
+        public void Construct(IUpdateService updateService, IPlayerFactory playerFactory)
         {
             _updateService = updateService;
-            _target = target;
+            _target = playerFactory.Player.transform;
         }
         
         private void Start() => 

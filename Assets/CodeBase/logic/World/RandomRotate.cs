@@ -1,6 +1,7 @@
 using CodeBase.Extension;
 using CodeBase.Services.Update;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.World
 {
@@ -27,11 +28,12 @@ namespace CodeBase.Logic.World
 
         private IUpdateService _updateService;
 
-        private void Awake() => 
-            _nextDirection = VectorExtension.Random(_range);
-
-        public void Constuct(IUpdateService updateService) => 
+        [Inject]
+        public void Constuct(IUpdateService updateService)
+        {
             _updateService = updateService;
+            _nextDirection = VectorExtension.Random(_range);
+        }
 
         private void Start() => 
             _updateService.OnUpdate += OnUpdate;

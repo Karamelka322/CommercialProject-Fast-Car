@@ -8,6 +8,7 @@ using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Level.Generator
 {
@@ -25,8 +26,11 @@ namespace CodeBase.Logic.Level.Generator
         
         public event Action OnDefeat;
 
-        public void Construct(IUpdateService updateService) => 
+        [Inject]
+        public void Construct(IUpdateService updateService)
+        {
             _updateService = updateService;
+        }
 
         private void Start()
         {

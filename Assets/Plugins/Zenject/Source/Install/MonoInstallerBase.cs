@@ -1,8 +1,8 @@
 #if !NOT_UNITY3D
 
-using System;
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Zenject
 {
@@ -27,10 +27,14 @@ namespace Zenject
             // Define this method so we expose the enabled check box
         }
 
-        public virtual void InstallBindings()
-        {
-            throw new NotImplementedException();
-        }
+        private void OnDestroy() => 
+            UninstallBindings();
+
+        public virtual void InstallBindings() => 
+            Debug.LogWarning("Non Implemented Installer");
+
+        protected virtual void UninstallBindings() => 
+            Debug.LogWarning("Non Implemented Uninstaller");
     }
 }
 

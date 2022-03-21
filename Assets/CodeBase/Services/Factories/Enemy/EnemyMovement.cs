@@ -4,6 +4,7 @@ using CodeBase.Services.Defeat;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Services.Factories.Enemy
 {
@@ -21,8 +22,11 @@ namespace CodeBase.Services.Factories.Enemy
         private float _stopwatch;
         private float _timer;
 
-        public void Construct(IUpdateService updateService) =>
+        [Inject]
+        public void Construct(IUpdateService updateService)
+        {
             _updateService = updateService;
+        }
 
         private void Start() =>
             _updateService.OnUpdate += OnUpdate;
