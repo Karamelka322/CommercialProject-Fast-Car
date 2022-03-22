@@ -75,7 +75,7 @@ namespace CodeBase.Services.Data.ReadWrite
                 _streamingReaders[i].StreamingReadData(_persistentDataService.PlayerData);
         }
 
-        public void Clenup()
+        public void CleanUp()
         {
             _singleReaders.Clear();
             _singleWriters.Clear();

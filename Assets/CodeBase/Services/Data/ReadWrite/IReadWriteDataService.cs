@@ -5,7 +5,7 @@ namespace CodeBase.Services.Data.ReadWrite
     public interface IReadWriteDataService : IService
     {
         void Register(GameObject gameObject);
-        void Clenup();
+        void CleanUp();
         void InformSingleReaders();
         void StartStreaming();
         void StopStreaming();

@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Enemy;
+using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Random;
@@ -19,16 +21,28 @@ namespace CodeBase.Services.Factories.Enemy
             _diContainer = diContainer;
         }
 
-        public void CreateEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType, PointData spawnPoint)
+        public async Task CreateEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType, PointData spawnPoint)
         {
-            GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForEnemy(enemyType, difficultyType).Prefab.gameObject;
+            EnemyStaticData enemyData = _diContainer.Resolve<IStaticDataService>().ForEnemy(enemyType, difficultyType);
+
+            GameObject prefab = await _diContainer
+                .Resolve<IAssetMenagementService>()
+                .Load<GameObject>(enemyData.PrefabReference);
+            
             InstantiateRegister(prefab, spawnPoint);
         }
 
         private void InstantiateRegister(Object prefab, PointData spawnPoint)
         {
-            GameObject gameObject = _diContainer.InstantiatePrefab(prefab, spawnPoint.Position, spawnPoint.Rotation, null);
-            
+            GameObject gameObject = Instantiate(prefab, spawnPoint);
+            Register(gameObject);
+        }
+
+        private GameObject Instantiate(in Object prefab, in PointData spawnPoint) => 
+            _diContainer.InstantiatePrefab(prefab, spawnPoint.Position, spawnPoint.Rotation, null);
+
+        private void Register(in GameObject gameObject)
+        {
             _diContainer.Resolve<IPauseService>().Register(gameObject);
             _diContainer.Resolve<IReplayService>().Register(gameObject);
             _diContainer.Resolve<IDefeatService>().Register(gameObject);

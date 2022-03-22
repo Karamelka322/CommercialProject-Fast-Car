@@ -7,6 +7,6 @@ namespace CodeBase.Services.Pause
         bool IsPause { get; }
         void SetPause(bool isPause);
         void Register(GameObject gameObject);
-        void Clenup();
+        void CleanUp();
     }
 }

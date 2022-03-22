@@ -16,7 +16,7 @@ namespace CodeBase.Data.Perseistent
             LevelData = new LevelSessionData();
         }
         
-        public void Clenup()
+        public void CleanUp()
         {
             LevelData.CurrentLevelConfig = null;
             

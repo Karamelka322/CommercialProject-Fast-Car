@@ -37,7 +37,7 @@ namespace CodeBase.Services.Spawner
                 SpawnCapsule();
         }
 
-        public void ClenupModule()
+        public void Clear()
         {
             _config = null;
             _capsules = Array.Empty<Capsule>();

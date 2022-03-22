@@ -1,5 +1,7 @@
+using System;
 using CodeBase.Services.Update;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Camera
 {
@@ -22,11 +24,14 @@ namespace CodeBase.Logic.Camera
 
         public Transform Target { get; set; }
 
+        [Inject]
         public void Construct(IUpdateService updateService)
         {
             _updateService = updateService;
-            _updateService.OnFixedUpdate += OnFixedUpdate;
         }
+
+        private void Start() => 
+            _updateService.OnFixedUpdate += OnFixedUpdate;
 
         private void OnDestroy() => 
             _updateService.OnFixedUpdate -= OnFixedUpdate;

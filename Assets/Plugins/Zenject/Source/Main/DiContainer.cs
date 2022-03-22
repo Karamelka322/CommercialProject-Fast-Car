@@ -7,6 +7,7 @@ using ModestTree.Util;
 using Zenject.Internal;
 #if !NOT_UNITY3D
 using UnityEngine;
+using UnityEngine.SceneManagement;
 #endif
 
 namespace Zenject
@@ -2022,13 +2023,17 @@ namespace Zenject
         public GameObject InstantiatePrefab(
             UnityEngine.Object prefab, Vector3 position, Quaternion rotation, Transform parentTransform)
         {
-            return InstantiatePrefab(
+            GameObject gameObject = InstantiatePrefab(
                 prefab, new GameObjectCreationParameters
                 {
                     ParentTransform = parentTransform,
                     Position = position,
                     Rotation = rotation
                 });
+            
+            MoveToActiveScene(gameObject);
+
+            return gameObject;
         }
 
         // Create a new game object from a prefab and fill in dependencies for all children
@@ -2038,8 +2043,8 @@ namespace Zenject
             FlushBindings();
 
             bool shouldMakeActive;
-            var gameObj = CreateAndParentPrefab(
-                prefab, gameObjectBindInfo, null, out shouldMakeActive);
+            
+            GameObject gameObj = CreateAndParentPrefab(prefab, gameObjectBindInfo, null, out shouldMakeActive);
 
             InjectGameObject(gameObj);
 
@@ -2052,9 +2057,12 @@ namespace Zenject
                     gameObj.SetActive(true);
                 }
             }
-
+            
             return gameObj;
         }
+
+        private static void MoveToActiveScene(in GameObject gameObject) => 
+            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
 
         // Create a new game object from a resource path and fill in dependencies for all children
         public GameObject InstantiatePrefabResource(string resourcePath)
@@ -3387,10 +3395,13 @@ namespace Zenject
                 "Expected type '{0}' to derive from UnityEngine.Component", componentType);
 
             bool shouldMakeActive;
-            var gameObj = CreateAndParentPrefab(prefab, gameObjectBindInfo, context, out shouldMakeActive);
-
+            
+            GameObject gameObject = CreateAndParentPrefab(prefab, gameObjectBindInfo, context, out shouldMakeActive);
+            
+            MoveToActiveScene(gameObject);
+            
             var component = InjectGameObjectForComponentExplicit(
-                gameObj, componentType, extraArgs, context, concreteIdentifier);
+                gameObject, componentType, extraArgs, context, concreteIdentifier);
 
             if (shouldMakeActive && !IsValidating)
             {
@@ -3398,7 +3409,7 @@ namespace Zenject
                 using (ProfileTimers.CreateTimedBlock("User Code"))
 #endif
                 {
-                    gameObj.SetActive(true);
+                    gameObject.SetActive(true);
                 }
             }
 

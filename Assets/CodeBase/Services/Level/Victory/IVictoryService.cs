@@ -5,7 +5,7 @@ namespace CodeBase.Services.Victory
     public interface IVictoryService : IService
     {
         void Register(GameObject obj);
-        void Clenup();
+        void CleanUp();
         void SetVictory(bool isDefeat);
         bool IsVictory { get; }
     }

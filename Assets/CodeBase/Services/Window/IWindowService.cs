@@ -8,6 +8,6 @@ namespace CodeBase.Services.Window
         void Unregister<T>(T window) where T : UIWindow;
         bool CheckWindow<T>() where T : UIWindow;
         void ShowWindow<T>() where T : UIWindow;
-        void Clenup();
+        void CleanUp();
     }
 }

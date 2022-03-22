@@ -12,6 +12,6 @@ namespace CodeBase.Services.StaticData
         GameObject ForInput(InputTypeId typeId);
         EnemyStaticData ForEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType);
         LevelStaticData ForLevel(LevelTypeId typeId);
-        LevelStaticData[] Levels { get; }
+        LevelStaticData[] LevelStaticDatas { get; }
     }
 }

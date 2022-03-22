@@ -6,7 +6,7 @@ namespace CodeBase.Services.Factories.Level
 {
     public interface ILevelFactory : IService
     {
-        GameObject LoadGenerator(PointData spawnPoint);
+        void LoadGenerator(PointData spawnPoint);
         Capsule LoadCapsule(PointData spawnPoint);
     }
 }

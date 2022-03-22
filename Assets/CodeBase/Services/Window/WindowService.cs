@@ -46,7 +46,7 @@ namespace CodeBase.Services.Window
             }
         }
 
-        public void Clenup() => 
+        public void CleanUp() => 
             _windows.Clear();
 
         private bool IsSwitchWindow() => 

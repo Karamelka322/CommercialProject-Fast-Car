@@ -30,7 +30,7 @@ namespace CodeBase.Services.Replay
             }
         }
 
-        public void Clenup() => 
+        public void CleanUp() => 
             _handlers.Clear();
     }
 }

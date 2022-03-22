@@ -47,7 +47,7 @@ namespace CodeBase.Services.Spawner
                 SpawnEnemy(spawnEnemyStaticData);
         }
 
-        public void ClenupModule()
+        public void Clear()
         {
             _config = null;
             _spawnData = Array.Empty<EnemySpawnConfig>();
@@ -73,12 +73,12 @@ namespace CodeBase.Services.Spawner
             }
         }
 
-        private void SpawnEnemy(in List<EnemySpawnConfig> enemySpawnConfigs)
+        private async void SpawnEnemy(List<EnemySpawnConfig> enemySpawnConfigs)
         {
             for (int i = 0; i < enemySpawnConfigs.Count; i++)
             {
                 PointData spawnPoint = _randomService.EnemySpawnPoint();
-                _enemyFactory.CreateEnemy(enemySpawnConfigs[i].EnemyType, enemySpawnConfigs[i].DifficultyType, spawnPoint + Vector3.up);
+                await _enemyFactory.CreateEnemy(enemySpawnConfigs[i].EnemyType, enemySpawnConfigs[i].DifficultyType, spawnPoint + Vector3.up);
                 _randomService.BindTimeToSpawnPoint(TimeSpawnEnemy, spawnPoint);
 
                 if(IsBlockSpawnConfig(enemySpawnConfigs[i])) 

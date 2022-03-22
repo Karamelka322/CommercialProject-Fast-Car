@@ -6,6 +6,6 @@ namespace CodeBase.Services.Replay
     {
         void Register(GameObject gameObject);
         void InformHandlers();
-        void Clenup();
+        void CleanUp();
     }
 }

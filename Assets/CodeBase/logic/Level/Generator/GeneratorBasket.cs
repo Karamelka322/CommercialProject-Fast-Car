@@ -1,5 +1,6 @@
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Static.Level;
+using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.StaticData;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace CodeBase.Logic.Level.Generator
     {
         [SerializeField] 
         private Transform _centerBasket;
-        
+
         private IStaticDataService _staticDataService;
 
         [Inject]
@@ -38,7 +39,7 @@ namespace CodeBase.Logic.Level.Generator
             else
             {
                 LevelTypeId currentLevel = persistentData.SessionData.LevelData.CurrentLevelConfig.Level.Type;
-                LevelStaticData[] staticDatas = _staticDataService.Levels;
+                LevelStaticData[] staticDatas = _staticDataService.LevelStaticDatas;
 
                 for (int i = 0; i < staticDatas.Length; i++)
                 {

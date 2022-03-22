@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VeryEasy
       objectReference: {fileID: 0}
+    - target: {fileID: 7101900091762394767, guid: d19ee233988a10f4e96b9e6bdd39b300, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7384821669330920905, guid: d19ee233988a10f4e96b9e6bdd39b300, type: 3}
       propertyPath: m_Mesh
       value: 

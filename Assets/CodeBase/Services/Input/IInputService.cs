@@ -10,6 +10,6 @@ namespace CodeBase.Services.Input
         bool GetButton(string id);
         bool GetArea(string id);
         Vector2 GetJoystick(string id);
-        void Clenup();
+        void CleanUp();
     }
 }

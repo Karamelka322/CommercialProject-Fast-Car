@@ -39,7 +39,7 @@ namespace CodeBase.Services.Input
         public Vector2 GetJoystick(string id) => 
             _joysticks.TryGetValue(id, out IInputVector2Value input) ? input.Value : Vector2.zero;
 
-        public void Clenup()
+        public void CleanUp()
         {
             Module.CurrentInputVariant = null;
             

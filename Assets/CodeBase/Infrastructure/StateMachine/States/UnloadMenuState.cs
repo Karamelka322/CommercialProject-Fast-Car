@@ -39,8 +39,8 @@ namespace CodeBase.Infrastructure
 
         private void ClenupServices()
         {
-            _readWriteDataService.Clenup();
-            _windowService.Clenup();
+            _readWriteDataService.CleanUp();
+            _windowService.CleanUp();
         }
 
         private void EnterNextState<TNextState>() where TNextState : class, IState => 

@@ -43,7 +43,7 @@ namespace CodeBase.Services.Pause
                 _handlers.Add(handler);
         }
 
-        public void Clenup() => 
+        public void CleanUp() => 
             _handlers.Clear();
 
         private void InformHandlers()

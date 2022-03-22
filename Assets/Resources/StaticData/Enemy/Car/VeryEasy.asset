@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType: 0
   DifficultyType: 0
-  Prefab: {fileID: 8720948370857708513, guid: 4bdcde72b8e192346be22a4fdadb8342, type: 3}
+  PrefabReference:
+    m_AssetGUID: 4bdcde72b8e192346be22a4fdadb8342
+    m_SubObjectName: 
+    m_SubObjectType: 

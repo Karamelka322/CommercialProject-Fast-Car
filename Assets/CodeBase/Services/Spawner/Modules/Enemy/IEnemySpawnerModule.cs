@@ -6,7 +6,7 @@ namespace CodeBase.Services.Spawner
     {
         void SetConfig(LevelStaticData levelConfig);
         void TrySpawnEnemy();
-        void ClenupModule();
+        void Clear();
         void ResetModule();
     }
 }

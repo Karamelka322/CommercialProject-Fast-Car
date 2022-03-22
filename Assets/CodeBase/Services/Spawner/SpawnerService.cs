@@ -35,10 +35,10 @@ namespace CodeBase.Services.Spawner
             _enemySpawnerModule.TrySpawnEnemy();
         }
 
-        public void Clenup()
+        public void CleanUp()
         {
-            _capsuleSpawnerModule.ClenupModule();
-            _enemySpawnerModule.ClenupModule();
+            _capsuleSpawnerModule.Clear();
+            _enemySpawnerModule.Clear();
         }
 
         public void Reset() => 

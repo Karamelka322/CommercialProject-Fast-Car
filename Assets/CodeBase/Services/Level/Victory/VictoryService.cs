@@ -23,7 +23,7 @@ namespace CodeBase.Services.Victory
                 _handlers.Add(handler);
         }
 
-        public void Clenup()
+        public void CleanUp()
         {
             for (int i = 0; i < _influential.Count; i++) 
                 _influential[i].OnVictory -= OnVictory;

@@ -5,8 +5,8 @@ namespace CodeBase.Services.AssetProvider
         public const string GameUpdatePath = "Infrastructure/GameUpdate";
         public const string ProjectContextPath = "Infrastructure/ProjectContext";
 
-        public const string CurtainsLoadingMenuPath = "UI/Curtains/LoadingMenuCurtain";
-        public const string CurtainsLoadingLevelPath = "UI/Curtains/LoadingLevelCurtain";
+        public const string MenuCurtainPath = "UI/Curtains/LoadingMenuCurtain";
+        public const string LevelCurtainPath = "UI/Curtains/LoadingLevelCurtain";
 
         public const string PlayerStaticDataPath = "StaticData/Player";
         public const string LevelStaticDataPath = "StaticData/Level";

@@ -136,11 +136,10 @@ namespace CodeBase.Infrastructure.States
         private GameObject InitPlayer() => 
             _playerFactory.CreatePlayer(_persistentDataService.PlayerData.ProgressData.CurrentPlayer, _randomService.PlayerSpawnPoint());
         
-        private void CameraFollow(GameObject player)
+        private static void CameraFollow(GameObject player)
         {
             if (Camera.main.TryGetComponent(out CameraFollow cameraFollow))
             {
-                cameraFollow.Construct(_updateService);
                 cameraFollow.Target = player.transform;
                 cameraFollow.MoveToTarget();
             }

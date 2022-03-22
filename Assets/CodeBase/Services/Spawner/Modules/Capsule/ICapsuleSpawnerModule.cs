@@ -6,6 +6,6 @@ namespace CodeBase.Services.Spawner
     {
         void SetConfig(LevelStaticData levelConfig);
         void TrySpawnCapsule();
-        void ClenupModule();
+        void Clear();
     }
 }

@@ -1,15 +1,9 @@
 using CodeBase.Logic.Item;
-using CodeBase.Logic.Level.Generator;
-using CodeBase.Logic.Player;
-using CodeBase.Logic.World;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
-using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
-using CodeBase.Services.Tween;
-using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
 using UnityEngine;
 using Zenject;
@@ -25,15 +19,15 @@ namespace CodeBase.Services.Factories.Level
             _diContainer = diContainer;
         }
 
-        public GameObject LoadGenerator(PointData spawnPoint)
+        public void LoadGenerator(PointData spawnPoint)
         {
-            GameObject prefab = _diContainer.Resolve<IAssetProviderService>().LoadGenerator();
-            return InstantiateRegister(prefab, spawnPoint);
+            GameObject prefab = LoadAsset<GameObject>(AssetPath.GeneratorPath);
+            InstantiateRegister(prefab, spawnPoint);
         }
 
         public Capsule LoadCapsule(PointData spawnPoint)
         {
-            Capsule prefab = _diContainer.Resolve<IAssetProviderService>().LoadCapsule();
+            Capsule prefab = LoadAsset<Capsule>(AssetPath.CapsulePath);
             return InstantiateRegister(prefab, spawnPoint);
         }
 
@@ -46,16 +40,21 @@ namespace CodeBase.Services.Factories.Level
             return capsule;
         }
 
-        private GameObject InstantiateRegister(Object prefab, PointData spawnPoint)
+        private void InstantiateRegister(Object prefab, PointData spawnPoint) => 
+            Register(Instantiate(prefab, spawnPoint));
+
+        private GameObject Instantiate(Object prefab, PointData spawnPoint) => 
+            _diContainer.InstantiatePrefab(prefab, spawnPoint.Position, spawnPoint.Rotation, null);
+
+        private void Register(in GameObject gameObject)
         {
-            GameObject gameObject = _diContainer.InstantiatePrefab(prefab, spawnPoint.Position, spawnPoint.Rotation, null);
-            
             _diContainer.Resolve<IReadWriteDataService>().Register(gameObject);
             _diContainer.Resolve<IReplayService>().Register(gameObject);
             _diContainer.Resolve<IDefeatService>().Register(gameObject);
             _diContainer.Resolve<IVictoryService>().Register(gameObject);
-            
-            return gameObject;
         }
+        
+        private T LoadAsset<T>(string assetPath) where T : Object => 
+            _diContainer.Resolve<IAssetMenagementService>().Load<T>(assetPath);
     }
 }

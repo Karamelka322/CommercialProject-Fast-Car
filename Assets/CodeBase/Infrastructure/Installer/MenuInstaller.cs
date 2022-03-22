@@ -9,24 +9,16 @@ namespace CodeBase.Infrastructure
         [SerializeField] 
         private MenuMediator _mediator;
 
-        private DiContainer _projectContainer;
-
-        public override void InstallBindings()
-        {
-            _projectContainer = Container.ParentContainers[0];
-            
+        public override void InstallBindings() => 
             BindMediator();
-        }
 
-        protected override void UninstallBindings()
-        {
+        protected override void UninstallBindings() => 
             UnbindMediator();
-        }
 
         private void BindMediator() => 
-            _projectContainer.Bind<IMenuMediator>().FromInstance(_mediator).AsSingle();
+            Container.ParentContainers[0].Bind<IMenuMediator>().FromInstance(_mediator).AsCached();
 
         private void UnbindMediator() => 
-            _projectContainer.Unbind<IMenuMediator>();
+            Container.ParentContainers[0].Unbind<IMenuMediator>();
     }
 }

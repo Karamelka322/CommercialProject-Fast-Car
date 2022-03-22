@@ -9,23 +9,27 @@ namespace CodeBase.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private readonly IAssetProviderService _assetProviderService;
-
-        public LevelStaticData[] Levels => _assetProviderService.LoadLevelStaticData();
+        private readonly IAssetMenagementService _assetMenagementService;
         
-        public StaticDataService(IAssetProviderService assetProviderService)
+        private readonly PlayerStaticData[] _playerStaticDatas;
+        private readonly EnemyStaticData[] _enemyStaticDatas;
+        public LevelStaticData[] LevelStaticDatas { get; }
+
+        public StaticDataService(IAssetMenagementService assetMenagementService)
         {
-            _assetProviderService = assetProviderService;
+            _assetMenagementService = assetMenagementService;
+
+            _playerStaticDatas = LoadAllAsset<PlayerStaticData>(AssetPath.PlayerStaticDataPath);
+            LevelStaticDatas = LoadAllAsset<LevelStaticData>(AssetPath.LevelStaticDataPath);
+            _enemyStaticDatas = LoadAllAsset<EnemyStaticData>(AssetPath.EnemiesStaticDataPath);
         }
 
         public PlayerStaticData ForPlayer(PlayerTypeId typeId)
         {
-            PlayerStaticData[] staticDatas = _assetProviderService.LoadPlayerStaticData();
-
-            for (int i = 0; i < staticDatas.Length; i++)
+            for (int i = 0; i < _playerStaticDatas.Length; i++)
             {
-                if (staticDatas[i].Type == typeId)
-                    return staticDatas[i];
+                if (_playerStaticDatas[i].Type == typeId)
+                    return _playerStaticDatas[i];
             }
 
             return default;
@@ -35,21 +39,19 @@ namespace CodeBase.Services.StaticData
         {
             return typeId switch
             {
-                InputTypeId.Joystick => _assetProviderService.LoadJoystickInput(),
-                InputTypeId.Buttons => _assetProviderService.LoadButtonsInput(),
-                InputTypeId.Areas => _assetProviderService.LoadAreasInput(),
+                InputTypeId.Joystick => LoadAsset<GameObject>(AssetPath.JoystickInputPath),
+                InputTypeId.Buttons => LoadAsset<GameObject>(AssetPath.ButtonsInputPath),
+                InputTypeId.Areas => LoadAsset<GameObject>(AssetPath.AreasInputPath),
                 _ => default
             };
         }
 
         public LevelStaticData ForLevel(LevelTypeId typeId)
         {
-            LevelStaticData[] staticDatas = Levels;
-
-            for (int i = 0; i < staticDatas.Length; i++)
+            for (int i = 0; i < LevelStaticDatas.Length; i++)
             {
-                if (staticDatas[i].Level.Type == typeId)
-                    return staticDatas[i];
+                if (LevelStaticDatas[i].Level.Type == typeId)
+                    return LevelStaticDatas[i];
             }
 
             return default;
@@ -57,15 +59,19 @@ namespace CodeBase.Services.StaticData
 
         public EnemyStaticData ForEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType)
         {
-            EnemyStaticData[] enemies = _assetProviderService.LoadEnemies();
-
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = 0; i < _enemyStaticDatas.Length; i++)
             {
-                if (enemies[i].EnemyType == enemyType && enemies[i].DifficultyType == difficultyType)
-                    return enemies[i];
+                if (_enemyStaticDatas[i].EnemyType == enemyType && _enemyStaticDatas[i].DifficultyType == difficultyType)
+                    return _enemyStaticDatas[i];
             }
 
             return default;
         }
+
+        private T LoadAsset<T>(string address) where T : Object => 
+            _assetMenagementService.Load<T>(address);
+        
+        private T[] LoadAllAsset<T>(string address) where T : Object => 
+            _assetMenagementService.LoadAll<T>(address);
     }
 }

@@ -5024,7 +5024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b196e0d2ce4f4523a422c0cdb183c3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mediator: {fileID: 542378784}
   _menuStates: {fileID: 542378783}
 --- !u!114 &542378783
 MonoBehaviour:
@@ -5051,7 +5050,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuStates: {fileID: 542378783}
-  _menuUIViewer: {fileID: 542378782}
   _menuAnimator: {fileID: 542378781}
   _garage: {fileID: 5044604013417974498}
 --- !u!1001 &544395258
@@ -5452,7 +5450,7 @@ MonoBehaviour:
   OnPostResolve:
     m_PersistentCalls:
       m_Calls: []
-  _parentNewObjectsUnderSceneContext: 1
+  _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
 --- !u!4 &592767557
