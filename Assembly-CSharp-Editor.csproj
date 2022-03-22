@@ -739,6 +739,24 @@
      <Reference Include="Unity.Recorder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Addressables">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.CacheServer">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ResourceManager">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ScriptableBuildPipeline">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
