@@ -85,7 +85,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\Installers\MenuInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Installer\MenuInstaller.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
@@ -163,7 +163,7 @@
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
-     <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetPath.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetProvider\AssetPath.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
@@ -176,7 +176,7 @@
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IDefeatService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
-     <Compile Include="Assets\CodeBase\Services\AssetProvider\AssetProviderService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetProvider\AssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
@@ -229,7 +229,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
-     <Compile Include="Assets\CodeBase\Services\AssetProvider\IAssetProviderService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetProvider\IAssetProviderService.cs" />
      <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
