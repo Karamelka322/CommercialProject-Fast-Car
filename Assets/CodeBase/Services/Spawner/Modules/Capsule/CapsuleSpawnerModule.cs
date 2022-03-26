@@ -13,10 +13,10 @@ namespace CodeBase.Services.Spawner
         private readonly IRandomService _randomService;
         private readonly ILevelFactory _levelFactory;
 
-        private LevelStaticData _config;
+        private CapsuleSpawnConfig _config;
         private Capsule[] _capsules;
 
-        public CapsuleSpawnerModule(IRandomService randomService, ILevelFactory levelFactory)
+        public CapsuleSpawnerModule(ILevelFactory levelFactory, IRandomService randomService)
         {
             _randomService = randomService;
             _levelFactory = levelFactory;
@@ -27,8 +27,8 @@ namespace CodeBase.Services.Spawner
             if(levelConfig.Spawn.Capsule.UsingCapsule == false)
                 return;
 
-            _config = levelConfig;
-            _capsules = new Capsule[levelConfig.Spawn.Capsule.Quantity];
+            _config = levelConfig.Spawn.Capsule;
+            _capsules = new Capsule[_config.Quantity];
         }
 
         public void TrySpawnCapsule()
@@ -47,7 +47,7 @@ namespace CodeBase.Services.Spawner
             _capsules[_capsules.GetEmptyIndex()] = LoadCapsule();
 
         private bool IsSpawnedCapsule() => 
-            _config != null && _config.Spawn.Capsule.UsingCapsule && _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
+            _config != null && _config.UsingCapsule && _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
 
         private Capsule LoadCapsule()
         {

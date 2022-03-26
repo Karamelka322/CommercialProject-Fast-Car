@@ -11,6 +11,7 @@ namespace CodeBase.Services.Spawner
     {
         private readonly ICapsuleSpawnerModule _capsuleSpawnerModule;
         private readonly IEnemySpawnerModule _enemySpawnerModule;
+        private readonly IGeneratorSpawnerModule _generatorSpawnerModule;
 
         public SpawnerService(
             IRandomService randomService,
@@ -19,17 +20,24 @@ namespace CodeBase.Services.Spawner
             IPersistentDataService persistentDataService,
             ICorutineRunner corutineRunner)
         {
-            _capsuleSpawnerModule = new CapsuleSpawnerModule(randomService, levelFactory);
+            _generatorSpawnerModule = new GeneratorSpawnerModule(levelFactory, randomService);
+            _capsuleSpawnerModule = new CapsuleSpawnerModule(levelFactory, randomService);
             _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory, persistentDataService, corutineRunner);
         }
 
-        public void SetConfig(LevelStaticData levelConfig)
+        public void SetConfig(LevelStaticData levelStaticData)
         {
-            _capsuleSpawnerModule.SetConfig(levelConfig);
-            _enemySpawnerModule.SetConfig(levelConfig);
+            _generatorSpawnerModule.SetConfig(levelStaticData);
+            _capsuleSpawnerModule.SetConfig(levelStaticData);
+            _enemySpawnerModule.SetConfig(levelStaticData);
         }
 
-        public void RealTimeSpawn()
+        public void SpawnOnLoaded()
+        {
+            _generatorSpawnerModule.TrySpawnGenerator();
+        }
+
+        public void SpawnOnUpdate()
         {
             _capsuleSpawnerModule.TrySpawnCapsule();
             _enemySpawnerModule.TrySpawnEnemy();
@@ -37,6 +45,7 @@ namespace CodeBase.Services.Spawner
 
         public void CleanUp()
         {
+            _generatorSpawnerModule.Clear();
             _capsuleSpawnerModule.Clear();
             _enemySpawnerModule.Clear();
         }

@@ -14,29 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level:
     Type: 0
-    SceneName: City_Geometry
+    SceneName: Demo_Geometry
     VictoryTime: 10
     PlayerSpawnPoints:
     - Position: {x: 3, y: 0, z: -5}
       Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
   Spawn:
     Generator:
-      UsingGenerator: 1
+      UsingGenerator: 0
       StartValuePower: 100
       PowerChangeSpeed: 2
       GeneratorSpawnPoints:
       - Position: {x: -106, y: 6, z: -79}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Capsule:
-      UsingCapsule: 1
-      Quantity: 1
-      CapsuleSpawnPoints:
-      - Position: {x: 37, y: 0, z: 19}
-        Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: 73, y: 0, z: -80}
-        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      UsingCapsule: 0
+      Quantity: 0
+      CapsuleSpawnPoints: []
     Enemy:
-      UsingEnemy: 1
+      UsingEnemy: 0
       Enemies:
       - EnemyType: 0
         DifficultyType: 0

@@ -76,7 +76,7 @@ namespace CodeBase.Infrastructure.States
                 return;
             
             AddTimeInStopwatch(Time.deltaTime);
-            _spawnerService.RealTimeSpawn();
+            _spawnerService.SpawnOnUpdate();
         }
 
         public void Exit()

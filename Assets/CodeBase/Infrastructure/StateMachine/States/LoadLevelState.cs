@@ -5,7 +5,6 @@ using CodeBase.Data.Static.Level;
 using CodeBase.Logic.Camera;
 using CodeBase.Scene;
 using CodeBase.Services.Data.ReadWrite;
-using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
@@ -14,7 +13,6 @@ using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
-using CodeBase.Services.Update;
 using CodeBase.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,9 +35,7 @@ namespace CodeBase.Infrastructure.States
         private readonly IPlayerFactory _playerFactory;
         private readonly IPersistentDataService _persistentDataService;
         private readonly IStaticDataService _staticDataService;
-        private readonly ILevelFactory _levelFactory;
         private readonly IRandomService _randomService;
-        private readonly IUpdateService _updateService;
         private readonly IReadWriteDataService _readWriteDataService;
         private readonly IPauseService _pauseService;
         private readonly ISpawnerService _spawnerService;
@@ -54,9 +50,7 @@ namespace CodeBase.Infrastructure.States
             IPlayerFactory playerFactory,
             IPersistentDataService persistentDataService,
             IStaticDataService staticDataService,
-            ILevelFactory levelFactory,
             IRandomService randomService,
-            IUpdateService updateService,
             IReadWriteDataService readWriteDataService,
             IPauseService pauseService,
             ISpawnerService spawnerService)
@@ -67,9 +61,7 @@ namespace CodeBase.Infrastructure.States
             _playerFactory = playerFactory;
             _persistentDataService = persistentDataService;
             _staticDataService = staticDataService;
-            _levelFactory = levelFactory;
             _randomService = randomService;
-            _updateService = updateService;
             _readWriteDataService = readWriteDataService;
             _pauseService = pauseService;
             _spawnerService = spawnerService;
@@ -101,10 +93,11 @@ namespace CodeBase.Infrastructure.States
             _randomService.SetConfig(_currentLevel);
             _spawnerService.SetConfig(_currentLevel);
             
+            _spawnerService.SpawnOnLoaded();
+
             GameObject player = InitPlayer();
             CameraFollow(player);
-            
-            InitGenerator();
+
             InitHUD();
             
             InitUIRoot();
@@ -129,10 +122,7 @@ namespace CodeBase.Infrastructure.States
 
         private void InitUIRoot() => 
             _uiFactory.LoadUIRoot();
-
-        private void InitGenerator() => 
-            _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
-
+        
         private GameObject InitPlayer() => 
             _playerFactory.CreatePlayer(_persistentDataService.PlayerData.ProgressData.CurrentPlayer, _randomService.PlayerSpawnPoint());
         

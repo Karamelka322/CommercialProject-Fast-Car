@@ -41,85 +41,40 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\CodeBase\UI\Buttons\GarageButton.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleReadData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\IPersistentDataService.cs" />
-     <Compile Include="Assets\CodeBase\Services\IService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\Variant\ButtonsInputVariant.cs" />
-     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Progress\ProgressPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\UIFactory.cs" />
-     <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\ButtonWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuAnimator.cs" />
      <Compile Include="Assets\CodeBase\Mediator\IMenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\PauseButton.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\Variant\AreasInputVariant.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Menu\MenuUIViewer.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\Box.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\SessionPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\ButtonInputElement.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IReadWriteDataService.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\VictoryWindow.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\Stopwatch.cs" />
-     <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
-     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\LevelSessionData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadDataService.cs" />
-     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IAffectPlayerVictory.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
-     <Compile Include="Assets\CodeBase\UI\Windows\UIWindow.cs" />
-     <Compile Include="Assets\CodeBase\UI\Logic\SwitchPlayerCar.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
-     <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\Installer\MenuInstaller.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
-     <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\Garage.cs" />
      <Compile Include="Assets\CodeBase\Services\Window\IWindowService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
-     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\DefeatService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\Module\IInputModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\ResumeButton.cs" />
-     <Compile Include="Assets\CodeBase\Services\Level\Victory\IVictoryService.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
      <Compile Include="Assets\CodeBase\UI\HUD.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerCollision.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\UIButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
-     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\GeneratorPowerBar.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\JoystickInputElement.cs" />
-     <Compile Include="Assets\CodeBase\Services\Pause\IPauseService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Item\Item.cs" />
-     <Compile Include="Assets\CodeBase\UI\Logic\InputSettings.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\JoystickInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerMovement.cs" />
-     <Compile Include="Assets\CodeBase\Services\Window\WindowService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Extension\KeyValueExtension.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\ISaveLoadDataService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayService.cs" />
@@ -127,39 +82,119 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\SettingsPersistentData.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\LoadingCurtain.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\ISpawnerService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\IState.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\VictoryService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
-     <Compile Include="Assets\CodeBase\Services\Level\Victory\IPlayerVictoryHandler.cs" />
-     <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
-     <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemiesSpawnConfig.cs" />
-     <Compile Include="Assets\CodeBase\Services\Reward\RewardService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\MainMenuWindow.cs" />
+     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Player\PlayerFactory.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorHook.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\BootstrapState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorBasket.cs" />
+     <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
+     <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\PlayButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\DefeatWindow.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadMenuState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ReadWriteDataService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Element\IInputElement.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\GarageButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleReadData.cs" />
+     <Compile Include="Assets\CodeBase\Services\IService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\ButtonsInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Progress\ProgressPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\PauseButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\AreasInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuUIViewer.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\Box.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IReadWriteDataService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\LevelSessionData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadDataService.cs" />
+     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\UIWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\SwitchPlayerCar.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Installer\MenuInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Module\IInputModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ResumeButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\IVictoryService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
+     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerTypeId.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\InputSettings.cs" />
+     <Compile Include="Assets\CodeBase\Services\Window\WindowService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Extension\KeyValueExtension.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\ISpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\IPlayerVictoryHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Reward\RewardService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardConfig.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\NextLevelButton.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
-     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Level\ILevelFactory.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPower.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\Waymarkers.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\GameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyMovement.cs" />
-     <Compile Include="Assets\CodeBase\Services\Factories\Player\PlayerFactory.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorHook.cs" />
-     <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\BootstrapState.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorBasket.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
@@ -167,22 +202,15 @@
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
-     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
-     <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
-     <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
      <Compile Include="Assets\CodeBase\Mediator\MenuMediator.cs" />
-     <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IDefeatService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetMenagementService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleWriteData.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\StaticDataService.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyDifficultyTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\IRandomService.cs" />
@@ -190,58 +218,32 @@
      <Compile Include="Assets\CodeBase\Data\MeshData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\EditorInputModule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\ICorutineRunner.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
-     <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\PlayButton.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel.cs" />
-     <Compile Include="Assets\CodeBase\UI\Windows\DefeatWindow.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadMenuState.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ReadWriteDataService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\Element\IInputElement.cs" />
-     <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
      <Compile Include="Assets\CodeBase\Exeption\WindowExeption.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\ReplayService.cs" />
      <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IPlayerDefeatHandler.cs" />
-     <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
-     <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
      <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\SkipButton.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
-     <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\PauseWindow.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerSpawnPoint.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\IAssetMenagementService.cs" />
-     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
-     <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
-     <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
-     <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
-     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
-     <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\GeneratorSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\IGeneratorSpawnerModule.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />
@@ -861,11 +863,17 @@
      <Reference Include="Unity.Recorder.Base">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
      </Reference>
+     <Reference Include="UnityEditor.CacheServer">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ProBuilder.AddOns.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -878,6 +886,9 @@
      </Reference>
      <Reference Include="Unity.ProBuilder">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ResourceManager">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ProBuilder.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
@@ -903,26 +914,17 @@
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Recorder">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Addressables">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+     <Reference Include="Unity.ScriptableBuildPipeline">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Addressables.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEditor.CacheServer">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ResourceManager">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ScriptableBuildPipeline">
-     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.ScriptableBuildPipeline.Editor">
      <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

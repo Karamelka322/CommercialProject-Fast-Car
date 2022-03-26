@@ -4,9 +4,10 @@ namespace CodeBase.Services.Spawner
 {
     public interface ISpawnerService : IService
     {
-        void SetConfig(LevelStaticData levelConfig);
+        void SetConfig(LevelStaticData levelStaticData);
         void CleanUp();
-        void RealTimeSpawn();
+        void SpawnOnUpdate();
         void Reset();
+        void SpawnOnLoaded();
     }
 }
