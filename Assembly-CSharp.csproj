@@ -56,6 +56,7 @@
      <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IAffectPlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\GeneratorSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
@@ -144,6 +145,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuUIViewer.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\Box.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IReadWriteDataService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\IGeneratorSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
@@ -242,8 +244,6 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\GeneratorSpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\IGeneratorSpawnerModule.cs" />
      <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Emission.shader" />

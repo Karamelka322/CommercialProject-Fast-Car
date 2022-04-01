@@ -15,7 +15,7 @@ MonoBehaviour:
   Level:
     Type: 0
     SceneName: Demo_Geometry
-    VictoryTime: 10
+    VictoryTime: 999
     PlayerSpawnPoints:
     - Position: {x: 3, y: 0, z: -5}
       Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
