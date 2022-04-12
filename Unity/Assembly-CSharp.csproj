@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+    <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{03938ccd-4b40-8dfb-6b9b-21988d5cac0a}</ProjectGuid>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
+    <DefineConstants>UNITY_2021_1_4;UNITY_2021_1;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;USE_QUICK_SEARCH_MODULE;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;ENABLE_ETC_COMPRESSION;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169,0649</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <ItemGroup>
+     <Compile Include="Assets\CodeBase\Services\Data\Persistent\IPersistentDataService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\UI\UIFactory.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ButtonWrapper.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuAnimator.cs" />
+     <Compile Include="Assets\CodeBase\Mediator\IMenuMediator.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\SessionPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Element\ButtonInputElement.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\VictoryWindow.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\Stopwatch.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\IAffectPlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\GeneratorSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\NavMeshAgentWrapper.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Extension\CameraExtension.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\Garage.cs" />
+     <Compile Include="Assets\CodeBase\Services\Window\IWindowService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Defeat\DefeatService.cs" />
+     <Compile Include="Assets\CodeBase\UI\HUD.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerCollision.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\UIButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Bars\GeneratorPowerBar.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Element\JoystickInputElement.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Item.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\JoystickInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\ISaveLoadDataService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\GeneratorSessionData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyFactory.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\SettingsPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\LoadingCurtain.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\IState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\VictoryService.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemiesSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\MainMenuWindow.cs" />
+     <Compile Include="Assets\CodeBase\Data\PointData.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Player\PlayerFactory.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorHook.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\BootstrapState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorBasket.cs" />
+     <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
+     <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\UpdateService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\PlayButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\HomeButton.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\DefeatWindow.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadMenuState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ReadWriteDataService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Element\IInputElement.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\CapsuleSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
+     <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingReadData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelStaticData.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\SettingsWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\GarageButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleReadData.cs" />
+     <Compile Include="Assets\CodeBase\Services\IService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\ButtonsInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Progress\ProgressPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\PauseButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\AreasInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuUIViewer.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\Box.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IReadWriteDataService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\IGeneratorSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\LevelSessionData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadDataService.cs" />
+     <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\UIWindow.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\SwitchPlayerCar.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Installer\MenuInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Module\IInputModule.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\ResumeButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\IVictoryService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\ICapsuleSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
+     <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\SettingsButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Pause\IPauseService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerTypeId.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\InputSettings.cs" />
+     <Compile Include="Assets\CodeBase\Services\Window\WindowService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Extension\KeyValueExtension.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\ISpawnerService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\Area.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Victory\IPlayerVictoryHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\LoadScene\SceneLoaderService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Reward\RewardService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Tween\TweenService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardConfig.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\NextLevelButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Element\AreaInputElement.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Level\ILevelFactory.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPower.cs" />
+     <Compile Include="Assets\CodeBase\UI\Logic\Waymarkers.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\GameStateMachine.cs" />
+     <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyMovement.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
+     <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
+     <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetPath.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
+     <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
+     <Compile Include="Assets\CodeBase\Mediator\MenuMediator.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Defeat\IDefeatService.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetMenagementService.cs" />
+     <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
+     <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleWriteData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\Static\StaticDataService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyDifficultyTypeId.cs" />
+     <Compile Include="Assets\CodeBase\Services\Random\IRandomService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\SteeringGear.cs" />
+     <Compile Include="Assets\CodeBase\Data\MeshData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\Module\EditorInputModule.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\ICorutineRunner.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Wheel.cs" />
+     <Compile Include="Assets\CodeBase\Exeption\WindowExeption.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Replay\ReplayService.cs" />
+     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
+     <Compile Include="Assets\CodeBase\Services\Level\Defeat\IPlayerDefeatHandler.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
+     <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
+     <Compile Include="Assets\CodeBase\UI\Buttons\SkipButton.cs" />
+     <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
+     <Compile Include="Assets\CodeBase\UI\Windows\PauseWindow.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\IAssetMenagementService.cs" />
+     <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
+     <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
+     <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Emission.shader" />
+     <None Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.shader" />
+     <Reference Include="UnityEngine">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ARModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ARModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AccessibilityModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AndroidJNIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AnimationModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AssetBundleModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.AudioModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ClothModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.CoreModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.CrashReportingModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.DSPGraphModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.DirectorModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.GIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.GIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.GameCenterModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.GridModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.GridModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.HotReloadModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.IMGUIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ImageConversionModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.InputModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.InputLegacyModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.JSONSerializeModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.LocalizationModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ParticleSystemModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.PerformanceReportingModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.PhysicsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.Physics2DModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ProfilerModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.ScreenCaptureModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.SharedInternalsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.SpriteMaskModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.SpriteShapeModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.StreamingModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.SubstanceModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.SubsystemsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TLSModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TerrainModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TerrainPhysicsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TextCoreModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TextRenderingModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TilemapModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UIElementsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UIElementsNativeModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsNativeModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UNETModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UNETModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UmbraModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityAnalyticsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityConnectModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityCurlModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityTestProtocolModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityWebRequestModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.VFXModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.VRModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.VehiclesModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.VideoModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.WindModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.XRModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.CoreModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.CoreModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.DeviceSimulatorModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.DeviceSimulatorModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.GraphViewModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.PackageManagerUIModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.PackageManagerUIModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.QuickSearchModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.QuickSearchModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.SceneTemplateModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UIBuilderModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIBuilderModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UIElementsModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UIElementsSamplesModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UIServiceModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIServiceModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UnityConnectModule">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.OdinInspector.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.OdinInspector.Attributes">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Serialization.Config">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Utilities">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="RainbowCore">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Serialization">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Utilities.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.iOS.Extensions.Common">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+     </Reference>
+     <Reference Include="mscorlib">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
+     </Reference>
+     <Reference Include="System">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Core">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Serialization">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Runtime.Serialization.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.Linq">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Xml.Linq.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Numerics">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Numerics.Vectors">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Numerics.Vectors.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Http">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Net.Http.dll</HintPath>
+     </Reference>
+     <Reference Include="Microsoft.CSharp">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Microsoft.CSharp.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Data">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Data.dll</HintPath>
+     </Reference>
+     <Reference Include="Microsoft.Win32.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\Microsoft.Win32.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="netstandard">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\netstandard.dll</HintPath>
+     </Reference>
+     <Reference Include="System.AppContext">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.AppContext.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Collections.Concurrent">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Concurrent.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Collections">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Collections.NonGeneric">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.NonGeneric.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Collections.Specialized">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Collections.Specialized.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ComponentModel.Annotations">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Annotations.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ComponentModel">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ComponentModel.EventBasedAsync">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.EventBasedAsync.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ComponentModel.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ComponentModel.TypeConverter">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ComponentModel.TypeConverter.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Console">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Console.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Data.Common">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Data.Common.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.Contracts">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Contracts.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.Debug">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Debug.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.FileVersionInfo">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.FileVersionInfo.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.Process">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Process.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.StackTrace">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.StackTrace.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.TextWriterTraceListener">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.Tools">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.Tools.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Diagnostics.TraceSource">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Diagnostics.TraceSource.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Drawing.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Drawing.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Dynamic.Runtime">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Dynamic.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Globalization.Calendars">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Calendars.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Globalization">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Globalization.Extensions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Globalization.Extensions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.Compression.ZipFile">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Compression.ZipFile.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.FileSystem">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.FileSystem.DriveInfo">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.DriveInfo.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.FileSystem.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.FileSystem.Watcher">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.FileSystem.Watcher.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.IsolatedStorage">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.IsolatedStorage.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.MemoryMappedFiles">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.MemoryMappedFiles.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.Pipes">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.Pipes.dll</HintPath>
+     </Reference>
+     <Reference Include="System.IO.UnmanagedMemoryStream">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.IO.UnmanagedMemoryStream.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Linq">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Linq.Expressions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Expressions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Linq.Parallel">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Parallel.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Linq.Queryable">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Linq.Queryable.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Http.Rtc">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Http.Rtc.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.NameResolution">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NameResolution.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.NetworkInformation">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.NetworkInformation.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Ping">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Ping.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Requests">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Requests.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Security">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Security.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.Sockets">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.Sockets.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.WebHeaderCollection">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebHeaderCollection.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.WebSockets.Client">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.Client.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Net.WebSockets">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Net.WebSockets.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ObjectModel">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ObjectModel.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection.Emit">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection.Emit.ILGeneration">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.ILGeneration.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection.Emit.Lightweight">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Emit.Lightweight.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection.Extensions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Extensions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Reflection.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Reflection.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Resources.Reader">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Reader.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Resources.ResourceManager">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.ResourceManager.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Resources.Writer">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Resources.Writer.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.CompilerServices.VisualC">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Extensions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Extensions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Handles">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Handles.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.InteropServices">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Numerics">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Numerics.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Serialization.Formatters">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Formatters.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Serialization.Json">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Json.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Serialization.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.Serialization.Xml">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Runtime.Serialization.Xml.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Claims">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Claims.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Cryptography.Algorithms">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Algorithms.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Cryptography.Csp">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Csp.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Cryptography.Encoding">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Encoding.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Cryptography.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Cryptography.X509Certificates">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Cryptography.X509Certificates.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.Principal">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.Principal.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Security.SecureString">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Security.SecureString.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ServiceModel.Duplex">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Duplex.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ServiceModel.Http">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Http.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ServiceModel.NetTcp">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.NetTcp.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ServiceModel.Primitives">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Primitives.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ServiceModel.Security">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ServiceModel.Security.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Text.Encoding">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Text.Encoding.Extensions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.Encoding.Extensions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Text.RegularExpressions">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Text.RegularExpressions.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.Overlapped">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Overlapped.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.Tasks">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.Tasks.Parallel">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Tasks.Parallel.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.Thread">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Thread.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.ThreadPool">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.ThreadPool.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Threading.Timer">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Threading.Timer.dll</HintPath>
+     </Reference>
+     <Reference Include="System.ValueTuple">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.ValueTuple.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.ReaderWriter">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.ReaderWriter.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.XDocument">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XDocument.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.XmlDocument">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlDocument.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.XmlSerializer">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XmlSerializer.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.XPath">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Xml.XPath.XDocument">
+     <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder.Base">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.CacheServer">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ResourceManager">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Rider.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Runtime">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ScriptableBuildPipeline">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder">
+     <HintPath>E:\All Unity Prodjects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
+     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
+      <Project>{9f5687e3-5f72-c8f5-517b-584709b7d5d8}</Project>
+      <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{f56c3b00-7e47-993a-79f1-e71592c14248}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{78101918-7986-558b-df39-47cccaefad3a}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
+      <Project>{e0456168-1ba5-5e68-ef99-a1034c8b63ab}</Project>
+      <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{627a59fb-c834-e892-6689-d3c0d9099f05}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{6938f8d8-4b11-3b71-edf7-ce3893ffc321}</Project>
+      <Name>Zenject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
