@@ -1,9 +1,6 @@
 using System;
-using System.Linq;
-using CodeBase.Data;
 using CodeBase.Data.Static.Level;
 using CodeBase.Logic.Camera;
-using CodeBase.Scene;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
@@ -92,7 +89,7 @@ namespace CodeBase.Infrastructure.States
         {
             _randomService.SetConfig(_currentLevel);
             _spawnerService.SetConfig(_currentLevel);
-            
+
             _spawnerService.SpawnOnLoaded();
 
             GameObject player = InitPlayer();

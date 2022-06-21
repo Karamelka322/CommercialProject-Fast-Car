@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientEquatorColor: {r: 0, g: 0.31698108, b: 0.5283019, a: 1}
-  m_AmbientGroundColor: {r: 0.6509434, g: 0.46159667, b: 0.08290317, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0.37358484, b: 0.6226415, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0.5794997, b: 1, a: 1}
   m_AmbientIntensity: 8
-  m_AmbientMode: 3
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 1253133857}
   - component: {fileID: 1253133856}
   - component: {fileID: 1253133859}
+  - component: {fileID: 1253133860}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -285,10 +286,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3e5fcabe9e4b369a467ac36040af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementOffset: {x: 14, y: 20, z: 14}
+  _movementOffset: {x: 8, y: 10, z: 8}
   _rotationOffset: {x: 0, y: 0, z: 0}
   _movementSpeed: 7
   _rotationSpeed: 7
+--- !u!114 &1253133860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253133855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a514098e8e48aa9be774ec9ce99810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1253133857}
 --- !u!1 &1682271167
 GameObject:
   m_ObjectHideFlags: 0

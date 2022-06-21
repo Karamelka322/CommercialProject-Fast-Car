@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Services.Update;
 using UnityEngine;
 using Zenject;

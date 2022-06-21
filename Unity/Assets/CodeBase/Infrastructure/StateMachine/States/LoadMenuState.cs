@@ -8,7 +8,6 @@ using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.PersistentProgress;
-using CodeBase.Services.Window;
 using CodeBase.UI;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -26,7 +25,6 @@ namespace CodeBase.Infrastructure.States
         private const float DelayHideCurtain = 0.5f;
 
         private readonly IPersistentDataService _persistentDataService;
-        private readonly IWindowService _windowService;
         private readonly ISceneLoaderService _sceneLoader;
         private readonly IPlayerFactory _playerFactory;
         private readonly IUIFactory _uiFactory;
@@ -40,14 +38,12 @@ namespace CodeBase.Infrastructure.States
             ISceneLoaderService sceneLoader,
             IUIFactory uiFactory,
             IPlayerFactory playerFactory,
-            IPersistentDataService persistentDataService,
-            IWindowService windowService)
+            IPersistentDataService persistentDataService)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
             _playerFactory = playerFactory;
             _persistentDataService = persistentDataService;
-            _windowService = windowService;
         }
 
         public void Enter()
