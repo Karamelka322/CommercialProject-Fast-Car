@@ -50,7 +50,7 @@ Shader "Custom/Decal"
                 return o;
             }
 
-            float3 GetProgectedPbjectPosition(float2 screenPos, float3 worldRay)
+            float3 GetProgectedObjectPosition(float2 screenPos, float3 worldRay)
             {
                 float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenPos);
                 depth = Linear01Depth(depth) * _ProjectionParams.z;
@@ -71,10 +71,9 @@ Shader "Custom/Decal"
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 screenUV = i.screenPosition.xy / i.screenPosition.w;
-                float2 uv = GetProgectedPbjectPosition(screenUV, i.ray).xz;
+                float2 uv = GetProgectedObjectPosition(screenUV, i.ray).xz;
 
-                float4 col = tex2D(_MainTex, uv);
-                return col;
+                return tex2D(_MainTex, uv);
             }
             ENDCG
         }

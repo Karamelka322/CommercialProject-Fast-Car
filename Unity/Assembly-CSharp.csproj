@@ -53,7 +53,7 @@
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCollision.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\Stopwatch.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\MobileInputModule.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IAffectPlayerVictory.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Generator\GeneratorSpawnerModule.cs" />
@@ -85,7 +85,7 @@
      <Compile Include="Assets\CodeBase\UI\Logic\LoadingCurtain.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\IState.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\VictoryService.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemiesSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadLevelState.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\PauseService.cs" />
@@ -115,7 +115,7 @@
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ReadWriteDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\IInputElement.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
@@ -149,6 +149,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadMenuState.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\RandomService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\ReplayLevelState.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Camera\CameraSettings.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\LevelSessionData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Player\PlayerStaticData.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\SaveLoad\SaveLoadDataService.cs" />
@@ -198,7 +199,7 @@
      <Compile Include="Assets\CodeBase\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetPath.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
@@ -220,14 +221,14 @@
      <Compile Include="Assets\CodeBase\Data\MeshData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Module\EditorInputModule.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\ICorutineRunner.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffectConstants.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel.cs" />
      <Compile Include="Assets\CodeBase\Exeption\WindowExeption.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\GameBootstrapper.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\ReplayService.cs" />
-     <Compile Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IPlayerDefeatHandler.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
@@ -244,11 +245,10 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Camera\CameraSettings.cs" />
-     <None Include="Assets\CodeBase\Post Processing\Saturation\SaturationPostEffect.shader" />
-     <None Include="Assets\CodeBase\Post Processing\Exposure\ExposurePostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Decal.shader" />
-     <None Include="Assets\CodeBase\Post Processing\Bloom\BloomPostEffect.shader" />
      <Reference Include="UnityEngine">
      <HintPath>E:\All Unity Prodjects\Unity Versions\2021.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

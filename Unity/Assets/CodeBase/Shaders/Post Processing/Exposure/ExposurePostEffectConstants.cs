@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.Post_Processing.Exposure
+namespace CodeBase.Shaders.Post_Processing.Exposure
 {
     public static class ExposurePostEffectConstants
     {

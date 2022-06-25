@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CodeBase.Post_Processing.Saturation
+namespace CodeBase.Shaders.Post_Processing.Saturation
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Camera))]
