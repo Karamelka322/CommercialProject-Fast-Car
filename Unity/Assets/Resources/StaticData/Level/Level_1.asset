@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level:
     Type: 0
-    SceneName: Demo_Geometry
+    SceneName: City_Geometry
     VictoryTime: 999
     PlayerSpawnPoints:
     - Position: {x: 3, y: 0, z: -5}

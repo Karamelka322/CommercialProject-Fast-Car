@@ -245,6 +245,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Camera\CarCameraPoint.cs" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.shader" />

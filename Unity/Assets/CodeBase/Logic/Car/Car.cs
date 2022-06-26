@@ -42,7 +42,7 @@ namespace CodeBase.Logic.Car
         
         private void Awake() => 
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
-        
+
         public void Movement(float normalizedValue) => 
             _motor.Torque(ConvertNormalizedValueToTorque(normalizedValue));
 

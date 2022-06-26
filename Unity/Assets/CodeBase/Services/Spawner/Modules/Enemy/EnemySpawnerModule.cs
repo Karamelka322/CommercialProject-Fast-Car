@@ -55,6 +55,9 @@ namespace CodeBase.Services.Spawner
 
         public void ResetModule()
         {
+            if(_spawnData == null)
+                return;
+        
             for (int i = 0; i < _spawnData.Length; i++) 
                 _spawnData[i].IsLocked = false;
         }

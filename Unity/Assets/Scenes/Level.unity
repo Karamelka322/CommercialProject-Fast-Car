@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3e5fcabe9e4b369a467ac36040af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementOffset: {x: 8, y: 10, z: 8}
-  _rotationOffset: {x: 0, y: 0, z: 0}
+  _movementOffset: {x: 8.5, y: 18, z: 8.5}
+  _rotationOffset: {x: 0, y: -1, z: 0}
   _movementSpeed: 7
   _rotationSpeed: 7
 --- !u!114 &1253133860
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253133855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4223bab7d121adb469e9fb6f3f56a2fc, type: 3}
   m_Name: 

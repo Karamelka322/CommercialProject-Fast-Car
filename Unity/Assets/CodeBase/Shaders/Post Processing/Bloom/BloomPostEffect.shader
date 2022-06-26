@@ -3,7 +3,7 @@ Shader "Custom/PostEffects/BloomPostEffect"
     Properties
     {
         [HideInInspector] _MainTex ("Main Texture", 2D) = "white" {}
-        [HideInInspector] _EmmisiveTex ("Emmisive Texture", 2D) = "white" {}
+        [HideInInspector] _EmissiveTex ("Emmisive Texture", 2D) = "white" {}
         
         [HideInInspector] _Offset ("Offset", float) = 0
         [HideInInspector] _Threshold ("_Treshold", float) = 1.0
@@ -93,7 +93,7 @@ Shader "Custom/PostEffects/BloomPostEffect"
             }
             
             sampler2D _MainTex;
-            sampler2D _EmmisiveTex;
+            sampler2D _EmissiveTex;
 
             float _Offset;
             
@@ -126,7 +126,7 @@ Shader "Custom/PostEffects/BloomPostEffect"
             half4 frag (v2f i) : SV_Target
             {
                 half4 mainTex = tex2D(_MainTex, i.uv);
-                half4 emmissionTex = Blur(_EmmisiveTex, i.uv);
+                half4 emmissionTex = Blur(_EmissiveTex, i.uv);
 
                 return mainTex + emmissionTex;
             }
