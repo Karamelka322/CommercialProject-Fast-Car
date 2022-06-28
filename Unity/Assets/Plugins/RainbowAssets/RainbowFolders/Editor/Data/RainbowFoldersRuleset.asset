@@ -389,11 +389,11 @@ MonoBehaviour:
     Key: Assets/Animation
     Ordinal: 31
     Priority: 0
-    IconType: 2010
+    IconType: 40
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 140
+    BackgroundType: 40
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 1
     IsHidden: 0

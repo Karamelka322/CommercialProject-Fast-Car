@@ -156,6 +156,7 @@
      <Compile Include="Assets\CodeBase\Data\KeyValue.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyTypeId.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\UIWindow.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Camera\CameraPoint.cs" />
      <Compile Include="Assets\CodeBase\UI\Logic\SwitchPlayerCar.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
@@ -245,7 +246,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Camera\CarCameraPoint.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\CarBody.cs" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.shader" />

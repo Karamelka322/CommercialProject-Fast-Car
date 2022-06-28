@@ -48,7 +48,7 @@ namespace CodeBase.Logic.Car
         public void ResetSteerAngle()
         {
             _collider.steerAngle = 0;
-            _mesh.rotation =Quaternion.identity;
+            _mesh.rotation = Quaternion.identity;
         }
 
         private void SetPositionRelativeToCollider()

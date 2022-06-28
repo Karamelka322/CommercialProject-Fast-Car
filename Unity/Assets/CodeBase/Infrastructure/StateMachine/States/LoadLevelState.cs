@@ -127,7 +127,7 @@ namespace CodeBase.Infrastructure.States
         {
             if (Camera.main.TryGetComponent(out CameraFollow cameraFollow))
             {
-                cameraFollow.Target = player.GetComponentInChildren<CarCameraPoint>().transform;
+                cameraFollow.Target = player.GetComponentInChildren<CameraPoint>().transform;
                 cameraFollow.MoveToTarget();
             }
         }
