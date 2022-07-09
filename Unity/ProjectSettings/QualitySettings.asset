@@ -9,8 +9,8 @@ QualitySettings:
   - serializedVersion: 2
     name: Mobile
     pixelLightCount: 10
-    shadows: 1
-    shadowResolution: 3
+    shadows: 0
+    shadowResolution: 0
     shadowProjection: 0
     shadowCascades: 1
     shadowDistance: 100
@@ -49,6 +49,7 @@ QualitySettings:
     Nintendo Switch: 0
     PS4: 0
     PSP2: 0
+    Server: 0
     Stadia: 0
     Standalone: 0
     WebGL: 0

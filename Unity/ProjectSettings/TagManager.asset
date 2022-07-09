@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - EmissionObject
+  - 
   - Water
   - UI
   - Post Processing
