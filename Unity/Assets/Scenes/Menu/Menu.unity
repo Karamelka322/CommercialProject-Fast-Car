@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.9607844, g: 0.90196085, b: 0.7725491, a: 1}
+  m_FogColor: {r: 0.041295823, g: 0.048719153, b: 0.09433961, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.04
-  m_LinearFogStart: 5
-  m_LinearFogEnd: 20
-  m_AmbientSkyColor: {r: 0.14115341, g: 0.22958496, b: 0.49056602, a: 1}
+  m_LinearFogStart: 5.1
+  m_LinearFogEnd: 195.9
+  m_AmbientSkyColor: {r: 0.6620545, g: 0.60754716, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.11764706, g: 0.19607843, b: 0.27450982, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0.18828522, b: 0.4339623, a: 1}
   m_AmbientIntensity: 1
@@ -216,7 +216,7 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.5954058, y: -0.00028332375, z: -0.0045636687}
 --- !u!95 &542378780
 Animator:
   serializedVersion: 4
@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   m_Layer: 6
   m_Name: Main Camera
@@ -473,10 +474,10 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.12248397, b: 0.2627451, a: 0}
+  m_BackGroundColor: {r: 0.075522654, g: 0.051735997, b: 0.22299999, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -486,9 +487,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 150
-  field of view: 60
+  field of view: 51.884594
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -535,6 +536,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treshold: 0.4
   _offset: 0.001
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a514098e8e48aa9be774ec9ce99810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 963194227}
 --- !u!850595691 &1035256674
 LightingSettings:
   m_ObjectHideFlags: 0
