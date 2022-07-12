@@ -1,4 +1,4 @@
-Shader "Custom/PostEffects/BloomPostEffect"
+Shader "Custom/Post Effects/Bloom"
 {
     Properties
     {
