@@ -6,7 +6,7 @@ Shader "Custom/Decal"
     }
     SubShader
     {
-        Tags{ "RenderType"="Transparent" "Queue"="Transparent" "DisableBatching"="True"}
+        Tags{ "RenderType"="Transparent" "Queue"="Transparent" "DisableBatching"="True" "ForceNoShadowCasting" = "True"}
         LOD 100
 
         Pass

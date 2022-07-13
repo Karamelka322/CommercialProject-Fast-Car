@@ -1,4 +1,4 @@
-Shader "Custom/PostEffects/Exposure"
+Shader "Custom/Post Effects/Exposure"
 {
     Properties
     {

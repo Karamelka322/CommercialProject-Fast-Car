@@ -1,4 +1,4 @@
-Shader "Custom/PostEffects/Saturation"
+Shader "Custom/Post Effects/Saturation"
 {
     Properties
     {

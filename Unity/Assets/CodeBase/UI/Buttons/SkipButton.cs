@@ -6,7 +6,7 @@ namespace CodeBase.UI.Buttons
 {
     public class SkipButton : UIButton
     {
-        private const float LifeTime = 15;
+        private const float LifeTime = 10;
         
         private IMenuMediator _mediator;
 

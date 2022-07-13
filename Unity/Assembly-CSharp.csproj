@@ -247,11 +247,14 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <None Include="Assets\CodeBase\Shaders\Transperent (Color).shader" />
+     <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
+     <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
+     <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTextureShadow.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Decal.shader" />
+     <None Include="Assets\CodeBase\Shaders\Lit\LitTexture.shader" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
