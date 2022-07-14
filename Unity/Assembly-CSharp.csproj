@@ -66,6 +66,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\Garage.cs" />
      <Compile Include="Assets\CodeBase\Services\Window\IWindowService.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\DefeatService.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\InputSettingsPersistentData.cs" />
      <Compile Include="Assets\CodeBase\UI\HUD.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerCollision.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\UIButton.cs" />
@@ -128,6 +129,7 @@
      <Compile Include="Assets\CodeBase\Services\Input\Variant\KeyboardsInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
+     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\RenderSettingsPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Update\IUpdateService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\IEnemyFactory.cs" />
@@ -247,8 +249,6 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
-     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\InputSettingsPersistentData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\RenderSettingsPersistentData.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

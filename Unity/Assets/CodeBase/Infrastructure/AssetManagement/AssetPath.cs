@@ -4,6 +4,7 @@ namespace CodeBase.Services.AssetProvider
     {
         public const string GameUpdatePath = "Infrastructure/GameUpdate";
         public const string ProjectContextPath = "Infrastructure/ProjectContext";
+        public const string FrameDebuggerPath = "UI/Debugger/FrameRateDebugger";
 
         public const string MenuCurtainPath = "UI/Curtains/LoadingMenuCurtain";
         public const string LevelCurtainPath = "UI/Curtains/LoadingLevelCurtain";

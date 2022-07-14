@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -15,7 +16,10 @@ namespace CodeBase.Debugger
         private int _minFrameRateCounter = int.MaxValue;
 
         private const int _speedFrequency = 7;
-        private int _farameRate;
+        private int _frameRate;
+
+        private void Awake() => 
+            DontDestroyOnLoad(this);
 
         private void Update()
         {
@@ -44,8 +48,8 @@ namespace CodeBase.Debugger
 
         private void OutputRealtimeFrameRate(int frameRate)
         {
-            _farameRate = (int)Mathf.Lerp(_farameRate, frameRate, Time.deltaTime * _speedFrequency);
-            _realtimeFrameRate.text = $"Frame Rate: {_farameRate.ToString()}";
+            _frameRate = (int)Mathf.Lerp(_frameRate, frameRate, Time.deltaTime * _speedFrequency);
+            _realtimeFrameRate.text = $"Frame Rate: {_frameRate.ToString()}";
         }
     }
 }

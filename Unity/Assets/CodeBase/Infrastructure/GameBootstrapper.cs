@@ -11,6 +11,9 @@ namespace CodeBase.Infrastructure
             ProjectContext projectContext = InitProjectContext();
             GameUpdate gameUpdate = InitGameUpdate();
             
+            if(Debug.isDebugBuild)
+                InitFrameDebugger();
+
             InitGame(projectContext, gameUpdate);
         }
 
@@ -31,5 +34,10 @@ namespace CodeBase.Infrastructure
             projectContext.Initialize();
             return projectContext;
         }
+
+
+        private static void InitFrameDebugger() => 
+            Instantiate(Resources.Load<GameObject>(AssetPath.FrameDebuggerPath));
+
     }
 }

@@ -12,7 +12,7 @@ namespace CodeBase.Extension
                 if (keyValue[i].Key.GetType() == key.GetType())
                 {
                     keyValue[i].Value = value;
-                    break;
+                    return;
                 }
             }
             
@@ -22,7 +22,7 @@ namespace CodeBase.Extension
         public static KeyValue<TKey, TValue>[] New<TKey, TValue>(in string[] keys) where TKey : Enum
         {
             KeyValue<TKey, TValue>[] keyValues = new KeyValue<TKey, TValue>[keys.Length];
-
+            
             for (int i = 0; i < keyValues.Length; i++) 
                 keyValues[i].Key = (TKey) Enum.Parse(typeof(TKey), keys[i]);
 

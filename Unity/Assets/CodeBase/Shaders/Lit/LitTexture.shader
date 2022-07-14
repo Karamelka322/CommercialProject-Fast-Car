@@ -12,7 +12,7 @@ Shader "Custom/Lit/Texture"
         
         CGPROGRAM
         #pragma surface surf Diffuse
-
+        
         sampler2D _MainTex;
         sampler2D _Emissive;
         
