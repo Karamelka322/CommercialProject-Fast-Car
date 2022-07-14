@@ -24,7 +24,7 @@ namespace CodeBase.UI
         [Inject]
         public void Construct(IPersistentDataService persistentDataService)
         {
-            SwitchInputSetting(persistentDataService.PlayerData.SettingsData.InputType);
+            SwitchInputSetting(persistentDataService.PlayerData.SettingsData.InputSettingsData.InputType);
         }
 
         private void OnEnable()
@@ -42,10 +42,10 @@ namespace CodeBase.UI
         }
 
         public void SingleWriteData(PlayerPersistentData persistentData) => 
-            persistentData.SettingsData.InputType = CurrentInput;
+            persistentData.SettingsData.InputSettingsData.InputType = CurrentInput;
 
         public void SingleReadData(PlayerPersistentData persistentData) => 
-            CurrentInput = persistentData.SettingsData.InputType;
+            CurrentInput = persistentData.SettingsData.InputSettingsData.InputType;
 
         private void SwitchInputSetting(InputTypeId typeId)
         {

@@ -1,11 +1,17 @@
 using System;
-using CodeBase.Data.Static;
 
 namespace CodeBase.Data.Perseistent
 {
     [Serializable]
     public class SettingsPersistentData
     {
-        public InputTypeId InputType;
+        public RenderSettingsPersistentData RenderSettingsData;
+        public InputSettingsPersistentData InputSettingsData;
+        
+        public SettingsPersistentData()
+        {
+            RenderSettingsData = new RenderSettingsPersistentData();
+            InputSettingsData = new InputSettingsPersistentData();
+        }
     }
 }

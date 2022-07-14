@@ -13,7 +13,7 @@ namespace CodeBase.UI
         private TextMeshProUGUI _textMeshPro;
 
         public void StreamingReadData(PlayerPersistentData persistentData) => 
-            _textMeshPro.text = persistentData.SessionData.StopwatchTime.ConvertToDateTime();
+            _textMeshPro.text = persistentData.SessionData.LevelData.StopwatchTime.ConvertToDateTime();
 
         public void OnReplay() => 
             _textMeshPro.text = "00:00:00";

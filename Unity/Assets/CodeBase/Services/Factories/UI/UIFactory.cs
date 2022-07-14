@@ -108,7 +108,7 @@ namespace CodeBase.Services.Factories.UI
         }
 
         private InputTypeId GetInputType() => 
-            _diContainer.Resolve<IPersistentDataService>().PlayerData.SettingsData.InputType;
+            _diContainer.Resolve<IPersistentDataService>().PlayerData.SettingsData.InputSettingsData.InputType;
 
         private T InstantiateRegisterWindow<T>(T prefab) where T : MonoBehaviour
         {

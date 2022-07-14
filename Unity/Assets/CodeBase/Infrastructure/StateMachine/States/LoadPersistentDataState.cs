@@ -1,12 +1,8 @@
-using System;
-using CodeBase.Data;
 using CodeBase.Data.Perseistent;
 using CodeBase.Data.Perseistent.Developer;
-using CodeBase.Data.Static;
-using CodeBase.Data.Static.Level;
-using CodeBase.Data.Static.Player;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.SaveLoad;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -27,7 +23,7 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            LoadPlayerPersistenDataOrInitNew();
+            LoadPlayerPersistentDataOrInitNew();
 
 #if UNITY_EDITOR
             LoadDeveloperPersistentDataOrInitNew();
@@ -44,79 +40,16 @@ namespace CodeBase.Infrastructure.States
 
         public void Exit() { }
 
-        private void LoadPlayerPersistenDataOrInitNew() => 
-            _progressService.PlayerData = _saveLoadDataService.LoadPlayerData() ?? NewPlayerPersistentData();
-
-        private static PlayerPersistentData NewPlayerPersistentData()
+        private void LoadPlayerPersistentDataOrInitNew()
         {
-            return new PlayerPersistentData
-            {
-                SettingsData =
-                {
-                    InputType = InputTypeId.Buttons
-                },
-                
-                ProgressData =
-                {
-                    Players = GetPlayers(),
-                    Levels = GetLevels(),
-                    
-                    CurrentPlayer = PlayerTypeId.Demon,
-                    CurrentLevel = LevelTypeId.Level_1,
-                },
-                
-                SessionData =
-                {
-                    StopwatchTime = 0,
-                    
-                    PlayerData =
-                    {
-                        Health = 0,
-                        MaxHealth = 0,
-                    },
-                    
-                    LevelData =
-                    {
-                        CurrentLevelConfig = null,
-                        
-                        GeneratorData =
-                        {
-                            Power = 0,
-                        }
-                    },
-                }
-            };
-        }
-        
-        private static KeyValue<PlayerTypeId, bool>[] GetPlayers()
-        {
-            string[] names = Enum.GetNames(typeof(PlayerTypeId));
+            PlayerPersistentData persistentData = _saveLoadDataService.LoadPlayerData() ?? NewPlayerPersistentData();
+            _progressService.PlayerData = persistentData;
             
-            KeyValue<PlayerTypeId, bool>[] players = new KeyValue<PlayerTypeId, bool>[names.Length];
+            Application.targetFrameRate = persistentData.SettingsData.RenderSettingsData.MaxFrameRate;
+        }
 
-            for (int i = 0; i < players.Length; i++)
-            {
-                players[i].Key = (PlayerTypeId)Enum.Parse(typeof(PlayerTypeId), names[i]);
-                players[i].Value = i == 0;
-            }
-            
-            return players;
-        }
-        
-        private static KeyValue<LevelTypeId, bool>[] GetLevels()
-        {
-            string[] names = Enum.GetNames(typeof(LevelTypeId));
-            
-            KeyValue<LevelTypeId,bool>[] levels = new KeyValue<LevelTypeId, bool>[names.Length];
-
-            for (int i = 0; i < levels.Length; i++)
-            {
-                levels[i].Key = (LevelTypeId)Enum.Parse(typeof(LevelTypeId), names[i]);
-                levels[i].Value = i == 0;
-            }
-            
-            return levels;
-        }
+        private static PlayerPersistentData NewPlayerPersistentData() => 
+            new PlayerPersistentData();
 
 #if UNITY_EDITOR
 

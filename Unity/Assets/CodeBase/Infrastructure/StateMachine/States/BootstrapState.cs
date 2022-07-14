@@ -26,7 +26,7 @@ namespace CodeBase.Infrastructure.States
     public class BootstrapState : IState
     {
         private readonly IGameStateMachine _stateMachine;
-        private readonly ICorutineRunner _corutineRunner;
+        private readonly ICorutineRunner _coroutineRunner;
         private readonly IUpdatable _updatable;
         
         private readonly DiContainer _diContainer;
@@ -34,11 +34,11 @@ namespace CodeBase.Infrastructure.States
         public BootstrapState(
             DiContainer diContainer,
             IGameStateMachine stateMachine,
-            ICorutineRunner corutineRunner,
+            ICorutineRunner coroutineRunner,
             IUpdatable updatable)
         {
             _stateMachine = stateMachine;
-            _corutineRunner = corutineRunner;
+            _coroutineRunner = coroutineRunner;
             _updatable = updatable;
             _diContainer = diContainer;
 
@@ -57,7 +57,7 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             _diContainer.Bind<IUpdatable>().FromInstance(_updatable).AsSingle();
-            _diContainer.Bind<ICorutineRunner>().FromInstance(_corutineRunner).AsSingle();
+            _diContainer.Bind<ICorutineRunner>().FromInstance(_coroutineRunner).AsSingle();
             _diContainer.Bind<IGameStateMachine>().FromInstance(_stateMachine).AsSingle();
             
             _diContainer.Bind<IWindowService>().To<WindowService>().AsSingle();

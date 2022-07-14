@@ -15,19 +15,19 @@ namespace CodeBase.Services.Spawner
         private const float TimeSpawnEnemy = 2f;
 
         private readonly IPersistentDataService _persistentDataService;
-        private readonly ICorutineRunner _corutineRunner;
+        private readonly ICorutineRunner _coroutineRunner;
         private readonly IRandomService _randomService;
         private readonly IEnemyFactory _enemyFactory;
 
         private LevelStaticData _config;
         private EnemySpawnConfig[] _spawnData;
         
-        private float StopwatchTime => _persistentDataService.PlayerData.SessionData.StopwatchTime;
+        private float StopwatchTime => _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime;
 
-        public EnemySpawnerModule(IRandomService randomService, IEnemyFactory enemyFactory, IPersistentDataService persistentDataService, ICorutineRunner corutineRunner)
+        public EnemySpawnerModule(IRandomService randomService, IEnemyFactory enemyFactory, IPersistentDataService persistentDataService, ICorutineRunner coroutineRunner)
         {
             _persistentDataService = persistentDataService;
-            _corutineRunner = corutineRunner;
+            _coroutineRunner = coroutineRunner;
             _randomService = randomService;
             _enemyFactory = enemyFactory;
         }
@@ -108,7 +108,7 @@ namespace CodeBase.Services.Spawner
         }
 
         private void BlockSpawnConfigForWhile(in EnemySpawnConfig enemySpawnConfig) => 
-            _corutineRunner.StartCoroutine(BlockSpawnConfig(enemySpawnConfig));
+            _coroutineRunner.StartCoroutine(BlockSpawnConfig(enemySpawnConfig));
 
         private static IEnumerator BlockSpawnConfig(EnemySpawnConfig enemySpawnConfig)
         {

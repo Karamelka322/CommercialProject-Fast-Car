@@ -92,7 +92,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void AddTimeInStopwatch(float time) => 
-            _persistentDataService.PlayerData.SessionData.StopwatchTime += time;
+            _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime += time;
         
         private void SetPause(bool isPause) => 
             _pauseService.SetPause(isPause);

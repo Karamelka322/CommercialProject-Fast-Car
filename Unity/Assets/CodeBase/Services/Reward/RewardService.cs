@@ -24,7 +24,7 @@ namespace CodeBase.Services.Reward
             if (UsingRewardCar == false)
                 return;
             
-            _persistentDataService.PlayerData.ProgressData.Players.TrySetValueToKey(RewardCar, true);
+            _persistentDataService.PlayerData.ProgressData.Players.SetValueToKey(RewardCar, true);
         }
     }
 }

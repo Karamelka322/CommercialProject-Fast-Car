@@ -51,12 +51,12 @@ namespace CodeBase.Logic.Player
         }
 
         private static void TrySetPassedLevel(ref ProgressPersistentData progressData) => 
-            progressData.Levels.TrySetValueToKey(progressData.CurrentLevel, true);
+            progressData.Levels.SetValueToKey(progressData.CurrentLevel, true);
 
         private static void SwitchLevel(ref LevelTypeId currentLevel) => 
             currentLevel = (int)currentLevel < Enum.GetNames(typeof(LevelTypeId)).Length - 1 ? currentLevel + 1 : currentLevel;
 
         private bool IsVictory(PlayerPersistentData persistentData) => 
-            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.Level.VictoryTime < persistentData.SessionData.StopwatchTime;
+            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.Level.VictoryTime < persistentData.SessionData.LevelData.StopwatchTime;
     }
 }

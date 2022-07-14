@@ -60,7 +60,7 @@ namespace CodeBase.Infrastructure
         }
 
         private void ResetStopwatch() => 
-            _persistentDataService.PlayerData.SessionData.StopwatchTime = 0;
+            _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime = 0;
 
         private static void ResetCamera()
         {
