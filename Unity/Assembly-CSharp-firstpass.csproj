@@ -49,6 +49,7 @@
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.Config.xml" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Editor.xml" />
+     <None Include="Assets\Plugins\Sirenix\Odin Validator\Readme.txt" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
@@ -63,6 +64,7 @@
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\Plugins\Odin Inspector\Readme.txt" />
      <None Include="Assets\Plugins\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Utilities.Editor.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -72,6 +74,7 @@
      <None Include="Assets\Plugins\RainbowAssets\!Core\NOTICES.txt" />
      <None Include="Assets\Plugins\Odin Inspector\Assemblies\Sirenix.Serialization.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Sprites\EmojiOne.json" />
+     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinValidator.Editor.xml" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
