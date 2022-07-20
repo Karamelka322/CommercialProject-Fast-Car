@@ -32,8 +32,8 @@ namespace CodeBase.Logic.Player
 
         private void OnUpdate()
         {
-            _car.Movement(_inputService.Axis.x);
-            _car.Rotation(_inputService.Axis.y);
+            _car.Movement(_inputService.Axis.normalized.x);
+            _car.Rotation(_inputService.Axis.normalized.y);
         }
 
         public void OnReplay() => 

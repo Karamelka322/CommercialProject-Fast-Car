@@ -50,7 +50,7 @@ namespace CodeBase.Services.StaticData
         {
             for (int i = 0; i < LevelStaticDatas.Length; i++)
             {
-                if (LevelStaticDatas[i].Level.Type == typeId)
+                if (LevelStaticDatas[i].Type == typeId)
                     return LevelStaticDatas[i];
             }
 

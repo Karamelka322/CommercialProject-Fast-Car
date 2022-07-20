@@ -6,12 +6,14 @@ Shader "Custom/Decal"
     }
     SubShader
     {
-        Tags{ "RenderType"="Transparent" "Queue"="Transparent" "DisableBatching"="True" "ForceNoShadowCasting" = "True"}
+        Tags{ "ForceNoShadowCasting" = "True" }
         LOD 100
 
         Pass
         {
             Blend SrcAlpha OneMinusSrcAlpha
+            
+            ZTest off
             ZWrite off
             
             CGPROGRAM
@@ -33,9 +35,8 @@ Shader "Custom/Decal"
                 float3 ray : TEXCOORD1;
             };
 
+            float4 _Color;
             sampler2D _MainTex;
-            float4 _MainTex_ST;
-            
             sampler2D_float _CameraDepthTexture;
             
             v2f vert (VertexData v)

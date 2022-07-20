@@ -997,10 +997,6 @@
       <Project>{78101918-7986-558b-df39-47cccaefad3a}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
-      <Project>{e0456168-1ba5-5e68-ef99-a1034c8b63ab}</Project>
-      <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{627a59fb-c834-e892-6689-d3c0d9099f05}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -1008,6 +1004,10 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{6938f8d8-4b11-3b71-edf7-ce3893ffc321}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
+      <Project>{e0456168-1ba5-5e68-ef99-a1034c8b63ab}</Project>
+      <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

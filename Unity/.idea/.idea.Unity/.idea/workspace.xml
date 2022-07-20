@@ -8,8 +8,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/ef/110c023e/GUITable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/ef/75a4a846/LazyEditorIcon.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/6c/914e9e0b/UnityEditorEventUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/9b/4ffc4c6d/InstanceCreatorWindow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/e3/5ed91bf5/DelayedGUIDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Infrastructure/StateMachine/States/LoadLevelState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/af/c142266a/Token.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Mediator/Menu/MenuMediator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66a36f4eb7c24c42bf1d8c5cb47775704b600/ab/c0bc4c38/CheckPrerequisites.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/ea/3fbbe68e/GUITableUtilities.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/94/70997cfe/DropEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5e70d1f2e2084cfa9fcd57f29a231480170400/3a/f05b871d/SerializationDebuggerWindow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41708cb99636437e91f3d4d4e5e92a795a200/c1/fcfb7998/EditorOnlyModeConfigUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/aa/c39f99f3/SirenixEditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.18/Editor/PlasticSCM/UI/ShowWindow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41708cb99636437e91f3d4d4e5e92a795a200/8f/8eb554e1/AOTSupportScanner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/d5a36a96b2ad42b898b2ec8b30fb645384800/ff/ed94ec3d/02000014.il" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2AqPAWbL9FOweRnUAnIMzQYDfMd" />
   <component name="ProjectViewState">

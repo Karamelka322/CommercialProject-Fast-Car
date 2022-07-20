@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
+  m_Name: Level_1 (Pit)
+  m_EditorClassIdentifier: 
+  Level:
+    VictoryTime: 999
+    PlayerSpawnPoints:
+    - Position: {x: 3, y: 0, z: -5}
+      Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
+  Spawn:
+    Generator:
+      UsingGenerator: 0
+      StartValuePower: 100
+      PowerChangeSpeed: 2
+      GeneratorSpawnPoints:
+      - Position: {x: -106, y: 6, z: -79}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Capsule:
+      UsingCapsule: 0
+      Quantity: 0
+      CapsuleSpawnPoints: []
+    Enemy:
+      UsingEnemy: 0
+      Enemies:
+      - EnemyType: 0
+        DifficultyType: 0
+        Period: {x: 0, y: 29.721033}
+        Range: 5.2
+      EnemySpawnPoints:
+      - Position: {x: -116, y: 6, z: 0}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -39, y: 14, z: 39}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 17, y: 6, z: -60}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+  Reward:
+    Car:
+      UsingRewardCar: 0
+      Type: 0

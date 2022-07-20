@@ -38,7 +38,7 @@ namespace CodeBase.Logic.Level.Generator
             }
             else
             {
-                LevelTypeId currentLevel = persistentData.SessionData.LevelData.CurrentLevelConfig.Level.Type;
+                LevelTypeId currentLevel = persistentData.SessionData.LevelData.CurrentLevelConfig.Type;
                 LevelStaticData[] staticDatas = _staticDataService.LevelStaticDatas;
 
                 for (int i = 0; i < staticDatas.Length; i++)
@@ -56,7 +56,7 @@ namespace CodeBase.Logic.Level.Generator
         }
 
         private static bool IsUsingRewardCar(LevelStaticData staticData, LevelTypeId currentLevel) => 
-            staticData.Level.Type > currentLevel && staticData.Reward.Car.UsingRewardCar;
+            staticData.Type > currentLevel && staticData.Reward.Car.UsingRewardCar;
 
         private void InstantiateReward(GameObject reward) => 
             Instantiate(reward, _centerBasket);

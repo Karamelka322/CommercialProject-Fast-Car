@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,5 +15,8 @@ namespace CodeBase.Data.Static.Level
         
         [FoldoutGroup("Reward"), HideLabel]
         public RewardConfig Reward;
+        
+        public LevelTypeId Type => (LevelTypeId)Enum.Parse(typeof(LevelTypeId), name.Substring(0, 7));
+        public string SceneName => name;
     }
 }

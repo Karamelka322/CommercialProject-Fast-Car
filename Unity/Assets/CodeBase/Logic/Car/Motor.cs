@@ -39,6 +39,7 @@ namespace CodeBase.Logic.Car
 
         public void Torque(float torque)
         {
+            Debug.Log(torque);
             _nowTorque = GetTorque(torque);
             SetTorqueInWheels(_nowTorque);
         }

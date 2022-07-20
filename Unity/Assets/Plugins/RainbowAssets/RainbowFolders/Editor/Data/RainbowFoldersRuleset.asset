@@ -40,7 +40,7 @@ MonoBehaviour:
   - Type: 0
     Key: Editor
     Ordinal: 2
-    Priority: 0
+    Priority: -1
     IconType: 2030
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}

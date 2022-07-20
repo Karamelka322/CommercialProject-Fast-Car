@@ -13,8 +13,11 @@ namespace CodeBase.Services.Input
 
         private Vector2 UnityAxis()
         {
-            _axis.x = UnityEngine.Input.GetAxis(Vertical);
-            _axis.y = UnityEngine.Input.GetAxis(Horizontal);
+            float axisX = UnityEngine.Input.GetAxis(Vertical);
+            float axisY = UnityEngine.Input.GetAxis(Horizontal); 
+            
+            _axis.x = axisX != -1 ? axisX : -2;
+            _axis.y = axisY != -1 ? axisY : -2;
             
             return _axis;
         }

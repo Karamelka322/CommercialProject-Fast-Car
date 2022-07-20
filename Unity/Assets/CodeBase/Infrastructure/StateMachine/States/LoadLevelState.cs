@@ -37,7 +37,7 @@ namespace CodeBase.Infrastructure.States
         private readonly IPauseService _pauseService;
         private readonly ISpawnerService _spawnerService;
 
-        private LevelStaticData _currentLevel;
+        private LevelStaticData _levelData;
         private LoadingCurtain _curtain;
         
         public LoadLevelState(
@@ -83,12 +83,12 @@ namespace CodeBase.Infrastructure.States
             _sceneLoaderService.Load(LevelSceneName, LoadSceneMode.Single, LoadGeometry);
 
         private void LoadGeometry() => 
-            _sceneLoaderService.Load(_currentLevel.Level.SceneName, LoadSceneMode.Additive, OnLoaded);
+            _sceneLoaderService.Load(_levelData.SceneName, LoadSceneMode.Additive, OnLoaded);
 
         private void OnLoaded()
         {
-            _randomService.SetConfig(_currentLevel);
-            _spawnerService.SetConfig(_currentLevel);
+            _randomService.SetConfig(_levelData);
+            _spawnerService.SetConfig(_levelData);
 
             _spawnerService.SpawnOnLoaded();
 
@@ -107,8 +107,8 @@ namespace CodeBase.Infrastructure.States
         
         private void SetCurrentLevel()
         {
-            _currentLevel = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.CurrentLevel);
-            _persistentDataService.PlayerData.SessionData.LevelData.CurrentLevelConfig = _currentLevel;
+            _levelData = _staticDataService.ForLevel(_persistentDataService.PlayerData.ProgressData.CurrentLevel);
+            _persistentDataService.PlayerData.SessionData.LevelData.CurrentLevelConfig = _levelData;
         }
 
         private void EnterLoopLevelState() => 
