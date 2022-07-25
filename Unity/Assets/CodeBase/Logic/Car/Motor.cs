@@ -14,17 +14,31 @@ namespace CodeBase.Logic.Car
         private Wheel _rearRightWheel;
         
         [Space, SerializeField, Min(0)] 
-        private int _power;
+        private int _powerForward;
+        
+        [SerializeField, Min(0)] 
+        private int _powerBackwards;
         
         [SerializeField, Min(0)]
         private int _speedAcceleration;
 
-        public int Power
+        public Wheel RearLeftWheel => _rearLeftWheel;
+        public Wheel RearRightWheel => _rearRightWheel;
+
+        public int PowerForward
         {
-            get => _power;
+            get => _powerForward;
             
             [Editor]
-            set => _power = value;
+            set => _powerForward = value;
+        }
+        
+        public int PowerBackwards
+        {
+            get => _powerBackwards;
+            
+            [Editor]
+            set => _powerBackwards = value;
         }
 
         public int Acceleration
@@ -36,16 +50,60 @@ namespace CodeBase.Logic.Car
         }
 
         private float _nowTorque;
+        private bool _isStopping;
+        private bool _isStopped;
 
-        public void Torque(float torque)
+        public void Move(in float torque, in float nowSpeed)
         {
-            Debug.Log(torque);
-            _nowTorque = GetTorque(torque);
+            if(torque < 0)
+                MoveBackwards(torque, nowSpeed);
+            else
+                MoveForward(torque, nowSpeed);
+        }
+
+        private void MoveForward(float torque, float nowSpeed)
+        {
+            _nowTorque = Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _speedAcceleration);
+            _isStopped = nowSpeed < 1;
+
+            if (_isStopped && !_isStopping)
+            {
+                _isStopping = true;
+
+                BlockWheels();
+            }
+            else if(_isStopping)
+            {
+                UnlockWheels();
+            }
+
+            if (!_isStopped)
+                _isStopping = false;
+
             SetTorqueInWheels(_nowTorque);
         }
 
-        private float GetTorque(float torque) => 
-            torque != 0? Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _speedAcceleration) : 0;
+        private void MoveBackwards(float torque, float nowSpeed)
+        {
+            _nowTorque = torque;
+            _isStopping = nowSpeed > 1f;
+
+            if (_isStopping && !_isStopped)
+            {
+                _isStopped = true;
+
+                BlockWheels();
+            }
+            else
+            {
+                UnlockWheels();
+            }
+            
+            if(torque > 0) 
+                _isStopped = false;
+            
+            SetTorqueInWheels(_nowTorque);
+        }
 
         private void SetTorqueInWheels(float torque)
         {
@@ -53,21 +111,29 @@ namespace CodeBase.Logic.Car
             _rearRightWheel.Torque(torque);
         }
 
-        public void OnReplay()
+        private void BlockWheels()
         {
-            _nowTorque = 0;
-            SetTorqueInWheels(_nowTorque);
-            
             _rearLeftWheel.Block();
             _rearRightWheel.Block();
         }
 
-        public void OnEnabledPause() { }
-
-        public void OnDisabledPause()
+        private void UnlockWheels()
         {
             _rearLeftWheel.Unlock();
             _rearRightWheel.Unlock();
         }
+
+        public void OnReplay()
+        {
+            _nowTorque = 0;
+            SetTorqueInWheels(_nowTorque);
+
+            BlockWheels();
+        }
+
+        public void OnEnabledPause() { }
+
+        public void OnDisabledPause() => 
+            UnlockWheels();
     }
 }

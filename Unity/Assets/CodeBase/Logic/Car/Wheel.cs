@@ -13,6 +13,8 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private WheelCollider _collider;
 
+        public WheelCollider Collider => _collider;
+
         private IUpdateService _updateService;
 
         private Vector3 _position;

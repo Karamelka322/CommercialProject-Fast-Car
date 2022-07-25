@@ -705,7 +705,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rearLeftWheel: {fileID: 2584558960022639511}
   _rearRightWheel: {fileID: 5502244480379014965}
-  _power: 800
+  _powerForward: 800
+  _powerBackwards: 400
   _speedAcceleration: 10
 --- !u!1 &4679880451572521007
 GameObject:

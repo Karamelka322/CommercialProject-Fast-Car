@@ -19,8 +19,6 @@ namespace CodeBase.Infrastructure.States
 {
     public class LoadLevelState : IState
     {
-        private const string LevelSceneName = "Level";
-        
         private const float SpeedShowCurtain = 1f;
         private const float DelayShowCurtain = 0f;
         private const float SpeedHideCurtain = 1f;
@@ -80,10 +78,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void LoadLevelScene() => 
-            _sceneLoaderService.Load(LevelSceneName, LoadSceneMode.Single, LoadGeometry);
-
-        private void LoadGeometry() => 
-            _sceneLoaderService.Load(_levelData.SceneName, LoadSceneMode.Additive, OnLoaded);
+            _sceneLoaderService.Load(_levelData.SceneName, LoadSceneMode.Single, OnLoaded);
 
         private void OnLoaded()
         {

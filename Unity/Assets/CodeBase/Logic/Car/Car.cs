@@ -20,40 +20,30 @@ namespace CodeBase.Logic.Car
         [Space]
         [SerializeField] 
         private Rigidbody _rigidbody;
-        
-        [Space]
-        [SerializeField] 
-        private WheelCollider _frontLeftWheel;
-        
-        [SerializeField] 
-        private WheelCollider _frontRightWheel;
-
-        [SerializeField] 
-        private WheelCollider _rearLeftWheel;
-
-        [SerializeField] 
-        private WheelCollider _rearRightWheel;
 
         public float Speed => _rigidbody.velocity.magnitude;
-        public bool IsGrounded => _frontLeftWheel.isGrounded || _frontRightWheel.isGrounded || _rearLeftWheel.isGrounded || _rearRightWheel.isGrounded;
+        public bool IsGrounded => _motor.RearLeftWheel.Collider.isGrounded || _motor.RearRightWheel.Collider.isGrounded || 
+                                  _steeringGear.FrontLeftWheel.Collider.isGrounded || _steeringGear.FrontRightWheel.Collider.isGrounded;
 
         private Vector3 _velocity;
         private Vector3 _angularVelocity;
-        
+
         private void Awake() => 
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
 
-        public void Movement(float normalizedValue) => 
-            _motor.Torque(ConvertNormalizedValueToTorque(normalizedValue));
+        public void Movement(float axis) => 
+            _motor.Move(ConvertAxisToTorque(axis), _rigidbody.velocity.magnitude);
 
-        public void Rotation(float normalizedValue) => 
-            _steeringGear.Angle(ConvertNormalizedValueToAngle(normalizedValue));
+        public void Rotation(float axis) => 
+            _steeringGear.Angle(ConvertAxisToAngle(axis));
 
-        private float ConvertNormalizedValueToTorque(float normalizedValue) => 
-            normalizedValue > 0 ? Mathf.Lerp(0, _motor.Power, normalizedValue) : Mathf.Lerp(0, -_motor.Power, -normalizedValue);
+        private float ConvertAxisToTorque(float axis) =>
+            axis > 0 
+                ? Mathf.Lerp(0, axis > 0 ? _motor.PowerForward : _motor.PowerBackwards, axis) 
+                : Mathf.Lerp(0, axis > 0 ? -_motor.PowerForward : -_motor.PowerBackwards, -axis);
 
-        private float ConvertNormalizedValueToAngle(float normalizedValue) => 
-            normalizedValue > 0 ? Mathf.Lerp(0, _steeringGear.SteerAngle, normalizedValue) : Mathf.Lerp(0, -_steeringGear.SteerAngle, -normalizedValue);
+        private float ConvertAxisToAngle(float axis) => 
+            axis > 0 ? Mathf.Lerp(0, _steeringGear.SteerAngle, axis) : Mathf.Lerp(0, -_steeringGear.SteerAngle, -axis);
 
         public void OnEnabledPause()
         {

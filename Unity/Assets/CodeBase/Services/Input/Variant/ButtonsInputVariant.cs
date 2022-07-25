@@ -35,8 +35,11 @@ namespace CodeBase.Services.Input
             _axis += _inputService.GetButton(ButtonDownLeft) ? DownLeft : Vector2.zero;
             _axis += _inputService.GetButton(ButtonUpRight) ? UpRight : Vector2.zero;
             _axis += _inputService.GetButton(ButtonDownRight) ? DownRight : Vector2.zero;
+
+            _axis.x = Mathf.Clamp(_axis.x, -1, 1);
+            _axis.y = Mathf.Clamp(_axis.y, -1, 1);
             
-            return _axis.normalized;
+            return _axis;
         }
     }
 }

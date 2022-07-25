@@ -23,8 +23,11 @@ namespace CodeBase.Data.Static.Player
         [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetHealth"), MinValue(0), InfoBox("It works here auto-save data in prefab"), DelayedProperty]
         private float Health;
 
-        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPower"), MinValue(0), DelayedProperty]
-        private int MotorPower;
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPowerForward"), MinValue(0), DelayedProperty]
+        private int MotorPowerForward;
+        
+        [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetMotorPowerBackwards"), MinValue(0), DelayedProperty]
+        private int MotorPowerBackwards;
         
         [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetAcceleration"), MinValue(0), DelayedProperty]
         private int Acceleration;
@@ -35,11 +38,11 @@ namespace CodeBase.Data.Static.Player
         [BoxGroup("Config"), ShowInInspector, OnValueChanged("SetSpeedRotation"), MinValue(0), DelayedProperty]
         private int SpeedRotation;
 
-
         private void OnEnable()
         {
             Health = Prefab.GetComponent<PlayerHealth>().Health;
-            MotorPower = Prefab.GetComponent<Motor>().Power;
+            MotorPowerForward = Prefab.GetComponent<Motor>().PowerForward;
+            MotorPowerBackwards = Prefab.GetComponent<Motor>().PowerBackwards;
             Acceleration = Prefab.GetComponent<Motor>().Acceleration;
             SteerAngle = Prefab.GetComponent<SteeringGear>().SteerAngle;
             SpeedRotation = Prefab.GetComponent<SteeringGear>().SpeedRotation;
@@ -80,10 +83,20 @@ namespace CodeBase.Data.Static.Player
         }
 
         [UsedImplicitly]
-        private void SetMotorPower()
+        private void SetMotorPowerForward()
         {
             Motor motor = Prefab.GetComponent<Motor>();
-            motor.Power = MotorPower;
+            motor.PowerForward = MotorPowerForward;
+            EditorUtility.SetDirty(motor);
+            
+            AssetDatabase.SaveAssets();
+        }
+        
+        [UsedImplicitly]
+        private void SetMotorPowerBackwards()
+        {
+            Motor motor = Prefab.GetComponent<Motor>();
+            motor.PowerBackwards = MotorPowerBackwards;
             EditorUtility.SetDirty(motor);
             
             AssetDatabase.SaveAssets();

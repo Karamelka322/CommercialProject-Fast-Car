@@ -12,16 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Menu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Level/Level.unity
-    guid: 55135d2537624114f8cfffe1c5c8f986
-  - enabled: 1
     path: Assets/Scenes/Level/Level_1 (Pit)/Level_1 (Pit).unity
     guid: e41a63be3073bee4594a85240f424487
-  - enabled: 0
-    path: Assets/Scenes/Level/Geometry/Village_Geometry.unity
-    guid: b7879c8ecbff8294a9294c74bf0b09d9
-  - enabled: 0
-    path: Assets/Scenes/Level/Geometry/Demo_Geometry.unity
-    guid: 96a14517f78a68544bd59d735387b0bb
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: e13f66367567e55439c27965408f3f19, type: 2}

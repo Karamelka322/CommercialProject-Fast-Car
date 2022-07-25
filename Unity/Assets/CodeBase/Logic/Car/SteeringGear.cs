@@ -34,6 +34,9 @@ namespace CodeBase.Logic.Car
             set => _speedRotation = value;
         }
 
+        public Wheel FrontLeftWheel => _frontLeftWheel;
+        public Wheel FrontRightWheel => _frontRightWheel;
+
         private float _nowAngle;
         
         public void Angle(float angle)
@@ -47,16 +50,16 @@ namespace CodeBase.Logic.Car
 
         private void SetSteerAngleInWheels(float angle)
         {
-            _frontLeftWheel.SteerAngle(angle);
-            _frontRightWheel.SteerAngle(angle);
+            FrontLeftWheel.SteerAngle(angle);
+            FrontRightWheel.SteerAngle(angle);
         }
 
         public void OnReplay()
         {
             _nowAngle = 0;
             
-            _frontLeftWheel.ResetSteerAngle();
-            _frontRightWheel.ResetSteerAngle();
+            FrontLeftWheel.ResetSteerAngle();
+            FrontRightWheel.ResetSteerAngle();
         }
     }
 }

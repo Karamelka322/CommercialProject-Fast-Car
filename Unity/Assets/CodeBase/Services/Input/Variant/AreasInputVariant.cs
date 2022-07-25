@@ -36,7 +36,10 @@ namespace CodeBase.Services.Input
             _axis += _inputService.GetArea(AreaUpRight) ? UpRight : Vector2.zero;
             _axis += _inputService.GetArea(AreaDownRight) ? DownRight : Vector2.zero;
             
-            return _axis.normalized;
+            _axis.x = Mathf.Clamp(_axis.x, -1, 1);
+            _axis.y = Mathf.Clamp(_axis.y, -1, 1);
+            
+            return _axis;
         }
     }
 }
