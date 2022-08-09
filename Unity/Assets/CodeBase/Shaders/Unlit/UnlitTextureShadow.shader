@@ -13,7 +13,7 @@ Shader "Custom/Unlit/Texture (Shadow)"
         #pragma surface surf Empty noambient
 
         sampler2D _MainTex;
-        sampler2D _Emissive;
+        sampler2D _Emissing;
         
         struct Input
         {

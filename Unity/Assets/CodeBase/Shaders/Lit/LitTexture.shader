@@ -3,7 +3,6 @@ Shader "Custom/Lit/Texture"
     Properties
     {
         _MainTex ("Base (RGB)", 2D) = "white" {}
-        _Emissive ("Emissive", 2D) = "white" {}
     }
     SubShader 
     {
@@ -14,11 +13,10 @@ Shader "Custom/Lit/Texture"
         #pragma surface surf Diffuse
         
         sampler2D _MainTex;
-        sampler2D _Emissive;
         
         struct Input
         {
-            float2 uv_MainTex;
+            float2 uv_MainTex : TEXCOORD0;
         };
 
         inline float4 LightingDiffuse (SurfaceOutput s, fixed3 lightDir, fixed atten)
@@ -32,8 +30,7 @@ Shader "Custom/Lit/Texture"
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-            o.Emission = tex2D (_Emissive, IN.uv_MainTex).rgb;
+            o.Albedo = tex2D (_MainTex, IN.uv_MainTex.xy).rgb;
         }
         ENDCG
     }
