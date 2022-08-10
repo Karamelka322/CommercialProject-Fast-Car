@@ -19,8 +19,7 @@ namespace CodeBase.Services.Spawner
         private readonly IRandomService _randomService;
         private readonly IEnemyFactory _enemyFactory;
 
-        private LevelStaticData _config;
-        private EnemySpawnConfig[] _spawnData;
+        private EnemySpawnConfig[] _configs;
         
         private float StopwatchTime => _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime;
 
@@ -32,14 +31,8 @@ namespace CodeBase.Services.Spawner
             _enemyFactory = enemyFactory;
         }
 
-        public void SetConfig(LevelStaticData levelConfig)
-        {
-            if(levelConfig.Spawn.Enemy.UsingEnemy == false)
-                return;
-            
-            _config = levelConfig;
-            _spawnData = Copy(levelConfig.Spawn.Enemy.Enemies);
-        }
+        public void SetConfig(EnemiesSpawnConfig config) => 
+            _configs = Copy(config.Enemies);
 
         public void TrySpawnEnemy()
         {
@@ -47,24 +40,21 @@ namespace CodeBase.Services.Spawner
                 SpawnEnemy(spawnEnemyStaticData);
         }
 
-        public void Clear()
-        {
-            _config = null;
-            _spawnData = Array.Empty<EnemySpawnConfig>();
-        }
+        public void Clear() => 
+            _configs = Array.Empty<EnemySpawnConfig>();
 
         public void ResetModule()
         {
-            if(_spawnData == null)
+            if(_configs == null)
                 return;
         
-            for (int i = 0; i < _spawnData.Length; i++) 
-                _spawnData[i].IsLocked = false;
+            for (int i = 0; i < _configs.Length; i++) 
+                _configs[i].IsLocked = false;
         }
 
         private bool IsSpawnedEnemy(out List<EnemySpawnConfig> enemySpawnConfig)
         {
-            if (_config != null && _config.Spawn.Enemy.UsingEnemy && _randomService.GetNumberInlockedEnemySpawnPoints() > 0)
+            if (_randomService.GetNumberInlockedEnemySpawnPoints() > 0)
             {
                 enemySpawnConfig = GetSpawnConfigs();
                 return true;
@@ -96,11 +86,11 @@ namespace CodeBase.Services.Spawner
         {
             List<EnemySpawnConfig> _configs = new List<EnemySpawnConfig>();
 
-            for (int i = 0; i < _spawnData.Length; i++)
+            for (int i = 0; i < this._configs.Length; i++)
             {
-                if (_spawnData[i].Period.x <= StopwatchTime && _spawnData[i].Period.y >= StopwatchTime && _spawnData[i].IsLocked == false)
+                if (this._configs[i].Period.x <= StopwatchTime && this._configs[i].Period.y >= StopwatchTime && this._configs[i].IsLocked == false)
                 {
-                    _configs.Add(_spawnData[i]);
+                    _configs.Add(this._configs[i]);
                 }
             }
 

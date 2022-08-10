@@ -4,7 +4,7 @@ namespace CodeBase.Services.Spawner
 {
     public interface IEnemySpawnerModule
     {
-        void SetConfig(LevelStaticData levelConfig);
+        void SetConfig(EnemiesSpawnConfig config);
         void TrySpawnEnemy();
         void Clear();
         void ResetModule();

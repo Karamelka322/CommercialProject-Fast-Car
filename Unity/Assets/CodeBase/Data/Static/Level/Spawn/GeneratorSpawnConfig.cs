@@ -6,6 +6,7 @@ using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Data.Static.Level
@@ -16,19 +17,29 @@ namespace CodeBase.Data.Static.Level
         [UsedImplicitly]
         public bool UsingGenerator;
         
-        [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0)]
+        [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0), PropertyOrder(0)]
         public int StartValuePower;
         
-        [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0)]
+        [BoxGroup("Config"), MinValue(0), GUIColor(0.8f, 0.8f, 0), PropertyOrder(-1)]
         public float PowerChangeSpeed;
-        
-        [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), InfoBox("Empty", InfoMessageType.Error, "CheckGeneratorSpawnPoints")]
+
+        [Title("Asset", titleAlignment: TitleAlignments.Right), BoxGroup("Config"), Required("Empty"), PropertyOrder(0)] 
+        public AssetReferenceGameObject PrefabReference;
+
+        [Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), PropertySpace(SpaceAfter = 10), InfoBox("Empty", InfoMessageType.Error, "CheckGeneratorSpawnPoints"), PropertyOrder(2)]
         public PointData[] GeneratorSpawnPoints;
-        
-        
+
+
 #if UNITY_EDITOR
-        
-        [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f)]
+
+        [ShowIf("NotEmpty"), BoxGroup("Config"), InlineEditor(InlineEditorModes.LargePreview), ShowInInspector, ReadOnly, PropertyOrder(1)]
+        private GameObject Prefab => PrefabReference.editorAsset;
+
+        [UsedImplicitly]
+        private bool NotEmpty() => 
+            PrefabReference.editorAsset;
+
+        [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f), PropertyOrder(2)]
         private void FillGeneratorSpawnPoints()
         {
             GeneratorSpawnPoint[] generatorSpawnPoints = Object.FindObjectsOfType<GeneratorSpawnPoint>();

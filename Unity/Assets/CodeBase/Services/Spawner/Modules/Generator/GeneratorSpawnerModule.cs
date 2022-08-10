@@ -17,24 +17,13 @@ namespace CodeBase.Services.Spawner
             _randomService = randomService;
         }
 
-        public void SetConfig(LevelStaticData levelConfig)
-        {
-            _config = levelConfig.Spawn.Generator;
-        }
+        public void SetConfig(GeneratorSpawnConfig config) => 
+            _config = config;
 
-        public void TrySpawnGenerator()
-        {
-            if (IsSpawnGenerator()) 
-                SpawnGenerator();
-        }
+        public void SpawnGenerator() => 
+            _levelFactory.LoadGenerator(_config.PrefabReference, _randomService.GeneratorSpawnPoint());
 
         public void Clear() => 
             _config = null;
-
-        private bool IsSpawnGenerator() => 
-            _config != null && _config.UsingGenerator;
-
-        private void SpawnGenerator() => 
-            _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
     }
 }

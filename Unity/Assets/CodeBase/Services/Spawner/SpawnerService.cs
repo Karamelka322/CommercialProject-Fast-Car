@@ -13,6 +13,12 @@ namespace CodeBase.Services.Spawner
         private readonly IEnemySpawnerModule _enemySpawnerModule;
         private readonly IGeneratorSpawnerModule _generatorSpawnerModule;
 
+        private LevelStaticData _levelStaticData;
+
+        private bool UsingGenerator => _levelStaticData.Spawn.Generator.UsingGenerator;
+        private bool UsingCapsule => _levelStaticData.Spawn.Capsule.UsingCapsule;
+        private bool UsingEnemy => _levelStaticData.Spawn.Enemy.UsingEnemy;
+
         public SpawnerService(
             IRandomService randomService,
             ILevelFactory levelFactory,
@@ -27,30 +33,51 @@ namespace CodeBase.Services.Spawner
 
         public void SetConfig(LevelStaticData levelStaticData)
         {
-            _generatorSpawnerModule.SetConfig(levelStaticData);
-            _capsuleSpawnerModule.SetConfig(levelStaticData);
-            _enemySpawnerModule.SetConfig(levelStaticData);
+            _levelStaticData = levelStaticData;
+            
+            if(UsingGenerator)
+                _generatorSpawnerModule.SetConfig(levelStaticData.Spawn.Generator);
+            
+            if(UsingCapsule)
+                _capsuleSpawnerModule.SetConfig(levelStaticData.Spawn.Capsule);
+
+            if(UsingEnemy)
+                _enemySpawnerModule.SetConfig(levelStaticData.Spawn.Enemy);
         }
 
         public void SpawnOnLoaded()
         {
-            _generatorSpawnerModule.TrySpawnGenerator();
+            if(UsingGenerator)
+                _generatorSpawnerModule.SpawnGenerator();
         }
 
         public void SpawnOnUpdate()
         {
-            _capsuleSpawnerModule.TrySpawnCapsule();
-            _enemySpawnerModule.TrySpawnEnemy();
+            if(UsingCapsule)
+                _capsuleSpawnerModule.TrySpawnCapsule();
+            
+            if(UsingEnemy)
+                _enemySpawnerModule.TrySpawnEnemy();
         }
 
         public void CleanUp()
         {
-            _generatorSpawnerModule.Clear();
-            _capsuleSpawnerModule.Clear();
-            _enemySpawnerModule.Clear();
+            if(UsingGenerator)
+                _generatorSpawnerModule.Clear();
+
+            if(UsingCapsule)
+                _capsuleSpawnerModule.Clear();
+
+            if(UsingEnemy)
+                _enemySpawnerModule.Clear();
+            
+            _levelStaticData = null;
         }
 
-        public void Reset() => 
-            _enemySpawnerModule.ResetModule();
+        public void Reset()
+        {
+            if(UsingEnemy)
+                _enemySpawnerModule.ResetModule();
+        }
     }
 }

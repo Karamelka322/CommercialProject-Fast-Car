@@ -19,11 +19,16 @@ MonoBehaviour:
       - Position: {x: -46.36, y: 0, z: -42.28}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Generator:
-      UsingGenerator: 0
+      UsingGenerator: 1
       StartValuePower: 100
       PowerChangeSpeed: 2
+      PrefabReference:
+        m_AssetGUID: 77522e451e2e8b64ea0531e68ff67ea0
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
       GeneratorSpawnPoints:
-      - Position: {x: -106, y: 6, z: -79}
+      - Position: {x: 1.58, y: -3, z: -1.56}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Capsule:
       UsingCapsule: 0
@@ -35,7 +40,7 @@ MonoBehaviour:
       - EnemyType: 0
         DifficultyType: 0
         Period: {x: 0, y: 29.721033}
-        Range: 5.2
+        Range: 5
       SpawnPoints:
       - Position: {x: -9.6, y: 0, z: -66.1}
         Rotation: {x: -0, y: -0, z: -0, w: 1}

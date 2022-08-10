@@ -4,7 +4,7 @@ namespace CodeBase.Services.Spawner
 {
     public interface ICapsuleSpawnerModule
     {
-        void SetConfig(LevelStaticData levelConfig);
+        void SetConfig(CapsuleSpawnConfig config);
         void TrySpawnCapsule();
         void Clear();
     }

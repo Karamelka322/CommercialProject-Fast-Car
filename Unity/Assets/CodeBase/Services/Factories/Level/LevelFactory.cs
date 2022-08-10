@@ -5,7 +5,9 @@ using CodeBase.Services.Defeat;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Victory;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace CodeBase.Services.Factories.Level
@@ -19,9 +21,11 @@ namespace CodeBase.Services.Factories.Level
             _diContainer = diContainer;
         }
 
-        public void LoadGenerator(PointData spawnPoint)
+        public async void LoadGenerator(AssetReference PrefabReference,PointData spawnPoint)
         {
-            GameObject prefab = LoadAsset<GameObject>(AssetPath.GeneratorPath);
+            GameObject prefab = await _diContainer.Resolve<IAssetMenagementService>()
+                .Load<GameObject>(PrefabReference);
+
             InstantiateRegister(prefab, spawnPoint);
         }
 

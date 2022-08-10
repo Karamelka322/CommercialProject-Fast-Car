@@ -22,12 +22,9 @@ namespace CodeBase.Services.Spawner
             _levelFactory = levelFactory;
         }
 
-        public void SetConfig(LevelStaticData levelConfig)
+        public void SetConfig(CapsuleSpawnConfig config)
         {
-            if(levelConfig.Spawn.Capsule.UsingCapsule == false)
-                return;
-
-            _config = levelConfig.Spawn.Capsule;
+            _config = config;
             _capsules = new Capsule[_config.Quantity];
         }
 
