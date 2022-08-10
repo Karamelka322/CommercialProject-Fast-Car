@@ -248,7 +248,7 @@
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\LevelConfig.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\PlayerSpawnConfig.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

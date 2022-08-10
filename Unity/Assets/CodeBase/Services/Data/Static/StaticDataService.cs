@@ -21,7 +21,7 @@ namespace CodeBase.Services.StaticData
 
             _playerStaticDatas = LoadAllAsset<PlayerStaticData>(AssetPath.PlayerStaticDataPath);
             LevelStaticDatas = LoadAllAsset<LevelStaticData>(AssetPath.LevelStaticDataPath);
-            _enemyStaticDatas = LoadAllAsset<EnemyStaticData>(AssetPath.EnemiesStaticDataPath);
+            _enemyStaticDatas = LoadAllAsset<EnemyStaticData>(AssetPath.EnemyStaticDataPath);
         }
 
         public PlayerStaticData ForPlayer(PlayerTypeId typeId)

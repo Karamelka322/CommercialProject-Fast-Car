@@ -20,10 +20,13 @@ namespace CodeBase.Logic.Car
         private Vector3 _position;
         private Quaternion _rotation;
 
+        private Vector3 _startRotation;
+
         [Inject]
         public void Construct(IUpdateService updateService)
         {
             _updateService = updateService;
+            _startRotation = _mesh.rotation.eulerAngles;
         }
 
         private void Start() => 
@@ -58,7 +61,7 @@ namespace CodeBase.Logic.Car
             _collider.GetWorldPose(out _position, out _rotation);
 
             _mesh.position = _position;
-            _mesh.rotation = _rotation;
+            _mesh.rotation = Quaternion.Euler(_rotation.eulerAngles + _startRotation);
         }
     }
 }

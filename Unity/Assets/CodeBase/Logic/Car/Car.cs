@@ -1,6 +1,7 @@
 using CodeBase.Logic.World;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
@@ -22,6 +23,7 @@ namespace CodeBase.Logic.Car
         private Rigidbody _rigidbody;
 
         public float Speed => _rigidbody.velocity.magnitude;
+        [ShowInInspector]
         public bool IsGrounded => _motor.RearLeftWheel.Collider.isGrounded || _motor.RearRightWheel.Collider.isGrounded || 
                                   _steeringGear.FrontLeftWheel.Collider.isGrounded || _steeringGear.FrontRightWheel.Collider.isGrounded;
 

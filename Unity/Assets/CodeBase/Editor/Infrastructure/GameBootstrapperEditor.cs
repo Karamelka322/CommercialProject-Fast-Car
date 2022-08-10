@@ -1,7 +1,6 @@
 using CodeBase.Data.Perseistent.Developer;
 using CodeBase.Extension;
 using CodeBase.Infrastructure;
-using CodeBase.Scene;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;

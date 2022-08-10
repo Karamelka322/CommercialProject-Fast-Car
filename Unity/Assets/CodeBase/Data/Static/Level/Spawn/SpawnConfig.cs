@@ -8,6 +8,9 @@ namespace CodeBase.Data.Static.Level
     [Serializable]
     public class SpawnConfig
     {
+        [FoldoutGroup("Player"), HideLabel]
+        public PlayerSpawnConfig Player;
+
         [Toggle("UsingGenerator")]
         public GeneratorSpawnConfig Generator;
 
@@ -25,7 +28,7 @@ namespace CodeBase.Data.Static.Level
             if (Capsule.UsingCapsule == false)
             {
                 Capsule.Quantity = 0;
-                Capsule.CapsuleSpawnPoints = Array.Empty<PointData>();
+                Capsule.SpawnPoints = Array.Empty<PointData>();
             }
         }
 

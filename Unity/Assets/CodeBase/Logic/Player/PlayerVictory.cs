@@ -57,6 +57,6 @@ namespace CodeBase.Logic.Player
             currentLevel = (int)currentLevel < Enum.GetNames(typeof(LevelTypeId)).Length - 1 ? currentLevel + 1 : currentLevel;
 
         private bool IsVictory(PlayerPersistentData persistentData) => 
-            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.Level.VictoryTime < persistentData.SessionData.LevelData.StopwatchTime;
+            _isVictory == false && persistentData.SessionData.LevelData.CurrentLevelConfig.VictoryTime < persistentData.SessionData.LevelData.StopwatchTime;
     }
 }

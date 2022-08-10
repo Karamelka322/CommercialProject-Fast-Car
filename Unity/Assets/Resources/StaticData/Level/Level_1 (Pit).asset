@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level_1 (Pit)
   m_EditorClassIdentifier: 
-  Level:
-    VictoryTime: 999
-    PlayerSpawnPoints:
-    - Position: {x: 3, y: 0, z: -5}
-      Rotation: {x: -0, y: 0.27980474, z: -0, w: 0.96005696}
+  VictoryTime: 999
   Spawn:
+    Player:
+      SpawnPoints:
+      - Position: {x: -46.36, y: 0, z: -42.28}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
     Generator:
       UsingGenerator: 0
       StartValuePower: 100
@@ -28,20 +28,16 @@ MonoBehaviour:
     Capsule:
       UsingCapsule: 0
       Quantity: 0
-      CapsuleSpawnPoints: []
+      SpawnPoints: []
     Enemy:
-      UsingEnemy: 0
+      UsingEnemy: 1
       Enemies:
       - EnemyType: 0
         DifficultyType: 0
         Period: {x: 0, y: 29.721033}
         Range: 5.2
-      EnemySpawnPoints:
-      - Position: {x: -116, y: 6, z: 0}
-        Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: -39, y: 14, z: 39}
-        Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: 17, y: 6, z: -60}
+      SpawnPoints:
+      - Position: {x: -9.6, y: 0, z: -66.1}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
   Reward:
     Car:

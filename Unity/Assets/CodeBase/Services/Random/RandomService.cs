@@ -26,8 +26,8 @@ namespace CodeBase.Services.Random
         {
             _config = levelConfig;
 
-            _capsuleSpawnPoints = levelConfig.Spawn.Capsule.CapsuleSpawnPoints.ConvertSpawnPointDataToPointData();
-            _enemySpawnPoints = levelConfig.Spawn.Enemy.EnemySpawnPoints.ConvertSpawnPointDataToPointData();
+            _capsuleSpawnPoints = levelConfig.Spawn.Capsule.SpawnPoints.ConvertSpawnPointDataToPointData();
+            _enemySpawnPoints = levelConfig.Spawn.Enemy.SpawnPoints.ConvertSpawnPointDataToPointData();
         }
 
         public PointData CapsuleSpawnPoint() => 
@@ -43,7 +43,7 @@ namespace CodeBase.Services.Random
             _enemySpawnPoints.GetNumberUnlockedSpawnPoints();
 
         public Vector3 PlayerSpawnPoint() => 
-            _config.Level.PlayerSpawnPoints.Random().Position + Vector3.up;
+            _config.Spawn.Player.SpawnPoints.Random().Position + Vector3.up;
 
         public PointData GeneratorSpawnPoint() => 
             _config.Spawn.Generator.GeneratorSpawnPoints.Random();
