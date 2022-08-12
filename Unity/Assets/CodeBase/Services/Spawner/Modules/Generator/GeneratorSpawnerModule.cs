@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Random;
@@ -20,8 +21,8 @@ namespace CodeBase.Services.Spawner
         public void SetConfig(GeneratorSpawnConfig config) => 
             _config = config;
 
-        public void SpawnGenerator() => 
-            _levelFactory.LoadGenerator(_config.PrefabReference, _randomService.GeneratorSpawnPoint());
+        public async Task SpawnGenerator() => 
+            await _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
 
         public void Clear() => 
             _config = null;

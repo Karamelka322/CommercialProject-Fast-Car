@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 
 namespace CodeBase.Services.Spawner
@@ -5,7 +6,7 @@ namespace CodeBase.Services.Spawner
     public interface IGeneratorSpawnerModule
     {
         void SetConfig(GeneratorSpawnConfig config);
-        void SpawnGenerator();
+        Task SpawnGenerator();
         void Clear();
     }
 }

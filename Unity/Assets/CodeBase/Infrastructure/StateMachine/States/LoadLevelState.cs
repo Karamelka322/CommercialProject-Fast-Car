@@ -80,12 +80,12 @@ namespace CodeBase.Infrastructure.States
         private void LoadLevelScene() => 
             _sceneLoaderService.Load(_levelData.SceneName, LoadSceneMode.Single, OnLoaded);
 
-        private void OnLoaded()
+        private async void OnLoaded()
         {
             _randomService.SetConfig(_levelData);
             _spawnerService.SetConfig(_levelData);
 
-            _spawnerService.SpawnOnLoaded();
+            await _spawnerService.SpawnOnLoaded();
 
             GameObject player = InitPlayer();
             CameraFollow(player);

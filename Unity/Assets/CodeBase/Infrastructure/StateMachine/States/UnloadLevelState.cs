@@ -20,7 +20,7 @@ namespace CodeBase.Infrastructure
         private readonly IPauseService _pauseService;
         private readonly IRandomService _randomService;
         private readonly ISaveLoadDataService _saveLoadDataService;
-        private readonly IAssetMenagementService _assetMenagementService;
+        private readonly IAssetManagementService _assetManagementService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ISpawnerService _spawnerService;
         private readonly IInputService _inputService;
@@ -40,7 +40,7 @@ namespace CodeBase.Infrastructure
             IPauseService pauseService,
             IRandomService randomService,
             ISaveLoadDataService saveLoadDataService,
-            IAssetMenagementService assetMenagementService)
+            IAssetManagementService assetManagementService)
         {
             _gameStateMachine = gameStateMachine;
             _spawnerService = spawnerService;
@@ -53,7 +53,7 @@ namespace CodeBase.Infrastructure
             _pauseService = pauseService;
             _randomService = randomService;
             _saveLoadDataService = saveLoadDataService;
-            _assetMenagementService = assetMenagementService;
+            _assetManagementService = assetManagementService;
         }
 
         public void Unload<TNextState>() where TNextState : class, IState
@@ -82,7 +82,7 @@ namespace CodeBase.Infrastructure
             _replayService.CleanUp();
             _pauseService.CleanUp();
             _randomService.CleanUp();
-            _assetMenagementService.ClaenUp();
+            _assetManagementService.CleanUp();
         }
 
         private void ClenupPlayerSessionData() => 

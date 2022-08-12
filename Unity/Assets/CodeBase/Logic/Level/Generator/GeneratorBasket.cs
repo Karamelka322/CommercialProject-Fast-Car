@@ -30,7 +30,8 @@ namespace CodeBase.Logic.Level.Generator
         private bool TryGetRewardCar(PlayerPersistentData persistentData, out GameObject prefab)
         {
             RewardConfig config = persistentData.SessionData.LevelData.CurrentLevelConfig.Reward;
-
+            
+            
             if (config.Car.UsingRewardCar)
             {
                 prefab = _staticDataService.ForPlayer(config.Car.Type).Preview.gameObject;
@@ -50,7 +51,7 @@ namespace CodeBase.Logic.Level.Generator
                     return true;
                 }
             }
-
+            
             prefab = default;
             return false;
         }

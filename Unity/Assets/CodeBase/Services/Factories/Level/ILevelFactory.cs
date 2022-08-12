@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Logic.Item;
 using CodeBase.Services.Random;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace CodeBase.Services.Factories.Level
 {
     public interface ILevelFactory : IService
     {
-        Capsule LoadCapsule(PointData spawnPoint);
-        void LoadGenerator(AssetReference PrefabReference, PointData spawnPoint);
+        Task<GameObject> LoadCapsule(PointData spawnPoint);
+        Task LoadGenerator(PointData spawnPoint);
     }
 }

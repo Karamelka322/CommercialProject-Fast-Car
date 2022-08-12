@@ -29,7 +29,7 @@ namespace CodeBase.Data.Static.Level
 
         private GameObject GetPlayerPreview()
         {
-            PlayerStaticData[] staticData = Resources.LoadAll<PlayerStaticData>("StaticData/Player");
+            PlayerStaticData[] staticData = Resources.LoadAll<PlayerStaticData>("Player");
 
             for (int i = 0; i < staticData.Length; i++)
             {

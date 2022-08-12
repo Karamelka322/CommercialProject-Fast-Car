@@ -9,7 +9,7 @@ namespace CodeBase.Services.AssetProvider
         public const string MenuCurtainPath = "UI/Curtains/LoadingMenuCurtain";
         public const string LevelCurtainPath = "UI/Curtains/LoadingLevelCurtain";
 
-        public const string PlayerStaticDataPath = "Player/Demon/Data/Demon";
+        public const string PlayerStaticDataPath = "Player";
         public const string LevelStaticDataPath = "StaticData/Level";
         public const string EnemyStaticDataPath = "Enemy/Car/Level_1/Data/Level_1";
 

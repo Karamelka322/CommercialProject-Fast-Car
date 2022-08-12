@@ -45,6 +45,7 @@
      <Compile Include="Assets\CodeBase\Editor\Tools.cs" />
      <Compile Include="Assets\CodeBase\Editor\Logic\World\PointEditor.cs" />
      <Compile Include="Assets\CodeBase\Editor\Infrastructure\EditorBootstrapper.cs" />
+     <Compile Include="Assets\CodeBase\Editor\WheelCurveEditor.cs" />
      <Compile Include="Assets\CodeBase\Editor\Logic\NavMeshAgentWrapperEditor.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

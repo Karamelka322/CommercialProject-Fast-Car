@@ -45,11 +45,8 @@ namespace CodeBase.Services.Spawner
 
         public void ResetModule()
         {
-            if(_configs == null)
-                return;
-        
-            for (int i = 0; i < _configs.Length; i++) 
-                _configs[i].IsLocked = false;
+            foreach (EnemySpawnConfig config in _configs)
+                config.IsLocked = false;
         }
 
         private bool IsSpawnedEnemy(out List<EnemySpawnConfig> enemySpawnConfig)
@@ -59,11 +56,9 @@ namespace CodeBase.Services.Spawner
                 enemySpawnConfig = GetSpawnConfigs();
                 return true;
             }
-            else
-            {
-                enemySpawnConfig = null;
-                return false;
-            }
+
+            enemySpawnConfig = null;
+            return false;
         }
 
         private async void SpawnEnemy(List<EnemySpawnConfig> enemySpawnConfigs)

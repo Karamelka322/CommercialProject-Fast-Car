@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level_1 (Pit)
   m_EditorClassIdentifier: 
-  VictoryTime: 999
+  VictoryTime: 9999
   Spawn:
     Player:
       SpawnPoints:
       - Position: {x: -46.36, y: 0, z: -42.28}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Generator:
-      UsingGenerator: 1
+      UsingGenerator: 0
       StartValuePower: 100
       PowerChangeSpeed: 2
       PrefabReference:
@@ -33,9 +33,14 @@ MonoBehaviour:
     Capsule:
       UsingCapsule: 0
       Quantity: 0
+      PrefabReference:
+        m_AssetGUID: f8fe3fc8f732dfa439a2f4191256dd69
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
       SpawnPoints: []
     Enemy:
-      UsingEnemy: 1
+      UsingEnemy: 0
       Enemies:
       - EnemyType: 0
         DifficultyType: 0
@@ -47,4 +52,4 @@ MonoBehaviour:
   Reward:
     Car:
       UsingRewardCar: 0
-      Type: 0
+      Type: 1

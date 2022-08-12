@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 
 namespace CodeBase.Services.Spawner
@@ -5,7 +6,7 @@ namespace CodeBase.Services.Spawner
     public interface ICapsuleSpawnerModule
     {
         void SetConfig(CapsuleSpawnConfig config);
-        void TrySpawnCapsule();
+        Task TrySpawnCapsule();
         void Clear();
     }
 }

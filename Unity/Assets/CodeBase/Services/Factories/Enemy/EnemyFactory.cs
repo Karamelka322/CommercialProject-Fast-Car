@@ -7,11 +7,13 @@ using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Victory;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Services.Factories.Enemy
 {
+    [UsedImplicitly]
     public class EnemyFactory : IEnemyFactory
     {
         private readonly DiContainer _diContainer;
@@ -26,8 +28,8 @@ namespace CodeBase.Services.Factories.Enemy
             EnemyStaticData enemyData = _diContainer.Resolve<IStaticDataService>().ForEnemy(enemyType, difficultyType);
 
             GameObject prefab = await _diContainer
-                .Resolve<IAssetMenagementService>()
-                .Load<GameObject>(enemyData.PrefabReference);
+                .Resolve<IAssetManagementService>()
+                .LoadAsync<GameObject>(enemyData.PrefabReference);
             
             InstantiateRegister(prefab, spawnPoint);
         }

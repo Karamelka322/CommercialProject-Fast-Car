@@ -11,7 +11,7 @@ namespace CodeBase.Data.Static.Level
     [CreateAssetMenu(menuName = "Static Data/Level", fileName = "Level", order = 51)]
     public class LevelStaticData : ScriptableObject
     {
-        [FoldoutGroup("General"),GUIColor(0.8f, 0.8f, 0), MinValue(1), MaxValue(999)]
+        [FoldoutGroup("General"),GUIColor(0.8f, 0.8f, 0), MinValue(1), MaxValue(9999)]
         public int VictoryTime;
 
         [FoldoutGroup("Spawn"), HideLabel]

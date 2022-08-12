@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Level/Generator/Prefab/Generator
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f8fe3fc8f732dfa439a2f4191256dd69
+    m_Address: Level/Capsule/Prefab/Capsule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c1cf37adb3f2e374e91e72711e3ea90c, type: 2}
   m_SchemaSet:

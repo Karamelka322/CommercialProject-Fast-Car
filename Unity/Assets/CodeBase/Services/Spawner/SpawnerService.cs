@@ -1,12 +1,15 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 using CodeBase.Infrastructure;
 using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
+using JetBrains.Annotations;
 
 namespace CodeBase.Services.Spawner
 {
+    [UsedImplicitly]
     public class SpawnerService : ISpawnerService
     {
         private readonly ICapsuleSpawnerModule _capsuleSpawnerModule;
@@ -45,16 +48,16 @@ namespace CodeBase.Services.Spawner
                 _enemySpawnerModule.SetConfig(levelStaticData.Spawn.Enemy);
         }
 
-        public void SpawnOnLoaded()
+        public async Task SpawnOnLoaded()
         {
             if(UsingGenerator)
-                _generatorSpawnerModule.SpawnGenerator();
+                await _generatorSpawnerModule.SpawnGenerator();
         }
 
-        public void SpawnOnUpdate()
+        public async void SpawnOnUpdate()
         {
             if(UsingCapsule)
-                _capsuleSpawnerModule.TrySpawnCapsule();
+                await _capsuleSpawnerModule.TrySpawnCapsule();
             
             if(UsingEnemy)
                 _enemySpawnerModule.TrySpawnEnemy();

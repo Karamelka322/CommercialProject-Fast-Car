@@ -5,6 +5,7 @@ using CodeBase.Services.Random;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
@@ -16,16 +17,26 @@ namespace CodeBase.Data.Static.Level
         [UsedImplicitly]
         public bool UsingCapsule;
 
-        [BoxGroup("Config"), MinValue("MinQuantity"), MaxValue("MaxQuantity"), GUIColor(0.8f, 0.8f, 0)]
+        [BoxGroup("Config"), MinValue("MinQuantity"), MaxValue("MaxQuantity"), GUIColor(0.8f, 0.8f, 0), PropertyOrder(0)]
         public int Quantity;
+
+        [Title("Asset", titleAlignment: TitleAlignments.Right), BoxGroup("Config"), PropertyOrder(1)]
+        public AssetReferenceGameObject PrefabReference;
         
-        [FormerlySerializedAs("CapsuleSpawnPoints")] [Space, Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error , "CheckCapsuleSpawnPoints")]
+        [Space, Title("Spawn Points", titleAlignment: TitleAlignments.Right), ReadOnly, BoxGroup("Config"), GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error , "CheckCapsuleSpawnPoints"), PropertyOrder(2)]
         public PointData[] SpawnPoints;
         
         
 #if UNITY_EDITOR
+
+        [ShowIf("NotEmpty"), BoxGroup("Config"), InlineEditor(InlineEditorModes.LargePreview), ShowInInspector, ReadOnly, PropertyOrder(1)]
+        private GameObject Prefab => PrefabReference.editorAsset;
         
-        [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10)]
+        [UsedImplicitly]
+        private bool NotEmpty() => 
+            PrefabReference.editorAsset;
+        
+        [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10), PropertyOrder(2)]
         private void CollectSpawnPoints()
         {
             CapsuleSpawnPoint[] spawnPoints = Object.FindObjectsOfType<CapsuleSpawnPoint>();

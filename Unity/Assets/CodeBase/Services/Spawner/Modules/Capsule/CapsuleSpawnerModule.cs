@@ -1,7 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 using CodeBase.Extension;
-using CodeBase.Logic.Item;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Random;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace CodeBase.Services.Spawner
         private readonly ILevelFactory _levelFactory;
 
         private CapsuleSpawnConfig _config;
-        private Capsule[] _capsules;
+        private GameObject[] _capsules;
 
         public CapsuleSpawnerModule(ILevelFactory levelFactory, IRandomService randomService)
         {
@@ -25,34 +25,34 @@ namespace CodeBase.Services.Spawner
         public void SetConfig(CapsuleSpawnConfig config)
         {
             _config = config;
-            _capsules = new Capsule[_config.Quantity];
+            _capsules = new GameObject[_config.Quantity];
         }
 
-        public void TrySpawnCapsule()
+        public async Task TrySpawnCapsule()
         {
             if (IsSpawnedCapsule())
-                SpawnCapsule();
+                await SpawnCapsule();
         }
 
         public void Clear()
         {
             _config = null;
-            _capsules = Array.Empty<Capsule>();
+            _capsules = Array.Empty<GameObject>();
         }
         
-        private void SpawnCapsule() => 
-            _capsules[_capsules.GetEmptyIndex()] = LoadCapsule();
+        private async Task SpawnCapsule() => 
+            _capsules[_capsules.GetEmptyIndex()] = await LoadCapsule();
 
         private bool IsSpawnedCapsule() => 
-            _config != null && _config.UsingCapsule && _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
+            _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
 
-        private Capsule LoadCapsule()
+        private async Task<GameObject> LoadCapsule()
         {
             PointData spawnPoint = _randomService.CapsuleSpawnPoint();
             
-            Capsule capsule = _levelFactory.LoadCapsule(spawnPoint + Vector3.up);
-            _randomService.BindObjectToSpawnPoint(capsule.gameObject, spawnPoint);
-            
+           GameObject capsule = await _levelFactory.LoadCapsule(spawnPoint + Vector3.up);
+           _randomService.BindObjectToSpawnPoint(capsule, spawnPoint);
+
             return capsule;
         }
     }

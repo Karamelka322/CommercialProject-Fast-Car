@@ -51,7 +51,7 @@ namespace CodeBase.Infrastructure.States
         public void Exit()
         {
             _diContainer.Resolve<IUpdateService>().Enable();
-            _diContainer.Resolve<IAssetMenagementService>().InitializeAsync();
+            _diContainer.Resolve<IAssetManagementService>().InitializeAsync();
         }
 
         private void RegisterServices()
@@ -67,7 +67,7 @@ namespace CodeBase.Infrastructure.States
             _diContainer.Bind<IUpdateService>().To<UpdateService>().AsSingle();
             _diContainer.Bind<ITweenService>().To<TweenService>().AsSingle();
             _diContainer.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
-            _diContainer.Bind<IAssetMenagementService>().To<AssetMenagementService>().AsSingle();
+            _diContainer.Bind<IAssetManagementService>().To<AssetManagementService>().AsSingle();
             _diContainer.Bind<IInputService>().To<InputService>().AsSingle();
             _diContainer.Bind<IPersistentDataService>().To<PersistentDataService>().AsSingle();
             _diContainer.Bind<IReadWriteDataService>().To<ReadWriteDataService>().AsSingle();

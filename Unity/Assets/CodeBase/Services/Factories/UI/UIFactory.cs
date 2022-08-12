@@ -127,6 +127,6 @@ namespace CodeBase.Services.Factories.UI
         }
 
         private T LoadAsset<T>(string assetPath) where T : Object =>
-            _diContainer.Resolve<IAssetMenagementService>().Load<T>(assetPath);
+            _diContainer.Resolve<IAssetManagementService>().Load<T>(assetPath);
     }
 }

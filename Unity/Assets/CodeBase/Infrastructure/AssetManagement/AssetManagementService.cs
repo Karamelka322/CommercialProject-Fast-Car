@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CodeBase.Services.AssetProvider
 {
-    public class AssetMenagementService : IAssetMenagementService
+    [UsedImplicitly]
+    public class AssetManagementService : IAssetManagementService
     {
         private readonly Dictionary<string, AsyncOperationHandle> _сache = new Dictionary<string, AsyncOperationHandle>();
 
         public void InitializeAsync() => 
             Addressables.InitializeAsync();
 
-        public async Task<T> Load<T>(AssetReference assetReference) where T : class
+        public async Task<T> LoadAsync<T>(AssetReference assetReference) where T : class
         {
             if (_сache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandler))
             {
@@ -21,17 +23,13 @@ namespace CodeBase.Services.AssetProvider
                 {
                     return completedHandler.Result as T;
                 }
-                else
-                {
-                    return await completedHandler.Task as T;
-                }
+
+                return await completedHandler.Task as T;
             }
-            else
-            {
-                AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetReference);
-                _сache[assetReference.AssetGUID] = handle;
-                return await handle.Task;
-            }
+
+            AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetReference);
+            _сache[assetReference.AssetGUID] = handle;
+            return await handle.Task;
         }
 
         public T Load<T>(string assetPath) where T : Object => 
@@ -40,7 +38,7 @@ namespace CodeBase.Services.AssetProvider
         public T[] LoadAll<T>(string assetPath) where T : Object => 
             Resources.LoadAll<T>(assetPath);
 
-        public void ClaenUp()
+        public void CleanUp()
         {
             foreach (AsyncOperationHandle handle in _сache.Values) 
                 Addressables.Release(handle);

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 
 namespace CodeBase.Services.Spawner
@@ -8,6 +9,6 @@ namespace CodeBase.Services.Spawner
         void CleanUp();
         void SpawnOnUpdate();
         void Reset();
-        void SpawnOnLoaded();
+        Task SpawnOnLoaded();
     }
 }

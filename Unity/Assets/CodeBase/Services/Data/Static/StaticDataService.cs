@@ -9,15 +9,15 @@ namespace CodeBase.Services.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private readonly IAssetMenagementService _assetMenagementService;
+        private readonly IAssetManagementService _assetManagementService;
         
         private readonly PlayerStaticData[] _playerStaticDatas;
         private readonly EnemyStaticData[] _enemyStaticDatas;
         public LevelStaticData[] LevelStaticDatas { get; }
 
-        public StaticDataService(IAssetMenagementService assetMenagementService)
+        public StaticDataService(IAssetManagementService assetManagementService)
         {
-            _assetMenagementService = assetMenagementService;
+            _assetManagementService = assetManagementService;
 
             _playerStaticDatas = LoadAllAsset<PlayerStaticData>(AssetPath.PlayerStaticDataPath);
             LevelStaticDatas = LoadAllAsset<LevelStaticData>(AssetPath.LevelStaticDataPath);
@@ -69,9 +69,9 @@ namespace CodeBase.Services.StaticData
         }
 
         private T LoadAsset<T>(string address) where T : Object => 
-            _assetMenagementService.Load<T>(address);
+            _assetManagementService.Load<T>(address);
         
         private T[] LoadAllAsset<T>(string address) where T : Object => 
-            _assetMenagementService.LoadAll<T>(address);
+            _assetManagementService.LoadAll<T>(address);
     }
 }

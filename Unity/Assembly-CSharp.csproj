@@ -118,6 +118,7 @@
      <Compile Include="Assets\CodeBase\UI\Buttons\ReplayButton.cs" />
      <Compile Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\PlayerSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\UIBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\CapsuleSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\UI\Debugger\FrameRateDebugger.cs" />
@@ -207,13 +208,14 @@
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetPath.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Variant\IInputVariant.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\WheelCurve.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
      <Compile Include="Assets\CodeBase\Mediator\Menu\MenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IDefeatService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetMenagementService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetManagementService.cs" />
      <Compile Include="Assets\CodeBase\Services\LoadScene\ISceneLoaderService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
      <Compile Include="Assets\CodeBase\UI\Toggles\UIToggle.cs" />
@@ -244,11 +246,11 @@
      <Compile Include="Assets\CodeBase\UI\Windows\PauseWindow.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\IAssetMenagementService.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\IAssetManagementService.cs" />
      <Compile Include="Assets\CodeBase\UI\Bars\PlayerHealthBar.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
-     <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\PlayerSpawnConfig.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Drift.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

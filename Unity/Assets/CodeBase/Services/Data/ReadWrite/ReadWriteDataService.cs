@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Update;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.Data.ReadWrite
 {
+    [UsedImplicitly]
     public class ReadWriteDataService : IReadWriteDataService
     {
         private List<ISingleWriteData> _singleWriters { get; } = new List<ISingleWriteData>();

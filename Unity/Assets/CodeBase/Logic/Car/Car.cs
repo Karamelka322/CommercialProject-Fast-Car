@@ -1,7 +1,6 @@
 using CodeBase.Logic.World;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
@@ -18,12 +17,13 @@ namespace CodeBase.Logic.Car
         [SerializeField]
         private Point _centerOfMass;
 
-        [Space]
-        [SerializeField] 
+        [Space, SerializeField] 
         private Rigidbody _rigidbody;
+        
+        [Space, SerializeField] 
+        private int _maxSpeed;
 
         public float Speed => _rigidbody.velocity.magnitude;
-        [ShowInInspector]
         public bool IsGrounded => _motor.RearLeftWheel.Collider.isGrounded || _motor.RearRightWheel.Collider.isGrounded || 
                                   _steeringGear.FrontLeftWheel.Collider.isGrounded || _steeringGear.FrontRightWheel.Collider.isGrounded;
 
@@ -33,12 +33,19 @@ namespace CodeBase.Logic.Car
         private void Awake() => 
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
 
-        public void Movement(float axis) => 
+        public void Movement(float axis)
+        {
+            SpeedLimit();
+            
             _motor.Move(ConvertAxisToTorque(axis), _rigidbody.velocity.magnitude);
+        }
+
+        private void SpeedLimit() => 
+            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
 
         public void Rotation(float axis) => 
             _steeringGear.Angle(ConvertAxisToAngle(axis));
-
+        
         private float ConvertAxisToTorque(float axis) =>
             axis > 0 
                 ? Mathf.Lerp(0, axis > 0 ? _motor.PowerForward : _motor.PowerBackwards, axis) 

@@ -1,17 +1,20 @@
+using System.Threading.Tasks;
+using CodeBase.Data.Static.Level;
 using CodeBase.Logic.Item;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
+using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Victory;
-using UnityEditor.VersionControl;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace CodeBase.Services.Factories.Level
 {
+    [UsedImplicitly]
     public class LevelFactory : ILevelFactory
     {
         private readonly DiContainer _diContainer;
@@ -21,29 +24,34 @@ namespace CodeBase.Services.Factories.Level
             _diContainer = diContainer;
         }
 
-        public async void LoadGenerator(AssetReference PrefabReference,PointData spawnPoint)
+        public async Task LoadGenerator(PointData spawnPoint)
         {
-            GameObject prefab = await _diContainer.Resolve<IAssetMenagementService>()
-                .Load<GameObject>(PrefabReference);
+            GeneratorSpawnConfig config = _diContainer
+                .Resolve<IPersistentDataService>()
+                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator;
+            
+            GameObject prefab = await _diContainer
+                .Resolve<IAssetManagementService>()
+                .LoadAsync<GameObject>(config.PrefabReference);
 
             InstantiateRegister(prefab, spawnPoint);
         }
 
-        public Capsule LoadCapsule(PointData spawnPoint)
+        public async Task<GameObject> LoadCapsule(PointData spawnPoint)
         {
-            Capsule prefab = LoadAsset<Capsule>(AssetPath.CapsulePath);
-            return InstantiateRegister(prefab, spawnPoint);
-        }
+            CapsuleSpawnConfig config = _diContainer
+                .Resolve<IPersistentDataService>()
+                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Capsule;
 
-        private Capsule InstantiateRegister(Capsule prefab, PointData spawnPoint)
-        {
-            Capsule capsule = Object.Instantiate(prefab, spawnPoint.Position, spawnPoint.Rotation);
+            GameObject capsule = await _diContainer
+                .Resolve<IAssetManagementService>()
+                .LoadAsync<GameObject>(config.PrefabReference);
             
-            _diContainer.Resolve<IReplayService>().Register(capsule.gameObject);
-            
+            InstantiateRegister(capsule, spawnPoint);
+
             return capsule;
         }
-
+        
         private void InstantiateRegister(Object prefab, PointData spawnPoint) => 
             Register(Instantiate(prefab, spawnPoint));
 
@@ -57,8 +65,5 @@ namespace CodeBase.Services.Factories.Level
             _diContainer.Resolve<IDefeatService>().Register(gameObject);
             _diContainer.Resolve<IVictoryService>().Register(gameObject);
         }
-        
-        private T LoadAsset<T>(string assetPath) where T : Object => 
-            _diContainer.Resolve<IAssetMenagementService>().Load<T>(assetPath);
     }
 }
