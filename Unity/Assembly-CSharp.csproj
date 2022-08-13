@@ -251,6 +251,9 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Drift.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\CarController.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\CarInfo.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\CarProperty.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

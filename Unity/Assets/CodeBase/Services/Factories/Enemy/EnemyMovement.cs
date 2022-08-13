@@ -50,11 +50,11 @@ namespace CodeBase.Services.Factories.Enemy
 
         private void ToggleActivityMeshAgent()
         {
-            if (!_car.IsGrounded && _navMeshAgentWrapper.Enabled)
+            if (!_car.Info.IsGrounded && _navMeshAgentWrapper.Enabled)
             {
                 _navMeshAgentWrapper.Enabled = false;
             }
-            else if (_car.IsGrounded && !_navMeshAgentWrapper.Enabled)
+            else if (_car.Info.IsGrounded && !_navMeshAgentWrapper.Enabled)
             {
                 _navMeshAgentWrapper.Enabled = true;
             }
@@ -84,7 +84,7 @@ namespace CodeBase.Services.Factories.Enemy
             _timer = Mathf.Clamp(_timer - Time.deltaTime, 0, BackwardsMovementDuration);
 
         private void UpdateStopwatch() =>
-            _stopwatch = Mathf.Clamp(_stopwatch + (_car.Speed < 4f ? Time.deltaTime : -_stopwatch), 0, StopDuration);
+            _stopwatch = Mathf.Clamp(_stopwatch + (_car.Info.Speed < 4f ? Time.deltaTime : -_stopwatch), 0, StopDuration);
 
         private void ResetTimer() =>
             _timer = BackwardsMovementDuration;

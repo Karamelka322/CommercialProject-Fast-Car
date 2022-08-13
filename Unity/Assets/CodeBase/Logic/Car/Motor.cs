@@ -1,57 +1,31 @@
-using System.ComponentModel;
+using System;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
-    public class Motor : MonoBehaviour, IPauseHandler, IReplayHandler
+    [Serializable]
+    public class Motor : IPauseHandler, IReplayHandler
     {
-        [SerializeField] 
-        private Wheel _rearLeftWheel;
+        private readonly CarProperty _property;
         
-        [SerializeField] 
-        private Wheel _rearRightWheel;
+        private readonly Wheel _rearLeftWheel;
+        private readonly Wheel _rearRightWheel;
         
-        [Space, SerializeField, Min(0)] 
-        private int _powerForward;
-        
-        [SerializeField, Min(0)] 
-        private int _powerBackwards;
-        
-        [SerializeField, Min(0)]
-        private int _speedAcceleration;
-
-        public Wheel RearLeftWheel => _rearLeftWheel;
-        public Wheel RearRightWheel => _rearRightWheel;
-
-        public int PowerForward
-        {
-            get => _powerForward;
-            
-            [Editor]
-            set => _powerForward = value;
-        }
-        
-        public int PowerBackwards
-        {
-            get => _powerBackwards;
-            
-            [Editor]
-            set => _powerBackwards = value;
-        }
-
-        public int Acceleration
-        {
-            get => _speedAcceleration;
-            
-            [Editor]
-            set => _speedAcceleration = value;
-        }
-
         private float _nowTorque;
         private bool _isStopping;
         private bool _isStopped;
+
+        public string name { get; }
+
+        public Motor(Wheel rearLeftWheel, Wheel rearRightWheel, CarProperty property)
+        {
+            _property = property;
+            
+            _rearLeftWheel = rearLeftWheel;
+            _rearRightWheel = rearRightWheel;
+        }
 
         public void Move(in float torque, in float nowSpeed)
         {
@@ -63,7 +37,7 @@ namespace CodeBase.Logic.Car
 
         private void MoveForward(float torque, float nowSpeed)
         {
-            _nowTorque = Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _speedAcceleration);
+            _nowTorque = Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _property.SpeedAcceleration);
             _isStopped = nowSpeed < 1;
 
             if (_isStopped && !_isStopping)

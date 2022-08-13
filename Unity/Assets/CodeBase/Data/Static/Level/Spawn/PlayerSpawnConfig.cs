@@ -10,7 +10,7 @@ namespace CodeBase.Data.Static.Level
     [Serializable]
     public class PlayerSpawnConfig
     {
-        [ReadOnly, GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error,"CheckPlayerSpawnPoints")]
+        [ReadOnly, GUIColor(1f, 1f, 0), InfoBox("Empty", InfoMessageType.Error,"CheckPlayerSpawnPoints"), Indent(1)]
         public PointData[] SpawnPoints;
         
 #if UNITY_EDITOR
@@ -19,7 +19,7 @@ namespace CodeBase.Data.Static.Level
         private bool CheckPlayerSpawnPoints() => 
             SpawnPoints == null || SpawnPoints.Length == 0;
 
-        [Button("Collect"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10)]
+        [Button("Collect"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10), Indent(1)]
         private void CollectSpawnPoints()
         {
             PlayerSpawnPoint[] spawnPoints = Object.FindObjectsOfType<PlayerSpawnPoint>();

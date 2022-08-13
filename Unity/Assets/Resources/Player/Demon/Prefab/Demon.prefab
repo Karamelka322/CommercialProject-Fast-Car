@@ -162,13 +162,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardFriction:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   SidewaysFriction:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -631,8 +685,6 @@ GameObject:
   - component: {fileID: 954382963118411108}
   - component: {fileID: 3433266551837669722}
   - component: {fileID: 4459666105701282217}
-  - component: {fileID: 5473610602464951749}
-  - component: {fileID: 1864617467669870540}
   m_Layer: 7
   m_Name: Demon
   m_TagString: Untagged
@@ -796,44 +848,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55638a0586849c7a0bfa9517eee2b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _motor: {fileID: 5473610602464951749}
-  _steeringGear: {fileID: 1864617467669870540}
-  _centerOfMass: {fileID: 6475883053206077134}
   _rigidbody: {fileID: 3433266551837669724}
-  _maxSpeed: 1
---- !u!114 &5473610602464951749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433266551837669723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9d53eaee1a4186972cc3539899a365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rearLeftWheel: {fileID: 2584558960022639511}
-  _rearRightWheel: {fileID: 5502244480379014965}
-  _powerForward: 800
-  _powerBackwards: 400
-  _speedAcceleration: 10
---- !u!114 &1864617467669870540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433266551837669723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1914315fcbf4e19bac1b6b0b690f4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _centerOfMass: {fileID: 6475883053206077134}
   _frontLeftWheel: {fileID: 2894159187934944276}
   _frontRightWheel: {fileID: 3304944591424855821}
-  _steerAngle: 40
-  _speedRotation: 8
+  _rearLeftWheel: {fileID: 2584558960022639511}
+  _rearRightWheel: {fileID: 5502244480379014965}
+  Property:
+    MaxSpeed: 15
+    PowerForward: 800
+    PowerBackwards: 400
+    SpeedAcceleration: 12
+    SteerAngle: 35
+    SpeedRotation: 12
 --- !u!1 &4638961487201264522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,13 +1156,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardFriction:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   SidewaysFriction:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

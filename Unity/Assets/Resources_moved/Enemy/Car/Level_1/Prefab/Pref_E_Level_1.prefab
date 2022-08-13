@@ -817,8 +817,6 @@ GameObject:
   - component: {fileID: 7101900091762394767}
   - component: {fileID: -5636154437188660518}
   - component: {fileID: 5738886296961861453}
-  - component: {fileID: 7757177312404767016}
-  - component: {fileID: 4157209243928513313}
   m_Layer: 12
   m_Name: Pref_E_Level_1
   m_TagString: Untagged
@@ -955,43 +953,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55638a0586849c7a0bfa9517eee2b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _motor: {fileID: 4157209243928513313}
-  _steeringGear: {fileID: 7757177312404767016}
-  _centerOfMass: {fileID: 3141684379537475626}
   _rigidbody: {fileID: 6765002174677897144}
---- !u!114 &7757177312404767016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6765002174677897151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1914315fcbf4e19bac1b6b0b690f4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _centerOfMass: {fileID: 3141684379537475626}
   _frontLeftWheel: {fileID: 6515981253058226928}
   _frontRightWheel: {fileID: 6889084145525484009}
-  _steerAngle: 40
-  _speedRotation: 8
---- !u!114 &4157209243928513313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6765002174677897151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9d53eaee1a4186972cc3539899a365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _rearLeftWheel: {fileID: 5879808516794590579}
   _rearRightWheel: {fileID: 4475612848846813649}
-  _powerForward: 300
-  _powerBackwards: 300
-  _speedAcceleration: 13
+  _controller:
+    MaxSpeed: 0
+    Motor:
+      PowerForward: 0
+      PowerBackwards: 0
+      SpeedAcceleration: 0
+    SteeringGear:
+      SteerAngle: 0
+      SpeedRotation: 0
+    Drift:
+      Speed: 0
 --- !u!1 &6889084145525484015
 GameObject:
   m_ObjectHideFlags: 0

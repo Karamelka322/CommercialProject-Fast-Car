@@ -1,9 +1,15 @@
-using UnityEngine;
+using System;
 
 namespace CodeBase.Logic.Car
 {
-    public class Drift : MonoBehaviour
+    [Serializable]
+    public class Drift
     {
-        
+        private readonly CarProperty _property;
+
+        public Drift(CarProperty property)
+        {
+            _property = property;
+        }
     }
 }

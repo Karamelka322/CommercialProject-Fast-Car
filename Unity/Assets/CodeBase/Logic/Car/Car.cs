@@ -5,55 +5,52 @@ using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
-    [RequireComponent(typeof(Motor), typeof(SteeringGear), typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody))]
     public class Car : MonoBehaviour, IPauseHandler, IReplayHandler
     {
         [SerializeField] 
-        private Motor _motor;
-
-        [SerializeField] 
-        private SteeringGear _steeringGear;
+        private Rigidbody _rigidbody;
 
         [SerializeField]
         private Point _centerOfMass;
 
         [Space, SerializeField] 
-        private Rigidbody _rigidbody;
-        
-        [Space, SerializeField] 
-        private int _maxSpeed;
+        private Wheel _frontLeftWheel;
 
-        public float Speed => _rigidbody.velocity.magnitude;
-        public bool IsGrounded => _motor.RearLeftWheel.Collider.isGrounded || _motor.RearRightWheel.Collider.isGrounded || 
-                                  _steeringGear.FrontLeftWheel.Collider.isGrounded || _steeringGear.FrontRightWheel.Collider.isGrounded;
+        [SerializeField] 
+        private Wheel _frontRightWheel;
+
+        [SerializeField] 
+        private Wheel _rearLeftWheel;
+
+        [SerializeField] 
+        private Wheel _rearRightWheel;
+
+        [Space]
+        public CarProperty Property;
+
+        [Space] 
+        public CarInfo Info;
+
+        private CarController _controller;
 
         private Vector3 _velocity;
         private Vector3 _angularVelocity;
 
-        private void Awake() => 
-            _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
-
-        public void Movement(float axis)
+        private void Awake()
         {
-            SpeedLimit();
+            _controller = new CarController(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property);
+            Info = new CarInfo(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel);
             
-            _motor.Move(ConvertAxisToTorque(axis), _rigidbody.velocity.magnitude);
+            _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
         }
 
-        private void SpeedLimit() => 
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxSpeed);
+        public void Movement(float axis) => 
+            _controller.Movement(axis);
 
         public void Rotation(float axis) => 
-            _steeringGear.Angle(ConvertAxisToAngle(axis));
+            _controller.Rotation(axis);
         
-        private float ConvertAxisToTorque(float axis) =>
-            axis > 0 
-                ? Mathf.Lerp(0, axis > 0 ? _motor.PowerForward : _motor.PowerBackwards, axis) 
-                : Mathf.Lerp(0, axis > 0 ? -_motor.PowerForward : -_motor.PowerBackwards, -axis);
-
-        private float ConvertAxisToAngle(float axis) => 
-            axis > 0 ? Mathf.Lerp(0, _steeringGear.SteerAngle, axis) : Mathf.Lerp(0, -_steeringGear.SteerAngle, -axis);
-
         public void OnEnabledPause()
         {
             _velocity = _rigidbody.velocity;

@@ -1,44 +1,30 @@
-using System.ComponentModel;
+using System;
 using CodeBase.Services.Replay;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
-    public class SteeringGear : MonoBehaviour, IReplayHandler
+    [Serializable]
+    public class SteeringGear : IReplayHandler
     {
-        [SerializeField] 
-        private Wheel _frontLeftWheel;
-
-        [SerializeField] 
-        private Wheel _frontRightWheel;
-
-        [Space, SerializeField, Min(0)] 
-        private int _steerAngle;
-
-        [SerializeField, Min(0)] 
-        private int _speedRotation;
-
-        public int SteerAngle
-        {
-            get => _steerAngle;
-            
-            [Editor]
-            set => _steerAngle = value;
-        }
-
-        public int SpeedRotation
-        {
-            get => _speedRotation;
-            
-            [Editor]
-            set => _speedRotation = value;
-        }
-
-        public Wheel FrontLeftWheel => _frontLeftWheel;
-        public Wheel FrontRightWheel => _frontRightWheel;
-
-        private float _nowAngle;
+        private readonly CarProperty _property;
         
+        private readonly Wheel _frontLeftWheel;
+        private readonly Wheel _frontRightWheel;
+        
+        private float _nowAngle;
+
+        public SteeringGear(Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property)
+        {
+            _property = property;
+            
+            _frontLeftWheel = frontLeftWheel;
+            _frontRightWheel = frontRightWheel;
+        }
+
+        public string name { get; }
+
+
         public void Angle(float angle)
         {
             _nowAngle = GetAngle(angle);
@@ -46,20 +32,20 @@ namespace CodeBase.Logic.Car
         }
 
         private float GetAngle(float angle) => 
-            Mathf.Lerp(_nowAngle, angle, Time.deltaTime * _speedRotation);
+            Mathf.Lerp(_nowAngle, angle, Time.deltaTime * _property.SpeedRotation);
 
         private void SetSteerAngleInWheels(float angle)
         {
-            FrontLeftWheel.SteerAngle(angle);
-            FrontRightWheel.SteerAngle(angle);
+            _frontLeftWheel.SteerAngle(angle);
+            _frontRightWheel.SteerAngle(angle);
         }
 
         public void OnReplay()
         {
             _nowAngle = 0;
             
-            FrontLeftWheel.ResetSteerAngle();
-            FrontRightWheel.ResetSteerAngle();
+            _frontLeftWheel.ResetSteerAngle();
+            _frontRightWheel.ResetSteerAngle();
         }
     }
 }

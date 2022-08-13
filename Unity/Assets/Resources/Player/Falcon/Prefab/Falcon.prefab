@@ -502,8 +502,6 @@ GameObject:
   - component: {fileID: 954382963118411108}
   - component: {fileID: 3433266551837669722}
   - component: {fileID: 4459666105701282217}
-  - component: {fileID: 1864617467669870540}
-  - component: {fileID: 5473610602464951749}
   m_Layer: 7
   m_Name: Falcon
   m_TagString: Untagged
@@ -667,43 +665,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55638a0586849c7a0bfa9517eee2b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _motor: {fileID: 5473610602464951749}
-  _steeringGear: {fileID: 1864617467669870540}
-  _centerOfMass: {fileID: 6475883053206077134}
   _rigidbody: {fileID: 3433266551837669724}
---- !u!114 &1864617467669870540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433266551837669723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1914315fcbf4e19bac1b6b0b690f4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frontLeftWheel: {fileID: 2894159187934944276}
-  _frontRightWheel: {fileID: 3304944591424855821}
-  _steerAngle: 40
-  _speedRotation: 8
---- !u!114 &5473610602464951749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433266551837669723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9d53eaee1a4186972cc3539899a365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rearLeftWheel: {fileID: 2584558960022639511}
-  _rearRightWheel: {fileID: 5502244480379014965}
-  _powerForward: 800
-  _powerBackwards: 400
-  _speedAcceleration: 10
+  _centerOfMass: {fileID: 6475883053206077134}
+  _frontRightWheel: {fileID: 0}
+  _frontLeftWheel: {fileID: 0}
+  _rearRightWheel: {fileID: 0}
+  _rearLeftWheel: {fileID: 0}
+  _controller:
+    MaxSpeed: 0
+    Motor:
+      PowerForward: 0
+      PowerBackwards: 0
+      SpeedAcceleration: 0
+    SteeringGear:
+      SteerAngle: 0
+      SpeedRotation: 0
+    Drift:
+      Speed: 0
 --- !u!1 &4638961487201264522
 GameObject:
   m_ObjectHideFlags: 0
