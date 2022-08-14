@@ -1,51 +1,37 @@
-using System;
-using CodeBase.Services.Replay;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
-    [Serializable]
-    public class SteeringGear : IReplayHandler
+    public class SteeringGear
     {
         private readonly CarProperty _property;
-        
+        private readonly CarInfo _info;
+
         private readonly Wheel _frontLeftWheel;
         private readonly Wheel _frontRightWheel;
-        
-        private float _nowAngle;
 
-        public SteeringGear(Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property)
+        public SteeringGear(Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property, CarInfo info)
         {
             _property = property;
-            
+            _info = info;
+
             _frontLeftWheel = frontLeftWheel;
             _frontRightWheel = frontRightWheel;
         }
 
-        public string name { get; }
-
-
         public void Angle(float angle)
         {
-            _nowAngle = GetAngle(angle);
-            SetSteerAngleInWheels(_nowAngle);
+            _property.NowSteeringAngle = GetAngle(angle);
+            SetSteerAngleInWheels(_info.SteeringAngle);
         }
 
         private float GetAngle(float angle) => 
-            Mathf.Lerp(_nowAngle, angle, Time.deltaTime * _property.SpeedRotation);
+            Mathf.Lerp(_info.SteeringAngle, angle, Time.deltaTime * _property.SpeedSteering);
 
         private void SetSteerAngleInWheels(float angle)
         {
             _frontLeftWheel.SteerAngle(angle);
             _frontRightWheel.SteerAngle(angle);
-        }
-
-        public void OnReplay()
-        {
-            _nowAngle = 0;
-            
-            _frontLeftWheel.ResetSteerAngle();
-            _frontRightWheel.ResetSteerAngle();
         }
     }
 }

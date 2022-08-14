@@ -39,9 +39,9 @@ namespace CodeBase.Logic.Car
 
         private void Awake()
         {
-            _controller = new CarController(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property);
-            Info = new CarInfo(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel);
-            
+            Info = new CarInfo(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property);
+            _controller = new CarController(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property, Info);
+
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
         }
 
@@ -50,7 +50,19 @@ namespace CodeBase.Logic.Car
 
         public void Rotation(float axis) => 
             _controller.Rotation(axis);
-        
+
+        public void OnReplay()
+        {
+            _velocity = Vector3.zero;
+            _angularVelocity = Vector3.zero;
+            
+            Property.NowMotorTorque = 0;
+            Property.NowSteeringAngle = 0;
+
+            ResetWheels();
+            BlockWheels();
+        }
+
         public void OnEnabledPause()
         {
             _velocity = _rigidbody.velocity;
@@ -65,12 +77,31 @@ namespace CodeBase.Logic.Car
 
             _rigidbody.velocity = _velocity;
             _rigidbody.angularVelocity = _angularVelocity;
+            
+            UnlockWheels();
         }
 
-        public void OnReplay()
+        private void ResetWheels()
         {
-            _velocity = Vector3.zero;
-            _angularVelocity = Vector3.zero;
+            _rearLeftWheel.Torque(0);
+            _rearRightWheel.Torque(0);
+            _frontLeftWheel.Torque(0);
+            _frontRightWheel.Torque(0);
+            
+            _frontLeftWheel.ResetSteerAngle();
+            _frontRightWheel.ResetSteerAngle();
+        }
+        
+        private void BlockWheels()
+        {
+            _rearLeftWheel.Block();
+            _rearRightWheel.Block();
+        }
+
+        private void UnlockWheels()
+        {
+            _rearLeftWheel.Unlock();
+            _rearRightWheel.Unlock();
         }
     }
 }

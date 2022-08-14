@@ -45,11 +45,11 @@ namespace CodeBase.Data.Static.Enemy
         {
             Health = Prefab.GetComponent<EnemyHealth>().Health;
             
-            MotorPowerForward = Prefab.GetComponent<Car>().Property.PowerForward;
-            MotorPowerBackwards = Prefab.GetComponent<Car>().Property.PowerBackwards;
-            Acceleration = Prefab.GetComponent<Car>().Property.SpeedAcceleration;
-            SteerAngle = Prefab.GetComponent<Car>().Property.SteerAngle;
-            SpeedRotation = Prefab.GetComponent<Car>().Property.SpeedRotation;
+            MotorPowerForward = Prefab.GetComponent<Car>().Property.TorqueForward;
+            MotorPowerBackwards = Prefab.GetComponent<Car>().Property.TorqueBack;
+            Acceleration = Prefab.GetComponent<Car>().Property.Acceleration;
+            SteerAngle = Prefab.GetComponent<Car>().Property.SteeringAngle;
+            SpeedRotation = Prefab.GetComponent<Car>().Property.SpeedSteering;
         }
 
         [UsedImplicitly]
@@ -60,11 +60,11 @@ namespace CodeBase.Data.Static.Enemy
         private void UpdateParameters()
         {
             Car car = Prefab.GetComponent<Car>();
-            car.Property.SpeedRotation = SpeedRotation;
-            car.Property.SteerAngle = SteerAngle;
-            car.Property.SpeedAcceleration = Acceleration;
-            car.Property.PowerForward = MotorPowerForward;
-            car.Property.PowerBackwards = MotorPowerBackwards;
+            car.Property.SpeedSteering = SpeedRotation;
+            car.Property.SteeringAngle = SteerAngle;
+            car.Property.Acceleration = Acceleration;
+            car.Property.TorqueForward = MotorPowerForward;
+            car.Property.TorqueBack = MotorPowerBackwards;
             
             EditorUtility.SetDirty(car);
             

@@ -14,12 +14,12 @@ namespace CodeBase.Logic.Car
         private WheelCollider _collider;
 
         public WheelCollider Collider => _collider;
-
+        
         private IUpdateService _updateService;
 
         private Vector3 _position;
         private Quaternion _rotation;
-
+        
         private Vector3 _startRotation;
 
         [Inject]

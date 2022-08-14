@@ -13,45 +13,68 @@ namespace CodeBase.Logic.Car
         private readonly Wheel _rearRightWheel;
         private readonly Wheel _frontLeftWheel;
         private readonly Wheel _rearLeftWheel;
+        
+        private readonly CarProperty _property;
+        
 
 #if UNITY_EDITOR
         
         [ShowInInspector]
         public float Speed => Application.isPlaying ? _rigidbody.velocity.magnitude : 0;
+        
+        [PropertySpace, ShowInInspector]
+        public float SteeringAngle => Application.isPlaying ? _property.NowSteeringAngle : 0;
 
         [ShowInInspector]
-        public float FrontLeftWheelTorque => Application.isPlaying ? _frontLeftWheel.Collider.motorTorque : 0;
-        
+        public float MotorTorque => Application.isPlaying ? _property.NowMotorTorque : 0;
+
+        [PropertySpace, ShowInInspector] 
+        public float DriftSlip => Application.isPlaying ? _property.Slip : 0;
+
+        [ShowInInspector] 
+        public Vector3 DirectionDrift => Application.isPlaying ? _property.DirectionDrift : Vector3.zero;
+
+        [PropertySpace, ShowInInspector]
+        public bool IsGrounded => Application.isPlaying && (_frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded || 
+                                                            _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded);
+
         [ShowInInspector]
-        public float FrontRightWheelTorque => Application.isPlaying ? _frontRightWheel.Collider.motorTorque : 0;
-        
+        public bool IsStopping => Application.isPlaying && _property.IsStopping;
+
         [ShowInInspector]
-        public float RearLeftWheelTorque => Application.isPlaying ? _rearLeftWheel.Collider.motorTorque : 0;
-        
-        [ShowInInspector]
-        public float RearRightWheelTorque => Application.isPlaying ? _rearRightWheel.Collider.motorTorque : 0;
-        
-        [ShowInInspector]
-        public bool IsGrounded => Application.isPlaying && (_frontRightWheel.Collider.isGrounded && _frontLeftWheel.Collider.isGrounded && 
-                                                            _rearRightWheel.Collider.isGrounded && _rearLeftWheel.Collider.isGrounded);
+
+        public bool IsStopped => Application.isPlaying && _property.IsStopped;
+
 #else
         
         public float Speed => _rigidbody.velocity.magnitude;
-        public float FrontLeftWheelTorque => _frontLeftWheel.Collider.motorTorque;
-        public float FrontRightWheelTorque => _frontRightWheel.Collider.motorTorque;
-        public float RearLeftWheelTorque => _rearLeftWheel.Collider.motorTorque;
-        public float RearRightWheelTorque => _rearRightWheel.Collider.motorTorque;
-        public bool IsGrounded => _frontRightWheel.Collider.isGrounded && _frontLeftWheel.Collider.isGrounded && _rearRightWheel.Collider.isGrounded && _rearLeftWheel.Collider.isGrounded;
 
+        public float SterringAngle => _property.NowSteeringAngle;
+
+        public float MotorTorque => _property.NowMotorTorque;
+
+        public float DriftSlip => _property.Slip;
+        public Vector3 DirectionDrift => _property.DirectionDrift; 
+
+        public bool IsGrounded => _frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded
+                                 || _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded;
+
+        public bool IsStopping => _property.IsStopping;
+        public bool IsStopped => _property.IsStopped;
+        
 #endif
 
-        public CarInfo(Rigidbody rigidbody, Wheel frontRightWheel, Wheel rearRightWheel, Wheel frontLeftWheel, Wheel rearLeftWheel)
+        public CarInfo(Rigidbody rigidbody, Wheel frontRightWheel, Wheel rearRightWheel, Wheel frontLeftWheel,
+            Wheel rearLeftWheel, CarProperty property)
         {
             _rigidbody = rigidbody;
+            
             _frontRightWheel = frontRightWheel;
             _rearRightWheel = rearRightWheel;
             _frontLeftWheel = frontLeftWheel;
             _rearLeftWheel = rearLeftWheel;
+            
+            _property = property;
         }
     }
 }

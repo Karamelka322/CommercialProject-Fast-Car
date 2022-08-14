@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\CodeBase\Editor\CarEditor.cs" />
      <Compile Include="Assets\CodeBase\Editor\Infrastructure\GameBootstrapperEditor.cs" />
      <Compile Include="Assets\CodeBase\Editor\Tools.cs" />
      <Compile Include="Assets\CodeBase\Editor\Logic\World\PointEditor.cs" />

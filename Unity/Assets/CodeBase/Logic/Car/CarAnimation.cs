@@ -5,14 +5,23 @@ using Zenject;
 
 namespace CodeBase.Logic.Car
 {
-    public class CarBody : MonoBehaviour
+    public class CarAnimation : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
+        [SerializeField] 
+        private Animator _animator;
 
-        private const string Rotate = "Rotate";
-        
+        [Space, SerializeField] 
+        private float _speedRotationBody;
+
+        [SerializeField] 
+        private AnimationCurve _curveRotationBody;
+
+        private static readonly int RotateHash = Animator.StringToHash("Rotate");
+
         private IInputService _inputService;
         private IUpdateService _updateService;
+
+        private float _axis;
 
         [Inject]
         public void Construct(IInputService inputService, IUpdateService updateService)
@@ -28,6 +37,12 @@ namespace CodeBase.Logic.Car
             _updateService.OnUpdate -= OnUpdate;
 
         private void OnUpdate() => 
-            _animator.SetFloat(Rotate, _inputService.Axis.y);
+            RotateBody();
+
+        private void RotateBody()
+        {
+            _axis = Mathf.Lerp(_axis, _inputService.Axis.y, _curveRotationBody.Evaluate(Time.deltaTime * _speedRotationBody));
+            _animator.SetFloat(RotateHash, _axis);
+        }
     }
 }

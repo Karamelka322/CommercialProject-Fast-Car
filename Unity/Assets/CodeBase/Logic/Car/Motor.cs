@@ -1,28 +1,18 @@
-using System;
-using CodeBase.Services.Pause;
-using CodeBase.Services.Replay;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
-    [Serializable]
-    public class Motor : IPauseHandler, IReplayHandler
+    public class Motor
     {
         private readonly CarProperty _property;
         
         private readonly Wheel _rearLeftWheel;
         private readonly Wheel _rearRightWheel;
-        
-        private float _nowTorque;
-        private bool _isStopping;
-        private bool _isStopped;
-
-        public string name { get; }
 
         public Motor(Wheel rearLeftWheel, Wheel rearRightWheel, CarProperty property)
         {
             _property = property;
-            
+
             _rearLeftWheel = rearLeftWheel;
             _rearRightWheel = rearRightWheel;
         }
@@ -37,34 +27,34 @@ namespace CodeBase.Logic.Car
 
         private void MoveForward(float torque, float nowSpeed)
         {
-            _nowTorque = Mathf.Lerp(_nowTorque, torque, Time.deltaTime * _property.SpeedAcceleration);
-            _isStopped = nowSpeed < 1;
+            _property.NowMotorTorque = Mathf.Lerp(_property.NowMotorTorque, torque, Time.deltaTime * _property.Acceleration);
+            _property.IsStopped = nowSpeed < 1;
 
-            if (_isStopped && !_isStopping)
+            if (_property.IsStopped && !_property.IsStopping)
             {
-                _isStopping = true;
+                _property.IsStopping = true;
 
                 BlockWheels();
             }
-            else if(_isStopping)
+            else if(_property.IsStopping)
             {
                 UnlockWheels();
             }
 
-            if (!_isStopped)
-                _isStopping = false;
+            if (!_property.IsStopped)
+                _property.IsStopping = false;
 
-            SetTorqueInWheels(_nowTorque);
+            SetTorqueInWheels(_property.NowMotorTorque);
         }
 
         private void MoveBackwards(float torque, float nowSpeed)
         {
-            _nowTorque = torque;
-            _isStopping = nowSpeed > 1f;
+            _property.NowMotorTorque = torque;
+            _property.IsStopping = nowSpeed > 1f;
 
-            if (_isStopping && !_isStopped)
+            if (_property.IsStopping && !_property.IsStopped)
             {
-                _isStopped = true;
+                _property.IsStopped = true;
 
                 BlockWheels();
             }
@@ -74,9 +64,9 @@ namespace CodeBase.Logic.Car
             }
             
             if(torque > 0) 
-                _isStopped = false;
+                _property.IsStopped = false;
             
-            SetTorqueInWheels(_nowTorque);
+            SetTorqueInWheels(_property.NowMotorTorque);
         }
 
         private void SetTorqueInWheels(float torque)
@@ -96,18 +86,5 @@ namespace CodeBase.Logic.Car
             _rearLeftWheel.Unlock();
             _rearRightWheel.Unlock();
         }
-
-        public void OnReplay()
-        {
-            _nowTorque = 0;
-            SetTorqueInWheels(_nowTorque);
-
-            BlockWheels();
-        }
-
-        public void OnEnabledPause() { }
-
-        public void OnDisabledPause() => 
-            UnlockWheels();
     }
 }
