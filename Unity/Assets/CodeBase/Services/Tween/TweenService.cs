@@ -2,19 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CodeBase.Infrastructure;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.Tween
 {
+    [UsedImplicitly]
     public class TweenService : ITweenService
     {
         private Dictionary<Type, Coroutine> _dictionary { get; } = new Dictionary<Type, Coroutine>();
 
-        private readonly ICorutineRunner _corutineRunner;
+        private readonly ICorutineRunner _coroutineRunner;
 
-        public TweenService(ICorutineRunner corutineRunner)
+        public TweenService(ICorutineRunner coroutineRunner)
         {
-            _corutineRunner = corutineRunner;
+            _coroutineRunner = coroutineRunner;
         }
         
         public void Move<T>(Transform transform, Vector3 position, float speed = 1, TweenMode mode = TweenMode.Global, Action done = null)
@@ -35,16 +37,25 @@ namespace CodeBase.Services.Tween
             StartRegisterCoroutine<T>(Hide(canvasGroup, speed, delay, done));
         }
 
-        public void Timer<T>(float time, Action callBack)
+        public void SingleTimer<T>(float time, Action callBack)
         {
             TryStopUnregisterCoroutine<T>();
             StartRegisterCoroutine<T>(StartTimer(time, callBack));
         }
+        
+        public void Timer<T>(float time, T component, Action<T> callBack) where T : class => 
+            _coroutineRunner.StartCoroutine(StartTimer(time, component, callBack));
 
         private static IEnumerator StartTimer(float time, Action callBack)
         {
             yield return new WaitForSeconds(time);
             callBack?.Invoke();
+        }
+        
+        private static IEnumerator StartTimer<T>(float time, T component, Action<T> callBack) where T : class
+        {
+            yield return new WaitForSeconds(time);
+            callBack?.Invoke(component);
         }
 
         private void TryStopUnregisterCoroutine<T>()
@@ -55,13 +66,13 @@ namespace CodeBase.Services.Tween
 
         private void StartRegisterCoroutine<T>(IEnumerator enumerator)
         {
-            Coroutine coroutine = _corutineRunner.StartCoroutine(enumerator);
+            Coroutine coroutine = _coroutineRunner.StartCoroutine(enumerator);
             _dictionary.Add(typeof(T), coroutine);
         }
 
         private void StopUnregisterCoroutine<T>(Coroutine coroutine)
         {
-            _corutineRunner.StopCoroutine(coroutine);
+            _coroutineRunner.StopCoroutine(coroutine);
             _dictionary.Remove(typeof(T));
         }
 

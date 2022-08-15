@@ -13,7 +13,11 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private WheelCollider _collider;
 
+        [SerializeField] 
+        private WheelTrail _trail;
+
         public WheelCollider Collider => _collider;
+        public WheelTrail Trail => _trail;
         
         private IUpdateService _updateService;
 

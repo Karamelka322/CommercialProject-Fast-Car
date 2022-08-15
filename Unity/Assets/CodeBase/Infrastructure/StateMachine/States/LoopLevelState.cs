@@ -61,7 +61,7 @@ namespace CodeBase.Infrastructure.States
         }
 
         private void DelayEnter() => 
-            _tweenService.Timer<LoopLevelState>(DelayEnterTime, OnEnter);
+            _tweenService.SingleTimer<LoopLevelState>(DelayEnterTime, OnEnter);
 
         private void OnEnter()
         {

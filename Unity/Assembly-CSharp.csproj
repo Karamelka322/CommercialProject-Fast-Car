@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\IPersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\UIFactory.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\ButtonWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuAnimator.cs" />
      <Compile Include="Assets\CodeBase\Mediator\Menu\IMenuMediator.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHealth.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Developer\DeveloperPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyHealth.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\WheelTrail.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\Garage.cs" />
      <Compile Include="Assets\CodeBase\Services\Window\IWindowService.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\DefeatService.cs" />
@@ -254,7 +256,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\CarController.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
+     <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
