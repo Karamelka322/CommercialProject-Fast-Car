@@ -15,7 +15,7 @@ namespace CodeBase.Services.Spawner
         private const float TimeSpawnEnemy = 2f;
 
         private readonly IPersistentDataService _persistentDataService;
-        private readonly ICorutineRunner _coroutineRunner;
+        private readonly ICoroutineRunner _coroutineRunner;
         private readonly IRandomService _randomService;
         private readonly IEnemyFactory _enemyFactory;
 
@@ -23,7 +23,7 @@ namespace CodeBase.Services.Spawner
         
         private float StopwatchTime => _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime;
 
-        public EnemySpawnerModule(IRandomService randomService, IEnemyFactory enemyFactory, IPersistentDataService persistentDataService, ICorutineRunner coroutineRunner)
+        public EnemySpawnerModule(IRandomService randomService, IEnemyFactory enemyFactory, IPersistentDataService persistentDataService, ICoroutineRunner coroutineRunner)
         {
             _persistentDataService = persistentDataService;
             _coroutineRunner = coroutineRunner;

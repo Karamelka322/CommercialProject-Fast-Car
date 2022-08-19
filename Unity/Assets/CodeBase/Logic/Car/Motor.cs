@@ -5,7 +5,7 @@ namespace CodeBase.Logic.Car
     public class Motor
     {
         private readonly CarProperty _property;
-        
+
         private readonly Wheel _rearLeftWheel;
         private readonly Wheel _rearRightWheel;
 
@@ -17,74 +17,17 @@ namespace CodeBase.Logic.Car
             _rearRightWheel = rearRightWheel;
         }
 
-        public void Move(in float torque, in float nowSpeed)
+        public void SetTorque(in float axis)
         {
-            if(torque < 0)
-                MoveBackwards(torque, nowSpeed);
-            else
-                MoveForward(torque, nowSpeed);
-        }
-
-        private void MoveForward(float torque, float nowSpeed)
-        {
-            _property.NowMotorTorque = Mathf.Lerp(_property.NowMotorTorque, torque, Time.deltaTime * _property.Acceleration);
-            _property.IsStopped = nowSpeed < 1;
-
-            if (_property.IsStopped && !_property.IsStopping)
-            {
-                _property.IsStopping = true;
-
-                BlockWheels();
-            }
-            else if(_property.IsStopping)
-            {
-                UnlockWheels();
-            }
-
-            if (!_property.IsStopped)
-                _property.IsStopping = false;
-
-            SetTorqueInWheels(_property.NowMotorTorque);
-        }
-
-        private void MoveBackwards(float torque, float nowSpeed)
-        {
-            _property.NowMotorTorque = torque;
-            _property.IsStopping = nowSpeed > 1f;
-
-            if (_property.IsStopping && !_property.IsStopped)
-            {
-                _property.IsStopped = true;
-
-                BlockWheels();
-            }
-            else
-            {
-                UnlockWheels();
-            }
+            _property.NowMotorTorque = Mathf.Lerp(_property.NowMotorTorque, ConvertAxisToTorque(axis), Time.deltaTime * _property.Acceleration);
             
-            if(torque > 0) 
-                _property.IsStopped = false;
-            
-            SetTorqueInWheels(_property.NowMotorTorque);
+            _rearLeftWheel.Torque(_property.NowMotorTorque);
+            _rearRightWheel.Torque(_property.NowMotorTorque);
         }
-
-        private void SetTorqueInWheels(float torque)
-        {
-            _rearLeftWheel.Torque(torque);
-            _rearRightWheel.Torque(torque);
-        }
-
-        private void BlockWheels()
-        {
-            _rearLeftWheel.Block();
-            _rearRightWheel.Block();
-        }
-
-        private void UnlockWheels()
-        {
-            _rearLeftWheel.Unlock();
-            _rearRightWheel.Unlock();
-        }
+        
+        private float ConvertAxisToTorque(float axis) =>
+            axis > 0 
+                ? Mathf.Lerp(0, axis > 0 ? _property.TorqueForward : _property.TorqueBack, axis) 
+                : Mathf.Lerp(0, axis > 0 ? -_property.TorqueForward : -_property.TorqueBack, -axis);
     }
 }

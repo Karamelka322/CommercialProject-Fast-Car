@@ -1,11 +1,14 @@
+using CodeBase.Services.Pause;
+using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(WheelCollider))]
-    public class Wheel : MonoBehaviour
+    public class Wheel : MonoBehaviour, IReplayHandler, IPauseHandler
     {
         [SerializeField] 
         private Transform _mesh;
@@ -30,7 +33,7 @@ namespace CodeBase.Logic.Car
         public void Construct(IUpdateService updateService)
         {
             _updateService = updateService;
-            _startRotation = _mesh.rotation.eulerAngles;
+            _startRotation = TransformUtils.GetInspectorRotation(_mesh);
         }
 
         private void Start() => 
@@ -47,17 +50,15 @@ namespace CodeBase.Logic.Car
 
         public void SteerAngle(float angle) => 
             _collider.steerAngle = angle;
-
-        public void Block() => 
-            _collider.brakeTorque = 100000;
-
-        public void Unlock() => 
-            _collider.brakeTorque = 0;
-
-        public void ResetSteerAngle()
+        
+        public void OnReplay()
         {
+            _collider.motorTorque = 0;
+            
             _collider.steerAngle = 0;
             _mesh.rotation = Quaternion.identity;
+            
+            _collider.brakeTorque = 100000;
         }
 
         private void SetPositionRelativeToCollider()
@@ -65,7 +66,18 @@ namespace CodeBase.Logic.Car
             _collider.GetWorldPose(out _position, out _rotation);
 
             _mesh.position = _position;
-            _mesh.rotation = Quaternion.Euler(_rotation.eulerAngles + _startRotation);
+            _mesh.rotation = _rotation;
+
+            if (_startRotation != Vector3.zero)
+                FlipMesh();
         }
+
+        public void OnEnabledPause() { }
+
+        public void OnDisabledPause() => 
+            _collider.brakeTorque = 0;
+
+        private void FlipMesh() => 
+            TransformUtils.SetInspectorRotation(_mesh, TransformUtils.GetInspectorRotation(_mesh) + _startRotation);
     }
 }

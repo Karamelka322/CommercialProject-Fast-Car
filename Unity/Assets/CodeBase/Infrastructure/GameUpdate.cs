@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameUpdate : MonoBehaviour, IUpdatable, ICorutineRunner
+    public class GameUpdate : MonoBehaviour, IUpdatable, ICoroutineRunner
     {
         public event Action OnUpdate;
         public event Action OnFixedUpdate;
@@ -16,6 +16,5 @@ namespace CodeBase.Infrastructure
 
         private void FixedUpdate() => 
             OnFixedUpdate?.Invoke();
-
     }
 }

@@ -8,15 +8,15 @@ namespace CodeBase.Services.LoadScene
 {
     public class SceneLoaderService : ISceneLoaderService
     {
-        private readonly ICorutineRunner _corutineRunner;
+        private readonly ICoroutineRunner _coroutineRunner;
 
-        public SceneLoaderService(ICorutineRunner corutineRunner)
+        public SceneLoaderService(ICoroutineRunner coroutineRunner)
         {
-            _corutineRunner = corutineRunner;
+            _coroutineRunner = coroutineRunner;
         }
 
         public void Load(string name, LoadSceneMode mode, Action onLoaded = null) => 
-            _corutineRunner.StartCoroutine(LoadScene(name, mode, onLoaded));
+            _coroutineRunner.StartCoroutine(LoadScene(name, mode, onLoaded));
 
         private static IEnumerator LoadScene(string name, LoadSceneMode mode, Action onLoaded = null)
         {

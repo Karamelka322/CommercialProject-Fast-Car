@@ -10,11 +10,11 @@ namespace CodeBase.Infrastructure
         private readonly Dictionary<Type, IExitState> _states;
         private IExitState _exitState;
         
-        public GameStateMachine(DiContainer diContainer, ICorutineRunner corutineRunner, IUpdatable updatable)
+        public GameStateMachine(DiContainer diContainer, ICoroutineRunner coroutineRunner, IUpdatable updatable)
         {
             _states = new Dictionary<Type, IExitState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(diContainer, this, corutineRunner, updatable),
+                [typeof(BootstrapState)] = new BootstrapState(diContainer, this, coroutineRunner, updatable),
                 
                 [typeof(LoadPersistentDataState)] = diContainer.Instantiate<LoadPersistentDataState>(),
                 

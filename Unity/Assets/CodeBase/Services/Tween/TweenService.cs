@@ -12,9 +12,9 @@ namespace CodeBase.Services.Tween
     {
         private Dictionary<Type, Coroutine> _dictionary { get; } = new Dictionary<Type, Coroutine>();
 
-        private readonly ICorutineRunner _coroutineRunner;
+        private readonly ICoroutineRunner _coroutineRunner;
 
-        public TweenService(ICorutineRunner coroutineRunner)
+        public TweenService(ICoroutineRunner coroutineRunner)
         {
             _coroutineRunner = coroutineRunner;
         }
@@ -43,19 +43,10 @@ namespace CodeBase.Services.Tween
             StartRegisterCoroutine<T>(StartTimer(time, callBack));
         }
         
-        public void Timer<T>(float time, T component, Action<T> callBack) where T : class => 
-            _coroutineRunner.StartCoroutine(StartTimer(time, component, callBack));
-
         private static IEnumerator StartTimer(float time, Action callBack)
         {
             yield return new WaitForSeconds(time);
             callBack?.Invoke();
-        }
-        
-        private static IEnumerator StartTimer<T>(float time, T component, Action<T> callBack) where T : class
-        {
-            yield return new WaitForSeconds(time);
-            callBack?.Invoke(component);
         }
 
         private void TryStopUnregisterCoroutine<T>()

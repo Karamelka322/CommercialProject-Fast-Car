@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Data.Static;
 using CodeBase.Services.Input.Element;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.Input
 {
+    [UsedImplicitly]
     public class InputService : IInputService
     {
         private Dictionary<string, IInputBoolValue> _buttons { get; } = new Dictionary<string, IInputBoolValue>();
@@ -13,9 +15,9 @@ namespace CodeBase.Services.Input
         private Dictionary<string, IInputVector2Value> _joysticks { get; } = new Dictionary<string, IInputVector2Value>();
 
         private IInputModule Module { get; } = DefineModule();
-
+        
         public Vector2 Axis => Module.Axis;
-
+        
         public void RegisterInput(InputTypeId typeId, GameObject gameObject)
         {
             Module.CurrentInputVariant = GetCore(typeId);
@@ -47,7 +49,7 @@ namespace CodeBase.Services.Input
             _areas.Clear();
             _joysticks.Clear();
         }
-        
+
         private static IInputModule DefineModule()
         {
             if (Application.isEditor)

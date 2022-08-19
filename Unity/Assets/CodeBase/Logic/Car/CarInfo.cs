@@ -38,13 +38,6 @@ namespace CodeBase.Logic.Car
         public bool IsGrounded => Application.isPlaying && (_frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded || 
                                                             _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded);
 
-        [ShowInInspector]
-        public bool IsStopping => Application.isPlaying && _property.IsStopping;
-
-        [ShowInInspector]
-
-        public bool IsStopped => Application.isPlaying && _property.IsStopped;
-
 #else
         
         public float Speed => _rigidbody.velocity.magnitude;
@@ -58,9 +51,6 @@ namespace CodeBase.Logic.Car
 
         public bool IsGrounded => _frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded
                                  || _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded;
-
-        public bool IsStopping => _property.IsStopping;
-        public bool IsStopped => _property.IsStopped;
         
 #endif
 

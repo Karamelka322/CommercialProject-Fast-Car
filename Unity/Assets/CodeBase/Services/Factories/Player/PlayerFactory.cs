@@ -6,11 +6,13 @@ using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.Victory;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Services.Factories.Player
 {
+    [UsedImplicitly]
     public class PlayerFactory : IPlayerFactory
     {
         private const string PlayerName = "Player";

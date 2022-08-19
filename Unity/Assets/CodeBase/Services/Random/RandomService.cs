@@ -10,16 +10,16 @@ namespace CodeBase.Services.Random
 {
     public class RandomService : IRandomService
     {
-        private readonly ICorutineRunner _corutineRunner;
+        private readonly ICoroutineRunner _coroutineRunner;
         
         private LevelStaticData _config;
         
         private SpawnPointData[] _capsuleSpawnPoints;
         private SpawnPointData[] _enemySpawnPoints;
 
-        public RandomService(ICorutineRunner corutineRunner)
+        public RandomService(ICoroutineRunner coroutineRunner)
         {
-            _corutineRunner = corutineRunner;
+            _coroutineRunner = coroutineRunner;
         }
 
         public void SetConfig(LevelStaticData levelConfig)
@@ -49,10 +49,10 @@ namespace CodeBase.Services.Random
             _config.Spawn.Generator.GeneratorSpawnPoints.Random();
 
         public void BindObjectToSpawnPoint(Object obj, PointData point) => 
-            _corutineRunner.StartCoroutine(BindObject(obj, _capsuleSpawnPoints, point));
+            _coroutineRunner.StartCoroutine(BindObject(obj, _capsuleSpawnPoints, point));
 
         public void BindTimeToSpawnPoint(float time, PointData point) => 
-            _corutineRunner.StartCoroutine(BindTime(time, _enemySpawnPoints, point));
+            _coroutineRunner.StartCoroutine(BindTime(time, _enemySpawnPoints, point));
 
         public void CleanUp()
         {

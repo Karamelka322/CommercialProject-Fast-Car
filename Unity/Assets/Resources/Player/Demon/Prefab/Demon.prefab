@@ -177,11 +177,11 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 4
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.1
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.4
+    m_AsymptoteSlip: 0.1
     m_AsymptoteValue: 1
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &5212180325587884870
 MonoBehaviour:
@@ -241,7 +241,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -419,11 +419,11 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 4
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.4
+    m_AsymptoteSlip: 0.2
     m_AsymptoteValue: 1
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &4491094988018657286
 MonoBehaviour:
@@ -483,7 +483,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.2
       value: 1
       inSlope: 0
       outSlope: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.2
       value: 1
       inSlope: 0
       outSlope: 0
@@ -633,7 +633,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4647528403335202455}
-  - {fileID: 6948068500950846852}
+  - {fileID: 6427006309677470069}
   m_Father: {fileID: 8069407972020316801}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -661,11 +661,11 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 4
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.4
+    m_AsymptoteSlip: 0.2
     m_AsymptoteValue: 1
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &1955913344532942650
 MonoBehaviour:
@@ -725,7 +725,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.2
       value: 1
       inSlope: 0
       outSlope: 0
@@ -734,7 +734,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.2
       value: 1
       inSlope: 0
       outSlope: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4647528403335202455}
   _collider: {fileID: 3304944591424855818}
-  _trail: {fileID: 3700689843518759196}
+  _trail: {fileID: 722355623849655789}
 --- !u!1 &3433266551837669723
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +814,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3433266551837669723}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 150
   m_Drag: 0
   m_AngularDrag: 0.5
   m_UseGravity: 1
@@ -952,17 +952,18 @@ MonoBehaviour:
     TorqueBack: 400
     Acceleration: 12
     SteeringAngle: 35
-    SpeedSteering: 12
-    SpeedForDrift: 15
-    SteeringForDrift: 15
-    ForceDrift: 30
-    MaxRotationX: 20
-    MaxRotationZ: 25
+    SpeedSteering: 4
+    DriftAngle: 50
+    SpeedDrift: 5
+    MinStiffnessForRearWheel: 0.2
+    MinStiffnessForFrontWheel: 0.4
+    SpeedStabilization: 9
+    MaxRotationX: 18
+    MaxRotationZ: 23
     NowSteeringAngle: 0
     NowMotorTorque: 0
+    UseDrift: 0
     Slip: 0
-    IsStopping: 0
-    IsStopped: 0
     DirectionDrift: {x: 0, y: 0, z: 0}
 --- !u!1 &4638961487201264522
 GameObject:
@@ -1083,7 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8390394860781591629}
-  _speedRotationBody: 0
+  _speedRotationBody: 10
   _curveRotationBody:
     serializedVersion: 2
     m_Curve:
@@ -1154,11 +1155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Color: {r: 0, g: 1, b: 0.8509804, a: 1}
   Range: 0.2
-  _rigidbody: {fileID: 3433266551837669724}
+  _car: {fileID: 4459666105701282217}
   _offset: 2
   _speedOffset: 3.5
-  _maxCarSpeed: 18
-  _treshold: 0.4
+  _threshold: 0.4
 --- !u!1 &5276416416547560865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,11 +1265,11 @@ WheelCollider:
     m_AsymptoteValue: 0.5
     m_Stiffness: 4
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.1
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.4
+    m_AsymptoteSlip: 0.1
     m_AsymptoteValue: 1
-    m_Stiffness: 3
+    m_Stiffness: 4
   m_Enabled: 1
 --- !u!114 &3894774436476871058
 MonoBehaviour:
@@ -1329,7 +1329,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ebd46196344bcb4c50033fe1f3bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &5681824036477877971
+--- !u!1001 &8612232178476950050
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1946,10 +1946,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a395b7dd6f60e3947b591be20e42a052, type: 3}
---- !u!114 &3700689843518759196 stripped
+--- !u!114 &722355623849655789 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9043959320145747919, guid: a395b7dd6f60e3947b591be20e42a052, type: 3}
-  m_PrefabInstance: {fileID: 5681824036477877971}
+  m_PrefabInstance: {fileID: 8612232178476950050}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1957,8 +1957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530ebd46196344bcb4c50033fe1f3bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6948068500950846852 stripped
+--- !u!4 &6427006309677470069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3365767436762329943, guid: a395b7dd6f60e3947b591be20e42a052, type: 3}
-  m_PrefabInstance: {fileID: 5681824036477877971}
+  m_PrefabInstance: {fileID: 8612232178476950050}
   m_PrefabAsset: {fileID: 0}

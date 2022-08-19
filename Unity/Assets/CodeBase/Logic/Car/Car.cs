@@ -1,7 +1,9 @@
 using CodeBase.Logic.World;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
+using CodeBase.Services.Update;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Car
 {
@@ -26,48 +28,80 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private Wheel _rearRightWheel;
 
-        [Space]
+        [Space] 
         public CarProperty Property;
-
+        
         [Space] 
         public CarInfo Info;
 
-        private CarController _controller;
+        private IUpdateService _updateService;
 
-        private Vector3 _velocity;
-        private Vector3 _angularVelocity;
-
+        private Motor _motor;
+        private SteeringGear _steeringGear;
+        private Drift _drift;
+        private Stabilization _stabilization;
+        private CarBackup _backup;
+        
+        [Inject]
+        private void Construct(IUpdateService updateService)
+        {
+            _updateService = updateService;
+        }
+        
         private void Awake()
         {
             Info = new CarInfo(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property);
-            _controller = new CarController(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property, Info);
 
+            _motor = new Motor(_rearLeftWheel, _rearRightWheel, Property);
+            _steeringGear = new SteeringGear(_frontLeftWheel, _frontRightWheel, Property);
+            _drift = new Drift(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontLeftWheel, _frontRightWheel, Property, Info);
+            _stabilization = new Stabilization(Property, transform);
+            
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
         }
 
+        private void Start() => 
+            _updateService.OnUpdate += OnUpdate;
+
+        private void OnDisable() => 
+            _updateService.OnUpdate -= OnUpdate;
+
+        private void OnUpdate()
+        {
+            if(Info.IsGrounded == false)
+                _stabilization.Stabilize();
+            
+            if(_rigidbody.velocity.magnitude > Property.MaxSpeed)
+                SpeedLimit();
+            
+            if(Property.UseDrift)
+                _drift.Update();
+        }
+
         public void Movement(float axis) => 
-            _controller.Movement(axis);
+            _motor.SetTorque(axis);
 
         public void Rotation(float axis) => 
-            _controller.Rotation(axis);
+            _steeringGear.SetAngle(axis);
+
+        public void EnableDrift() => 
+            _drift.Enable();
+
+        public void DisableDrift() => 
+            _drift.Disable();
 
         public void OnReplay()
         {
-            _velocity = Vector3.zero;
-            _angularVelocity = Vector3.zero;
-            
             Property.NowMotorTorque = 0;
             Property.NowSteeringAngle = 0;
-
-            ResetWheels();
-            BlockWheels();
+            
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
         }
 
         public void OnEnabledPause()
         {
-            _velocity = _rigidbody.velocity;
-            _angularVelocity = _rigidbody.angularVelocity;
-
+            _backup = new CarBackup(_rigidbody.velocity, _rigidbody.angularVelocity);
             _rigidbody.isKinematic = true;
         }
 
@@ -75,33 +109,23 @@ namespace CodeBase.Logic.Car
         {
             _rigidbody.isKinematic = false;
 
-            _rigidbody.velocity = _velocity;
-            _rigidbody.angularVelocity = _angularVelocity;
-            
-            UnlockWheels();
-        }
-
-        private void ResetWheels()
-        {
-            _rearLeftWheel.Torque(0);
-            _rearRightWheel.Torque(0);
-            _frontLeftWheel.Torque(0);
-            _frontRightWheel.Torque(0);
-            
-            _frontLeftWheel.ResetSteerAngle();
-            _frontRightWheel.ResetSteerAngle();
+            _rigidbody.velocity = _backup.Velocity;
+            _rigidbody.angularVelocity = _backup.AngularVelocity;
         }
         
-        private void BlockWheels()
+        private void SpeedLimit() => 
+            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, Property.MaxSpeed);
+        
+        private class CarBackup
         {
-            _rearLeftWheel.Block();
-            _rearRightWheel.Block();
-        }
+            public readonly Vector3 Velocity;
+            public readonly Vector3 AngularVelocity;
 
-        private void UnlockWheels()
-        {
-            _rearLeftWheel.Unlock();
-            _rearRightWheel.Unlock();
+            public CarBackup(Vector3 velocity, Vector3 angularVelocity)
+            {
+                Velocity = velocity;
+                AngularVelocity = angularVelocity;
+            }
         }
     }
 }

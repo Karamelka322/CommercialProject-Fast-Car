@@ -1,20 +1,26 @@
 using System.Collections.Generic;
 using CodeBase.Extension;
+using CodeBase.Infrastructure;
 using CodeBase.Services.Update;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.Pause
 {
+    [UsedImplicitly]
     public class PauseService : IPauseService
     {
         private readonly List<IPauseHandler> _handlers = new List<IPauseHandler>();
 
+        public float PauseTime { get; private set; }
         public bool IsPause { get; private set; }
         
         private readonly IUpdateService _updateService;
+        private readonly IUpdatable _updatable;
 
-        public PauseService(IUpdateService updateService)
+        public PauseService(IUpdateService updateService, IUpdatable updatable)
         {
+            _updatable = updatable;
             _updateService = updateService;
         }
 
@@ -27,6 +33,7 @@ namespace CodeBase.Services.Pause
 
             EnableDisableUpdateService();
             InformHandlers();
+            EnableDisableStopwatch();
         }
 
         private void EnableDisableUpdateService()
@@ -37,9 +44,23 @@ namespace CodeBase.Services.Pause
                 _updateService.Enable();
         }
 
+        private void EnableDisableStopwatch()
+        {
+            if (IsPause)
+                _updatable.OnUpdate += Stopwatch;
+            else
+            {
+                PauseTime = 0;
+                _updatable.OnUpdate -= Stopwatch;
+            }
+        }
+
+        private void Stopwatch() => 
+            PauseTime += Time.deltaTime;
+
         public void Register(GameObject gameObject)
         {
-            foreach (IPauseHandler handler in gameObject.GetComponents<IPauseHandler>()) 
+            foreach (IPauseHandler handler in gameObject.GetComponentsInChildren<IPauseHandler>())
                 _handlers.Add(handler);
         }
 

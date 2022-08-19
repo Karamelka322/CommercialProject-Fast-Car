@@ -27,11 +27,11 @@ namespace CodeBase.Services.Spawner
             ILevelFactory levelFactory,
             IEnemyFactory enemyFactory,
             IPersistentDataService persistentDataService,
-            ICorutineRunner corutineRunner)
+            ICoroutineRunner coroutineRunner)
         {
             _generatorSpawnerModule = new GeneratorSpawnerModule(levelFactory, randomService);
             _capsuleSpawnerModule = new CapsuleSpawnerModule(levelFactory, randomService);
-            _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory, persistentDataService, corutineRunner);
+            _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory, persistentDataService, coroutineRunner);
         }
 
         public void SetConfig(LevelStaticData levelStaticData)

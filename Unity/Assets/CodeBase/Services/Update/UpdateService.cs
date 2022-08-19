@@ -1,9 +1,11 @@
 using System;
 using CodeBase.Infrastructure;
 using CodeBase.Services.Window;
+using JetBrains.Annotations;
 
 namespace CodeBase.Services.Update
 {
+    [UsedImplicitly]
     public class UpdateService : IUpdateService
     {
         private readonly IUpdatable _updatable;

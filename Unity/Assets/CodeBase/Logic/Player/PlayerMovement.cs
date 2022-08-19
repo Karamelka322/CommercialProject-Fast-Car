@@ -23,12 +23,24 @@ namespace CodeBase.Logic.Player
             _inputService = inputService;
             _updateService = updateService;
         }
-
-        private void Start() => 
+        
+        private void Start()
+        {
             _updateService.OnUpdate += OnUpdate;
+            _updateService.OnFixedUpdate += OnFixedUpdate;
+        }
 
         private void OnDestroy() => 
             _updateService.OnUpdate -= OnUpdate;
+
+        private void OnFixedUpdate()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                _car.EnableDrift();
+            
+            if(Input.GetKeyUp(KeyCode.Space))
+                _car.DisableDrift();
+        }
 
         private void OnUpdate()
         {
@@ -37,20 +49,16 @@ namespace CodeBase.Logic.Player
         }
 
         public void OnReplay() => 
-            _updateService.OnUpdate += OnUpdate;
+            _car.Property.UseDrift = false;
 
         public void OnDefeat()
         {
-            _updateService.OnUpdate -= OnUpdate;
-            
             _car.Movement(0);
             _car.Rotation(0);
         }
 
         public void OnVictory()
         {
-            _updateService.OnUpdate -= OnUpdate;
-            
             _car.Movement(0);
             _car.Rotation(0);
         }

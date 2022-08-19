@@ -7,7 +7,7 @@ namespace CodeBase.Logic.Car
     public class CarProperty
     {
         public int MaxSpeed;
-        
+
         [Space]
         public int TorqueForward;
         public int TorqueBack;
@@ -17,31 +17,26 @@ namespace CodeBase.Logic.Car
         public int SteeringAngle;
         public int SpeedSteering;
 
-        [Space] 
-        public float SpeedForDrift;
-        public float SteeringForDrift;
-        public float ForceDrift;
+        //public float SpeedForDrift;
+        //public float SpeedStartDrift;
+        //public float SpeedStopDrift;
+        //public float SteeringForDrift;
 
         [Space]
+        public float DriftAngle;
+        public float SpeedDrift;
+        public float MinStiffnessForRearWheel;
+        public float MinStiffnessForFrontWheel;
+
+        [Space]
+        public float SpeedStabilization;
         public int MaxRotationX;
         public int MaxRotationZ;
 
-        [HideInInspector]
-        public float NowSteeringAngle;
-
-        [HideInInspector]
-        public float NowMotorTorque;
-
-        [HideInInspector] 
-        public float Slip;
-
-        [HideInInspector]
-        public bool IsStopping;
-
-        [HideInInspector]
-        public bool IsStopped;
-
-        [HideInInspector] 
-        public Vector3 DirectionDrift;
+        [HideInInspector] public float NowSteeringAngle;
+        [HideInInspector] public float NowMotorTorque;
+        [HideInInspector] public bool UseDrift;
+        [HideInInspector] public float Slip;
+        [HideInInspector] public Vector3 DirectionDrift;
     }
 }

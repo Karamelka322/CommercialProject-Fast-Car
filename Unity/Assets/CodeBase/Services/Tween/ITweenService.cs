@@ -9,6 +9,5 @@ namespace CodeBase.Services.Tween
         void Show<T>(CanvasGroup canvasGroup, float speed = 0, float delay = 0, Action done = null);
         void Hide<T>(CanvasGroup canvasGroup, float speed = 0, float delay = 0, Action done = null);
         void SingleTimer<T>(float time, Action callBack);
-        void Timer<T>(float time, T component, Action<T> callBack) where T : class;
     }
 }

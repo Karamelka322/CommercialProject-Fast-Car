@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using CodeBase.Extension;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.Replay
 {
+    [UsedImplicitly]
     public class ReplayService : IReplayService
     {
         private readonly List<IReplayHandler> _handlers = new List<IReplayHandler>();

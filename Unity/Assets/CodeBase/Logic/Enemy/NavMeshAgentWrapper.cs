@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Extension;
+using CodeBase.Logic.Car;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Update;
 using UnityEngine;
@@ -9,7 +10,7 @@ using Zenject;
 namespace CodeBase.Logic.Enemy
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class NavMeshAgentWrapper : MonoBehaviour
+    public class NavMeshAgentWrapper : MonoBehaviour, IWrapper
     {
         [SerializeField] 
         private Transform _parent;

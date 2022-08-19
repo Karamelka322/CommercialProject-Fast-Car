@@ -7,9 +7,9 @@ namespace CodeBase.Infrastructure
     {
         private readonly GameStateMachine _gameStateMachine;
 
-        public Game(in DiContainer diContainer, ICorutineRunner corutineRunner, IUpdatable updatable)
+        public Game(in DiContainer diContainer, ICoroutineRunner coroutineRunner, IUpdatable updatable)
         {
-            _gameStateMachine = new GameStateMachine(diContainer, corutineRunner, updatable);
+            _gameStateMachine = new GameStateMachine(diContainer, coroutineRunner, updatable);
             _gameStateMachine.Enter<BootstrapState>();
         }
     }
