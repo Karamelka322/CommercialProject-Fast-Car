@@ -53,23 +53,30 @@ namespace CodeBase.Logic.Car
             Info = new CarInfo(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontRightWheel, _frontLeftWheel, Property);
 
             _motor = new Motor(_rearLeftWheel, _rearRightWheel, Property);
-            _steeringGear = new SteeringGear(_frontLeftWheel, _frontRightWheel, Property);
-            _drift = new Drift(_rigidbody, _rearLeftWheel, _rearRightWheel, _frontLeftWheel, _frontRightWheel, Property, Info);
-            _stabilization = new Stabilization(Property, transform);
+            _steeringGear = new SteeringGear(transform, _frontLeftWheel, _frontRightWheel, Property);
+            _drift = new Drift(transform, _rearLeftWheel, _rearRightWheel, _frontLeftWheel, _frontRightWheel, Property);
+            _stabilization = new Stabilization(Property, Info, transform);
             
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
         }
 
-        private void Start() => 
+        private void Start()
+        {
             _updateService.OnUpdate += OnUpdate;
+            _updateService.OnFixedUpdate += OnFixedUpdate;
+        }
 
-        private void OnDisable() => 
+        private void OnDisable()
+        {
             _updateService.OnUpdate -= OnUpdate;
+            _updateService.OnFixedUpdate -= OnFixedUpdate;
+        }
 
         private void OnUpdate()
         {
-            if(Info.IsGrounded == false)
-                _stabilization.Stabilize();
+            _motor.Update();
+            _steeringGear.Update();
+            _stabilization.Update();
             
             if(_rigidbody.velocity.magnitude > Property.MaxSpeed)
                 SpeedLimit();
@@ -78,11 +85,11 @@ namespace CodeBase.Logic.Car
                 _drift.Update();
         }
 
-        public void Movement(float axis) => 
-            _motor.SetTorque(axis);
-
-        public void Rotation(float axis) => 
-            _steeringGear.SetAngle(axis);
+        private void OnFixedUpdate()
+        {
+            if(Property.UseDrift)
+                _drift.FixedUpdate();
+        }
 
         public void EnableDrift() => 
             _drift.Enable();

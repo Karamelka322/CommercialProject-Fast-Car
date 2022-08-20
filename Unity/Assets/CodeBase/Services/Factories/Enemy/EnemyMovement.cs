@@ -101,32 +101,16 @@ namespace CodeBase.Services.Factories.Enemy
         private bool IsTimerRun() =>
             _timer < BackwardsMovementDuration;
 
-        private void MovingForward()
-        {
-            _car.Rotation(_navMeshAgentWrapper.GetNormalizeAngle());
-            _car.Movement(_navMeshAgentWrapper.GetNormalizeSpeed());
-        }
+        private void MovingForward() => 
+            _car.Property.Axis = _navMeshAgentWrapper.Axis;
 
-        private void MovingBackwards()
-        {
-            _car.Rotation(-_navMeshAgentWrapper.GetNormalizeAngle());
-            _car.Movement(-_navMeshAgentWrapper.GetNormalizeSpeed());
-        }
-        
-        public void OnDefeat()
-        {
-            _updateService.OnUpdate -= OnUpdate;
-            
-            _car.Movement(0);
-            _car.Rotation(0);
-        }
+        private void MovingBackwards() => 
+            _car.Property.Axis = -_navMeshAgentWrapper.Axis;
 
-        public void OnVictory()
-        {
-            _updateService.OnUpdate -= OnUpdate;
-            
-            _car.Movement(0);
-            _car.Rotation(0);
-        }
+        public void OnDefeat() => 
+            _car.Property.Axis = Vector2.zero;
+
+        public void OnVictory() => 
+            _car.Property.Axis = Vector2.zero;
     }
 }

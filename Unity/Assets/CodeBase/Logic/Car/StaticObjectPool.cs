@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private T _prefab;
         
-        [Space, SerializeField, OnValueChanged(nameof(OnPoolSizeChanged))] 
+        [Space, SerializeField, OnValueChanged("OnPoolSizeChanged")]
         private int _poolSize;
         
         [Space, SerializeField, ReadOnly]
@@ -40,6 +41,7 @@ namespace CodeBase.Logic.Car
 
 #if UNITY_EDITOR
 
+        [UsedImplicitly]
         private void OnPoolSizeChanged()
         {
             ClearPool();

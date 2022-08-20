@@ -8,12 +8,14 @@ using CodeBase.Services.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Buttons;
 using CodeBase.UI.Windows;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.Factories.UI
 {
+    [UsedImplicitly]
     public class UIFactory : IUIFactory
     {
         private readonly DiContainer _diContainer;
@@ -102,9 +104,10 @@ namespace CodeBase.Services.Factories.UI
         private void LoadInputVariant(InputTypeId inputType, Transform parent)
         {
             GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForInput(inputType);
-            GameObject inputVariant = Object.Instantiate(prefab, parent);
+            
+            IInputVariant inputVariant = Object.Instantiate(prefab, parent).GetComponent<IInputVariant>();
 
-            _diContainer.Resolve<IInputService>().RegisterInput(inputType, inputVariant);
+            _diContainer.Resolve<IInputService>().RegisterInput(inputVariant);
         }
 
         private InputTypeId GetInputType() => 

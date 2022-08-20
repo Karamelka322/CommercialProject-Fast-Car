@@ -3,11 +3,8 @@ using UnityEngine.EventSystems;
 
 namespace CodeBase.Services.Input.Element
 {
-    public class JoystickInputElement : MonoBehaviour, IJoystickInputElement, IPointerDownHandler, IDragHandler, IPointerUpHandler
+    public class JoystickInputElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
-        [SerializeField] 
-        private string _id;
-
         [Space, SerializeField] 
         private RectTransform _stick;
 
@@ -17,11 +14,10 @@ namespace CodeBase.Services.Input.Element
         [Space, SerializeField, Range(1f, 2f)]
         private float _multiplier;
         
-        public string Id => _id;
-        public Vector2 Value => _value;
+        public Vector2 Axis => _axis;
 
         private int _radius;
-        private Vector2 _value;
+        private Vector2 _axis;
 
         private void Awake() => 
             _radius = (int)_joystick.rect.width / 2;
@@ -55,11 +51,11 @@ namespace CodeBase.Services.Input.Element
 
         private void SetNormalizeValue(in Vector3 position)
         {
-            _value.x = Mathf.Clamp((1f / _radius) * position.y * _multiplier, -1, 1);
-            _value.y = Mathf.Clamp((1f / _radius) * position.x * _multiplier, -1, 1);
+            _axis.x = Mathf.Clamp((1f / _radius) * position.y * _multiplier, -1, 1);
+            _axis.y = Mathf.Clamp((1f / _radius) * position.x * _multiplier, -1, 1);
         }
 
         private void ResetNormalizeValue() => 
-            _value = Vector2.zero;
+            _axis = Vector2.zero;
     }
 }

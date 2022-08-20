@@ -3,10 +3,12 @@ using CodeBase.Data.Static.Enemy;
 using CodeBase.Data.Static.Level;
 using CodeBase.Data.Static.Player;
 using CodeBase.Services.AssetProvider;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData
 {
+    [UsedImplicitly]
     public class StaticDataService : IStaticDataService
     {
         private readonly IAssetManagementService _assetManagementService;

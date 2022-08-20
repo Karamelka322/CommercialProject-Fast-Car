@@ -27,40 +27,33 @@ namespace CodeBase.Logic.Player
         private void Start()
         {
             _updateService.OnUpdate += OnUpdate;
-            _updateService.OnFixedUpdate += OnFixedUpdate;
+            _inputService.InputVariant.OnStartDrift += OnStartDrift;
+            _inputService.InputVariant.OnStopDrift += OnStopDrift;
         }
 
-        private void OnDestroy() => 
+        private void OnDestroy()
+        {
             _updateService.OnUpdate -= OnUpdate;
-
-        private void OnFixedUpdate()
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-                _car.EnableDrift();
-            
-            if(Input.GetKeyUp(KeyCode.Space))
-                _car.DisableDrift();
+            _inputService.InputVariant.OnStartDrift -= OnStartDrift;
+            _inputService.InputVariant.OnStopDrift -= OnStopDrift;
         }
 
-        private void OnUpdate()
-        {
-            _car.Movement(_inputService.Axis.x);
-            _car.Rotation(_inputService.Axis.y);
-        }
+        private void OnUpdate() => 
+            _car.Property.Axis = _inputService.InputVariant.Axis;
+
+        private void OnStartDrift() => 
+            _car.EnableDrift();
+
+        private void OnStopDrift() => 
+            _car.DisableDrift();
 
         public void OnReplay() => 
-            _car.Property.UseDrift = false;
+            _car.DisableDrift();
 
-        public void OnDefeat()
-        {
-            _car.Movement(0);
-            _car.Rotation(0);
-        }
+        public void OnDefeat() => 
+            _car.Property.Axis = Vector2.zero;
 
-        public void OnVictory()
-        {
-            _car.Movement(0);
-            _car.Rotation(0);
-        }
+        public void OnVictory() => 
+            _car.Property.Axis = Vector2.zero;
     }
 }

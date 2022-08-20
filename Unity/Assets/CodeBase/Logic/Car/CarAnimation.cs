@@ -41,7 +41,7 @@ namespace CodeBase.Logic.Car
 
         private void RotateBody()
         {
-            _axis = Mathf.Lerp(_axis, _inputService.Axis.y, _curveRotationBody.Evaluate(Time.deltaTime * _speedRotationBody));
+            _axis = Mathf.Lerp(_axis, _inputService.InputVariant.Axis.y, _curveRotationBody.Evaluate(Time.deltaTime * _speedRotationBody));
             _animator.SetFloat(RotateHash, _axis);
         }
     }

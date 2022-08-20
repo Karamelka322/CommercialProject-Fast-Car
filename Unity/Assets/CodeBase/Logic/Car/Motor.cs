@@ -17,7 +17,10 @@ namespace CodeBase.Logic.Car
             _rearRightWheel = rearRightWheel;
         }
 
-        public void SetTorque(in float axis)
+        public void Update() => 
+            SetTorque(_property.Axis.x);
+
+        private void SetTorque(in float axis)
         {
             _property.NowMotorTorque = Mathf.Lerp(_property.NowMotorTorque, ConvertAxisToTorque(axis), Time.deltaTime * _property.Acceleration);
             

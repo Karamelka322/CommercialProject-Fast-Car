@@ -21,6 +21,8 @@ namespace CodeBase.Logic.Enemy
         private Transform _target;
         private IUpdateService _updateService;
 
+        public Vector2 Axis;
+
         public bool Enabled
         {
             get => _navMeshAgent.enabled;
@@ -51,13 +53,10 @@ namespace CodeBase.Logic.Enemy
 
             if(_navMeshAgent.enabled)
                 UpdateDestination();
+
+            Axis.x = Mathf.Clamp(NextPosition().magnitude, -1, 1);
+            Axis.y = Mathf.Clamp((float) Math.Round(CosAngle() / 0.01f, 3), -1, 1);
         }
-
-        public float GetNormalizeAngle() => 
-            Mathf.Clamp((float)Math.Round(CosAngle() / 0.01f, 3), -1, 1);
-
-        public float GetNormalizeSpeed() => 
-            Mathf.Clamp(NextPosition().magnitude, -1, 1);
 
         private float CosAngle() => 
             _parent.position.CosAngle(NextPosition(), _parent.position + _parent.forward);

@@ -1,12 +1,12 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
 {
     public class Drift
     {
-        private readonly CarInfo _info;
+        private readonly Transform _transform;
         private readonly CarProperty _property;
-        private readonly Rigidbody _rigidbody;
 
         private readonly Wheel _frontLeftWheel;
         private readonly Wheel _frontRightWheel;
@@ -24,16 +24,15 @@ namespace CodeBase.Logic.Car
         private readonly float _rearRightStiffness;
 
         private Vector3 _steeringAngle;
-        
+
         private float _minAngle;
         private float _maxAngle;
 
-        public Drift(Rigidbody rigidbody, Wheel rearLeftWheel, Wheel rearRightWheel,
-            Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property, CarInfo info)
+        public Drift(Transform transform, Wheel rearLeftWheel, Wheel rearRightWheel,
+            Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property)
         {
+            _transform = transform;
             _property = property;
-            _rigidbody = rigidbody;
-            _info = info;
 
             _rearLeftWheel = rearLeftWheel;
             _rearRightWheel = rearRightWheel;
@@ -48,60 +47,51 @@ namespace CodeBase.Logic.Car
 
         public void Enable()
         {
-            _property.DirectionDrift = _rigidbody.transform.forward;
+            _property.Slip = 0;
             _property.UseDrift = true;
+            _property.DirectionDrift = _transform.forward;
 
-            _minAngle = _rigidbody.transform.localEulerAngles.y - _property.DriftAngle;
-            _maxAngle = _rigidbody.transform.localEulerAngles.y + _property.DriftAngle;
+            UpdateFrictions();
         }
 
         public void Disable()
         {
-            _property.UseDrift = false;
             _property.Slip = 1;
+            _property.UseDrift = false;
+            _property.DirectionDrift = Vector3.zero;
 
             StopDrawingTrails();
-
-            _frontLeftFriction.stiffness = _frontLeftStiffness;
-            _frontLeftWheel.Collider.sidewaysFriction = _frontLeftFriction;
-                
-            _frontRightFriction.stiffness = _frontRightStiffness;
-            _frontRightWheel.Collider.sidewaysFriction = _frontRightFriction;
-                
-            _rearLeftFriction.stiffness = _rearLeftStiffness;
-            _rearLeftWheel.Collider.sidewaysFriction = _rearLeftFriction;
-                
-            _rearRightFriction.stiffness = _rearRightStiffness;
-            _rearRightWheel.Collider.sidewaysFriction = _rearRightFriction;
+            UpdateFrictions();
         }
 
         public void Update()
         {
-            float steeringAngle = _property.NowSteeringAngle < 0 ? -_property.NowSteeringAngle : _property.NowSteeringAngle;
-            _property.Slip = Mathf.Clamp01(((steeringAngle / _property.SteeringAngle) - 1) * -1);
-            
-            Rotation();
+            UpdateDirectionDrift();
             DrawingTrails();
-            UpdateFrictions();
+        }
 
-            /*_property.DirectionDrift = _rigidbody.transform.forward;
-                
-            _minAngle = _rigidbody.transform.localEulerAngles.y - 50;
-            _maxAngle = _rigidbody.transform.localEulerAngles.y + 50;*/
+        public void FixedUpdate()
+        {
+            Vector3 rotation = TransformUtils.GetInspectorRotation(_transform);
+            _minAngle = Mathf.Lerp(_minAngle, rotation.y - _property.DriftAngle, Time.deltaTime * _property.SpeedTurningInDrift);
+            _maxAngle = Mathf.Lerp(_maxAngle, rotation.y + _property.DriftAngle, Time.deltaTime * _property.SpeedTurningInDrift);
+
+            Rotation();
+        }
+
+        private void UpdateDirectionDrift()
+        {
+            _property.DirectionDrift = Vector3.Lerp(_property.DirectionDrift, _transform.forward,
+                Time.deltaTime * _property.SpeedTurningInDrift);
         }
 
         private void Rotation()
         {
-            float nextAngle = _property.NowSteeringAngle >= 0 ? _maxAngle : _minAngle;
-
-            Vector3 rotation = _rigidbody.transform.localEulerAngles;
-            rotation.x = _rigidbody.transform.localEulerAngles.x;
-            rotation.y = Mathf.Clamp(nextAngle, _minAngle, _maxAngle);
-            rotation.z = _rigidbody.transform.localEulerAngles.z;
+            float nextAngle = _property.Axis.y >= 0 ? _maxAngle : _minAngle;
+            Vector3 rotation = TransformUtils.GetInspectorRotation(_transform);
+            rotation.y = Mathf.Lerp(rotation.y, Mathf.Clamp(nextAngle, _minAngle, _maxAngle), Time.deltaTime * _property.SpeedStartDrift);
             
-            Quaternion nextRotation = Quaternion.Euler(rotation);
-            
-            _rigidbody.transform.localRotation = Quaternion.Lerp(_rigidbody.transform.localRotation, nextRotation, Time.deltaTime * _property.SpeedDrift);
+            TransformUtils.SetInspectorRotation(_transform, rotation);
         }
 
         private void DrawingTrails()
@@ -137,19 +127,18 @@ namespace CodeBase.Logic.Car
 
         private void UpdateFrictions()
         {
-            UpdateFriction(_frontLeftWheel, ref _frontLeftFriction, _frontLeftStiffness, _property.MinStiffnessForFrontWheel, _property);
-            UpdateFriction(_frontRightWheel, ref _frontRightFriction, _frontRightStiffness, _property.MinStiffnessForFrontWheel, _property);
-            UpdateFriction(_rearLeftWheel, ref _rearLeftFriction, _rearLeftStiffness, _property.MinStiffnessForRearWheel, _property);
-            UpdateFriction(_rearRightWheel, ref _rearRightFriction, _rearRightStiffness, _property.MinStiffnessForRearWheel, _property);
+            UpdateFriction(_frontLeftWheel, ref _frontLeftFriction, _frontLeftStiffness, _property.Slip);
+            UpdateFriction(_frontRightWheel, ref _frontRightFriction, _frontRightStiffness, _property.Slip);
+            UpdateFriction(_rearLeftWheel, ref _rearLeftFriction, _rearLeftStiffness, _property.Slip);
+            UpdateFriction(_rearRightWheel, ref _rearRightFriction, _rearRightStiffness, _property.Slip);
         }
 
         private static void UpdateFriction(Wheel wheel, ref WheelFrictionCurve sidewaysFriction,
-            in float startSidewaysStiffness, in float minStiffness, in CarProperty property)
+            in float startSidewaysStiffness, in float slip)
         {
-            float newStiffness = Mathf.Clamp(startSidewaysStiffness * property.Slip, minStiffness, startSidewaysStiffness);
+            float newStiffness = startSidewaysStiffness * slip;
             
             sidewaysFriction.stiffness = newStiffness;
-            
             wheel.Collider.sidewaysFriction = sidewaysFriction;
         }
 

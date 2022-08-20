@@ -954,9 +954,8 @@ MonoBehaviour:
     SteeringAngle: 35
     SpeedSteering: 4
     DriftAngle: 50
-    SpeedDrift: 5
-    MinStiffnessForRearWheel: 0.2
-    MinStiffnessForFrontWheel: 0.4
+    SpeedTurningInDrift: 3.5
+    SpeedStartDrift: 3.5
     SpeedStabilization: 9
     MaxRotationX: 18
     MaxRotationZ: 23

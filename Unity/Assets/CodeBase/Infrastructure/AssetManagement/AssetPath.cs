@@ -22,12 +22,10 @@ namespace CodeBase.Services.AssetProvider
 
         public const string UIRootPath = "UI/UIRoot";
         public const string HUDPath = "UI/HUD/HUD";
-        public const string JoystickInputPath = "UI/HUD/Input/Joystick";
-        public const string ButtonsInputPath = "UI/HUD/Input/Buttons";
-        public const string AreasInputPath = "UI/HUD/Input/Areas";
-
-        public const string GeneratorPath = "Level/Generator/Generator";
-        public const string CapsulePath = "Level/Capsule";
+        
+        public const string JoystickInputPath = "UI/HUD/Input/Joystick_InputVariant";
+        public const string ButtonsInputPath = "UI/HUD/Input/Buttons_InputVariant";
+        public const string AreasInputPath = "UI/HUD/Input/Areas_InputVariant";
 
         public const string SkipButtonPath = "UI/SkipButton";
         public const string TimerPath = "UI/Timer";

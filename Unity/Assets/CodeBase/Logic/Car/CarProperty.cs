@@ -24,10 +24,9 @@ namespace CodeBase.Logic.Car
 
         [Space]
         public float DriftAngle;
-        public float SpeedDrift;
-        public float MinStiffnessForRearWheel;
-        public float MinStiffnessForFrontWheel;
-
+        public float SpeedTurningInDrift;
+        public float SpeedStartDrift;
+        
         [Space]
         public float SpeedStabilization;
         public int MaxRotationX;
@@ -38,5 +37,6 @@ namespace CodeBase.Logic.Car
         [HideInInspector] public bool UseDrift;
         [HideInInspector] public float Slip;
         [HideInInspector] public Vector3 DirectionDrift;
+        [HideInInspector] public Vector2 Axis;
     }
 }
