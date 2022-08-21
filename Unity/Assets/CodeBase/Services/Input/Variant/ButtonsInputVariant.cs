@@ -44,6 +44,8 @@ namespace CodeBase.Services.Input
 
         private bool Drift;
 
+#if UNITY_EDITOR
+        
         private IUpdateService _updateService;
         
         [Inject]
@@ -51,10 +53,15 @@ namespace CodeBase.Services.Input
         {
             _updateService = updateService;
         }
+        
+#endif
 
-        private void Start()
+        private void OnEnable()
         {
+            
+#if UNITY_EDITOR
             _updateService.OnFixedUpdate += OnFixedUpdate;
+#endif
             
             _driftLeftButton.Enabled += OnEnabledDriftButton;
             _driftRightButton.Enabled += OnEnabledDriftButton;
@@ -64,7 +71,10 @@ namespace CodeBase.Services.Input
 
         private void OnDestroy()
         {
+            
+#if UNITY_EDITOR
             _updateService.OnFixedUpdate -= OnFixedUpdate;
+#endif
             
             _driftLeftButton.Enabled -= OnEnabledDriftButton;
             _driftRightButton.Enabled -= OnEnabledDriftButton;
@@ -126,6 +136,8 @@ namespace CodeBase.Services.Input
             Drift = false;
         }
         
+#if UNITY_EDITOR
+        
         private void OnFixedUpdate()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
@@ -140,5 +152,7 @@ namespace CodeBase.Services.Input
                 Drift = false;
             }
         }
+        
+#endif
     }
 }

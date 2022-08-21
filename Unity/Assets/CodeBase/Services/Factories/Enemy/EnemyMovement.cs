@@ -50,11 +50,11 @@ namespace CodeBase.Services.Factories.Enemy
 
         private void ToggleActivityMeshAgent()
         {
-            if (!_car.Info.IsGrounded && _navMeshAgentWrapper.Enabled)
+            if (!_car.Info.IsGroundedStrict && _navMeshAgentWrapper.Enabled)
             {
                 _navMeshAgentWrapper.Enabled = false;
             }
-            else if (_car.Info.IsGrounded && !_navMeshAgentWrapper.Enabled)
+            else if (_car.Info.IsGroundedStrict && !_navMeshAgentWrapper.Enabled)
             {
                 _navMeshAgentWrapper.Enabled = true;
             }

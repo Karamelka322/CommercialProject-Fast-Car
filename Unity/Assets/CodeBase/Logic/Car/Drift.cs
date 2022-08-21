@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace CodeBase.Logic.Car
@@ -23,6 +22,8 @@ namespace CodeBase.Logic.Car
         private readonly float _rearLeftStiffness;
         private readonly float _rearRightStiffness;
 
+        private readonly AnimationCurve _curve;
+        
         private Vector3 _steeringAngle;
 
         private float _minAngle;
@@ -38,6 +39,8 @@ namespace CodeBase.Logic.Car
             _rearRightWheel = rearRightWheel;
             _frontLeftWheel = frontLeftWheel;
             _frontRightWheel = frontRightWheel;
+            
+            _curve = AnimationCurve.Linear(0, 0, 1, 1);
 
             SetFriction(_frontLeftWheel, out _frontLeftFriction, out _frontLeftStiffness);
             SetFriction(_frontRightWheel, out _frontRightFriction, out _frontRightStiffness);
@@ -60,69 +63,27 @@ namespace CodeBase.Logic.Car
             _property.UseDrift = false;
             _property.DirectionDrift = Vector3.zero;
 
-            StopDrawingTrails();
             UpdateFrictions();
         }
 
-        public void Update()
-        {
+        public void Update() => 
             UpdateDirectionDrift();
-            DrawingTrails();
-        }
 
         public void FixedUpdate()
         {
-            Vector3 rotation = TransformUtils.GetInspectorRotation(_transform);
-            _minAngle = Mathf.Lerp(_minAngle, rotation.y - _property.DriftAngle, Time.deltaTime * _property.SpeedTurningInDrift);
-            _maxAngle = Mathf.Lerp(_maxAngle, rotation.y + _property.DriftAngle, Time.deltaTime * _property.SpeedTurningInDrift);
+            Vector3 eulerAngles = _transform.localEulerAngles;
 
-            Rotation();
+            _minAngle = eulerAngles.y - _property.DriftAngle;
+            _maxAngle = eulerAngles.y + _property.DriftAngle;
+            
+            Quaternion nextRotation = Quaternion.AngleAxis(_property.Axis.y >= 0 ? _maxAngle : _minAngle, _transform.up);
+            _transform.localRotation = Quaternion.Lerp(_transform.localRotation, nextRotation, _curve.Evaluate(Time.deltaTime * _property.SpeedDrift));
         }
 
         private void UpdateDirectionDrift()
         {
             _property.DirectionDrift = Vector3.Lerp(_property.DirectionDrift, _transform.forward,
-                Time.deltaTime * _property.SpeedTurningInDrift);
-        }
-
-        private void Rotation()
-        {
-            float nextAngle = _property.Axis.y >= 0 ? _maxAngle : _minAngle;
-            Vector3 rotation = TransformUtils.GetInspectorRotation(_transform);
-            rotation.y = Mathf.Lerp(rotation.y, Mathf.Clamp(nextAngle, _minAngle, _maxAngle), Time.deltaTime * _property.SpeedStartDrift);
-            
-            TransformUtils.SetInspectorRotation(_transform, rotation);
-        }
-
-        private void DrawingTrails()
-        {
-            if (_frontLeftWheel.Collider.isGrounded)
-                _frontLeftWheel.Trail.StartDrawing();
-            else
-                _frontLeftWheel.Trail.StopDrawing();
-
-            if (_frontRightWheel.Collider.isGrounded)
-                _frontRightWheel.Trail.StartDrawing();
-            else
-                _frontRightWheel.Trail.StopDrawing();
-
-            if (_rearLeftWheel.Collider.isGrounded)
-                _rearLeftWheel.Trail.StartDrawing();
-            else
-                _rearLeftWheel.Trail.StopDrawing();
-
-            if(_rearRightWheel.Collider.isGrounded)
-                _rearRightWheel.Trail.StartDrawing();
-            else
-                _rearRightWheel.Trail.StopDrawing();
-        }
-
-        private void StopDrawingTrails()
-        {
-            _frontLeftWheel.Trail.StopDrawing();
-            _frontRightWheel.Trail.StopDrawing();
-            _rearLeftWheel.Trail.StopDrawing();
-            _rearRightWheel.Trail.StopDrawing();
+                Time.deltaTime * _property.SpeedDrift);
         }
 
         private void UpdateFrictions()

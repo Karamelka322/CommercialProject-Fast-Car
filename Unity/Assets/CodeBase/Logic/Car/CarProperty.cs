@@ -17,15 +17,9 @@ namespace CodeBase.Logic.Car
         public int SteeringAngle;
         public int SpeedSteering;
 
-        //public float SpeedForDrift;
-        //public float SpeedStartDrift;
-        //public float SpeedStopDrift;
-        //public float SteeringForDrift;
-
         [Space]
         public float DriftAngle;
-        public float SpeedTurningInDrift;
-        public float SpeedStartDrift;
+        public float SpeedDrift;
         
         [Space]
         public float SpeedStabilization;

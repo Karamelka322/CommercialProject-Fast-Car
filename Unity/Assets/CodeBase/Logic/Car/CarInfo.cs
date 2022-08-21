@@ -35,9 +35,13 @@ namespace CodeBase.Logic.Car
         public Vector3 DirectionDrift => Application.isPlaying ? _property.DirectionDrift : Vector3.zero;
 
         [PropertySpace, ShowInInspector]
-        public bool IsGrounded => Application.isPlaying && (_frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded || 
-                                                            _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded);
-
+        public bool IsGroundedStrict => Application.isPlaying && (_frontRightWheel.Collider.isGrounded && _frontLeftWheel.Collider.isGrounded && 
+                                                            _rearRightWheel.Collider.isGrounded && _rearLeftWheel.Collider.isGrounded);
+        
+        [ShowInInspector]
+        public bool IsGroundedSoft => Application.isPlaying && (_frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded || 
+                                                                  _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded);
+        
 #else
         
         public float Speed => _rigidbody.velocity.magnitude;
@@ -49,9 +53,12 @@ namespace CodeBase.Logic.Car
         public float DriftSlip => _property.Slip;
         public Vector3 DirectionDrift => _property.DirectionDrift; 
 
-        public bool IsGrounded => _frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded
-                                 || _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded;
-        
+        public bool IsGroundedStrict => _frontRightWheel.Collider.isGrounded && _frontLeftWheel.Collider.isGrounded
+                                 && _rearRightWheel.Collider.isGrounded && _rearLeftWheel.Collider.isGrounded;
+
+        public bool IsGroundedSoft => _frontRightWheel.Collider.isGrounded || _frontLeftWheel.Collider.isGrounded || 
+                                _rearRightWheel.Collider.isGrounded || _rearLeftWheel.Collider.isGrounded;
+
 #endif
 
         public CarInfo(Rigidbody rigidbody, Wheel frontRightWheel, Wheel rearRightWheel, Wheel frontLeftWheel,

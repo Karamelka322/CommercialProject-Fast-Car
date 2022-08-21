@@ -55,7 +55,7 @@ namespace CodeBase.Logic.Car
             _motor = new Motor(_rearLeftWheel, _rearRightWheel, Property);
             _steeringGear = new SteeringGear(transform, _frontLeftWheel, _frontRightWheel, Property);
             _drift = new Drift(transform, _rearLeftWheel, _rearRightWheel, _frontLeftWheel, _frontRightWheel, Property);
-            _stabilization = new Stabilization(Property, Info, transform);
+            _stabilization = new Stabilization(Property, transform);
             
             _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
         }
@@ -76,18 +76,20 @@ namespace CodeBase.Logic.Car
         {
             _motor.Update();
             _steeringGear.Update();
-            _stabilization.Update();
+            
+            if(Info.IsGroundedStrict == false)
+                _stabilization.Stabilize();
             
             if(_rigidbody.velocity.magnitude > Property.MaxSpeed)
                 SpeedLimit();
             
-            if(Property.UseDrift)
+            if(Property.UseDrift && Info.IsGroundedSoft)
                 _drift.Update();
         }
 
         private void OnFixedUpdate()
         {
-            if(Property.UseDrift)
+            if(Property.UseDrift && Info.IsGroundedSoft)
                 _drift.FixedUpdate();
         }
 

@@ -423,7 +423,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.2
     m_AsymptoteValue: 1
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &4491094988018657286
 MonoBehaviour:
@@ -665,7 +665,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.2
     m_AsymptoteValue: 1
-    m_Stiffness: 4
+    m_Stiffness: 3
   m_Enabled: 1
 --- !u!114 &1955913344532942650
 MonoBehaviour:
@@ -954,8 +954,7 @@ MonoBehaviour:
     SteeringAngle: 35
     SpeedSteering: 4
     DriftAngle: 50
-    SpeedTurningInDrift: 3.5
-    SpeedStartDrift: 3.5
+    SpeedDrift: 2
     SpeedStabilization: 9
     MaxRotationX: 18
     MaxRotationZ: 23
@@ -964,6 +963,7 @@ MonoBehaviour:
     UseDrift: 0
     Slip: 0
     DirectionDrift: {x: 0, y: 0, z: 0}
+    Axis: {x: 0, y: 0}
 --- !u!1 &4638961487201264522
 GameObject:
   m_ObjectHideFlags: 0

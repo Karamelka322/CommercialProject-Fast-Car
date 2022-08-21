@@ -105,8 +105,8 @@ namespace CodeBase.Services.Factories.UI
         {
             GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForInput(inputType);
             
-            IInputVariant inputVariant = Object.Instantiate(prefab, parent).GetComponent<IInputVariant>();
-
+            IInputVariant inputVariant = _diContainer.InstantiatePrefab(prefab, parent).GetComponent<IInputVariant>();
+            
             _diContainer.Resolve<IInputService>().RegisterInput(inputVariant);
         }
 
