@@ -51,8 +51,8 @@ namespace CodeBase.Infrastructure
 
         private void ReplayLevel()
         {
-            _replayService.InformHandlers();
             _pauseService.SetPause(false);
+            _replayService.InformHandlers();
 
             ResetCamera();
             ResetStopwatch();

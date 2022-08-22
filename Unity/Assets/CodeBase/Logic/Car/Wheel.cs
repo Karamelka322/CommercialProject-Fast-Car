@@ -59,13 +59,14 @@ namespace CodeBase.Logic.Car
         {
             _collider.motorTorque = 0;
             _collider.steerAngle = 0;
+            _collider.brakeTorque = 0;
             
             _mesh.localPosition = _backup.Position;
             _mesh.localEulerAngles = _backup.Rotation;
         }
 
-        private bool IsDrawingTrail() => 
-            Collider.isGrounded && Collider.sidewaysFriction.stiffness < _backup.SidewaysStiffness;
+        private bool IsDrawingTrail() =>
+            Collider.isGrounded && (Collider.sidewaysFriction.stiffness < _backup.SidewaysStiffness || Collider.brakeTorque > 0);
 
         private void SetPositionRelativeToCollider()
         {

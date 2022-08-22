@@ -1,5 +1,8 @@
 using System;
+using CodeBase.Infrastructure.Mediator.Level;
+using CodeBase.Logic.Car;
 using CodeBase.Services.Input.Element;
+using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using UnityEngine;
 using Zenject;
@@ -20,7 +23,7 @@ namespace CodeBase.Services.Input
         [SerializeField] 
         private ButtonInputElement _downRightButton;
         
-        [SerializeField] 
+        [Space, SerializeField] 
         private ButtonInputElement _driftLeftButton;
         
         [SerializeField] 
@@ -43,18 +46,18 @@ namespace CodeBase.Services.Input
         public event Action OnStopDrift;
 
         private bool Drift;
-
-#if UNITY_EDITOR
         
         private IUpdateService _updateService;
-        
+        private ILevelMediator _mediator;
+        private ITweenService _tweenService;
+
         [Inject]
-        private void Construct(IUpdateService updateService)
+        private void Construct(IUpdateService updateService, ILevelMediator mediator, ITweenService tweenService)
         {
+            _tweenService = tweenService;
+            _mediator = mediator;
             _updateService = updateService;
         }
-        
-#endif
 
         private void OnEnable()
         {
@@ -62,6 +65,10 @@ namespace CodeBase.Services.Input
 #if UNITY_EDITOR
             _updateService.OnFixedUpdate += OnFixedUpdate;
 #endif
+
+            Accident accident = _mediator.GetPlayerAccident();
+            accident.Start += StartPlayerCrash;
+            accident.Stop += StopPlayerCrash;
             
             _driftLeftButton.Enabled += OnEnabledDriftButton;
             _driftRightButton.Enabled += OnEnabledDriftButton;
@@ -69,12 +76,16 @@ namespace CodeBase.Services.Input
             _driftRightButton.Disabled += OnDisabledDriftButton;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             
 #if UNITY_EDITOR
             _updateService.OnFixedUpdate -= OnFixedUpdate;
 #endif
+            
+            Accident accident = _mediator.GetPlayerAccident();
+            accident.Start -= StartPlayerCrash;
+            accident.Stop -= StopPlayerCrash;
             
             _driftLeftButton.Enabled -= OnEnabledDriftButton;
             _driftRightButton.Enabled -= OnEnabledDriftButton;
@@ -135,9 +146,30 @@ namespace CodeBase.Services.Input
             OnStopDrift?.Invoke();
             Drift = false;
         }
-        
+
+        private void StartPlayerCrash()
+        {
+            _driftLeftButton.gameObject.SetActive(false);
+            _driftRightButton.gameObject.SetActive(false);
+            
+            _downLeftButton.gameObject.SetActive(true);
+            _downRightButton.gameObject.SetActive(true);
+        }
+
+        private void StopPlayerCrash()
+        {
+            _tweenService.SingleTimer<ButtonsInputVariant>(1f, () =>
+            {
+                _driftLeftButton.gameObject.SetActive(true);
+                _driftRightButton.gameObject.SetActive(true);
+            
+                _downLeftButton.gameObject.SetActive(false);
+                _downRightButton.gameObject.SetActive(false);
+            });
+        }
+
 #if UNITY_EDITOR
-        
+
         private void OnFixedUpdate()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
@@ -152,7 +184,7 @@ namespace CodeBase.Services.Input
                 Drift = false;
             }
         }
-        
+
 #endif
     }
 }

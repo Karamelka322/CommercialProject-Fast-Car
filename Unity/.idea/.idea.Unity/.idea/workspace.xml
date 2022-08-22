@@ -19,7 +19,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/e3/5ed91bf5/DelayedGUIDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Infrastructure/StateMachine/States/LoadLevelState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/af/c142266a/Token.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Mediator/Menu/MenuMediator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Mediator/Menu/MenuMediator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66a36f4eb7c24c42bf1d8c5cb47775704b600/ab/c0bc4c38/CheckPrerequisites.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a31731933e0419ca5a995305014ad37157a00/46/4ef645b2/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d5a36a96b2ad42b898b2ec8b30fb645384800/ea/3fbbe68e/GUITableUtilities.cs" root0="SKIP_HIGHLIGHTING" />

@@ -46,7 +46,7 @@
      <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
      <Compile Include="Assets\CodeBase\UI\Buttons\ButtonWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuAnimator.cs" />
-     <Compile Include="Assets\CodeBase\Mediator\Menu\IMenuMediator.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Menu\IMenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\EnemySpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\SessionPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Input\Element\ButtonInputElement.cs" />
@@ -165,7 +165,7 @@
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IAffectPlayerDefeat.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPreview.cs" />
-     <Compile Include="Assets\CodeBase\Infrastructure\Installer\MenuInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Menu\MenuInstaller.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
      <Compile Include="Assets\CodeBase\UI\Windows\GarageWindow.cs" />
      <Compile Include="Assets\CodeBase\Logic\Item\Capsule\Capsule.cs" />
@@ -213,7 +213,7 @@
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyPrefab.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Car.cs" />
      <Compile Include="Assets\CodeBase\Extension\SceneExtension.cs" />
-     <Compile Include="Assets\CodeBase\Mediator\Menu\MenuMediator.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Menu\MenuMediator.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IDefeatService.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\IStaticDataService.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\AssetManagementService.cs" />
@@ -252,6 +252,10 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Accident.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Level\LevelInstaller.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Level\LevelMediator.cs" />
+     <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Level\ILevelMediator.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

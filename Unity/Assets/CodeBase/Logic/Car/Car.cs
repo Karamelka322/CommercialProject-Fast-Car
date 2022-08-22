@@ -13,8 +13,11 @@ namespace CodeBase.Logic.Car
         [SerializeField] 
         private Rigidbody _rigidbody;
 
-        [SerializeField]
+        [Space, SerializeField]
         private Point _centerOfMass;
+
+        [SerializeField] 
+        private Accident _accident;
 
         [Space, SerializeField] 
         private Wheel _frontLeftWheel;
@@ -41,7 +44,7 @@ namespace CodeBase.Logic.Car
         private Drift _drift;
         private Stabilization _stabilization;
         private CarBackup _backup;
-        
+
         [Inject]
         private void Construct(IUpdateService updateService)
         {
@@ -74,6 +77,15 @@ namespace CodeBase.Logic.Car
 
         private void OnUpdate()
         {
+            if ((Info.Speed * Property.Axis.x < 0 && Property.NowMotorTorque > 0) || (Info.Speed * Property.Axis.x > 0 && _accident.Crash))
+            {
+                BlockWheels();
+            }
+            else
+            {
+                UnlockWheels();
+            }
+
             _motor.Update();
             _steeringGear.Update();
             
@@ -121,10 +133,26 @@ namespace CodeBase.Logic.Car
             _rigidbody.velocity = _backup.Velocity;
             _rigidbody.angularVelocity = _backup.AngularVelocity;
         }
-        
+
         private void SpeedLimit() => 
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, Property.MaxSpeed);
+
+        private void BlockWheels()
+        {
+            _frontLeftWheel.Collider.brakeTorque = 100000;
+            _frontRightWheel.Collider.brakeTorque = 100000;
+            _rearLeftWheel.Collider.brakeTorque = 100000;
+            _rearRightWheel.Collider.brakeTorque = 100000;
+        }
         
+        private void UnlockWheels()
+        {
+            _frontLeftWheel.Collider.brakeTorque = 0;
+            _frontRightWheel.Collider.brakeTorque = 0;
+            _rearLeftWheel.Collider.brakeTorque = 0;
+            _rearRightWheel.Collider.brakeTorque = 0;
+        }
+
         private class CarBackup
         {
             public readonly Vector3 Velocity;

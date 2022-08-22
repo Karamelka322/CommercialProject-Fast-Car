@@ -24,5 +24,13 @@ namespace CodeBase.Services.Input.Element
             Disabled?.Invoke();
             Click = false;
         }
+
+        private void OnDisable()
+        {
+            if(Click)
+                Disabled?.Invoke();
+            
+            Click = false;
+        }
     }
 }
