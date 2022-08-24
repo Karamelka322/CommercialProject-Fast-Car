@@ -1,17 +1,21 @@
 using System;
 using CodeBase.Data.Perseistent;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Replay;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerHealth : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
+    public class PlayerHealth : MonoBehaviour, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
     {
         [SerializeField]
         private float _health;
         
         private float _maxHealth;
+        
+        private ILevelMediator _mediator;
         public event Action OnDefeat;
 
 #if UNITY_EDITOR
@@ -22,27 +26,23 @@ namespace CodeBase.Logic.Player
         }
 #endif
 
+        [Inject]
+        private void Construct(ILevelMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        
         private void Awake() => 
             _maxHealth = _health;
-
-        public void AddHealth(float value) => 
-            _health = Mathf.Clamp(_health + value, 0, _maxHealth);
-
+        
         public void ReduceHealth(float value)
         {
             _health = Mathf.Clamp(_health - value, 0, _maxHealth);
+
+            _mediator.UpdateHealthBar(_health / _maxHealth);
             
             if(_health == 0)
                 OnDefeat?.Invoke();
-        }
-
-        public void SingleReadData(PlayerPersistentData persistentData)
-        {
-            if(persistentData.SessionData.PlayerData.MaxHealth == 0)
-                return;
-            
-            _health = persistentData.SessionData.PlayerData.Health;
-            _maxHealth = persistentData.SessionData.PlayerData.MaxHealth;
         }
 
         public void StreamingWriteData(PlayerPersistentData persistentData)

@@ -6,7 +6,7 @@ using Zenject;
 namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(WheelCollider))]
-    public class Wheel : MonoBehaviour, IReplayHandler
+    public class WheelWrapper : MonoBehaviour, IReplayHandler
     {
         [SerializeField] 
         private Transform _mesh;

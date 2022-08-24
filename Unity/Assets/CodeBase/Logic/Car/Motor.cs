@@ -6,10 +6,10 @@ namespace CodeBase.Logic.Car
     {
         private readonly CarProperty _property;
 
-        private readonly Wheel _rearLeftWheel;
-        private readonly Wheel _rearRightWheel;
+        private readonly WheelWrapper _rearLeftWheel;
+        private readonly WheelWrapper _rearRightWheel;
 
-        public Motor(Wheel rearLeftWheel, Wheel rearRightWheel, CarProperty property)
+        public Motor(WheelWrapper rearLeftWheel, WheelWrapper rearRightWheel, CarProperty property)
         {
             _property = property;
 

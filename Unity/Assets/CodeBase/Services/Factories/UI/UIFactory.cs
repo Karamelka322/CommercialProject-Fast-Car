@@ -1,4 +1,6 @@
 using CodeBase.Data.Static;
+using CodeBase.Infrastructure.Mediator.Level;
+using CodeBase.Logic.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
@@ -60,9 +62,11 @@ namespace CodeBase.Services.Factories.UI
         public void LoadHUD()
         {
             HUD prefab = LoadAsset<HUD>(AssetPath.HUDPath);
-            HUD hud = InstantiateRegisterWindow(prefab);
+            HUD hub = InstantiateRegisterWindow(prefab);
 
-            LoadInputVariant(GetInputType(), hud.InputContainer);
+            LoadInputVariant(GetInputType(), hub.InputContainer);
+            
+            _diContainer.Resolve<ILevelMediator>().Construct(hub);
         }
 
         public void LoadPauseWindow()

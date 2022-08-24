@@ -12,7 +12,7 @@ namespace CodeBase.Data.Static.Player
     {
         public PlayerTypeId Type;
         
-        [Space, Required("Empty"), ValidateInput("CheckType", "Not correct type")]
+        [Space, Required("Empty")]
         public PlayerPrefab Prefab;
         
         [InlineEditor(InlineEditorModes.LargePreview), Required("Empty"), ValidateInput("CheckType", "Not correct type")]
@@ -47,11 +47,7 @@ namespace CodeBase.Data.Static.Player
             SteerAngle = Prefab.GetComponent<Car>().Property.SteeringAngle;
             SpeedRotation = Prefab.GetComponent<Car>().Property.SpeedSteering;
         }
-
-        [UsedImplicitly]
-        public bool CheckType() =>
-            (Prefab != null && Type == Prefab.Type) && (Preview != null && Type == Preview.Type);
-
+        
         [UsedImplicitly]
         private void UpdateParameters()
         {

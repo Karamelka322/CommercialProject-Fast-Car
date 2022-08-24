@@ -1,8 +1,7 @@
 using System;
-using CodeBase.Data.Perseistent;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Logic.Item;
 using CodeBase.Logic.Player;
-using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
@@ -12,7 +11,7 @@ using Zenject;
 
 namespace CodeBase.Logic.Level.Generator
 {
-    public class GeneratorPower : MonoBehaviour, ISingleReadData, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat, IPlayerDefeatHandler, IPlayerVictoryHandler
+    public class GeneratorPower : MonoBehaviour, IReplayHandler, IAffectPlayerDefeat, IPlayerDefeatHandler, IPlayerVictoryHandler
     {
         [SerializeField] 
         private GeneratorHook _hook;
@@ -23,12 +22,14 @@ namespace CodeBase.Logic.Level.Generator
         private bool _changePower = true;
 
         private IUpdateService _updateService;
-        
+        private ILevelMediator _mediator;
+
         public event Action OnDefeat;
 
         [Inject]
-        public void Construct(IUpdateService updateService)
+        public void Construct(IUpdateService updateService, ILevelMediator mediator)
         {
+            _mediator = mediator;
             _updateService = updateService;
         }
 
@@ -61,21 +62,13 @@ namespace CodeBase.Logic.Level.Generator
         private void ReducePower(float value)
         {
             _power = Mathf.Clamp(_power - value, 0, _startValuePower);
+
+            _mediator.UpdateGeneratorBar(_power / _startValuePower);
             
             if(_power == 0) 
                 OnDefeat?.Invoke();
         }
-
-        public void SingleReadData(PlayerPersistentData persistentData)
-        {
-            _startValuePower = persistentData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator.StartValuePower;
-            _powerSpeedChange = persistentData.SessionData.LevelData.CurrentLevelConfig.Spawn.Generator.PowerChangeSpeed;
-            _power = _startValuePower;
-        }
-
-        public void StreamingWriteData(PlayerPersistentData persistentData) => 
-            persistentData.SessionData.LevelData.GeneratorData.Power = _power;
-
+        
         public void OnReplay()
         {
             _power = _startValuePower;

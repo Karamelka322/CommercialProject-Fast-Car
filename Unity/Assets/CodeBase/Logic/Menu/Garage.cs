@@ -15,7 +15,9 @@ namespace CodeBase.Logic.Menu
             _playerFactory = playerFactory;
         }
 
-        public void ChangePlayerCar(PlayerTypeId playerTypeId) => 
-            _playerFactory.RebuildBasePreviewPlayerObject(playerTypeId);
+        public void ChangePlayerCar(PlayerTypeId playerTypeId)
+        {
+            //_playerFactory.RebuildBasePreviewPlayerObject(playerTypeId);
+        }
     }
 }

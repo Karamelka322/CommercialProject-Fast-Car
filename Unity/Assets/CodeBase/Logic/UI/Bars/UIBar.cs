@@ -7,12 +7,8 @@ namespace CodeBase.UI
     public abstract class UIBar : MonoBehaviour
     {
         [SerializeField] 
-        private Image _image;
+        protected Image _image;
 
-        public float Fill
-        {
-            get => _image.fillAmount;
-            set => _image.fillAmount = value;
-        }
+        public abstract float Value { get; set; }
     }
 }

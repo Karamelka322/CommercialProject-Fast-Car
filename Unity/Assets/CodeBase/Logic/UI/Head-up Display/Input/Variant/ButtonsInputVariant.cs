@@ -1,6 +1,4 @@
 using System;
-using CodeBase.Infrastructure.Mediator.Level;
-using CodeBase.Logic.Car;
 using CodeBase.Services.Input.Element;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
@@ -46,16 +44,14 @@ namespace CodeBase.Services.Input
         public event Action OnStopDrift;
 
         private bool Drift;
-        
+
         private IUpdateService _updateService;
-        private ILevelMediator _mediator;
         private ITweenService _tweenService;
 
         [Inject]
-        private void Construct(IUpdateService updateService, ILevelMediator mediator, ITweenService tweenService)
+        private void Construct(IUpdateService updateService, ITweenService tweenService)
         {
             _tweenService = tweenService;
-            _mediator = mediator;
             _updateService = updateService;
         }
 
@@ -65,10 +61,6 @@ namespace CodeBase.Services.Input
 #if UNITY_EDITOR
             _updateService.OnFixedUpdate += OnFixedUpdate;
 #endif
-
-            Accident accident = _mediator.GetPlayerAccident();
-            accident.Start += StartPlayerCrash;
-            accident.Stop += StopPlayerCrash;
             
             _driftLeftButton.Enabled += OnEnabledDriftButton;
             _driftRightButton.Enabled += OnEnabledDriftButton;
@@ -83,14 +75,31 @@ namespace CodeBase.Services.Input
             _updateService.OnFixedUpdate -= OnFixedUpdate;
 #endif
             
-            Accident accident = _mediator.GetPlayerAccident();
-            accident.Start -= StartPlayerCrash;
-            accident.Stop -= StopPlayerCrash;
-            
             _driftLeftButton.Enabled -= OnEnabledDriftButton;
             _driftRightButton.Enabled -= OnEnabledDriftButton;
             _driftLeftButton.Disabled -= OnDisabledDriftButton;
             _driftRightButton.Disabled -= OnDisabledDriftButton;
+        }
+
+        public void EnableMoveBackwardsButton()
+        {
+            _driftLeftButton.gameObject.SetActive(false);
+            _driftRightButton.gameObject.SetActive(false);
+            
+            _downLeftButton.gameObject.SetActive(true);
+            _downRightButton.gameObject.SetActive(true);
+        }
+
+        public void DisableMoveBackwardsButton()
+        {
+            _tweenService.SingleTimer<ButtonsInputVariant>(1f, () =>
+            {
+                _driftLeftButton.gameObject.SetActive(true);
+                _driftRightButton.gameObject.SetActive(true);
+            
+                _downLeftButton.gameObject.SetActive(false);
+                _downRightButton.gameObject.SetActive(false);
+            });
         }
 
         private Vector2 MovementAxis()
@@ -147,26 +156,6 @@ namespace CodeBase.Services.Input
             Drift = false;
         }
 
-        private void StartPlayerCrash()
-        {
-            _driftLeftButton.gameObject.SetActive(false);
-            _driftRightButton.gameObject.SetActive(false);
-            
-            _downLeftButton.gameObject.SetActive(true);
-            _downRightButton.gameObject.SetActive(true);
-        }
-
-        private void StopPlayerCrash()
-        {
-            _tweenService.SingleTimer<ButtonsInputVariant>(1f, () =>
-            {
-                _driftLeftButton.gameObject.SetActive(true);
-                _driftRightButton.gameObject.SetActive(true);
-            
-                _downLeftButton.gameObject.SetActive(false);
-                _downRightButton.gameObject.SetActive(false);
-            });
-        }
 
 #if UNITY_EDITOR
 

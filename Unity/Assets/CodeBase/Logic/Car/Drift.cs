@@ -7,10 +7,10 @@ namespace CodeBase.Logic.Car
         private readonly Transform _transform;
         private readonly CarProperty _property;
 
-        private readonly Wheel _frontLeftWheel;
-        private readonly Wheel _frontRightWheel;
-        private readonly Wheel _rearLeftWheel;
-        private readonly Wheel _rearRightWheel;
+        private readonly WheelWrapper _frontLeftWheel;
+        private readonly WheelWrapper _frontRightWheel;
+        private readonly WheelWrapper _rearLeftWheel;
+        private readonly WheelWrapper _rearRightWheel;
 
         private WheelFrictionCurve _frontLeftFriction;
         private WheelFrictionCurve _frontRightFriction;
@@ -29,8 +29,8 @@ namespace CodeBase.Logic.Car
         private float _minAngle;
         private float _maxAngle;
 
-        public Drift(Transform transform, Wheel rearLeftWheel, Wheel rearRightWheel,
-            Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property)
+        public Drift(Transform transform, WheelWrapper rearLeftWheel, WheelWrapper rearRightWheel,
+            WheelWrapper frontLeftWheel, WheelWrapper frontRightWheel, CarProperty property)
         {
             _transform = transform;
             _property = property;
@@ -94,7 +94,7 @@ namespace CodeBase.Logic.Car
             UpdateFriction(_rearRightWheel, ref _rearRightFriction, _rearRightStiffness, _property.Slip);
         }
 
-        private static void UpdateFriction(Wheel wheel, ref WheelFrictionCurve sidewaysFriction,
+        private static void UpdateFriction(WheelWrapper wheel, ref WheelFrictionCurve sidewaysFriction,
             in float startSidewaysStiffness, in float slip)
         {
             float newStiffness = startSidewaysStiffness * slip;
@@ -103,7 +103,7 @@ namespace CodeBase.Logic.Car
             wheel.Collider.sidewaysFriction = sidewaysFriction;
         }
 
-        private static void SetFriction(in Wheel wheel, out WheelFrictionCurve sidewaysFriction, out float sidewaysStiffness)
+        private static void SetFriction(in WheelWrapper wheel, out WheelFrictionCurve sidewaysFriction, out float sidewaysStiffness)
         {
             sidewaysFriction = wheel.Collider.sidewaysFriction;
             sidewaysStiffness = wheel.Collider.sidewaysFriction.stiffness;

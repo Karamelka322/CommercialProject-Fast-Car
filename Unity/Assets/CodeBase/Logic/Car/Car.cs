@@ -17,19 +17,19 @@ namespace CodeBase.Logic.Car
         private Point _centerOfMass;
 
         [SerializeField] 
-        private Accident _accident;
+        private PlayerCrash playerCrash;
 
         [Space, SerializeField] 
-        private Wheel _frontLeftWheel;
+        private WheelWrapper _frontLeftWheel;
 
         [SerializeField] 
-        private Wheel _frontRightWheel;
+        private WheelWrapper _frontRightWheel;
 
         [SerializeField] 
-        private Wheel _rearLeftWheel;
+        private WheelWrapper _rearLeftWheel;
 
         [SerializeField] 
-        private Wheel _rearRightWheel;
+        private WheelWrapper _rearRightWheel;
 
         [Space] 
         public CarProperty Property;
@@ -77,7 +77,7 @@ namespace CodeBase.Logic.Car
 
         private void OnUpdate()
         {
-            if ((Info.Speed * Property.Axis.x < 0 && Property.NowMotorTorque > 0) || (Info.Speed * Property.Axis.x > 0 && _accident.Crash))
+            if ((Info.Speed * Property.Axis.x < 0 && Property.NowMotorTorque > 0) || (Info.Speed * Property.Axis.x > 0 && playerCrash.Crash))
             {
                 BlockWheels();
             }

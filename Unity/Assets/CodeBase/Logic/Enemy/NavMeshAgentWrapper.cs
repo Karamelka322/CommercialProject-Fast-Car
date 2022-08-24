@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Extension;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Logic.Car;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Update;
@@ -18,11 +19,11 @@ namespace CodeBase.Logic.Enemy
         [SerializeField] 
         private NavMeshAgent _navMeshAgent;
 
-        private Transform _target;
         private IUpdateService _updateService;
 
         public Vector2 Axis;
 
+        public Transform Target { get; set; }
         public bool Enabled
         {
             get => _navMeshAgent.enabled;
@@ -34,10 +35,9 @@ namespace CodeBase.Logic.Enemy
         }
 
         [Inject]
-        public void Construct(IUpdateService updateService, IPlayerFactory playerFactory)
+        public void Construct(IUpdateService updateService)
         {
             _updateService = updateService;
-            _target = playerFactory.Player.transform;
         }
         
         private void Start() => 
@@ -71,6 +71,6 @@ namespace CodeBase.Logic.Enemy
             transform.localRotation = Quaternion.identity;
 
         private void UpdateDestination() => 
-            _navMeshAgent.destination = _target.position;
+            _navMeshAgent.destination = Target.position;
     }
 }

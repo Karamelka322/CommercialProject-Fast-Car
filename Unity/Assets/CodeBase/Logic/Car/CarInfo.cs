@@ -9,10 +9,10 @@ namespace CodeBase.Logic.Car
     {
         private readonly Rigidbody _rigidbody;
         
-        private readonly Wheel _frontRightWheel;
-        private readonly Wheel _rearRightWheel;
-        private readonly Wheel _frontLeftWheel;
-        private readonly Wheel _rearLeftWheel;
+        private readonly WheelWrapper _frontRightWheel;
+        private readonly WheelWrapper _rearRightWheel;
+        private readonly WheelWrapper _frontLeftWheel;
+        private readonly WheelWrapper _rearLeftWheel;
         
         private readonly CarProperty _property;
         
@@ -61,8 +61,8 @@ namespace CodeBase.Logic.Car
 
 #endif
 
-        public CarInfo(Rigidbody rigidbody, Wheel frontRightWheel, Wheel rearRightWheel, Wheel frontLeftWheel,
-            Wheel rearLeftWheel, CarProperty property)
+        public CarInfo(Rigidbody rigidbody, WheelWrapper frontRightWheel, WheelWrapper rearRightWheel, WheelWrapper frontLeftWheel,
+            WheelWrapper rearLeftWheel, CarProperty property)
         {
             _rigidbody = rigidbody;
             

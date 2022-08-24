@@ -1,20 +1,39 @@
-using CodeBase.Logic.Car;
-using CodeBase.Services.Factories.Player;
+using CodeBase.Logic.Player;
+using CodeBase.Logic.Player.Ability;
+using CodeBase.Services.Input;
+using CodeBase.UI;
+using CodeBase.UI.Input;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.Infrastructure.Mediator.Level
 {
     public class LevelMediator : MonoBehaviour, ILevelMediator
     {
-        private IPlayerFactory _playerFactory;
+        private IAbility _playerAbility;
+        private ButtonsInputVariant _inputVariant;
+        private PlayerHealthBar _healthBar;
+        private GeneratorPowerBar _powerBar;
+        private AbilityBar _abilityBar;
 
-        [Inject]
-        private void Construct(IPlayerFactory playerFactory)
+        public void Construct(PlayerPrefab player)
         {
-            _playerFactory = playerFactory;
+            _playerAbility = player.GetComponentInChildren<IAbility>();
         }
 
-        public Accident GetPlayerAccident() => _playerFactory.Player.GetComponentInChildren<Accident>();
+        public void Construct(HUD hud)
+        {
+            _inputVariant = hud.GetComponentInChildren<ButtonsInputVariant>();
+            _healthBar = hud.GetComponentInChildren<PlayerHealthBar>();
+            _powerBar = hud.GetComponentInChildren<GeneratorPowerBar>();
+            _abilityBar = hud.GetComponentInChildren<AbilityBar>();
+        }
+
+        public void UpdateAbilityBar(float energy) => _abilityBar.Value = energy;
+        public void UpdateHealthBar(float health) => _healthBar.Value = health;
+        public void UpdateGeneratorBar(float power) => _powerBar.Value = power;
+
+        public void EnablePlayerAbility() => _playerAbility.Enable();
+        public void EnableMoveBackwardsButton() => _inputVariant.EnableMoveBackwardsButton();
+        public void DisableMoveBackwardsButton() => _inputVariant.DisableMoveBackwardsButton();
     }
 }

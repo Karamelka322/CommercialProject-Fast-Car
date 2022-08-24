@@ -1,4 +1,5 @@
 using CodeBase.Data.Static.Player;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Logic.Player;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
@@ -18,10 +19,7 @@ namespace CodeBase.Services.Factories.Player
         private const string PlayerName = "Player";
 
         private readonly DiContainer _diContainer;
-
-        public GameObject Player { get; private set; }
-        public GameObject PreviewPlayer { get; private set; }
-
+        
         public PlayerFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
@@ -30,34 +28,13 @@ namespace CodeBase.Services.Factories.Player
         public GameObject CreatePlayer(PlayerTypeId typeId, Vector3 at)
         {
             PlayerStaticData playerStaticData = _diContainer.Resolve<IStaticDataService>().ForPlayer(typeId);
-            return Player = InstantiateRegister(at, playerStaticData);
+            return InstantiateRegister(at, playerStaticData);
         }
 
         public void CreatePreviewPlayer(PlayerTypeId typeId, Transform parent)
         {
-            PreviewPlayer = _diContainer.InstantiatePrefab(_diContainer.Resolve<IStaticDataService>().ForPlayer(typeId).Preview.gameObject, parent);
-            PreviewPlayer.name = PlayerName;
-        }
-
-        public void RebuildBasePreviewPlayerObject(PlayerTypeId playerTypeId)
-        {
-            PlayerPreview asset = _diContainer.Resolve<IStaticDataService>().ForPlayer(playerTypeId).Preview;
-            PlayerPreview preview = PreviewPlayer.GetComponent<PlayerPreview>();
-
-            preview.Body.MeshFilter.mesh = asset.Body.MeshFilter.sharedMesh;
-            preview.Body.MeshRenderer.material = asset.Body.MeshRenderer.sharedMaterial;
-            
-            preview.FrontLeftWheel.MeshFilter.mesh = asset.FrontLeftWheel.MeshFilter.sharedMesh;
-            preview.FrontLeftWheel.MeshRenderer.material = asset.FrontLeftWheel.MeshRenderer.sharedMaterial;
-            
-            preview.FrontRightWheel.MeshFilter.mesh = asset.FrontRightWheel.MeshFilter.sharedMesh;
-            preview.FrontRightWheel.MeshRenderer.material = asset.FrontRightWheel.MeshRenderer.sharedMaterial;
-            
-            preview.RearLeftWheel.MeshFilter.mesh = asset.RearLeftWheel.MeshFilter.sharedMesh;
-            preview.RearLeftWheel.MeshRenderer.material = asset.RearLeftWheel.MeshRenderer.sharedMaterial;
-            
-            preview.RearRightWheel.MeshFilter.mesh = asset.RearRightWheel.MeshFilter.sharedMesh;
-            preview.RearRightWheel.MeshRenderer.material = asset.RearRightWheel.MeshRenderer.sharedMaterial;
+            GameObject player = _diContainer.InstantiatePrefab(_diContainer.Resolve<IStaticDataService>().ForPlayer(typeId).Preview.gameObject, parent);
+            player.name = PlayerName;
         }
 
         private GameObject InstantiateRegister(Vector3 at, PlayerStaticData playerStaticData)
@@ -69,6 +46,8 @@ namespace CodeBase.Services.Factories.Player
             _diContainer.Resolve<IReplayService>().Register(gameObject);
             _diContainer.Resolve<IDefeatService>().Register(gameObject);
             _diContainer.Resolve<IVictoryService>().Register(gameObject);
+            
+            _diContainer.Resolve<ILevelMediator>().Construct(gameObject.GetComponent<PlayerPrefab>());
             
             return gameObject;
         }

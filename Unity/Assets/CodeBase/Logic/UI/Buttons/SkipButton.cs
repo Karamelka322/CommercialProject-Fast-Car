@@ -36,7 +36,7 @@ namespace CodeBase.UI.Buttons
 
         private void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
                 _mediator.ChangeMenuState(MenuState.MainMenu);
                 Destroy(gameObject);

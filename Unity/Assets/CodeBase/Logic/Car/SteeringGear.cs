@@ -8,10 +8,10 @@ namespace CodeBase.Logic.Car
 
         private readonly Transform _transform;
         
-        private readonly Wheel _frontLeftWheel;
-        private readonly Wheel _frontRightWheel;
+        private readonly WheelWrapper _frontLeftWheel;
+        private readonly WheelWrapper _frontRightWheel;
 
-        public SteeringGear(Transform transform, Wheel frontLeftWheel, Wheel frontRightWheel, CarProperty property)
+        public SteeringGear(Transform transform, WheelWrapper frontLeftWheel, WheelWrapper frontRightWheel, CarProperty property)
         {
             _transform = transform;
             _property = property;
