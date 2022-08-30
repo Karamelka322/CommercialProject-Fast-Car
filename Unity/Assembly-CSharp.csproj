@@ -177,7 +177,7 @@
      <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\ResumeButton.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\IWrapper.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Wheel\IWrapper.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IVictoryService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\CarAnimation.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
@@ -208,7 +208,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\GameUpdate.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Toggles\InputSettingToggle.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\InputTypeId.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\PlayerCrash.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\PlayerCrash.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Capsule\CapsuleSpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\PersistentDataService.cs" />
@@ -259,6 +259,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Smoke.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
