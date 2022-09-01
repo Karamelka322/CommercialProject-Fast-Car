@@ -36,13 +36,13 @@ namespace CodeBase.Logic.Level.Generator
         private void Start()
         {
             _updateService.OnUpdate += OnUpdate;
-            _hook.OnCapsuleLift += OnCapsuleLift;
+            _hook.OnEnergyLift += EnergyLift;
         }
 
         private void OnDestroy()
         {
             _updateService.OnUpdate -= OnUpdate;
-            _hook.OnCapsuleLift -= OnCapsuleLift;
+            _hook.OnEnergyLift -= EnergyLift;
         }
 
         private void OnUpdate()
@@ -53,8 +53,8 @@ namespace CodeBase.Logic.Level.Generator
             ReducePower(Time.deltaTime * _powerSpeedChange);
         }
 
-        private void OnCapsuleLift(Capsule capsule) =>
-            AddPower(capsule.Power);
+        private void EnergyLift(Energy energy) =>
+            AddPower(energy.Power);
 
         private void AddPower(float value) => 
             _power = Mathf.Clamp(_power + value, 0, _startValuePower);

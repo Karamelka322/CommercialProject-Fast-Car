@@ -26,7 +26,7 @@ namespace CodeBase.Infrastructure.States
         private readonly IPauseService _pauseService;
         private readonly IUIFactory _uiFactory;
 
-        private Capsule _capsule;
+        private Energy _energy;
         private GameObject _timer;
 
         public LoopLevelState(

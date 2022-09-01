@@ -29,7 +29,7 @@ namespace CodeBase.Logic.World
         private IUpdateService _updateService;
 
         [Inject]
-        public void Constuct(IUpdateService updateService)
+        public void Construct(IUpdateService updateService)
         {
             _updateService = updateService;
             _nextDirection = VectorExtension.Random(_range);

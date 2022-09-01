@@ -39,7 +39,7 @@ namespace CodeBase.Data.Static.Level
         [Button("Collect"), BoxGroup("Config"), GUIColor(0.5f, 0.7f, 1f), PropertySpace(SpaceBefore = 10), PropertyOrder(2)]
         private void CollectSpawnPoints()
         {
-            CapsuleSpawnPoint[] spawnPoints = Object.FindObjectsOfType<CapsuleSpawnPoint>();
+            EnergySpawnPoint[] spawnPoints = Object.FindObjectsOfType<EnergySpawnPoint>();
             SpawnPoints = new PointData[spawnPoints.Length];
 
             for (int i = 0; i < SpawnPoints.Length; i++) 
@@ -52,7 +52,7 @@ namespace CodeBase.Data.Static.Level
         
         [ShowIf("CheckCapsuleSpawnPoints"), Button("Generate Spawn Point"), GUIColor(0.5f, 0.7f, 1f)]
         private void GenerateSpawnPoint() => 
-            Object.Instantiate(Resources.Load<CapsuleSpawnPoint>(AssetPath.CapsuleSpawnPointPath), Vector3.zero, Quaternion.identity);
+            Object.Instantiate(Resources.Load<EnergySpawnPoint>(AssetPath.CapsuleSpawnPointPath), Vector3.zero, Quaternion.identity);
 
         [UsedImplicitly]
         private int MaxQuantity() => 

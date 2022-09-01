@@ -1,52 +1,44 @@
 using System;
 using CodeBase.Logic.Item;
 using CodeBase.Logic.World;
-using CodeBase.Services.Tween;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.Logic.Level.Generator
 {
     public class GeneratorHook : MonoBehaviour
     {
         [SerializeField] 
-        private Area _capturArea;
+        private Area _captureArea;
 
         [SerializeField] 
-        private Point _capturPoin;
+        private Point _capturePoint;
 
-        public event Action<Capsule> OnCapsuleLift;
-        private ITweenService _tweenService;
+        public event Action<Energy> OnEnergyLift;
         
-        [Inject]
-        public void Construct(ITweenService tweenService)
-        {
-            _tweenService = tweenService;
-        }
-
         private void OnEnable() => 
-            _capturArea.OnAreaEnter += OnCapturAreaEnter;
+            _captureArea.OnAreaEnter += OnCaptureAreaEnter;
 
         private void OnDisable() => 
-            _capturArea.OnAreaEnter -= OnCapturAreaEnter;
+            _captureArea.OnAreaEnter -= OnCaptureAreaEnter;
 
-        private void OnCapturAreaEnter(Collider collider)
+        private void OnCaptureAreaEnter(Collider collider)
         {
-            if (IsCapsule(collider, out Capsule capsule)) 
-                LiftCapsule(capsule);
+            Debug.Log(collider.name);
+            
+            if (IsEnergy(collider, out Energy energy)) 
+                LiftEnergy(energy);
         }
         
-        private static bool IsCapsule(Collider collider, out Capsule capsule) => 
-            collider.TryGetComponent(out capsule);
-
-        private void LiftCapsule(Capsule capsule)
+        private static bool IsEnergy(Collider collider, out Energy energy) => 
+            collider.TryGetComponent(out energy);
+        
+        private void LiftEnergy(Energy energy)
         {
-            capsule.transform.parent = null;
+            energy.Raise(_capturePoint.transform);
             
-            _tweenService.Move<Capsule>(capsule.transform, _capturPoin.WorldPosition);
-            OnCapsuleLift?.Invoke(capsule);
+            OnEnergyLift?.Invoke(energy);
             
-            Destroy(capsule.gameObject, 1f);
+            Destroy(energy.gameObject, 1f);
         }
     }
 }

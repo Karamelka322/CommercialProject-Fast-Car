@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43faa24cd9604d308ef9d071f74102fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _car: {fileID: 4459666105701282217}
   _captureArea: {fileID: 3133943020705657476}
   _captureCenter: {fileID: 6874833724636587013}
 --- !u!114 &226969042468461238

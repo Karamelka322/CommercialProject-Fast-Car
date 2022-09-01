@@ -19,7 +19,7 @@ MonoBehaviour:
       - Position: {x: -46.36, y: 0, z: -42.28}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Generator:
-      UsingGenerator: 0
+      UsingGenerator: 1
       StartValuePower: 100
       PowerChangeSpeed: 2
       PrefabReference:
@@ -31,14 +31,16 @@ MonoBehaviour:
       - Position: {x: 1.58, y: -3, z: -1.56}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Capsule:
-      UsingCapsule: 0
-      Quantity: 0
+      UsingCapsule: 1
+      Quantity: 1
       PrefabReference:
         m_AssetGUID: f8fe3fc8f732dfa439a2f4191256dd69
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      SpawnPoints: []
+      SpawnPoints:
+      - Position: {x: -30.04, y: 0, z: -0.16}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
     Enemy:
       UsingEnemy: 0
       Enemies:
@@ -51,5 +53,5 @@ MonoBehaviour:
         Rotation: {x: -0, y: -0, z: -0, w: 1}
   Reward:
     Car:
-      UsingRewardCar: 0
+      UsingRewardCar: 1
       Type: 1

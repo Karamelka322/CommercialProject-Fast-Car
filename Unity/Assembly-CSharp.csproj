@@ -77,7 +77,6 @@
      <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Bars\GeneratorPowerBar.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Element\JoystickInputElement.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Item\Item.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Variant\JoystickInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\LevelTypeId.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerMovement.cs" />
@@ -130,7 +129,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Item\Capsule\CapsuleSpawnPoint.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Capsule\EnergySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
      <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\Point.cs" />
@@ -146,6 +145,7 @@
      <Compile Include="Assets\CodeBase\Services\IService.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Variant\ButtonsInputVariant.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Progress\ProgressPersistentData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Smoke.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\ITweenService.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\PauseButton.cs" />
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuUIViewer.cs" />
@@ -172,7 +172,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\Mediator\Menu\MenuInstaller.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Motor.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Windows\GarageWindow.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Level\Item\Capsule\Capsule.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Level\Capsule\Energy.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\PlayerPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Level\LevelFactory.cs" />
      <Compile Include="Assets\CodeBase\Services\Pause\IPauseHandler.cs" />
@@ -259,7 +259,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\Smoke.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\FollowToObject.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />

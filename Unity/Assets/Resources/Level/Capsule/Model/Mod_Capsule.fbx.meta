@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: ae88fc3f6809e054691b5c68dffd98c7
+guid: a856aad39a3ef0b44b2b41edc4fca66f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Diffuse
+    second: {fileID: 2100000, guid: cab0151d698f0be4286e75bd9067b77e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emissive
+    second: {fileID: 2100000, guid: 3b27812e222c6be45bf88a077b9b039a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Transparent
+    second: {fileID: 2100000, guid: 5dc2899f5ec11a14ea30835fbfd4f67c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
