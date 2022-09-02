@@ -1,0 +1,57 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="CodeBase.Logic.Car.Car" preserve="all" />
+    <type fullname="CodeBase.Logic.Car.Motor" preserve="all" />
+    <type fullname="CodeBase.Logic.Car.SteeringGear" preserve="all" />
+    <type fullname="CodeBase.Logic.Car.Wheel" preserve="all" />
+    <type fullname="CodeBase.Logic.Enemy.EnemyCollision" preserve="all" />
+    <type fullname="CodeBase.Logic.Enemy.EnemyDeath" preserve="all" />
+    <type fullname="CodeBase.Logic.Enemy.EnemyHealth" preserve="all" />
+    <type fullname="CodeBase.Logic.Enemy.EnemyPrefab" preserve="all" />
+    <type fullname="CodeBase.Logic.Enemy.NavMeshAgentWrapper" preserve="all" />
+    <type fullname="CodeBase.Logic.Item.Capsule" preserve="all" />
+    <type fullname="CodeBase.Logic.Level.Generator.GeneratorBasket" preserve="all" />
+    <type fullname="CodeBase.Logic.Level.Generator.GeneratorHook" preserve="all" />
+    <type fullname="CodeBase.Logic.Level.Generator.GeneratorPower" preserve="all" />
+    <type fullname="CodeBase.Logic.Level.Generator.GeneratorPrefab" preserve="all" />
+    <type fullname="CodeBase.Logic.Player.PlayerDefeat" preserve="all" />
+    <type fullname="CodeBase.Logic.World.Area" preserve="all" />
+    <type fullname="CodeBase.Logic.World.Point" preserve="all" />
+    <type fullname="CodeBase.Logic.World.RandomRotate" preserve="all" />
+    <type fullname="CodeBase.Services.Factories.Enemy.EnemyMovement" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AI.NavMeshAgent" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
+    <type fullname="UnityEngine.MeshCollider" preserve="all" />
+    <type fullname="UnityEngine.PhysicMaterial" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody" preserve="all" />
+    <type fullname="UnityEngine.SphereCollider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.WheelCollider" preserve="all" />
+  </assembly>
+</linker>

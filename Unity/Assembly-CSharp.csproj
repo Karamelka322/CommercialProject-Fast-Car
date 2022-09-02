@@ -234,6 +234,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\ICoroutineRunner.cs" />
      <Compile Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
+     <Compile Include="Assets\CodeBase\Logic\World\FollowToObject.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel\WheelWrapper.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\CarProperty.cs" />
      <Compile Include="Assets\CodeBase\Exeption\WindowExeption.cs" />
@@ -259,10 +260,10 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Logic\World\FollowToObject.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
+     <None Include="Assets\AddressableAssetsData\link.xml" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTextureShadow.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Saturation\SaturationPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.shader" />
