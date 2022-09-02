@@ -23,8 +23,6 @@ namespace CodeBase.Logic.Level.Generator
 
         private void OnCaptureAreaEnter(Collider collider)
         {
-            Debug.Log(collider.name);
-            
             if (IsEnergy(collider, out Energy energy)) 
                 LiftEnergy(energy);
         }
