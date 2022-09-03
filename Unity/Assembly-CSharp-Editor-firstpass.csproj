@@ -802,11 +802,17 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Postprocessing.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Services.Core">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Services.Core.Analytics">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Postprocessing.Runtime">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
