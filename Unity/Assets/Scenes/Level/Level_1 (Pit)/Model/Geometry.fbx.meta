@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Emissive
+    second: {fileID: 2100000, guid: 3b27812e222c6be45bf88a077b9b039a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Transparent
     second: {fileID: 2100000, guid: 5dc2899f5ec11a14ea30835fbfd4f67c, type: 2}
   materials:
