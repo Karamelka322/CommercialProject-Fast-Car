@@ -111,6 +111,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnemySpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Reward\RewardCarData.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerVictory.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Audio\Sound\SoundSourceArea.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\PlayButton.cs" />
@@ -129,6 +130,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\GeneratorSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\IUIFactory.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\Game.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Audio\AudioGroup.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Capsule\EnergySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\IUpdatable.cs" />
      <Compile Include="Assets\CodeBase\Data\SpawnPointData.cs" />
@@ -260,8 +262,6 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Audio\Sound\SoundSourceArea.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Audio\AudioGroup.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
