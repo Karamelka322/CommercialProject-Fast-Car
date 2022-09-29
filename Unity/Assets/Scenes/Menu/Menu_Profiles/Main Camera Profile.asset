@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -114,10 +114,10 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 100
+    value: 36
   brightness:
     overrideState: 1
-    value: 0
+    value: 35
   postExposure:
     overrideState: 0
     value: 0.6
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1443,10 +1443,10 @@ MonoBehaviour:
     value: 4.41
   aperture:
     overrideState: 1
-    value: 1.2
+    value: 3.7
   focalLength:
     overrideState: 1
-    value: 29
+    value: 43
   kernelSize:
     overrideState: 0
     value: 0
