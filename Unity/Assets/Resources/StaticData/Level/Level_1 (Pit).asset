@@ -39,17 +39,19 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       SpawnPoints:
-      - Position: {x: -30.04, y: 0, z: -0.16}
+      - Position: {x: -65.87, y: 0.9, z: 71.72}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 30.65, y: 3.7600002, z: 75.17}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Enemy:
-      UsingEnemy: 0
+      UsingEnemy: 1
       Enemies:
       - EnemyType: 0
         DifficultyType: 0
         Period: {x: 0, y: 29.721033}
         Range: 5
       SpawnPoints:
-      - Position: {x: -9.6, y: 0, z: -66.1}
+      - Position: {x: -31.1, y: 0, z: -30.6}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
   Reward:
     Car:

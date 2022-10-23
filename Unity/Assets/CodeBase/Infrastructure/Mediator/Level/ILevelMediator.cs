@@ -1,6 +1,7 @@
 using System;
 using CodeBase.Logic.Player;
 using CodeBase.UI;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.Mediator.Level
 {
@@ -14,5 +15,6 @@ namespace CodeBase.Infrastructure.Mediator.Level
         void UpdateHealthBar(float health);
         void UpdateGeneratorBar(float power);
         void UpdateAbilityBar(float energy);
+        Transform Player { get; set; }
     }
 }

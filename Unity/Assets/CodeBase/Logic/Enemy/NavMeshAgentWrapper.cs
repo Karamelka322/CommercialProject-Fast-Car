@@ -35,9 +35,10 @@ namespace CodeBase.Logic.Enemy
         }
 
         [Inject]
-        public void Construct(IUpdateService updateService)
+        public void Construct(IUpdateService updateService, ILevelMediator mediator)
         {
             _updateService = updateService;
+            Target = mediator.Player;
         }
         
         private void Start() => 

@@ -9,6 +9,8 @@ namespace CodeBase.Infrastructure.Mediator.Level
 {
     public class LevelMediator : MonoBehaviour, ILevelMediator
     {
+        public Transform Player { get; set; }
+        
         private IAbility _playerAbility;
         private ButtonsInputVariant _inputVariant;
         private PlayerHealthBar _healthBar;
@@ -17,6 +19,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
 
         public void Construct(PlayerPrefab player)
         {
+            Player = player.transform;
             _playerAbility = player.GetComponentInChildren<IAbility>();
         }
 
