@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: bba8f2c7ffeeb1a4eacd12276e046b39
+guid: 3e9fb330bfb1c6a4199654bd8681e919
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Diffuse
-    second: {fileID: 2100000, guid: 4bb0335075cba74499f4918725d9289f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -17,12 +12,92 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_1
+    second: {fileID: 2100000, guid: 8fb1c716a1558bc4fa4fcbc80f310ab4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_10
+    second: {fileID: 2100000, guid: d661181a3fff17544a90f6411227c552, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_11
+    second: {fileID: 2100000, guid: 8679ddb932461b9449c59f4bf4db8e0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_12
+    second: {fileID: 2100000, guid: 5496edf5665b3354cbc558d7c81d8708, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_13
+    second: {fileID: 2100000, guid: 36df1408f6b8a0046a4ddfb436451bbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_14
+    second: {fileID: 2100000, guid: 8d4b948466c4f7840b890e9e6beed0d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_15
+    second: {fileID: 2100000, guid: 2bc830cd0a7674f45974b2e760da1486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_16
+    second: {fileID: 2100000, guid: a965f82985d23244b95638b66050b96a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_2
+    second: {fileID: 2100000, guid: 3fd288ccd3bf0e349a10d92fe52fade9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_3
+    second: {fileID: 2100000, guid: fa3c173f27f41064f9462e0f5a6a2cad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_4
+    second: {fileID: 2100000, guid: 1934fcce83297ad4e9a7ad0c25ce68bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_5
+    second: {fileID: 2100000, guid: 6aa7781144c7894499bcacf1195b8583, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_6
+    second: {fileID: 2100000, guid: 4ac67ce11e027f94cbc7ec9829391c3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_7
+    second: {fileID: 2100000, guid: 99ff391909b949a46a1dc54560f4e61b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_8
+    second: {fileID: 2100000, guid: 4dc755ecc4e8dfa4c82e448023b45481, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat_Level_1_Group_9
+    second: {fileID: 2100000, guid: 4f6a8881d3972e745a4d919b2897e669, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Transparent
     second: {fileID: 2100000, guid: 5dc2899f5ec11a14ea30835fbfd4f67c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

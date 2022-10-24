@@ -14,7 +14,7 @@ namespace CodeBase.Shaders.Post_Processing.Saturation
         private void Awake()
         {
             _saturationMaterial = CreateNewSaturationMaterial();
-            SetDefaulPropertyInSaturationMaterial();
+            SetDefaultPropertyInSaturationMaterial();
         }
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest) => 
@@ -23,7 +23,7 @@ namespace CodeBase.Shaders.Post_Processing.Saturation
         private static Material CreateNewSaturationMaterial() => 
             new Material(Shader.Find(SaturationPostEffectConstants.ShaderPath));
 
-        private void SetDefaulPropertyInSaturationMaterial() => 
+        private void SetDefaultPropertyInSaturationMaterial() => 
             _saturationMaterial.SetFloat(SaturationPostEffectConstants.IntensityPropertyID, _intensity);
     }
 }

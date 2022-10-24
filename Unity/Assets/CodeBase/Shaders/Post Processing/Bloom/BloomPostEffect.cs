@@ -16,13 +16,13 @@ namespace CodeBase.Shaders.Post_Processing.Bloom
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            RenderTexture emmisiveTexture = RenderTexture.GetTemporary(src.width, src.height);
-            Graphics.Blit(src, emmisiveTexture, _material, 0);
+            RenderTexture emissiveTexture = RenderTexture.GetTemporary(src.width, src.height);
+            Graphics.Blit(src, emissiveTexture, _material, 0);
             
-            _material.SetTexture(BloomPostEffectConstants.EmmisiveTexPropertyID, emmisiveTexture);
+            _material.SetTexture(BloomPostEffectConstants.EmissiveTexPropertyID, emissiveTexture);
             Graphics.Blit(src, dest, _material, 1);
             
-            RenderTexture.ReleaseTemporary(emmisiveTexture);
+            RenderTexture.ReleaseTemporary(emissiveTexture);
         }
 
         private void CreateMaterial()
