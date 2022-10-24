@@ -1,13 +1,11 @@
 using UnityEngine;
 
-namespace CodeBase.Shaders.Post_Processing.Saturation
+namespace CodeBase.Shaders.Post_Processing.Contrast
 {
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(Camera))]
-    public class SaturationPostEffect : MonoBehaviour
+    public class ContrastPostEffect : MonoBehaviour
     {
-        [Range(0, 4), SerializeField]
-        private float _intensity = 0;
+        [Range(0, 2), SerializeField]
+        private float _intensity = 1;
 
         private Material _material;
         
@@ -22,16 +20,16 @@ namespace CodeBase.Shaders.Post_Processing.Saturation
             if(_material == false)
                 return;
             
-            SetDefaultPropertyInSaturationMaterial();
+            _material.SetFloat(ContrastPostEffectConstants.IntensityPropertyID, _intensity);
         }
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest) => 
             Graphics.Blit(src, dest, _material);
 
         private static Material CreateNewSaturationMaterial() => 
-            new Material(Shader.Find(SaturationPostEffectConstants.ShaderPath));
+            new Material(Shader.Find(ContrastPostEffectConstants.ShaderPath));
 
         private void SetDefaultPropertyInSaturationMaterial() => 
-            _material.SetFloat(SaturationPostEffectConstants.IntensityPropertyID, _intensity * 0.01f);
+            _material.SetFloat(ContrastPostEffectConstants.IntensityPropertyID, _intensity);
     }
 }

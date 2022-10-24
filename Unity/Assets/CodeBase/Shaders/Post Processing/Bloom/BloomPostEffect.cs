@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Shaders.Post_Processing.Bloom
@@ -13,6 +14,15 @@ namespace CodeBase.Shaders.Post_Processing.Bloom
 
         private void Awake() => 
             CreateMaterial();
+
+        private void OnValidate()
+        {
+            if(_material == false)
+                return;
+            
+            _material.SetFloat(BloomPostEffectConstants.ThresholdPropertyID, _treshold);
+            _material.SetFloat(BloomPostEffectConstants.OffsetPropertyID, _offset);
+        }
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
         {

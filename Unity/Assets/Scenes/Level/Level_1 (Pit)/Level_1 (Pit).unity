@@ -550,18 +550,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7755772963328837576, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7755772963328837580, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
-      propertyPath: field of view
-      value: 62
-      objectReference: {fileID: 0}
-    - target: {fileID: 7755772963328837580, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
-      propertyPath: far clip plane
-      value: 75
-      objectReference: {fileID: 0}
     - target: {fileID: 7755772963328837583, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -610,30 +598,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera (Level)
       objectReference: {fileID: 0}
-    - target: {fileID: 7755772963328837618, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
---- !u!1 &643876283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7755772963328837618, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
-  m_PrefabInstance: {fileID: 643876282}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &643876284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643876283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a666c7a1718194dafefc07c5e1ea18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _intensity: 3
 --- !u!1 &654188823
 GameObject:
   m_ObjectHideFlags: 0
