@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_GroupName: UI
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e577a077465eb95428b653a566ca851f
+  m_SerializeEntries:
+  - m_GUID: 2afa682ed35f53d42846964e4a67164a
+    m_Address: PauseWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Level UI
+  - m_GUID: 2c1a9d275be32c84badff009778105f5
+    m_Address: DefeatWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Level UI
+  - m_GUID: f7cff0d3d4829ae4bbe0acd293861204
+    m_Address: VictoryWindow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Level UI
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c1cf37adb3f2e374e91e72711e3ea90c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b0db65009ae99a344b215e0e04505829, type: 2}
+    - {fileID: 11400000, guid: f4c0c65c76f471d4d9efd1a158223aea, type: 2}

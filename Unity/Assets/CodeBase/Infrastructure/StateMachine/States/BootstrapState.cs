@@ -5,7 +5,6 @@ using CodeBase.Services.Factories.Enemy;
 using CodeBase.Services.Factories.Level;
 using CodeBase.Services.Factories.Player;
 using CodeBase.Services.Factories.UI;
-using CodeBase.Services.Input;
 using CodeBase.Services.LoadScene;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
@@ -65,7 +64,6 @@ namespace CodeBase.Infrastructure.States
             _diContainer.Bind<ITweenService>().To<TweenService>().AsSingle();
             _diContainer.Bind<ISceneLoaderService>().To<SceneLoaderService>().AsSingle();
             _diContainer.Bind<IAssetManagementService>().To<AssetManagementService>().AsSingle();
-            _diContainer.Bind<IInputService>().To<InputService>().AsSingle();
             _diContainer.Bind<IPersistentDataService>().To<PersistentDataService>().AsSingle();
             _diContainer.Bind<IReadWriteDataService>().To<ReadWriteDataService>().AsSingle();
             _diContainer.Bind<ISaveLoadDataService>().To<SaveLoadDataService>().AsSingle();

@@ -14,9 +14,7 @@ namespace CodeBase.Services.Input
         
         private Vector2 _axis;
         public Vector2 Axis => GetAxis();
-        
-        public event Action OnStartDrift;
-        public event Action OnStopDrift;
+        public bool Drift { get; }
 
         private Vector2 GetAxis()
         {
@@ -32,5 +30,8 @@ namespace CodeBase.Services.Input
 
             return _axis;
         }
+
+        public void EnableMoveBackwardsButton() { }
+        public void DisableMoveBackwardsButton() { }
     }
 }

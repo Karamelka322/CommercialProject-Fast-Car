@@ -10,5 +10,6 @@ namespace CodeBase.Services.Spawner
         void SpawnOnUpdate();
         void Reset();
         Task SpawnOnLoaded();
+        Task LoadResourcesAsync();
     }
 }

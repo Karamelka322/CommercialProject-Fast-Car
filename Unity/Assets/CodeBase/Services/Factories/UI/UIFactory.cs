@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using CodeBase.Data.Static;
 using CodeBase.Infrastructure.Mediator.Level;
-using CodeBase.Logic.Player;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Input;
@@ -28,6 +28,9 @@ namespace CodeBase.Services.Factories.UI
         {
             _diContainer = diContainer;
         }
+
+        public async Task LoadAllResourcesForLevel() => 
+            await _diContainer.Resolve<IAssetManagementService>().LoadGroupAsync<GameObject>("Level UI");
 
         public LoadingCurtain LoadMenuCurtain()
         {
@@ -69,9 +72,9 @@ namespace CodeBase.Services.Factories.UI
             _diContainer.Resolve<ILevelMediator>().Construct(hub);
         }
 
-        public void LoadPauseWindow()
+        public async void LoadPauseWindow()
         {
-            GameObject prefab = LoadAsset<GameObject>(AssetPath.PauseWindowPath);
+            GameObject prefab = await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.PauseWindowPath);
             InstantiateRegisterWindow(prefab, UIRoot);
         }
 
@@ -81,15 +84,15 @@ namespace CodeBase.Services.Factories.UI
             return Object.Instantiate(prefab, UIRoot);
         }
 
-        public void LoadDefeatWindow()
+        public async void LoadDefeatWindow()
         {
-            GameObject prefab = LoadAsset<GameObject>(AssetPath.DefeatWindowPath);
+            GameObject prefab = await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.DefeatWindowPath);
             InstantiateRegisterWindow(prefab, UIRoot);
         }
 
-        public void LoadVictoryWindow()
+        public async void LoadVictoryWindow()
         {
-            GameObject prefab = LoadAsset<GameObject>(AssetPath.VictoryWindowPath);
+            GameObject prefab = await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.VictoryWindowPath);
             InstantiateRegisterWindow(prefab, UIRoot);
         }
 
@@ -108,10 +111,7 @@ namespace CodeBase.Services.Factories.UI
         private void LoadInputVariant(InputTypeId inputType, Transform parent)
         {
             GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForInput(inputType);
-            
-            IInputVariant inputVariant = _diContainer.InstantiatePrefab(prefab, parent).GetComponent<IInputVariant>();
-            
-            _diContainer.Resolve<IInputService>().RegisterInput(inputVariant);
+            _diContainer.InstantiatePrefab(prefab, parent).GetComponent<IInputVariant>();
         }
 
         private InputTypeId GetInputType() => 

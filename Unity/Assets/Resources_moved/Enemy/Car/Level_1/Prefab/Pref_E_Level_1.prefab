@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4966207261599569625}
   - component: {fileID: 5416090052236965948}
-  - component: {fileID: 7743551867795005836}
+  - component: {fileID: 7942091005013203037}
   m_Layer: 12
   m_Name: Accident
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.323343, y: 0.34147224, z: 0.5}
   m_Center: {x: 0.069610834, y: 0.014369026, z: 0}
---- !u!114 &7743551867795005836
+--- !u!114 &7942091005013203037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,9 +55,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 121277760904838608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d76f2f525ae4c4eaa08a1a1b5d1e5a7, type: 3}
+  m_Script: {fileID: 11500000, guid: d81112312c1a46aa851f2bd606837ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _car: {fileID: 5738886296961861453}
 --- !u!1 &481160164124613972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _car: {fileID: 5738886296961861453}
-  _crash: {fileID: 7743551867795005836}
+  _crash: {fileID: 7942091005013203037}
   _navMeshAgentWrapper: {fileID: 4056208977235681240}
 --- !u!114 &5738886296961861453
 MonoBehaviour:
@@ -1118,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 6765002174677897144}
   _centerOfMass: {fileID: 3141684379537475626}
-  playerCrash: {fileID: 7743551867795005836}
+  _carCrash: {fileID: 7942091005013203037}
   _frontLeftWheel: {fileID: 6515981253058226928}
   _frontRightWheel: {fileID: 6889084145525484009}
   _rearLeftWheel: {fileID: 5879808516794590579}

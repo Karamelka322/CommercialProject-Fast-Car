@@ -6,7 +6,8 @@ namespace CodeBase.Services.Spawner
     public interface IGeneratorSpawnerModule
     {
         void SetConfig(GeneratorSpawnConfig config);
-        Task SpawnGenerator();
+        Task SpawnGeneratorAsync();
         void Clear();
+        Task LoadResourcesAsync();
     }
 }

@@ -84,9 +84,11 @@ namespace CodeBase.Infrastructure.States
         {
             _randomService.SetConfig(_levelData);
             _spawnerService.SetConfig(_levelData);
-
+            
+            await _spawnerService.LoadResourcesAsync();
             await _spawnerService.SpawnOnLoaded();
-
+            _uiFactory.LoadAllResourcesForLevel();
+            
             GameObject player = InitPlayer();
             CameraFollow(player);
 
@@ -95,7 +97,6 @@ namespace CodeBase.Infrastructure.States
             InitUIRoot();
             
             _readWriteDataService.InformSingleReaders();
-            _pauseService.SetPause(false);
             
             EnterLoopLevelState();
         }

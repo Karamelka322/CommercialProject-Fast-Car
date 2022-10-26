@@ -21,8 +21,11 @@ namespace CodeBase.Services.Spawner
         public void SetConfig(GeneratorSpawnConfig config) => 
             _config = config;
 
-        public async Task SpawnGenerator() => 
-            await _levelFactory.LoadGenerator(_randomService.GeneratorSpawnPoint());
+        public async Task LoadResourcesAsync() => 
+            await _levelFactory.LoadResourcesGeneratorAsync();
+
+        public async Task SpawnGeneratorAsync() => 
+            await _levelFactory.LoadGeneratorAsync(_randomService.GeneratorSpawnPoint());
 
         public void Clear() => 
             _config = null;

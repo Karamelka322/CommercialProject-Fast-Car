@@ -38,6 +38,9 @@ namespace CodeBase.Logic.Camera
         private void OnUpdate() => 
             Movement();
 
+        private void OnValidate() => 
+            _deflection = new Vector3(0, 0, _offset);
+
         private void Movement()
         {
             float speed = _car.Info.Speed;

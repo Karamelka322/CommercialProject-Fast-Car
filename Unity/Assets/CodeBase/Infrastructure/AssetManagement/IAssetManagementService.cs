@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CodeBase.Services.AssetProvider
 {
@@ -11,5 +13,7 @@ namespace CodeBase.Services.AssetProvider
         T Load<T>(string assetPath) where T : Object;
         T[] LoadAll<T>(string assetPath) where T : Object;
         void CleanUp();
+        Task<T> LoadAsync<T>(string id) where T : class;
+        Task<IList<T>> LoadGroupAsync<T>(string name) where T : class;
     }
 }

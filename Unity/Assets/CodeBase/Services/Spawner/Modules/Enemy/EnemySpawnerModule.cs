@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
 using CodeBase.Infrastructure;
 using CodeBase.Services.Factories.Enemy;
@@ -34,6 +35,9 @@ namespace CodeBase.Services.Spawner
         public void SetConfig(EnemiesSpawnConfig config) => 
             _configs = Copy(config.Enemies);
 
+        public async Task LoadResourcesAsync() => 
+            await _enemyFactory.LoadAllResourcesEnemyAsync();
+
         public void TrySpawnEnemy()
         {
             if (IsSpawnedEnemy(out List<EnemySpawnConfig> spawnEnemyStaticData)) 
@@ -66,7 +70,7 @@ namespace CodeBase.Services.Spawner
             for (int i = 0; i < enemySpawnConfigs.Count; i++)
             {
                 PointData spawnPoint = _randomService.EnemySpawnPoint();
-                await _enemyFactory.CreateEnemy(enemySpawnConfigs[i].EnemyType, enemySpawnConfigs[i].DifficultyType, spawnPoint + Vector3.up);
+                await _enemyFactory.LoadEnemyAsync(i, spawnPoint + Vector3.up);
                 _randomService.BindTimeToSpawnPoint(TimeSpawnEnemy, spawnPoint);
 
                 if(IsBlockSpawnConfig(enemySpawnConfigs[i])) 
@@ -112,8 +116,7 @@ namespace CodeBase.Services.Spawner
             {
                 currentArray[i] = new EnemySpawnConfig()
                 {
-                    EnemyType = targetArray[i].EnemyType,
-                    DifficultyType = targetArray[i].DifficultyType,
+                    PrefabReference = targetArray[i].PrefabReference,
                     IsLocked = false,
                     Period = targetArray[i].Period,
                     Range = targetArray[i].Range,

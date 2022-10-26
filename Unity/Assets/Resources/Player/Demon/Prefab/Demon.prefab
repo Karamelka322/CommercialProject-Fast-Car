@@ -656,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43faa24cd9604d308ef9d071f74102fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 4459666105701282217}
   _captureArea: {fileID: 3133943020705657476}
   _captureCenter: {fileID: 6874833724636587013}
 --- !u!114 &226969042468461238
@@ -738,7 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3433266551837669724}
   _centerOfMass: {fileID: 6475883053206077134}
-  playerCrash: {fileID: 4879413831383332276}
+  _carCrash: {fileID: 4879413831383332276}
   _frontLeftWheel: {fileID: 2894159187934944276}
   _frontRightWheel: {fileID: 3304944591424855821}
   _rearLeftWheel: {fileID: 2584558960022639511}
@@ -776,7 +775,7 @@ MonoBehaviour:
   _car: {fileID: 4459666105701282217}
   _actionTime: 2
   _driftTime: 2
-  _acceleration: 2
+  _acceleration: 5
 --- !u!1 &4638961487201264522
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,8 +967,8 @@ MonoBehaviour:
   Color: {r: 0, g: 1, b: 0.8509804, a: 1}
   Range: 0.2
   _car: {fileID: 4459666105701282217}
-  _offset: 2
-  _speedOffset: 3.5
+  _offset: 4
+  _speedOffset: 2
   _threshold: 0.4
 --- !u!1 &4862025985783821530
 GameObject:
@@ -1029,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d76f2f525ae4c4eaa08a1a1b5d1e5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _car: {fileID: 4459666105701282217}
 --- !u!1 &5276416416547560865
 GameObject:
   m_ObjectHideFlags: 0

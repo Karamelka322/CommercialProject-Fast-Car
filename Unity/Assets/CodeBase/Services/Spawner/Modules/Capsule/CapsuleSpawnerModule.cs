@@ -28,6 +28,9 @@ namespace CodeBase.Services.Spawner
             _capsules = new GameObject[_config.Quantity];
         }
 
+        public async Task LoadResourcesAsync() => 
+            await _levelFactory.LoadResourcesCapsuleAsync();
+
         public async Task TrySpawnCapsule()
         {
             if (IsSpawnedCapsule())
@@ -41,17 +44,17 @@ namespace CodeBase.Services.Spawner
         }
         
         private async Task SpawnCapsule() => 
-            _capsules[_capsules.GetEmptyIndex()] = await LoadCapsule();
+            _capsules[_capsules.GetEmptyIndex()] = await LoadCapsuleAsync();
 
         private bool IsSpawnedCapsule() => 
             _capsules.NumberEmptyIndexes() != 0 && _randomService.GetNumberUnlockedCapsuleSpawnPoints() > 0;
 
-        private async Task<GameObject> LoadCapsule()
+        private async Task<GameObject> LoadCapsuleAsync()
         {
             PointData spawnPoint = _randomService.CapsuleSpawnPoint();
             
-           GameObject capsule = await _levelFactory.LoadCapsule(spawnPoint + Vector3.up);
-           _randomService.BindObjectToSpawnPoint(capsule, spawnPoint);
+            GameObject capsule = await _levelFactory.LoadCapsuleAsync(spawnPoint + Vector3.up);
+            _randomService.BindObjectToSpawnPoint(capsule, spawnPoint);
 
             return capsule;
         }

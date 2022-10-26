@@ -46,10 +46,13 @@ MonoBehaviour:
     Enemy:
       UsingEnemy: 1
       Enemies:
-      - EnemyType: 0
-        DifficultyType: 0
-        Period: {x: 0, y: 29.721033}
+      - Period: {x: 0, y: 29.721033}
         Range: 5
+        PrefabReference:
+          m_AssetGUID: d19ee233988a10f4e96b9e6bdd39b300
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
       SpawnPoints:
       - Position: {x: -31.1, y: 0, z: -30.6}
         Rotation: {x: -0, y: -0, z: -0, w: 1}

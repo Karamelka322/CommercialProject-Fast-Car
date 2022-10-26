@@ -8,5 +8,6 @@ namespace CodeBase.Services.Spawner
         void SetConfig(CapsuleSpawnConfig config);
         Task TrySpawnCapsule();
         void Clear();
+        Task LoadResourcesAsync();
     }
 }

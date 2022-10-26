@@ -1,4 +1,4 @@
-using CodeBase.Services.Input;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.Update;
 using UnityEngine;
 using Zenject;
@@ -18,15 +18,15 @@ namespace CodeBase.Logic.Car
 
         private static readonly int RotateHash = Animator.StringToHash("Rotate");
 
-        private IInputService _inputService;
         private IUpdateService _updateService;
+        private ILevelMediator _mediator;
 
         private float _axis;
 
         [Inject]
-        public void Construct(IInputService inputService, IUpdateService updateService)
+        public void Construct(ILevelMediator mediator, IUpdateService updateService)
         {
-            _inputService = inputService;
+            _mediator = mediator;
             _updateService = updateService;
         }
 
@@ -41,7 +41,7 @@ namespace CodeBase.Logic.Car
 
         private void RotateBody()
         {
-            _axis = Mathf.Lerp(_axis, _inputService.InputVariant.Axis.y, _curveRotationBody.Evaluate(Time.deltaTime * _speedRotationBody));
+            _axis = Mathf.Lerp(_axis, _mediator.MovementAxis().y, _curveRotationBody.Evaluate(Time.deltaTime * _speedRotationBody));
             _animator.SetFloat(RotateHash, _axis);
         }
     }

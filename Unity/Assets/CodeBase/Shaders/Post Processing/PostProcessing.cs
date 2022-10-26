@@ -8,9 +8,14 @@ namespace CodeBase.Shaders.Post_Processing
     {
         [SerializeField] private float _threshold = 0.4f;
         [SerializeField] private float _offset = 0.001f;
-
-        [SerializeField, Range(0, 4)] private float _saturation = 2;
-        [SerializeField, Range(0, 2)] private float _contrast = 0.99f;
+        [Space]
+        [SerializeField, Range(0, 10)] private float _saturation = 3;
+        [SerializeField, Range(0, 2)] private float _contrast = 0.98f;
+        [SerializeField, Range(1, 2)] private float _exposure = 1.3f;
+        [Space]
+        [SerializeField, Range(-1, 2)] private float _chanelRed;
+        [SerializeField, Range(-1, 2)] private float _chanelGreen;
+        [SerializeField, Range(-1, 2)] private float _chanelBlue;
 
         private Material _material;
 
@@ -46,8 +51,14 @@ namespace CodeBase.Shaders.Post_Processing
         {
             _material.SetFloat(PostProcessingConstants.ThresholdPropertyID, _threshold);
             _material.SetFloat(PostProcessingConstants.OffsetPropertyID, _offset);
+            
             _material.SetFloat(PostProcessingConstants.SaturationPropertyID, _saturation * 0.01f);
             _material.SetFloat(PostProcessingConstants.ContrastPropertyID, _contrast);
+            _material.SetFloat(PostProcessingConstants.ExposurePropertyID, _exposure);
+            
+            _material.SetFloat(PostProcessingConstants.ChanelRedPropertyID, _chanelRed);
+            _material.SetFloat(PostProcessingConstants.ChanelGreenPropertyID, _chanelGreen);
+            _material.SetFloat(PostProcessingConstants.ChanelBluePropertyID, _chanelBlue);
         }
     }
 }

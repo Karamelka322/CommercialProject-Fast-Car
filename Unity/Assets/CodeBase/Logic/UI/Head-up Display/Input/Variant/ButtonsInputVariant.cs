@@ -36,14 +36,11 @@ namespace CodeBase.Services.Input
         
         private const string Horizontal = "Horizontal";
         private const string Vertical = "Vertical";
-        
+
         private Vector2 _axis;
         public Vector2 Axis => Drift == false ? MovementAxis() : DriftAxis();
 
-        public event Action OnStartDrift;
-        public event Action OnStopDrift;
-
-        private bool Drift;
+        public bool Drift { get; private set; }
 
         private IUpdateService _updateService;
         private ITweenService _tweenService;
@@ -144,34 +141,21 @@ namespace CodeBase.Services.Input
             return _axis;
         }
 
-        private void OnEnabledDriftButton()
-        {
-            OnStartDrift?.Invoke();
+        private void OnEnabledDriftButton() => 
             Drift = true;
-        }
 
-        private void OnDisabledDriftButton()
-        {
-            OnStopDrift?.Invoke();
+        private void OnDisabledDriftButton() => 
             Drift = false;
-        }
-
 
 #if UNITY_EDITOR
 
         private void OnFixedUpdate()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
-            {
-                OnStartDrift?.Invoke();
                 Drift = true;
-            }
-
+            
             if (UnityEngine.Input.GetKeyUp(KeyCode.Space))
-            {
-                OnStopDrift?.Invoke();
                 Drift = false;
-            }
         }
 
 #endif

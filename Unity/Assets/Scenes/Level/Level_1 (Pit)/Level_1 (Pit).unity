@@ -550,6 +550,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 643876294, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _contrast
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 643876294, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _chanelRed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 643876294, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _chanelBlue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 643876294, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _saturation
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 643876294, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _chanelGreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755772963328837582, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
+      propertyPath: _movementOffset.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7755772963328837583, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1937,7 +1961,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920097741}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 495799cabb7c9bf4e9b1b17d70ede1da, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4

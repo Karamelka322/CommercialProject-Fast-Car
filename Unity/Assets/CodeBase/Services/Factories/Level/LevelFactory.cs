@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
-using CodeBase.Logic.Item;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
@@ -24,7 +23,10 @@ namespace CodeBase.Services.Factories.Level
             _diContainer = diContainer;
         }
 
-        public async Task LoadGenerator(PointData spawnPoint)
+        public async Task LoadGeneratorAsync(PointData spawnPoint) => 
+            InstantiateRegister(await LoadResourcesGeneratorAsync(), spawnPoint);
+
+        public async Task<GameObject> LoadResourcesGeneratorAsync()
         {
             GeneratorSpawnConfig config = _diContainer
                 .Resolve<IPersistentDataService>()
@@ -34,22 +36,27 @@ namespace CodeBase.Services.Factories.Level
                 .Resolve<IAssetManagementService>()
                 .LoadAsync<GameObject>(config.PrefabReference);
 
-            InstantiateRegister(prefab, spawnPoint);
+            return prefab;
         }
 
-        public async Task<GameObject> LoadCapsule(PointData spawnPoint)
+        public async Task<GameObject> LoadCapsuleAsync(PointData spawnPoint)
+        {
+            GameObject capsule = await LoadResourcesCapsuleAsync();
+            InstantiateRegister(capsule, spawnPoint);
+            return capsule;
+        }
+        
+        public async Task<GameObject> LoadResourcesCapsuleAsync()
         {
             CapsuleSpawnConfig config = _diContainer
                 .Resolve<IPersistentDataService>()
                 .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Capsule;
 
-            GameObject capsule = await _diContainer
+            GameObject prefab = await _diContainer
                 .Resolve<IAssetManagementService>()
                 .LoadAsync<GameObject>(config.PrefabReference);
-            
-            InstantiateRegister(capsule, spawnPoint);
 
-            return capsule;
+            return prefab;
         }
         
         private void InstantiateRegister(Object prefab, PointData spawnPoint) => 

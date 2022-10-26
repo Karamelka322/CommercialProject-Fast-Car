@@ -17,6 +17,7 @@ namespace CodeBase.Services.Spawner
         private readonly IGeneratorSpawnerModule _generatorSpawnerModule;
 
         private LevelStaticData _levelStaticData;
+        private ISpawnerService _spawnerServiceImplementation;
 
         private bool UsingGenerator => _levelStaticData.Spawn.Generator.UsingGenerator;
         private bool UsingCapsule => _levelStaticData.Spawn.Capsule.UsingCapsule;
@@ -48,10 +49,22 @@ namespace CodeBase.Services.Spawner
                 _enemySpawnerModule.SetConfig(levelStaticData.Spawn.Enemy);
         }
 
+        public async Task LoadResourcesAsync()
+        {
+            if (UsingGenerator)
+                await _generatorSpawnerModule.LoadResourcesAsync();
+            
+            if (UsingCapsule)
+                await _capsuleSpawnerModule.LoadResourcesAsync();
+
+            if (UsingEnemy)
+                await _enemySpawnerModule.LoadResourcesAsync();
+        }
+
         public async Task SpawnOnLoaded()
         {
             if(UsingGenerator)
-                await _generatorSpawnerModule.SpawnGenerator();
+                await _generatorSpawnerModule.SpawnGeneratorAsync();
         }
 
         public async void SpawnOnUpdate()

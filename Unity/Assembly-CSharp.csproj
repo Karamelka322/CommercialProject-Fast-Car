@@ -74,7 +74,6 @@
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\HUD.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerCollision.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\UIButton.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\IInputService.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Bars\GeneratorPowerBar.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Element\JoystickInputElement.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Variant\JoystickInputVariant.cs" />
@@ -97,6 +96,7 @@
      <Compile Include="Assets\CodeBase\Logic\UI\Windows\MainMenuWindow.cs" />
      <Compile Include="Assets\CodeBase\Data\PointData.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoadPersistentDataState.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\PostProcessing.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Player\PlayerFactory.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorHook.cs" />
      <Compile Include="Assets\CodeBase\Services\Tween\TweenMode.cs" />
@@ -104,6 +104,7 @@
      <Compile Include="Assets\CodeBase\Logic\Car\Drift.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\SpawnerService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Generator\GeneratorBasket.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\PostProcessingConstants.cs" />
      <Compile Include="Assets\CodeBase\Services\Reward\IRewardService.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\RandomRotate.cs" />
      <Compile Include="Assets\CodeBase\Data\SizeValue.cs" />
@@ -115,6 +116,7 @@
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\SpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayHandler.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\PlayButton.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\HomeButton.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Windows\DefeatWindow.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\UnloadMenuState.cs" />
@@ -228,6 +230,7 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuStates.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Toggles\UIToggle.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\ISingleWriteData.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyCrash.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\Static\StaticDataService.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyDifficultyTypeId.cs" />
      <Compile Include="Assets\CodeBase\Services\Random\IRandomService.cs" />
@@ -252,9 +255,10 @@
      <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
      <Compile Include="Assets\CodeBase\Extension\DataExtension.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\SkipButton.cs" />
-     <Compile Include="Assets\CodeBase\Services\Input\InputService.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDeath.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Windows\PauseWindow.cs" />
+     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\CarCrash.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerSpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Logic\Camera\CameraFollow.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\AssetManagement\IAssetManagementService.cs" />
@@ -262,10 +266,6 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.cs" />
-     <Compile Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffectConstants.cs" />
-     <Compile Include="Assets\CodeBase\Shaders\Post Processing\PostProcessing.cs" />
-     <Compile Include="Assets\CodeBase\Shaders\Post Processing\PostProcessingConstants.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.shader" />
@@ -515,11 +515,26 @@
      <Reference Include="Zenject-usage">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
      </Reference>
+     <Reference Include="Sirenix.OdinValidator.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinValidator.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
      </Reference>
+     <Reference Include="Sirenix.OdinInspector.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.OdinInspector.Attributes">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+     </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Serialization.Config">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Utilities">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
@@ -530,29 +545,14 @@
      <Reference Include="Newtonsoft.Json">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.OdinInspector.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.OdinInspector.Attributes">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.Serialization.Config">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.Utilities">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
-     </Reference>
      <Reference Include="Sirenix.Serialization">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+     </Reference>
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.OdinValidator.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinValidator.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.iOS.Extensions.Xcode">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

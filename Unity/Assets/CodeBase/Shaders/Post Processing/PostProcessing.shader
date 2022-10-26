@@ -8,8 +8,13 @@ Shader "Custom/Post Effects/PostProcessing"
         [HideInInspector] _Offset ("Offset", float) = 0
         [HideInInspector] _Threshold ("_Treshold", float) = 1.0
         
-        [HideInInspector] _Saturation ("_Treshold", float) = 1.0
-        [HideInInspector] _Contrast ("_Treshold", float) = 1.0
+        [HideInInspector] _Saturation ("Saturation", float) = 1.0
+        [HideInInspector] _Contrast ("Contrast", float) = 1.0
+        [HideInInspector] _Exposure ("Exposure", float) = 1.0
+        
+        [HideInInspector] _ChanelRed ("_ChanelRed", float) = 0 
+        [HideInInspector] _ChanelGreen ("_ChanelGreen", float) = 0 
+        [HideInInspector] _ChanelBlue ("_ChanelBlue", float) = 0 
     }
     SubShader
     {
@@ -47,7 +52,7 @@ Shader "Custom/Post Effects/PostProcessing"
             
             sampler2D _MainTex;
             float _Threshold;
-
+            
             half4 GetEmmisionTexture(half4 mainTex)
             {
                 half brightness = max(mainTex.r, max(mainTex.g, mainTex.b));
@@ -94,17 +99,22 @@ Shader "Custom/Post Effects/PostProcessing"
                 o.uv = v.uv;
                 return o;
             }
+
+            const float e = 1.0e-10;
             
             sampler2D _MainTex;
             sampler2D _EmissiveTex;
 
             float _Offset;
-            
+
             float _Saturation;
             float _Contrast;
+            float _Exposure;
 
-            const float e = 1.0e-10;
-            
+            float _ChanelRed;
+            float _ChanelGreen;
+            float _ChanelBlue;
+
             half4 Blur(sampler2D tex, in half2 uv)
             {
                 float alpha = 0;
@@ -162,15 +172,24 @@ Shader "Custom/Post Effects/PostProcessing"
                 color.rgb *= color.a;
             }
 
+            void Exposure(inout half4 color, float intensity)
+            {
+                color *= intensity;
+            }
+
             half4 frag (v2f i) : SV_Target
             {
                 half4 mainTex = tex2D(_MainTex, i.uv);
-                half4 emmissionTex = Blur(_EmissiveTex, i.uv);
+                half4 emissionTex = Blur(_EmissiveTex, i.uv);
 
-                half4 col = mainTex + emmissionTex;
+                half4 col = mainTex + emissionTex;
                 
                 Saturation(col, _Saturation);
                 Contrast(col, _Contrast);
+
+                col.r = col.r * _ChanelRed + col.r * _ChanelGreen + col.r * _ChanelBlue;
+
+                Exposure(col, _Exposure);
                 
                 return col;
             }

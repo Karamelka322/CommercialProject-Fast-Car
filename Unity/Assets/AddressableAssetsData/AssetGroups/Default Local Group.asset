@@ -22,11 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 77522e451e2e8b64ea0531e68ff67ea0
-    m_Address: Level/Generator/Prefab/Generator
+    m_Address: Generator
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f8fe3fc8f732dfa439a2f4191256dd69
-    m_Address: Level/Capsule/Prefab/Energy
+    m_Address: Energy
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

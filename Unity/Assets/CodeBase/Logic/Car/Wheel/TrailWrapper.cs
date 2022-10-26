@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Infrastructure;
 using CodeBase.Services.Pause;
 using CodeBase.Services.Replay;
@@ -34,6 +35,12 @@ namespace CodeBase.Logic.Car
             _backup = new TrailBackup(transform.parent,
                 transform.localPosition, transform.localRotation,
                 _trailRenderer.time, _trailRenderer.enabled);
+        }
+
+        private void OnDestroy()
+        {
+            _updatable.OnUpdate -= OnReset;
+            _updatable.OnUpdate -= OnPause;
         }
 
         public void Reset()

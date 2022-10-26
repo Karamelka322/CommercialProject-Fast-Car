@@ -64,8 +64,11 @@ namespace CodeBase.Services.Pause
                 _handlers.Add(handler);
         }
 
-        public void CleanUp() => 
+        public void CleanUp()
+        {
             _handlers.Clear();
+            IsPause = false;
+        }
 
         private void InformHandlers()
         {

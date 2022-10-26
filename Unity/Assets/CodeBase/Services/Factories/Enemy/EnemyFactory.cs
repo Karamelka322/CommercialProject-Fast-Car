@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using CodeBase.Data.Static.Enemy;
+using CodeBase.Data.Static.Level;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Pause;
+using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
-using CodeBase.Services.StaticData;
 using CodeBase.Services.Victory;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -23,15 +23,32 @@ namespace CodeBase.Services.Factories.Enemy
             _diContainer = diContainer;
         }
 
-        public async Task CreateEnemy(EnemyTypeId enemyType, EnemyDifficultyTypeId difficultyType, PointData spawnPoint)
-        {
-            EnemyStaticData enemyData = _diContainer.Resolve<IStaticDataService>().ForEnemy(enemyType, difficultyType);
+        public async Task LoadEnemyAsync(int id, PointData spawnPoint) => 
+            InstantiateRegister(await LoadResourcesEnemyAsync(id), spawnPoint);
 
-            GameObject prefab = await _diContainer
+        public async Task LoadAllResourcesEnemyAsync()
+        {
+            EnemiesSpawnConfig config = _diContainer
+                .Resolve<IPersistentDataService>()
+                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Enemy;
+
+            foreach (EnemySpawnConfig enemyConfig in config.Enemies)
+            {
+                await _diContainer
+                    .Resolve<IAssetManagementService>()
+                    .LoadAsync<GameObject>(enemyConfig.PrefabReference);
+            }
+        }
+
+        private async Task<GameObject> LoadResourcesEnemyAsync(int id)
+        {
+            EnemiesSpawnConfig config = _diContainer
+                .Resolve<IPersistentDataService>()
+                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Enemy;
+
+            return await _diContainer
                 .Resolve<IAssetManagementService>()
-                .LoadAsync<GameObject>(enemyData.PrefabReference);
-            
-            InstantiateRegister(prefab, spawnPoint);
+                .LoadAsync<GameObject>(config.Enemies[id].PrefabReference);
         }
 
         private void InstantiateRegister(Object prefab, PointData spawnPoint)

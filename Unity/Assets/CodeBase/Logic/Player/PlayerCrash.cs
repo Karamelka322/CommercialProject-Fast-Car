@@ -1,15 +1,15 @@
+using System;
 using CodeBase.Infrastructure.Mediator.Level;
+using CodeBase.Logic.Enemy;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Logic.Car
 {
     [RequireComponent(typeof(Collider))]
-    public class PlayerCrash : MonoBehaviour
+    public class PlayerCrash : CarCrash
     {
-        private const string Ground = "Ground";
-
-        public bool Crash { get; private set; }
+        [SerializeField] private Car _car;
         
         private ILevelMediator _mediator;
 
@@ -18,23 +18,26 @@ namespace CodeBase.Logic.Car
         {
             _mediator = mediator;
         }
-        
-        private void OnTriggerEnter(Collider other)
+
+        protected override void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer(Ground))
+            if(CheckCrash(other))
             {
                 Crash = true;
                 _mediator.EnableMoveBackwardsButton();
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        protected override void OnTriggerExit(Collider other)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer(Ground))
+            if(CheckCrash(other))
             {
                 Crash = false;
                 _mediator.DisableMoveBackwardsButton();
             }
         }
+
+        private bool CheckCrash(Collider other) => 
+            other.gameObject.layer == LayerMask.NameToLayer(Ground) || other.TryGetComponent(out EnemyPrefab enemy);
     }
 }

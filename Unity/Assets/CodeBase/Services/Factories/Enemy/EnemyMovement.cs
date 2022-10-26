@@ -11,7 +11,7 @@ namespace CodeBase.Services.Factories.Enemy
     public class EnemyMovement : MonoBehaviour, IPlayerDefeatHandler, IPlayerVictoryHandler
     {
         [SerializeField] private Car _car;
-        [SerializeField] private PlayerCrash _crash;
+        [SerializeField] private EnemyCrash _crash;
         [SerializeField] private NavMeshAgentWrapper _navMeshAgentWrapper;
 
         private IUpdateService _updateService;

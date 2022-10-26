@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.UI;
 
 using UnityEngine;
@@ -18,5 +19,6 @@ namespace CodeBase.Services.Factories.UI
         GameObject LoadTimer();
         void LoadDefeatWindow();
         void LoadVictoryWindow();
+        Task LoadAllResourcesForLevel();
     }
 }

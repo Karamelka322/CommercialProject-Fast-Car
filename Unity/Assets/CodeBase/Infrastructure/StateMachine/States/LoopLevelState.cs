@@ -54,6 +54,7 @@ namespace CodeBase.Infrastructure.States
         public void Enter()
         {
             _updateService.OnUpdate += OnUpdate;
+            _updateService.Enable();
 
             InitUITimer();
             SetPause(true);
@@ -82,6 +83,7 @@ namespace CodeBase.Infrastructure.States
         public void Exit()
         {
             _updateService.OnUpdate -= OnUpdate;
+            _updateService.Disable();
 
             SetStreamingData(false);
             

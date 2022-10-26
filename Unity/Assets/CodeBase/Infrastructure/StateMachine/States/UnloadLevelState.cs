@@ -23,7 +23,6 @@ namespace CodeBase.Infrastructure
         private readonly IAssetManagementService _assetManagementService;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ISpawnerService _spawnerService;
-        private readonly IInputService _inputService;
         private readonly IVictoryService _victoryService;
         private readonly IDefeatService _defeatService;
         private readonly IReplayService _replayService;
@@ -31,7 +30,6 @@ namespace CodeBase.Infrastructure
         public UnloadLevelState(
             IGameStateMachine gameStateMachine,
             ISpawnerService spawnerService,
-            IInputService inputService,
             IVictoryService victoryService,
             IDefeatService defeatService,
             IReplayService replayService,
@@ -44,7 +42,6 @@ namespace CodeBase.Infrastructure
         {
             _gameStateMachine = gameStateMachine;
             _spawnerService = spawnerService;
-            _inputService = inputService;
             _victoryService = victoryService;
             _defeatService = defeatService;
             _replayService = replayService;
@@ -60,9 +57,9 @@ namespace CodeBase.Infrastructure
         {
             _readWriteDataService.InformSingleWriters();
 
-            ClenupPlayerSessionData();
+            CleanupPlayerSessionData();
             SavePlayerData();
-            ClenupServices();
+            CleanupServices();
 
             EnterNextState<TNextState>();
         }
@@ -72,11 +69,10 @@ namespace CodeBase.Infrastructure
 
         public void Exit() { }
 
-        private void ClenupServices()
+        private void CleanupServices()
         {
             _readWriteDataService.CleanUp();
             _spawnerService.CleanUp();
-            _inputService.CleanUp();
             _victoryService.CleanUp();
             _defeatService.CleanUp();
             _replayService.CleanUp();
@@ -85,7 +81,7 @@ namespace CodeBase.Infrastructure
             _assetManagementService.CleanUp();
         }
 
-        private void ClenupPlayerSessionData() => 
+        private void CleanupPlayerSessionData() => 
             _persistentDataService.PlayerData.SessionData.CleanUp();
 
         private void EnterNextState<TNextState>() where TNextState : class, IState => 

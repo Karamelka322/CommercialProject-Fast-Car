@@ -16,5 +16,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
         void UpdateGeneratorBar(float power);
         void UpdateAbilityBar(float energy);
         Transform Player { get; set; }
+        bool Drift { get; }
+        Vector2 MovementAxis();
     }
 }

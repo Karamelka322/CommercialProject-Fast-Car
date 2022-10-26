@@ -10,9 +10,10 @@ namespace CodeBase.Infrastructure.Mediator.Level
     public class LevelMediator : MonoBehaviour, ILevelMediator
     {
         public Transform Player { get; set; }
-        
+        public bool Drift => _inputVariant.Drift;
+
         private IAbility _playerAbility;
-        private ButtonsInputVariant _inputVariant;
+        private IInputVariant _inputVariant;
         private PlayerHealthBar _healthBar;
         private GeneratorPowerBar _powerBar;
         private AbilityBar _abilityBar;
@@ -25,7 +26,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
 
         public void Construct(HUD hud)
         {
-            _inputVariant = hud.GetComponentInChildren<ButtonsInputVariant>();
+            _inputVariant = hud.GetComponentInChildren<IInputVariant>();
             _healthBar = hud.GetComponentInChildren<PlayerHealthBar>();
             _powerBar = hud.GetComponentInChildren<GeneratorPowerBar>();
             _abilityBar = hud.GetComponentInChildren<AbilityBar>();
@@ -36,6 +37,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
         public void UpdateGeneratorBar(float power) => _powerBar.Value = power;
 
         public void EnablePlayerAbility() => _playerAbility.Enable();
+        public Vector2 MovementAxis() => _inputVariant.Axis;
         public void EnableMoveBackwardsButton() => _inputVariant.EnableMoveBackwardsButton();
         public void DisableMoveBackwardsButton() => _inputVariant.DisableMoveBackwardsButton();
     }

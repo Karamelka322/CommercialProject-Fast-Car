@@ -1,3 +1,4 @@
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Input;
 using CodeBase.Services.Replay;
@@ -14,38 +15,31 @@ namespace CodeBase.Logic.Player
         [SerializeField]
         private Car.Car _car;
 
-        private IInputService _inputService;
         private IUpdateService _updateService;
+        private ILevelMediator _mediator;
 
         [Inject]
-        public void Construct(IInputService inputService, IUpdateService updateService)
+        public void Construct(ILevelMediator mediator, IUpdateService updateService)
         {
-            _inputService = inputService;
+            _mediator = mediator;
             _updateService = updateService;
         }
         
-        private void Start()
-        {
+        private void Start() => 
             _updateService.OnUpdate += OnUpdate;
-            _inputService.InputVariant.OnStartDrift += OnStartDrift;
-            _inputService.InputVariant.OnStopDrift += OnStopDrift;
-        }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() => 
             _updateService.OnUpdate -= OnUpdate;
-            _inputService.InputVariant.OnStartDrift -= OnStartDrift;
-            _inputService.InputVariant.OnStopDrift -= OnStopDrift;
+
+        private void OnUpdate()
+        {
+            _car.Property.Axis = _mediator.MovementAxis();
+            
+            if(_mediator.Drift)
+                _car.EnableDrift();
+            else
+                _car.DisableDrift();
         }
-
-        private void OnUpdate() => 
-            _car.Property.Axis = _inputService.InputVariant.Axis;
-
-        private void OnStartDrift() => 
-            _car.EnableDrift();
-
-        private void OnStopDrift() => 
-            _car.DisableDrift();
 
         public void OnReplay() => 
             _car.DisableDrift();

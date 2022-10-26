@@ -16,9 +16,9 @@ namespace CodeBase.Services.AssetProvider
         public const string MainMenuWindowPath = "UI/Windows/Menu/MainMenuWindow";
         public const string SettingsWindowPath = "UI/Windows/Menu/SettingsWindow";
         public const string GarageWindowPath = "UI/Windows/Menu/GarageWindow";
-        public const string VictoryWindowPath = "UI/Windows/Level/VictoryWindow";
-        public const string DefeatWindowPath = "UI/Windows/Level/DefeatWindow";
-        public const string PauseWindowPath = "UI/Windows/Level/PauseWindow";
+        public const string VictoryWindowPath = "VictoryWindow";
+        public const string DefeatWindowPath = "DefeatWindow";
+        public const string PauseWindowPath = "PauseWindow";
 
         public const string UIRootPath = "UI/UIRoot";
         public const string HUDPath = "UI/HUD/HUD";
