@@ -35,9 +35,9 @@ namespace CodeBase.Shaders.Post_Processing
 
         private void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            RenderTexture emissiveTexture = RenderTexture.GetTemporary(src.width, src.height);
+            RenderTexture emissiveTexture = RenderTexture.GetTemporary(src.width / 2, src.height / 2);
             Graphics.Blit(src, emissiveTexture, _material, 0);
-            
+
             _material.SetTexture(PostProcessingConstants.EmissiveTexPropertyID, emissiveTexture);
             Graphics.Blit(src, dest, _material, 1);
             

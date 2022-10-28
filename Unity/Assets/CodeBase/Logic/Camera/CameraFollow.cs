@@ -19,6 +19,7 @@ namespace CodeBase.Logic.Camera
         [SerializeField]
         private float _rotationSpeed;
 
+        private Vector3 _dynamicRotationOffset;
         private IUpdateService _updateService;
 
         public Transform Target { get; set; }
@@ -64,8 +65,15 @@ namespace CodeBase.Logic.Camera
 
         private void Rotation(Transform target, float speed)
         {
-            Vector3 direction = (target.position + _rotationOffset) - transform.position;
-            Quaternion nextRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), speed);
+            Vector3 targetDirection = target.parent.position - target.position;
+
+            if (targetDirection.x > 0 && targetDirection.z > 0)
+                _dynamicRotationOffset = Vector3.Lerp(Vector3.zero, _rotationOffset, Time.deltaTime * _rotationSpeed);
+            else
+                _dynamicRotationOffset = Vector3.zero;
+
+            Vector3 cameraDirection = (target.position + _dynamicRotationOffset) - transform.position;
+            Quaternion nextRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(cameraDirection), speed);
             transform.rotation = nextRotation;
         }
     }

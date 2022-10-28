@@ -45,7 +45,7 @@ Shader "Custom/Post Effects/Bloom"
             sampler2D _MainTex;
             float _Threshold;
 
-            half4 GetEmmisionTexture(half4 mainTex)
+            half4 GetEmissionTexture(half4 mainTex)
             {
                 half brightness = max(mainTex.r, max(mainTex.g, mainTex.b));
 			    half contribution = max(0, brightness - _Threshold);
@@ -58,7 +58,7 @@ Shader "Custom/Post Effects/Bloom"
             half4 frag (v2f i) : SV_Target
             {
                 half4 mainTex = tex2D(_MainTex, i.uv);
-                return GetEmmisionTexture(mainTex);
+                return GetEmissionTexture(mainTex);
             }
             
             ENDCG

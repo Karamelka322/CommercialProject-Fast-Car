@@ -11,8 +11,7 @@ namespace CodeBase.Infrastructure
             ProjectContext projectContext = InitProjectContext();
             GameUpdate gameUpdate = InitGameUpdate();
             
-            if(Debug.isDebugBuild)
-                InitFrameDebugger();
+            InitFrameDebugger();
 
             InitGame(projectContext, gameUpdate);
         }

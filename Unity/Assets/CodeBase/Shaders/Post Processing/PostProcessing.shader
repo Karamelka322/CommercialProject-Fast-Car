@@ -53,7 +53,7 @@ Shader "Custom/Post Effects/PostProcessing"
             sampler2D _MainTex;
             float _Threshold;
             
-            half4 GetEmmisionTexture(half4 mainTex)
+            half4 GetEmissionTexture(half4 mainTex)
             {
                 half brightness = max(mainTex.r, max(mainTex.g, mainTex.b));
 			    half contribution = max(0, brightness - _Threshold);
@@ -66,7 +66,7 @@ Shader "Custom/Post Effects/PostProcessing"
             half4 frag (v2f i) : SV_Target
             {
                 half4 mainTex = tex2D(_MainTex, i.uv);
-                return GetEmmisionTexture(mainTex);
+                return GetEmissionTexture(mainTex);
             }
             
             ENDCG
@@ -100,8 +100,6 @@ Shader "Custom/Post Effects/PostProcessing"
                 return o;
             }
 
-            const float e = 1.0e-10;
-            
             sampler2D _MainTex;
             sampler2D _EmissiveTex;
 
@@ -117,64 +115,29 @@ Shader "Custom/Post Effects/PostProcessing"
 
             half4 Blur(sampler2D tex, in half2 uv)
             {
-                float alpha = 0;
-                
-                half4 tex1 = tex2D(tex, uv + half2(_Offset, 0));
-                half4 tex2 = tex2D(tex, uv + half2(0, _Offset));
-                half4 tex3 = tex2D(tex, uv + half2(-_Offset, 0));
-                half4 tex4 = tex2D(tex, uv + half2(0, -_Offset));
+                half4 tex1 = tex2D(tex, uv + half2(-_Offset, _Offset));
+                half4 tex2 = tex2D(tex, uv + half2(_Offset, _Offset));
+                half4 tex3 = tex2D(tex, uv + half2(_Offset, -_Offset));
+                half4 tex4 = tex2D(tex, uv + half2(-_Offset, -_Offset));
 
-                half4 tex5 = tex2D(tex, uv + half2(-_Offset, _Offset));
-                half4 tex6 = tex2D(tex, uv + half2(_Offset, _Offset));
-                half4 tex7 = tex2D(tex, uv + half2(_Offset, -_Offset));
-                half4 tex8 = tex2D(tex, uv + half2(-_Offset, -_Offset));
-
-                half4 col = half4(tex1.rgb > tex2.rgb ? tex1.rgb : tex2.rgb, alpha);
-                col = half4(col.rgb > tex3.rgb ? col.rgb : tex3.rgb, alpha);
-                col = half4(col.rgb > tex4.rgb ? col.rgb : tex4.rgb, alpha);
-                
-                col = half4(col.rgb > tex5.rgb ? col.rgb : tex5.rgb, alpha);
-                col = half4(col.rgb > tex6.rgb ? col.rgb : tex6.rgb, alpha);
-                col = half4(col.rgb > tex7.rgb ? col.rgb : tex7.rgb, alpha);
-                col = half4(col.rgb > tex8.rgb ? col.rgb : tex8.rgb, alpha);
+                half4 col = (tex1 + tex2 + tex3 + tex4) / 4;
                 
                 return col;
             }
 
-            float3 rgb2hsv(float3 c)
+            void Contrast(inout half4 color)
             {
-                float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-                float4 p = c.g < c.b ? float4(c.bg, K.wz) : float4(c.gb, K.xy);
-                float4 q = c.r < p.x ? float4(p.xyw, c.r) : float4(c.r, p.yzx);
-
-                float d = q.x - min(q.w, q.y);
-
-                return float3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+                color.rgb = ((color.rgb - 0.5f) * _Contrast + 0.5f) * color.a;
             }
 
-            float3 hsv2rgb(float3 c)
+            void ChanelMixer(inout half4 color)
             {
-                float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-                float3 p = abs(frac(c.xxx + K.xyz) * 6.0 - K.www);
-                return c.z * lerp(K.xxx, saturate(p - K.xxx), c.y);
+                color.r = color.r * _ChanelRed + color.r + color.r;
             }
 
-            void Saturation(inout half4 color, float intensity)
+            void Exposure(inout half4 color)
             {
-                half3 hsvCol = rgb2hsv(color);
-                hsvCol.y += intensity;
-                color = fixed4(hsv2rgb(hsvCol), 1.0);
-            }
-
-            void Contrast(inout half4 color, float intensity)
-            {
-                color.rgb = (color.rgb - 0.5f) * intensity + 0.5f;
-                color.rgb *= color.a;
-            }
-
-            void Exposure(inout half4 color, float intensity)
-            {
-                color *= intensity;
+                color *= _Exposure;
             }
 
             half4 frag (v2f i) : SV_Target
@@ -184,12 +147,9 @@ Shader "Custom/Post Effects/PostProcessing"
 
                 half4 col = mainTex + emissionTex;
                 
-                Saturation(col, _Saturation);
-                Contrast(col, _Contrast);
-
-                col.r = col.r * _ChanelRed + col.r * _ChanelGreen + col.r * _ChanelBlue;
-
-                Exposure(col, _Exposure);
+                Contrast(col);
+                ChanelMixer(col);
+                Exposure(col);
                 
                 return col;
             }
