@@ -1,34 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7105421169967561423
+--- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
-  m_Name: DepthOfField
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: Main Camera Profile
   m_EditorClassIdentifier: 
-  active: 0
-  enabled:
-    overrideState: 1
-    value: 1
-  focusDistance:
-    overrideState: 1
-    value: 14
-  aperture:
-    overrideState: 1
-    value: 0.1
-  focalLength:
-    overrideState: 1
-    value: 18
-  kernelSize:
-    overrideState: 1
-    value: 0
---- !u!114 &-5293213787389378002
+  settings:
+  - {fileID: 7919841192451646496}
+  - {fileID: 6697077571093675445}
+--- !u!114 &6697077571093675445
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,10 +33,10 @@ MonoBehaviour:
     value: 1
   gradingMode:
     overrideState: 0
-    value: 0
+    value: 1
   externalLut:
-    overrideState: 1
-    value: {fileID: 2800000, guid: cd37aa57c762f504785e2a182d67d79b, type: 3}
+    overrideState: 0
+    value: {fileID: 0}
     defaultState: 1
   tonemapper:
     overrideState: 0
@@ -80,32 +67,32 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 0
+    overrideState: 1
     value: 0
   tint:
     overrideState: 0
-    value: 89
+    value: 0
   colorFilter:
     overrideState: 0
-    value: {r: 1, g: 0.40943396, b: 0.40943396, a: 1}
+    value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
-    value: -5
+    value: 0
   saturation:
     overrideState: 1
-    value: 20
+    value: 14
   brightness:
     overrideState: 0
-    value: -9
+    value: 0
   postExposure:
     overrideState: 0
-    value: 1.1
+    value: 0
   contrast:
     overrideState: 1
-    value: -21
+    value: -14
   mixerRedOutRedIn:
     overrideState: 1
-    value: 165
+    value: 200
   mixerRedOutGreenIn:
     overrideState: 0
     value: 0
@@ -117,7 +104,7 @@ MonoBehaviour:
     value: 0
   mixerGreenOutGreenIn:
     overrideState: 0
-    value: 82
+    value: 100
   mixerGreenOutBlueIn:
     overrideState: 0
     value: 0
@@ -129,16 +116,16 @@ MonoBehaviour:
     value: 0
   mixerBlueOutBlueIn:
     overrideState: 0
-    value: 100
+    value: 172
   lift:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     overrideState: 0
-    value: {x: 1, y: 0.7776244, z: 0.7069508, w: 0.3358288}
+    value: {x: 1, y: 1, z: 1, w: 0}
   gain:
     overrideState: 0
-    value: {x: 0.9406971, y: 1, z: 0.8988986, w: 0}
+    value: {x: 1, y: 1, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1339,23 +1326,7 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Main Camera Profile
-  m_EditorClassIdentifier: 
-  settings:
-  - {fileID: 9134920416900487693}
-  - {fileID: -5293213787389378002}
-  - {fileID: -7105421169967561423}
---- !u!114 &9134920416900487693
+--- !u!114 &7919841192451646496
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1367,28 +1338,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 3.07
+    value: 17.6
   threshold:
     overrideState: 0
     value: 1
   softKnee:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.854
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 0
-    value: 4.12
+    value: 4.26
   anamorphicRatio:
     overrideState: 0
-    value: 0.58
+    value: 0
   color:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}

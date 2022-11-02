@@ -5,16 +5,9 @@ Shader "Custom/Post Effects/PostProcessing"
         [HideInInspector] _MainTex ("Main Texture", 2D) = "white" {}
         [HideInInspector] _EmissiveTex ("Emmisive Texture", 2D) = "white" {}
         
-        [HideInInspector] _Offset ("Offset", float) = 0
-        [HideInInspector] _Threshold ("_Treshold", float) = 1.0
-        
-        [HideInInspector] _Saturation ("Saturation", float) = 1.0
         [HideInInspector] _Contrast ("Contrast", float) = 1.0
         [HideInInspector] _Exposure ("Exposure", float) = 1.0
-        
         [HideInInspector] _ChanelRed ("_ChanelRed", float) = 0 
-        [HideInInspector] _ChanelGreen ("_ChanelGreen", float) = 0 
-        [HideInInspector] _ChanelBlue ("_ChanelBlue", float) = 0 
     }
     SubShader
     {
@@ -51,12 +44,12 @@ Shader "Custom/Post Effects/PostProcessing"
             }
             
             sampler2D _MainTex;
-            float _Threshold;
+            const float _BloomThreshold = 0.4;
             
             half4 GetEmissionTexture(half4 mainTex)
             {
                 half brightness = max(mainTex.r, max(mainTex.g, mainTex.b));
-			    half contribution = max(0, brightness - _Threshold);
+			    half contribution = max(0, brightness - _BloomThreshold);
 
                 contribution /= max(brightness, 0.00001);
 
@@ -103,22 +96,19 @@ Shader "Custom/Post Effects/PostProcessing"
             sampler2D _MainTex;
             sampler2D _EmissiveTex;
 
-            float _Offset;
+            const float _BloomOffset = 0.001f;
 
-            float _Saturation;
             float _Contrast;
             float _Exposure;
 
             float _ChanelRed;
-            float _ChanelGreen;
-            float _ChanelBlue;
 
             half4 Blur(sampler2D tex, in half2 uv)
             {
-                half4 tex1 = tex2D(tex, uv + half2(-_Offset, _Offset));
-                half4 tex2 = tex2D(tex, uv + half2(_Offset, _Offset));
-                half4 tex3 = tex2D(tex, uv + half2(_Offset, -_Offset));
-                half4 tex4 = tex2D(tex, uv + half2(-_Offset, -_Offset));
+                half4 tex1 = tex2D(tex, uv + half2(-_BloomOffset, _BloomOffset));
+                half4 tex2 = tex2D(tex, uv + half2(_BloomOffset, _BloomOffset));
+                half4 tex3 = tex2D(tex, uv + half2(_BloomOffset, -_BloomOffset));
+                half4 tex4 = tex2D(tex, uv + half2(-_BloomOffset, -_BloomOffset));
 
                 half4 col = (tex1 + tex2 + tex3 + tex4) / 4;
                 
