@@ -28,7 +28,7 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       GeneratorSpawnPoints:
-      - Position: {x: 1.58, y: -3, z: -1.56}
+      - Position: {x: 5.79, y: -6.5, z: -2.78}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Capsule:
       UsingCapsule: 1
