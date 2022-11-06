@@ -1,4 +1,4 @@
-using System;
+using CodeBase.Logic.Level.Generator;
 using CodeBase.Logic.Player;
 using CodeBase.UI;
 using UnityEngine;
@@ -15,8 +15,13 @@ namespace CodeBase.Infrastructure.Mediator.Level
         void UpdateHealthBar(float health);
         void UpdateGeneratorBar(float power);
         void UpdateAbilityBar(float energy);
-        Transform Player { get; set; }
+        
+        Transform Player { get; }
+        
         bool Drift { get; }
+        PlayerHook PlayerHook { get; }
+        GeneratorHook GeneratorHook { get; }
         Vector2 MovementAxis();
+        void Construct(GeneratorPrefab generator);
     }
 }

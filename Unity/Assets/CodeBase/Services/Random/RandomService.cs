@@ -3,11 +3,13 @@ using System.Collections;
 using CodeBase.Data.Static.Level;
 using CodeBase.Extension;
 using CodeBase.Infrastructure;
+using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.Random
 {
+    [UsedImplicitly]
     public class RandomService : IRandomService
     {
         private readonly ICoroutineRunner _coroutineRunner;
@@ -26,11 +28,11 @@ namespace CodeBase.Services.Random
         {
             _config = levelConfig;
 
-            _capsuleSpawnPoints = levelConfig.Spawn.Capsule.SpawnPoints.ConvertSpawnPointDataToPointData();
+            _capsuleSpawnPoints = levelConfig.Spawn.energy.SpawnPoints.ConvertSpawnPointDataToPointData();
             _enemySpawnPoints = levelConfig.Spawn.Enemy.SpawnPoints.ConvertSpawnPointDataToPointData();
         }
 
-        public PointData CapsuleSpawnPoint() => 
+        public PointData EnergySpawnPoint() => 
             _capsuleSpawnPoints.GetUnblockedSpawnPoints().Random();
 
         public int GetNumberUnlockedCapsuleSpawnPoints() => 
@@ -39,7 +41,7 @@ namespace CodeBase.Services.Random
         public PointData EnemySpawnPoint() => 
             _enemySpawnPoints.GetUnblockedSpawnPoints().Random();
 
-        public int GetNumberInlockedEnemySpawnPoints() => 
+        public int GetNumberUnlockedEnemySpawnPoints() => 
             _enemySpawnPoints.GetNumberUnlockedSpawnPoints();
 
         public Vector3 PlayerSpawnPoint() => 

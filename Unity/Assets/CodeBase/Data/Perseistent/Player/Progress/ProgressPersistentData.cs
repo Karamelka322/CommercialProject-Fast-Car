@@ -16,6 +16,8 @@ namespace CodeBase.Data.Perseistent
 
         private const PlayerTypeId CurrentPlayerDefault = PlayerTypeId.Demon;
         private const LevelTypeId CurrentLevelDefault = LevelTypeId.Level_1;
+
+        public float RecordTime;
         
         public ProgressPersistentData()
         {

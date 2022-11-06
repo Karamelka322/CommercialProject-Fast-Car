@@ -11,5 +11,6 @@ namespace CodeBase.Services.Spawner
         void Reset();
         Task SpawnOnLoaded();
         Task LoadResourcesAsync();
+        EnergySpawnerModule EnergySpawnerModule { get; }
     }
 }

@@ -1,3 +1,4 @@
+using CodeBase.Logic.Level.Generator;
 using CodeBase.Logic.Player;
 using CodeBase.Logic.Player.Ability;
 using CodeBase.Services.Input;
@@ -9,7 +10,10 @@ namespace CodeBase.Infrastructure.Mediator.Level
 {
     public class LevelMediator : MonoBehaviour, ILevelMediator
     {
-        public Transform Player { get; set; }
+        public Transform Player { get; private set; }
+        public PlayerHook PlayerHook { get; private set; }
+        public GeneratorHook GeneratorHook { get; private set; }
+        
         public bool Drift => _inputVariant.Drift;
 
         private IAbility _playerAbility;
@@ -21,6 +25,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
         public void Construct(PlayerPrefab player)
         {
             Player = player.transform;
+            PlayerHook = player.GetComponent<PlayerHook>();
             _playerAbility = player.GetComponentInChildren<IAbility>();
         }
 
@@ -30,6 +35,11 @@ namespace CodeBase.Infrastructure.Mediator.Level
             _healthBar = hud.GetComponentInChildren<PlayerHealthBar>();
             _powerBar = hud.GetComponentInChildren<GeneratorPowerBar>();
             _abilityBar = hud.GetComponentInChildren<AbilityBar>();
+        }
+
+        public void Construct(GeneratorPrefab generator)
+        {
+            GeneratorHook = generator.GetComponent<GeneratorHook>();
         }
 
         public void UpdateAbilityBar(float energy) => _abilityBar.Value = energy;

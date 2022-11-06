@@ -1,15 +1,9 @@
-using System;
-using CodeBase.Extension;
 using UnityEngine;
 
 namespace CodeBase.Logic.Audio.Sound
 {
-    [Serializable]
-    public class AudioGroup
+    public class AudioGroup : MonoBehaviour
     {
-        public AudioClip[] AudioClips;
-
-        public AudioClip GetRandomClip() => 
-            AudioClips.Random();
+        public AudioClip[] Clips;
     }
 }

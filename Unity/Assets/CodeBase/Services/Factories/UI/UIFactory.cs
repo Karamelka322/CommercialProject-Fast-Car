@@ -3,7 +3,6 @@ using CodeBase.Data.Static;
 using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
-using CodeBase.Services.Input;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Replay;
 using CodeBase.Services.StaticData;
@@ -23,6 +22,7 @@ namespace CodeBase.Services.Factories.UI
         private readonly DiContainer _diContainer;
 
         private Transform UIRoot;
+        private Transform WaymarkerContainer;
 
         public UIFactory(DiContainer diContainer)
         {
@@ -65,11 +65,13 @@ namespace CodeBase.Services.Factories.UI
         public void LoadHUD()
         {
             HUD prefab = LoadAsset<HUD>(AssetPath.HUDPath);
-            HUD hub = InstantiateRegisterWindow(prefab);
+            HUD hud = InstantiateRegisterWindow(prefab);
 
-            LoadInputVariant(GetInputType(), hub.InputContainer);
+            WaymarkerContainer = hud.WaymarkerContainer;
+
+            LoadInputVariant(GetInputType(), hud.InputContainer);
             
-            _diContainer.Resolve<ILevelMediator>().Construct(hub);
+            _diContainer.Resolve<ILevelMediator>().Construct(hud);
         }
 
         public async void LoadPauseWindow()
@@ -111,7 +113,17 @@ namespace CodeBase.Services.Factories.UI
         private void LoadInputVariant(InputTypeId inputType, Transform parent)
         {
             GameObject prefab = _diContainer.Resolve<IStaticDataService>().ForInput(inputType);
-            _diContainer.InstantiatePrefab(prefab, parent).GetComponent<IInputVariant>();
+            _diContainer.InstantiatePrefab(prefab, parent);
+        }
+
+        public Waymarker LoadEnergyMarker(Transform target)
+        {
+            GameObject prefab = LoadAsset<GameObject>(AssetPath.EnergyMarkerPath);
+            Waymarker marker = _diContainer.InstantiatePrefab(prefab.gameObject, WaymarkerContainer).GetComponent<Waymarker>();
+
+            marker.Target = target;
+            
+            return marker;
         }
 
         private InputTypeId GetInputType() => 

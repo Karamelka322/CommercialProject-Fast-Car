@@ -14,6 +14,7 @@ using CodeBase.Services.Reward;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.Spawner;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.Tasks;
 using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
@@ -47,8 +48,11 @@ namespace CodeBase.Infrastructure.States
         public void Enter() => 
             EnterLoadPersistentDataState();
 
-        public void Exit() => 
+        public void Exit()
+        {
             _diContainer.Resolve<IAssetManagementService>().InitializeAsync();
+            _diContainer.Resolve<ITaskService>().Initialize();
+        }
 
         private void RegisterServices()
         {
@@ -71,6 +75,7 @@ namespace CodeBase.Infrastructure.States
             _diContainer.Bind<IRewardService>().To<RewardService>().AsSingle();
             _diContainer.Bind<IPauseService>().To<PauseService>().AsSingle();
             _diContainer.Bind<IRandomService>().To<RandomService>().AsSingle();
+            _diContainer.Bind<ITaskService>().To<TaskService>().AsSingle();
             
             _diContainer.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             _diContainer.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();

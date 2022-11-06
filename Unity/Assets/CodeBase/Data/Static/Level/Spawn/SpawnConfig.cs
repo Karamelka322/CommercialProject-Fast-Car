@@ -15,7 +15,7 @@ namespace CodeBase.Data.Static.Level
         public GeneratorSpawnConfig Generator;
 
         [Toggle("UsingCapsule"), OnCollectionChanged("OnUsingCapsuleChanged")]
-        public CapsuleSpawnConfig Capsule;
+        public EnergySpawnConfig energy;
 
         [Toggle("UsingEnemy")]
         public EnemiesSpawnConfig Enemy;
@@ -25,10 +25,10 @@ namespace CodeBase.Data.Static.Level
         [UsedImplicitly]
         private void OnUsingCapsuleChanged()
         {
-            if (Capsule.UsingCapsule == false)
+            if (energy.UsingCapsule == false)
             {
-                Capsule.Quantity = 0;
-                Capsule.SpawnPoints = Array.Empty<PointData>();
+                energy.Quantity = 0;
+                energy.SpawnPoints = Array.Empty<PointData>();
             }
         }
 

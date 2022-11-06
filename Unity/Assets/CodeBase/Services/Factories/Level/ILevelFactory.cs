@@ -8,9 +8,9 @@ namespace CodeBase.Services.Factories.Level
 {
     public interface ILevelFactory : IService
     {
-        Task<GameObject> LoadCapsuleAsync(PointData spawnPoint);
+        Task<GameObject> LoadEnergyAsync(PointData spawnPoint);
         Task LoadGeneratorAsync(PointData spawnPoint);
         Task<GameObject> LoadResourcesGeneratorAsync();
-        Task<GameObject> LoadResourcesCapsuleAsync();
+        Task<GameObject> LoadResourcesEnergyAsync();
     }
 }

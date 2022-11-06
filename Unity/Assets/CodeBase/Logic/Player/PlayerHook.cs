@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Logic.Item;
 using CodeBase.Logic.World;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace CodeBase.Logic.Player
         [SerializeField] 
         private Point _captureCenter;
 
+        public Action EnergyCapture;
+        
         private Energy _energy;
 
         private void OnEnable() => 
@@ -22,11 +25,14 @@ namespace CodeBase.Logic.Player
 
         private void OnAreaEnter(Collider collider)
         {
-            if (_energy == null && IsEnergy(collider, out _energy)) 
+            if (IsEnergyCatch(collider))
+            {
                 _energy.Raise(_captureCenter.transform);
+                EnergyCapture?.Invoke();
+            }
         }
 
-        private static bool IsEnergy(Collider collider, out Energy energy) => 
-            collider.TryGetComponent(out energy);
+        private bool IsEnergyCatch(Collider collider) => 
+            _energy == null && collider.TryGetComponent(out _energy);
     }
 }

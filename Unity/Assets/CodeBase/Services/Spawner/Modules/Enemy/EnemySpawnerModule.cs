@@ -55,7 +55,7 @@ namespace CodeBase.Services.Spawner
 
         private bool IsSpawnedEnemy(out List<EnemySpawnConfig> enemySpawnConfig)
         {
-            if (_randomService.GetNumberInlockedEnemySpawnPoints() > 0)
+            if (_randomService.GetNumberUnlockedEnemySpawnPoints() > 0)
             {
                 enemySpawnConfig = GetSpawnConfigs();
                 return true;

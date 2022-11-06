@@ -43,12 +43,10 @@ namespace CodeBase.Services.Input
         public bool Drift { get; private set; }
 
         private IUpdateService _updateService;
-        private ITweenService _tweenService;
 
         [Inject]
-        private void Construct(IUpdateService updateService, ITweenService tweenService)
+        private void Construct(IUpdateService updateService)
         {
-            _tweenService = tweenService;
             _updateService = updateService;
         }
 
@@ -89,14 +87,11 @@ namespace CodeBase.Services.Input
 
         public void DisableMoveBackwardsButton()
         {
-            _tweenService.SingleTimer<ButtonsInputVariant>(1f, () =>
-            {
-                _driftLeftButton.gameObject.SetActive(true);
-                _driftRightButton.gameObject.SetActive(true);
+            _driftLeftButton.gameObject.SetActive(true);
+            _driftRightButton.gameObject.SetActive(true);
             
-                _downLeftButton.gameObject.SetActive(false);
-                _downRightButton.gameObject.SetActive(false);
-            });
+            _downLeftButton.gameObject.SetActive(false);
+            _downRightButton.gameObject.SetActive(false);
         }
 
         private Vector2 MovementAxis()

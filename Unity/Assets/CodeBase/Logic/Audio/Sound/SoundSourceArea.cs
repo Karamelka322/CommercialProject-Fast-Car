@@ -1,3 +1,4 @@
+using CodeBase.Extension;
 using CodeBase.Logic.Player;
 using CodeBase.Logic.World;
 using CodeBase.Services.Update;
@@ -15,10 +16,10 @@ namespace CodeBase.Logic.Audio.Sound
         private Area _area;
 
         [SerializeField] 
-        private float _outputTime;
+        private AudioGroup _audioGroup;
 
         [SerializeField] 
-        private AudioGroup _audioGroup;
+        private float _outputTime;
 
         private IUpdateService _updateService;
         private float _time;
@@ -69,6 +70,6 @@ namespace CodeBase.Logic.Audio.Sound
         }
 
         private void PlaySound() => 
-            _audioSource.PlayOneShot(_audioGroup.GetRandomClip());
+            _audioSource.PlayOneShot(_audioGroup.Clips.Random());
     }
 }

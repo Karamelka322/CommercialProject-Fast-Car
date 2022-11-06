@@ -12,11 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level_1 (Pit)
   m_EditorClassIdentifier: 
-  VictoryTime: 9999
+  VictoryTime: 120
   Spawn:
     Player:
       SpawnPoints:
-      - Position: {x: -46.36, y: 0, z: -42.28}
+      - Position: {x: 31, y: 1, z: -91.3}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 13.610001, y: -3, z: 54.1}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 52.61, y: -3, z: 13.099998}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -63.39, y: -3, z: 52.1}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -63.39, y: -3, z: -48.9}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Generator:
       UsingGenerator: 1
@@ -28,9 +36,9 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       GeneratorSpawnPoints:
-      - Position: {x: 5.79, y: -6.5, z: -2.78}
+      - Position: {x: 5.79, y: -6.3, z: -2.78}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-    Capsule:
+    energy:
       UsingCapsule: 1
       Quantity: 1
       PrefabReference:
@@ -39,9 +47,33 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       SpawnPoints:
-      - Position: {x: -65.87, y: 0.9, z: 71.72}
+      - Position: {x: -64.87, y: 0.9, z: 70.72}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 1.67, y: 0.36, z: -85.5}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
       - Position: {x: 30.65, y: 3.7600002, z: 75.17}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -88.1, y: 0.36, z: -29.4}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -15.3, y: -2.6399999, z: 68.42}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -50.47, y: 1.36, z: 25.07}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -57.6, y: 0.36, z: -82.8}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 73.15, y: 3.7600002, z: 52.34}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 73.15, y: 0.7600002, z: 14.44}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -82.87, y: 0.9, z: 70.72}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 73.15, y: 3.7600002, z: 75.17}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 51.73, y: 3.7600002, z: -112.59}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -83.85, y: -4.64, z: 6.16}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -77.04, y: 0.36, z: -107.74}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
     Enemy:
       UsingEnemy: 1
@@ -54,7 +86,17 @@ MonoBehaviour:
           m_SubObjectType: 
           m_EditorAssetChanged: 0
       SpawnPoints:
-      - Position: {x: -31.1, y: 0, z: -30.6}
+      - Position: {x: 90.9, y: -3, z: 13.300003}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: 12.900002, y: -3, z: 84.3}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -41.1, y: -3, z: 84.3}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -107.69, y: -3, z: 52.71}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -25, y: -3, z: -127.2}
+        Rotation: {x: -0, y: -0, z: -0, w: 1}
+      - Position: {x: -105.1, y: -3, z: -49.27}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
   Reward:
     Car:

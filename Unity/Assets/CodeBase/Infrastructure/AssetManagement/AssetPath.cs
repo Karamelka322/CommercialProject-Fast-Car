@@ -4,7 +4,7 @@ namespace CodeBase.Services.AssetProvider
     {
         public const string GameUpdatePath = "Infrastructure/GameUpdate";
         public const string ProjectContextPath = "Infrastructure/ProjectContext";
-        public const string FrameDebuggerPath = "UI/Debugger/FrameRateDebugger";
+        public const string FrameDebuggerPath = "UI/Debugger/FrameRateDisplay";
 
         public const string MenuCurtainPath = "UI/Curtains/LoadingMenuCurtain";
         public const string LevelCurtainPath = "UI/Curtains/LoadingLevelCurtain";
@@ -27,6 +27,8 @@ namespace CodeBase.Services.AssetProvider
         public const string ButtonsInputPath = "UI/HUD/Input/Buttons_InputVariant";
         public const string AreasInputPath = "UI/HUD/Input/Areas_InputVariant";
 
+        public const string EnergyMarkerPath = "UI/HUD/Waymarkers/EnergyMarker";
+        
         public const string SkipButtonPath = "UI/SkipButton";
         public const string TimerPath = "UI/Timer";
 

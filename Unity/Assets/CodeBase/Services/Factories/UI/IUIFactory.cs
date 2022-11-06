@@ -20,5 +20,6 @@ namespace CodeBase.Services.Factories.UI
         void LoadDefeatWindow();
         void LoadVictoryWindow();
         Task LoadAllResourcesForLevel();
+        Waymarker LoadEnergyMarker(Transform target);
     }
 }

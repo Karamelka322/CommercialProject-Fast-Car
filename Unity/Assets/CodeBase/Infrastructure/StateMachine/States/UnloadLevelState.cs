@@ -2,13 +2,13 @@ using CodeBase.Infrastructure.States;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
-using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.SaveLoad;
 using CodeBase.Services.Spawner;
+using CodeBase.Services.Tasks;
 using CodeBase.Services.Victory;
 
 namespace CodeBase.Infrastructure
@@ -26,6 +26,7 @@ namespace CodeBase.Infrastructure
         private readonly IVictoryService _victoryService;
         private readonly IDefeatService _defeatService;
         private readonly IReplayService _replayService;
+        private readonly ITaskService _taskService;
 
         public UnloadLevelState(
             IGameStateMachine gameStateMachine,
@@ -38,8 +39,10 @@ namespace CodeBase.Infrastructure
             IPauseService pauseService,
             IRandomService randomService,
             ISaveLoadDataService saveLoadDataService,
-            IAssetManagementService assetManagementService)
+            IAssetManagementService assetManagementService,
+            ITaskService taskService)
         {
+            _taskService = taskService;
             _gameStateMachine = gameStateMachine;
             _spawnerService = spawnerService;
             _victoryService = victoryService;
@@ -79,6 +82,7 @@ namespace CodeBase.Infrastructure
             _pauseService.CleanUp();
             _randomService.CleanUp();
             _assetManagementService.CleanUp();
+            _taskService.CleanUp();
         }
 
         private void CleanupPlayerSessionData() => 

@@ -12,15 +12,15 @@ namespace CodeBase.Services.Spawner
     [UsedImplicitly]
     public class SpawnerService : ISpawnerService
     {
-        private readonly ICapsuleSpawnerModule _capsuleSpawnerModule;
+        public EnergySpawnerModule EnergySpawnerModule { get; }
+        
         private readonly IEnemySpawnerModule _enemySpawnerModule;
         private readonly IGeneratorSpawnerModule _generatorSpawnerModule;
 
         private LevelStaticData _levelStaticData;
-        private ISpawnerService _spawnerServiceImplementation;
 
         private bool UsingGenerator => _levelStaticData.Spawn.Generator.UsingGenerator;
-        private bool UsingCapsule => _levelStaticData.Spawn.Capsule.UsingCapsule;
+        private bool UsingCapsule => _levelStaticData.Spawn.energy.UsingCapsule;
         private bool UsingEnemy => _levelStaticData.Spawn.Enemy.UsingEnemy;
 
         public SpawnerService(
@@ -31,7 +31,7 @@ namespace CodeBase.Services.Spawner
             ICoroutineRunner coroutineRunner)
         {
             _generatorSpawnerModule = new GeneratorSpawnerModule(levelFactory, randomService);
-            _capsuleSpawnerModule = new CapsuleSpawnerModule(levelFactory, randomService);
+            EnergySpawnerModule = new EnergySpawnerModule(levelFactory, randomService);
             _enemySpawnerModule = new EnemySpawnerModule(randomService, enemyFactory, persistentDataService, coroutineRunner);
         }
 
@@ -43,7 +43,7 @@ namespace CodeBase.Services.Spawner
                 _generatorSpawnerModule.SetConfig(levelStaticData.Spawn.Generator);
             
             if(UsingCapsule)
-                _capsuleSpawnerModule.SetConfig(levelStaticData.Spawn.Capsule);
+                EnergySpawnerModule.SetConfig(levelStaticData.Spawn.energy);
 
             if(UsingEnemy)
                 _enemySpawnerModule.SetConfig(levelStaticData.Spawn.Enemy);
@@ -55,7 +55,7 @@ namespace CodeBase.Services.Spawner
                 await _generatorSpawnerModule.LoadResourcesAsync();
             
             if (UsingCapsule)
-                await _capsuleSpawnerModule.LoadResourcesAsync();
+                await EnergySpawnerModule.LoadResourcesAsync();
 
             if (UsingEnemy)
                 await _enemySpawnerModule.LoadResourcesAsync();
@@ -70,7 +70,7 @@ namespace CodeBase.Services.Spawner
         public async void SpawnOnUpdate()
         {
             if(UsingCapsule)
-                await _capsuleSpawnerModule.TrySpawnCapsule();
+                await EnergySpawnerModule.TrySpawnEnergy();
             
             if(UsingEnemy)
                 _enemySpawnerModule.TrySpawnEnemy();
@@ -82,7 +82,7 @@ namespace CodeBase.Services.Spawner
                 _generatorSpawnerModule.Clear();
 
             if(UsingCapsule)
-                _capsuleSpawnerModule.Clear();
+                EnergySpawnerModule.Clear();
 
             if(UsingEnemy)
                 _enemySpawnerModule.Clear();

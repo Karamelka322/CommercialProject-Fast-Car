@@ -1,6 +1,6 @@
-using System;
 using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Logic.Enemy;
+using CodeBase.Services.Tween;
 using UnityEngine;
 using Zenject;
 
@@ -12,10 +12,12 @@ namespace CodeBase.Logic.Car
         [SerializeField] private Car _car;
         
         private ILevelMediator _mediator;
+        private ITweenService _tweenService;
 
         [Inject]
-        private void Construct(ILevelMediator mediator)
+        private void Construct(ILevelMediator mediator, ITweenService tweenService)
         {
+            _tweenService = tweenService;
             _mediator = mediator;
         }
 
@@ -25,15 +27,12 @@ namespace CodeBase.Logic.Car
             {
                 Crash = true;
                 _mediator.EnableMoveBackwardsButton();
-            }
-        }
-
-        protected override void OnTriggerExit(Collider other)
-        {
-            if(CheckCrash(other))
-            {
-                Crash = false;
-                _mediator.DisableMoveBackwardsButton();
+                
+                _tweenService.SingleTimer<PlayerCrash>(3f, () =>
+                {
+                    Crash = false;
+                    _mediator.DisableMoveBackwardsButton();
+                });
             }
         }
 

@@ -1,6 +1,7 @@
 using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.Input;
+using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
 using CodeBase.Services.Update;
 using CodeBase.Services.Victory;
@@ -17,10 +18,12 @@ namespace CodeBase.Logic.Player
 
         private IUpdateService _updateService;
         private ILevelMediator _mediator;
+        private IRandomService _randomService;
 
         [Inject]
-        public void Construct(ILevelMediator mediator, IUpdateService updateService)
+        public void Construct(ILevelMediator mediator, IUpdateService updateService, IRandomService randomService)
         {
+            _randomService = randomService;
             _mediator = mediator;
             _updateService = updateService;
         }
@@ -41,8 +44,13 @@ namespace CodeBase.Logic.Player
                 _car.DisableDrift();
         }
 
-        public void OnReplay() => 
+        public void OnReplay()
+        {
+            transform.position = _randomService.PlayerSpawnPoint();
+            transform.rotation = Quaternion.identity;
+            
             _car.DisableDrift();
+        }
 
         public void OnDefeat() => 
             _car.Property.Axis = Vector2.zero;

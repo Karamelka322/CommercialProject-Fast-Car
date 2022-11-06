@@ -5,6 +5,7 @@ using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Replay;
+using CodeBase.Services.Tasks;
 using CodeBase.UI;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -23,16 +24,19 @@ namespace CodeBase.Infrastructure
         private readonly IReplayService _replayService;
         private readonly IPauseService _pauseService;
         private readonly IUIFactory _uiFactory;
+        private readonly ITaskService _taskService;
 
         private LoadingCurtain _curtain;
-        
+
         public ReplayLevelState(
             IGameStateMachine gameStateMachine,
             IReplayService replayService,
             IUIFactory uiFactory,
             IPauseService pauseService,
-            IPersistentDataService persistentDataService)
+            IPersistentDataService persistentDataService,
+            ITaskService taskService)
         {
+            _taskService = taskService;
             _gameStateMachine = gameStateMachine;
             _replayService = replayService;
             _uiFactory = uiFactory;
@@ -51,12 +55,25 @@ namespace CodeBase.Infrastructure
 
         private void ReplayLevel()
         {
+            TryUpdateRecordTime();
+            
             _pauseService.SetPause(false);
             _replayService.InformHandlers();
+            
+            _taskService.CleanUp();
 
             ResetCamera();
             ResetStopwatch();
             EnterLoopLevelState();
+        }
+
+        private void TryUpdateRecordTime()
+        {
+            float recordTime = _persistentDataService.PlayerData.ProgressData.RecordTime;
+            float stopwatch = _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime;
+
+            if (recordTime < stopwatch)
+                _persistentDataService.PlayerData.ProgressData.RecordTime = stopwatch;
         }
 
         private void ResetStopwatch() => 

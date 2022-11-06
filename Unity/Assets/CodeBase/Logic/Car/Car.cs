@@ -60,7 +60,9 @@ namespace CodeBase.Logic.Car
             _drift = new Drift(transform, _rearLeftWheel, _rearRightWheel, _frontLeftWheel, _frontRightWheel, Property);
             _stabilization = new Stabilization(Property, transform);
             
-            _rigidbody.centerOfMass = _centerOfMass.LocalPosition;   
+            _backup = new CarBackup(Vector3.zero, Vector3.zero);
+
+            _rigidbody.centerOfMass = _centerOfMass.LocalPosition;
         }
 
         private void Start()
@@ -122,7 +124,9 @@ namespace CodeBase.Logic.Car
 
         public void OnEnabledPause()
         {
-            _backup = new CarBackup(_rigidbody.velocity, _rigidbody.angularVelocity);
+            _backup.Velocity = _rigidbody.velocity;
+            _backup.AngularVelocity = _rigidbody.angularVelocity;
+            
             _rigidbody.isKinematic = true;
         }
 
@@ -155,8 +159,8 @@ namespace CodeBase.Logic.Car
 
         private class CarBackup
         {
-            public readonly Vector3 Velocity;
-            public readonly Vector3 AngularVelocity;
+            public Vector3 Velocity;
+            public Vector3 AngularVelocity;
 
             public CarBackup(Vector3 velocity, Vector3 angularVelocity)
             {

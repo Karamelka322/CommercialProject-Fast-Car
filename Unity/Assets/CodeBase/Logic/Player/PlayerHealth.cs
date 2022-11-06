@@ -51,7 +51,10 @@ namespace CodeBase.Logic.Player
             persistentData.SessionData.PlayerData.MaxHealth = _maxHealth;
         }
 
-        public void OnReplay() => 
+        public void OnReplay()
+        {
             _health = _maxHealth;
+            _mediator.UpdateHealthBar(1);
+        }
     }
 }

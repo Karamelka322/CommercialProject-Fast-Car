@@ -1,12 +1,13 @@
 using System.Threading.Tasks;
 using CodeBase.Data.Static.Level;
+using CodeBase.Infrastructure.Mediator.Level;
+using CodeBase.Logic.Level.Generator;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
-using CodeBase.Services.Victory;
 using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
@@ -23,8 +24,15 @@ namespace CodeBase.Services.Factories.Level
             _diContainer = diContainer;
         }
 
-        public async Task LoadGeneratorAsync(PointData spawnPoint) => 
-            InstantiateRegister(await LoadResourcesGeneratorAsync(), spawnPoint);
+        public async Task LoadGeneratorAsync(PointData spawnPoint)
+        {
+            GameObject prefab = await LoadResourcesGeneratorAsync();
+
+            GameObject generator = Instantiate(prefab, spawnPoint);
+            Register(generator);
+
+            _diContainer.Resolve<ILevelMediator>().Construct(generator.GetComponent<GeneratorPrefab>());
+        }
 
         public async Task<GameObject> LoadResourcesGeneratorAsync()
         {
@@ -39,18 +47,17 @@ namespace CodeBase.Services.Factories.Level
             return prefab;
         }
 
-        public async Task<GameObject> LoadCapsuleAsync(PointData spawnPoint)
+        public async Task<GameObject> LoadEnergyAsync(PointData spawnPoint)
         {
-            GameObject capsule = await LoadResourcesCapsuleAsync();
-            InstantiateRegister(capsule, spawnPoint);
-            return capsule;
+            GameObject prefab = await LoadResourcesEnergyAsync();
+            return Instantiate(prefab, spawnPoint);
         }
         
-        public async Task<GameObject> LoadResourcesCapsuleAsync()
+        public async Task<GameObject> LoadResourcesEnergyAsync()
         {
-            CapsuleSpawnConfig config = _diContainer
+            EnergySpawnConfig config = _diContainer
                 .Resolve<IPersistentDataService>()
-                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.Capsule;
+                .PlayerData.SessionData.LevelData.CurrentLevelConfig.Spawn.energy;
 
             GameObject prefab = await _diContainer
                 .Resolve<IAssetManagementService>()
@@ -59,9 +66,6 @@ namespace CodeBase.Services.Factories.Level
             return prefab;
         }
         
-        private void InstantiateRegister(Object prefab, PointData spawnPoint) => 
-            Register(Instantiate(prefab, spawnPoint));
-
         private GameObject Instantiate(Object prefab, PointData spawnPoint) => 
             _diContainer.InstantiatePrefab(prefab, spawnPoint.Position, spawnPoint.Rotation, null);
 
@@ -70,7 +74,6 @@ namespace CodeBase.Services.Factories.Level
             _diContainer.Resolve<IReadWriteDataService>().Register(gameObject);
             _diContainer.Resolve<IReplayService>().Register(gameObject);
             _diContainer.Resolve<IDefeatService>().Register(gameObject);
-            _diContainer.Resolve<IVictoryService>().Register(gameObject);
         }
     }
 }

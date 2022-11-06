@@ -13,8 +13,8 @@ namespace CodeBase.Logic.Level.Generator
         [SerializeField] 
         private Point _capturePoint;
 
-        public event Action<Energy> OnEnergyLift;
-        
+        public Action<Energy> EnergyCapture;
+
         private void OnEnable() => 
             _captureArea.OnAreaEnter += OnCaptureAreaEnter;
 
@@ -34,7 +34,7 @@ namespace CodeBase.Logic.Level.Generator
         {
             energy.Raise(_capturePoint.transform);
             
-            OnEnergyLift?.Invoke(energy);
+            EnergyCapture?.Invoke(energy);
             
             Destroy(energy.gameObject, 1f);
         }
