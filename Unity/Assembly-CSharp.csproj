@@ -127,6 +127,7 @@
      <Compile Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffectConstants.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemySpawnPoint.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\ObjectPooling\StaticObjectPool.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Audio\MusicSource.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\PlayerSpawnConfig.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Bars\UIBar.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Level\Spawn\EnergySpawnConfig.cs" />
@@ -187,7 +188,7 @@
      <Compile Include="Assets\CodeBase\Logic\UI\Buttons\ResumeButton.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel\IWrapper.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Victory\IVictoryService.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\CarAnimation.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Animation\CarSlopesAnimation.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\States\LoopLevelState.cs" />
      <Compile Include="Assets\CodeBase\Logic\Level\Obstacle\IObstacle.cs" />
      <Compile Include="Assets\CodeBase\Extension\VectorExtension.cs" />
@@ -274,7 +275,8 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Audio\MusicSource.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Animation\CarHitAnimation.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Invulnerability.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.shader" />

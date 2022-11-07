@@ -1,6 +1,4 @@
 using CodeBase.Infrastructure.Mediator.Level;
-using CodeBase.Logic.Enemy;
-using CodeBase.Services.Tween;
 using UnityEngine;
 using Zenject;
 
@@ -9,15 +7,11 @@ namespace CodeBase.Logic.Car
     [RequireComponent(typeof(Collider))]
     public class PlayerCrash : CarCrash
     {
-        [SerializeField] private Car _car;
-        
         private ILevelMediator _mediator;
-        private ITweenService _tweenService;
 
         [Inject]
-        private void Construct(ILevelMediator mediator, ITweenService tweenService)
+        private void Construct(ILevelMediator mediator)
         {
-            _tweenService = tweenService;
             _mediator = mediator;
         }
 
@@ -27,16 +21,22 @@ namespace CodeBase.Logic.Car
             {
                 Crash = true;
                 _mediator.EnableMoveBackwardsButton();
-                
-                _tweenService.SingleTimer<PlayerCrash>(3f, () =>
-                {
-                    Crash = false;
-                    _mediator.DisableMoveBackwardsButton();
-                });
+
+                _mediator.GetBackwardsButton().Item1.Disabled += DisableCrash;
+                _mediator.GetBackwardsButton().Item2.Disabled += DisableCrash;
             }
         }
 
+        private void DisableCrash()
+        {
+            Crash = false;
+            _mediator.DisableMoveBackwardsButton();
+            
+            _mediator.GetBackwardsButton().Item1.Disabled -= DisableCrash;
+            _mediator.GetBackwardsButton().Item2.Disabled -= DisableCrash;
+        }
+
         private bool CheckCrash(Collider other) => 
-            other.gameObject.layer == LayerMask.NameToLayer(Ground) || other.TryGetComponent(out EnemyPrefab enemy);
+            other.gameObject.layer == LayerMask.NameToLayer(Ground);
     }
 }

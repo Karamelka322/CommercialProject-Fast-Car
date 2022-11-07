@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9f5463c023432ea19e5ecaa103591f, type: 3}
   m_Name: Level_1 (Pit)
   m_EditorClassIdentifier: 
-  VictoryTime: 120
+  VictoryTime: 240
   Spawn:
     Player:
       SpawnPoints:
@@ -78,8 +78,8 @@ MonoBehaviour:
     Enemy:
       UsingEnemy: 1
       Enemies:
-      - Period: {x: 0, y: 29.721033}
-        Range: 5
+      - Period: {x: 0, y: 100}
+        Range: 2
         PrefabReference:
           m_AssetGUID: d19ee233988a10f4e96b9e6bdd39b300
           m_SubObjectName: 

@@ -32,6 +32,11 @@ namespace CodeBase.Services.Input
         }
 
         public void EnableMoveBackwardsButton() { }
+        public (ButtonInputElement, ButtonInputElement) GetBackwardsButton()
+        {
+            throw new NotImplementedException();
+        }
+
         public void DisableMoveBackwardsButton() { }
     }
 }

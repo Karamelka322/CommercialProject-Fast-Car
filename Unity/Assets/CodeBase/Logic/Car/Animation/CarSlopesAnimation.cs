@@ -5,7 +5,7 @@ using Zenject;
 
 namespace CodeBase.Logic.Car
 {
-    public class CarAnimation : MonoBehaviour
+    public class CarSlopesAnimation : MonoBehaviour
     {
         [SerializeField] 
         private Animator _animator;

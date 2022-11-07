@@ -10,7 +10,7 @@ namespace CodeBase.Logic.Enemy
 
         private void OnCollisionEnter(Collision other)
         {
-            if(other.gameObject.TryGetComponent(out IObstacle obstacle)) 
+            if(other.gameObject.TryGetComponent(out IObstacle obstacle))
                 _enemyHealth.ReduceHealth(obstacle.Damage);
         }
     }

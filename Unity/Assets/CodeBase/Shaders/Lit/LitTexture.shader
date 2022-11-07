@@ -2,6 +2,7 @@ Shader "Custom/Lit/Texture"
 {
     Properties
     {
+        _Color ("Color", Color) = (0, 0, 0, 0)
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }
     SubShader 
@@ -13,6 +14,7 @@ Shader "Custom/Lit/Texture"
         #pragma surface surf Diffuse
         
         sampler2D _MainTex;
+        half4 _Color;
         
         struct Input
         {
@@ -30,7 +32,7 @@ Shader "Custom/Lit/Texture"
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            o.Albedo = tex2D (_MainTex, IN.uv_MainTex.xy).rgb;
+            o.Albedo = tex2D (_MainTex, IN.uv_MainTex.xy).rgb * _Color.rgb;
         }
         ENDCG
     }

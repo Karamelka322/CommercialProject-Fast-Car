@@ -575,6 +575,7 @@ GameObject:
   - component: {fileID: 3433266551837669722}
   - component: {fileID: 4459666105701282217}
   - component: {fileID: 7424912661572109441}
+  - component: {fileID: 4093808274904112039}
   m_Layer: 7
   m_Name: Demon
   m_TagString: Untagged
@@ -671,6 +672,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 4819328210169613564}
+  _hitAnimation: {fileID: 1268223844889319837}
+  _invulnerability: {fileID: 4093808274904112039}
 --- !u!114 &4819328210169613564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +778,19 @@ MonoBehaviour:
   _actionTime: 2
   _driftTime: 2
   _acceleration: 5
+--- !u!114 &4093808274904112039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433266551837669723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c75ffc5ceba4102b60159bf04f73542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityDuration: 3
 --- !u!1 &4638961487201264522
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +804,7 @@ GameObject:
   - component: {fileID: 4008934247161284279}
   - component: {fileID: 8390394860781591629}
   - component: {fileID: 5864833833526898729}
+  - component: {fileID: 1268223844889319837}
   m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
@@ -919,6 +936,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1268223844889319837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638961487201264522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e6a82a3174cae9988d787c3fdf8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 4008934247161284279}
+  _speed: 0.5
+  _number: 4
 --- !u!1 &4679880451572521007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d76f2f525ae4c4eaa08a1a1b5d1e5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 4459666105701282217}
 --- !u!1 &5276416416547560865
 GameObject:
   m_ObjectHideFlags: 0

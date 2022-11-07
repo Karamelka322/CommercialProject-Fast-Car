@@ -1,6 +1,4 @@
-using System;
 using CodeBase.Services.Input.Element;
-using CodeBase.Services.Tween;
 using CodeBase.Services.Update;
 using UnityEngine;
 using Zenject;
@@ -56,7 +54,7 @@ namespace CodeBase.Services.Input
 #if UNITY_EDITOR
             _updateService.OnFixedUpdate += OnFixedUpdate;
 #endif
-            
+
             _driftLeftButton.Enabled += OnEnabledDriftButton;
             _driftRightButton.Enabled += OnEnabledDriftButton;
             _driftLeftButton.Disabled += OnDisabledDriftButton;
@@ -84,6 +82,9 @@ namespace CodeBase.Services.Input
             _downLeftButton.gameObject.SetActive(true);
             _downRightButton.gameObject.SetActive(true);
         }
+
+        public (ButtonInputElement, ButtonInputElement) GetBackwardsButton() => 
+            (_downLeftButton, _downRightButton);
 
         public void DisableMoveBackwardsButton()
         {

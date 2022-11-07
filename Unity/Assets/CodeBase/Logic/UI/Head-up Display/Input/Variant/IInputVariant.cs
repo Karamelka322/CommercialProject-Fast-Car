@@ -1,4 +1,4 @@
-using System;
+using CodeBase.Services.Input.Element;
 using UnityEngine;
 
 namespace CodeBase.Services.Input
@@ -10,6 +10,7 @@ namespace CodeBase.Services.Input
 
 
         void EnableMoveBackwardsButton();
+        (ButtonInputElement, ButtonInputElement) GetBackwardsButton();
         void DisableMoveBackwardsButton();
     }
 }

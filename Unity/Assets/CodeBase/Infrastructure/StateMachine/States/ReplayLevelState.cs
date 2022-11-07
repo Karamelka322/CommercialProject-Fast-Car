@@ -5,7 +5,6 @@ using CodeBase.Services.Factories.UI;
 using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
 using CodeBase.Services.Replay;
-using CodeBase.Services.Tasks;
 using CodeBase.UI;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -24,7 +23,6 @@ namespace CodeBase.Infrastructure
         private readonly IReplayService _replayService;
         private readonly IPauseService _pauseService;
         private readonly IUIFactory _uiFactory;
-        private readonly ITaskService _taskService;
 
         private LoadingCurtain _curtain;
 
@@ -33,10 +31,8 @@ namespace CodeBase.Infrastructure
             IReplayService replayService,
             IUIFactory uiFactory,
             IPauseService pauseService,
-            IPersistentDataService persistentDataService,
-            ITaskService taskService)
+            IPersistentDataService persistentDataService)
         {
-            _taskService = taskService;
             _gameStateMachine = gameStateMachine;
             _replayService = replayService;
             _uiFactory = uiFactory;
@@ -60,8 +56,6 @@ namespace CodeBase.Infrastructure
             _pauseService.SetPause(false);
             _replayService.InformHandlers();
             
-            _taskService.CleanUp();
-
             ResetCamera();
             ResetStopwatch();
             EnterLoopLevelState();

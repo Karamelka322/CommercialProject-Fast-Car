@@ -2,6 +2,7 @@ using CodeBase.Logic.Level.Generator;
 using CodeBase.Logic.Player;
 using CodeBase.Logic.Player.Ability;
 using CodeBase.Services.Input;
+using CodeBase.Services.Input.Element;
 using CodeBase.UI;
 using CodeBase.UI.Input;
 using UnityEngine;
@@ -50,5 +51,6 @@ namespace CodeBase.Infrastructure.Mediator.Level
         public Vector2 MovementAxis() => _inputVariant.Axis;
         public void EnableMoveBackwardsButton() => _inputVariant.EnableMoveBackwardsButton();
         public void DisableMoveBackwardsButton() => _inputVariant.DisableMoveBackwardsButton();
+        public (ButtonInputElement, ButtonInputElement) GetBackwardsButton() => _inputVariant.GetBackwardsButton();
     }
 }
