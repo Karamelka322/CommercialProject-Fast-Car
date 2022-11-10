@@ -1,21 +1,36 @@
-using CodeBase.Services.Defeat;
-using CodeBase.Services.Factories.UI;
+using System;
+using CodeBase.Services.Pause;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerDefeat : MonoBehaviour, IPlayerDefeatHandler
+    public class PlayerDefeat : MonoBehaviour, IAffectPlayerDefeat
     {
-        private IUIFactory _uiFactory;
+        [SerializeField] private PlayerHealth _playerHealth;
+
+        private IPauseService _pauseService;
+        public event Action OnDefeat;
 
         [Inject]
-        public void Construct(IUIFactory uiFactory)
+        private void Construct(IPauseService pauseService)
         {
-            _uiFactory = uiFactory;
+            _pauseService = pauseService;
         }
+        
+        private void Start() => 
+            _playerHealth.OnUpdateHealth += OnUpdateHealth;
+        
+        private void OnDestroy() => 
+            _playerHealth.OnUpdateHealth -= OnUpdateHealth;
 
-        public void OnDefeat() => 
-            _uiFactory.LoadDefeatWindow();
+        private void OnUpdateHealth(float health)
+        {
+            if(health > 0)
+                return;
+            
+            _pauseService.SetPause(true);
+            OnDefeat?.Invoke();
+        }
     }
 }

@@ -20,16 +20,23 @@ namespace CodeBase.Services.Replay
         {
             for (int i = 0; i < _handlers.Count; i++)
             {
-                if(_handlers[i].IsNullHandler() == false)
+                try
                 {
-                    _handlers[i].OnReplay();
+                    if(_handlers[i].IsNullHandler())
+                    {
+                        _handlers.RemoveAt(i);
+                        i--;
+                    }
                 }
-                else
+                catch
                 {
                     _handlers.RemoveAt(i);
                     i--;
                 }
             }
+
+            foreach (IReplayHandler t in _handlers)
+                t.OnReplay();
         }
 
         public void CleanUp() => 

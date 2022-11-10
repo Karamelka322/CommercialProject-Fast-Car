@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Extension;
 using CodeBase.Infrastructure;
@@ -74,16 +75,23 @@ namespace CodeBase.Services.Pause
         {
             for (int i = 0; i < _handlers.Count; i++)
             {
-                if (_handlers[i].IsNullHandler() == false)
+                try
                 {
-                    Inform(_handlers[i]);
+                    if (_handlers[i].IsNullHandler())
+                    {
+                        _handlers.RemoveAt(i);
+                        i--;
+                    }
                 }
-                else
+                catch
                 {
                     _handlers.RemoveAt(i);
                     i--;
                 }
             }
+
+            foreach (IPauseHandler handler in _handlers) 
+                Inform(handler);
         }
 
         private void Inform(IPauseHandler handler)

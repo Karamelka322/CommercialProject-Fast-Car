@@ -12,7 +12,7 @@ using Zenject;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerVictory : MonoBehaviour, IAffectPlayerVictory, IStreamingReadData, ISingleWriteData
+    public class PlayerVictory : MonoBehaviour, IAffectPlayerVictory, ISingleWriteData
     {
         private IRewardService _rewardService;
         private IUIFactory _uiFactory;

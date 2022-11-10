@@ -56,8 +56,19 @@ namespace CodeBase.Services.Random
         public void BindTimeToSpawnPoint(float time, PointData point) => 
             _coroutineRunner.StartCoroutine(BindTime(time, _enemySpawnPoints, point));
 
+        public void Reset()
+        {
+            for (int i = 0; i < _capsuleSpawnPoints.Length; i++) 
+                _capsuleSpawnPoints[i].IsLocked = false;
+            
+            for (int i = 0; i < _enemySpawnPoints.Length; i++) 
+                _enemySpawnPoints[i].IsLocked = false;
+        }
+        
         public void CleanUp()
         {
+            _config = null;
+            
             _capsuleSpawnPoints = Array.Empty<SpawnPointData>();
             _enemySpawnPoints = Array.Empty<SpawnPointData>();
         }

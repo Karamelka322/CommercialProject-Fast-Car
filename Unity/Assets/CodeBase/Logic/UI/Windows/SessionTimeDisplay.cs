@@ -1,4 +1,5 @@
 using CodeBase.Extension;
+using CodeBase.Infrastructure.Mediator.Level;
 using CodeBase.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,18 +12,18 @@ namespace CodeBase.UI.Windows
         [SerializeField] 
         private Text _text;
 
-        private IPersistentDataService _persistentDataService;
+        private ILevelMediator _levelMediator;
 
         [Inject]
-        private void Construct(IPersistentDataService persistentDataService)
+        private void Construct(ILevelMediator levelMediator)
         {
-            _persistentDataService = persistentDataService;
+            _levelMediator = levelMediator;
         }
 
         private void Awake() => 
             Display();
 
         private void Display() => 
-            _text.text = "Time - " + _persistentDataService.PlayerData.SessionData.LevelData.StopwatchTime.ConvertToDateTime();
+            _text.text = "Time - " + _levelMediator.StopwatchTime().ConvertToDateTime();
     }
 }

@@ -29,8 +29,11 @@ namespace CodeBase.Services.Factories.UI
             _diContainer = diContainer;
         }
 
-        public async Task LoadAllResourcesForLevel() => 
-            await _diContainer.Resolve<IAssetManagementService>().LoadGroupAsync<GameObject>("Level UI");
+        public async Task LoadAllResourcesForLevel()
+        {
+            await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.PauseWindowPath);
+            await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.DefeatWindowPath);
+        }
 
         public LoadingCurtain LoadMenuCurtain()
         {
@@ -89,6 +92,7 @@ namespace CodeBase.Services.Factories.UI
         public async void LoadDefeatWindow()
         {
             GameObject prefab = await _diContainer.Resolve<IAssetManagementService>().LoadAsync<GameObject>(AssetPath.DefeatWindowPath);
+            
             InstantiateRegisterWindow(prefab, UIRoot);
         }
 

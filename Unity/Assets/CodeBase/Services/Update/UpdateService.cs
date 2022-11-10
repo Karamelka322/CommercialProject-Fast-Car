@@ -1,6 +1,5 @@
 using System;
 using CodeBase.Infrastructure;
-using CodeBase.Services.Window;
 using JetBrains.Annotations;
 
 namespace CodeBase.Services.Update

@@ -22,6 +22,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
         private PlayerHealthBar _healthBar;
         private GeneratorPowerBar _powerBar;
         private AbilityBar _abilityBar;
+        private StopwatchDisplay _stopwatchDisplay;
 
         public void Construct(PlayerPrefab player)
         {
@@ -36,6 +37,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
             _healthBar = hud.GetComponentInChildren<PlayerHealthBar>();
             _powerBar = hud.GetComponentInChildren<GeneratorPowerBar>();
             _abilityBar = hud.GetComponentInChildren<AbilityBar>();
+            _stopwatchDisplay = hud.GetComponentInChildren<StopwatchDisplay>();
         }
 
         public void Construct(GeneratorPrefab generator)
@@ -46,6 +48,8 @@ namespace CodeBase.Infrastructure.Mediator.Level
         public void UpdateAbilityBar(float energy) => _abilityBar.Value = energy;
         public void UpdateHealthBar(float health) => _healthBar.Value = health;
         public void UpdateGeneratorBar(float power) => _powerBar.Value = power;
+        public void ShowStopwatch(float time) => _stopwatchDisplay.Show(time);
+        public float StopwatchTime() => _stopwatchDisplay.Time;
 
         public void EnablePlayerAbility() => _playerAbility.Enable();
         public Vector2 MovementAxis() => _inputVariant.Axis;

@@ -8,15 +8,14 @@ using Zenject;
 
 namespace CodeBase.Logic.Player
 {
-    public class PlayerHealth : MonoBehaviour, IStreamingWriteData, IReplayHandler, IAffectPlayerDefeat
+    public class PlayerHealth : MonoBehaviour, IStreamingWriteData, IReplayHandler
     {
         [SerializeField]
         private float _health;
-        
+
+        public Action<float> OnUpdateHealth;
         private float _maxHealth;
-        
         private ILevelMediator _mediator;
-        public event Action OnDefeat;
 
 #if UNITY_EDITOR
         public float Health
@@ -32,17 +31,18 @@ namespace CodeBase.Logic.Player
             _mediator = mediator;
         }
         
-        private void Awake() => 
+        private void Awake()
+        {
             _maxHealth = _health;
-        
+            OnUpdateHealth?.Invoke(_health);
+        }
+
         public void ReduceHealth(float value)
         {
             _health = Mathf.Clamp(_health - value, 0, _maxHealth);
-
-            _mediator.UpdateHealthBar(_health / _maxHealth);
+            OnUpdateHealth?.Invoke(_health);
             
-            if(_health == 0)
-                OnDefeat?.Invoke();
+            _mediator.UpdateHealthBar(_health / _maxHealth);
         }
 
         public void StreamingWriteData(PlayerPersistentData persistentData)
@@ -54,6 +54,7 @@ namespace CodeBase.Logic.Player
         public void OnReplay()
         {
             _health = _maxHealth;
+            OnUpdateHealth?.Invoke(_health);
             _mediator.UpdateHealthBar(1);
         }
     }

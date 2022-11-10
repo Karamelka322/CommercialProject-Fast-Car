@@ -1,10 +1,13 @@
 using System;
 using CodeBase.Infrastructure.States;
 using CodeBase.Logic.Camera;
+using CodeBase.Services.Defeat;
 using CodeBase.Services.Factories.UI;
-using CodeBase.Services.Pause;
 using CodeBase.Services.PersistentProgress;
+using CodeBase.Services.Random;
 using CodeBase.Services.Replay;
+using CodeBase.Services.SaveLoad;
+using CodeBase.Services.Spawner;
 using CodeBase.UI;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -20,8 +23,11 @@ namespace CodeBase.Infrastructure
 
         private readonly IPersistentDataService _persistentDataService;
         private readonly IGameStateMachine _gameStateMachine;
+        private readonly ISaveLoadDataService _saveLoadDataService;
+        private readonly ISpawnerService _spawnerService;
         private readonly IReplayService _replayService;
-        private readonly IPauseService _pauseService;
+        private readonly IDefeatService _defeatService;
+        private readonly IRandomService _randomService;
         private readonly IUIFactory _uiFactory;
 
         private LoadingCurtain _curtain;
@@ -30,34 +36,49 @@ namespace CodeBase.Infrastructure
             IGameStateMachine gameStateMachine,
             IReplayService replayService,
             IUIFactory uiFactory,
-            IPauseService pauseService,
-            IPersistentDataService persistentDataService)
+            IPersistentDataService persistentDataService,
+            ISaveLoadDataService saveLoadDataService,
+            ISpawnerService spawnerService,
+            IRandomService randomService,
+            IDefeatService defeatService)
         {
+            _defeatService = defeatService;
+            _randomService = randomService;
+            _spawnerService = spawnerService;
+            _saveLoadDataService = saveLoadDataService;
             _gameStateMachine = gameStateMachine;
             _replayService = replayService;
             _uiFactory = uiFactory;
-            _pauseService = pauseService;
             _persistentDataService = persistentDataService;
         }
 
         public void Enter()
         {
-            LoadCurtain();
-            ShowCurtain(ReplayLevel);
+            ReplayLevel();
+            
+            //LoadCurtain();
+            //ShowCurtain(ReplayLevel);
         }
 
-        public void Exit() => 
-            HideCurtain();
+        public void Exit()
+        {
+            //HideCurtain();
+        }
 
         private void ReplayLevel()
         {
             TryUpdateRecordTime();
-            
-            _pauseService.SetPause(false);
-            _replayService.InformHandlers();
-            
-            ResetCamera();
             ResetStopwatch();
+            
+            _replayService.InformHandlers();
+            _saveLoadDataService.SavePlayerData();
+            
+            _spawnerService.Reset();
+            _randomService.Reset();
+            
+            _defeatService.SetDefeat(false);
+
+            ResetCamera();
             EnterLoopLevelState();
         }
 

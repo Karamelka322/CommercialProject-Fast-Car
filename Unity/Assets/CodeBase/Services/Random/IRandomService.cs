@@ -15,5 +15,6 @@ namespace CodeBase.Services.Random
         int GetNumberUnlockedEnemySpawnPoints();
         void BindTimeToSpawnPoint(float time, PointData point);
         void CleanUp();
+        void Reset();
     }
 }

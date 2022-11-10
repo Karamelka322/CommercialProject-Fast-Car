@@ -24,6 +24,7 @@ namespace CodeBase.Infrastructure.States
         public void Enter()
         {
             LoadPlayerPersistentDataOrInitNew();
+            SetRenderSettings();
 
 #if UNITY_EDITOR
             LoadDeveloperPersistentDataOrInitNew();
@@ -44,9 +45,10 @@ namespace CodeBase.Infrastructure.States
         {
             PlayerPersistentData persistentData = _saveLoadDataService.LoadPlayerData() ?? NewPlayerPersistentData();
             _progressService.PlayerData = persistentData;
-            
-            Application.targetFrameRate = persistentData.SettingsData.RenderSettingsData.MaxFrameRate;
         }
+
+        private void SetRenderSettings() => 
+            Application.targetFrameRate = _progressService.PlayerData.SettingsData.RenderSettingsData.MaxFrameRate;
 
         private static PlayerPersistentData NewPlayerPersistentData() => 
             new PlayerPersistentData();

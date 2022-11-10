@@ -18,6 +18,8 @@ namespace CodeBase.Logic.Car
         private int _number;
 
         private ICoroutineRunner _coroutineRunner;
+        private Coroutine _animation;
+        
         private static readonly int MainColorPropertyToID = Shader.PropertyToID("_Color");
 
         [Inject]
@@ -27,7 +29,7 @@ namespace CodeBase.Logic.Car
         }
         
         public void Play() => 
-            _coroutineRunner.StartCoroutine(PlayAnimation());
+            _animation ??= _coroutineRunner.StartCoroutine(PlayAnimation());
 
         private IEnumerator PlayAnimation()
         {
@@ -58,6 +60,8 @@ namespace CodeBase.Logic.Car
             {
                 material.SetColor(MainColorPropertyToID, Color.white);
             }
+
+            _animation = null;
             
             yield return new WaitForEndOfFrame();
         }

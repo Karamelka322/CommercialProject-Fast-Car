@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df975b3a37d74fc0bfa903ad6bde8d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerHealth: {fileID: 4819328210169613564}
 --- !u!114 &6330263355980865885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +778,7 @@ MonoBehaviour:
   _car: {fileID: 4459666105701282217}
   _actionTime: 2
   _driftTime: 2
-  _acceleration: 5
+  _acceleration: 6
 --- !u!114 &4093808274904112039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,8 +950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 4008934247161284279}
-  _speed: 0.5
-  _number: 4
+  _speed: 2
+  _number: 7
 --- !u!1 &4679880451572521007
 GameObject:
   m_ObjectHideFlags: 0

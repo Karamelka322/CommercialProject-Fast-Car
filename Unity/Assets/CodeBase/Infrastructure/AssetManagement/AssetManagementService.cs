@@ -15,23 +15,9 @@ namespace CodeBase.Services.AssetProvider
         public void InitializeAsync() => 
             Addressables.InitializeAsync();
 
-        public async Task<T> LoadAsync<T>(AssetReference assetReference) where T : class
-        {
-            if (_сache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandler))
-            {
-                if(completedHandler.IsDone)
-                {
-                    return completedHandler.Result as T;
-                }
+        public async Task<T> LoadAsync<T>(AssetReference assetReference) where T : class => 
+            await LoadAsync<T>(assetReference.AssetGUID);
 
-                return await completedHandler.Task as T;
-            }
-
-            AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetReference);
-            _сache[assetReference.AssetGUID] = handle;
-            return await handle.Task;
-        }
-        
         public async Task<T> LoadAsync<T>(string id) where T : class
         {
             if (_сache.TryGetValue(id, out AsyncOperationHandle completedHandler))
@@ -47,23 +33,6 @@ namespace CodeBase.Services.AssetProvider
             AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(id);
             _сache[id] = handle;
             return await handle.Task;
-        }
-
-        public async Task<IList<T>> LoadGroupAsync<T>(string name) where T : class
-        {
-            if (_сache.TryGetValue(name, out AsyncOperationHandle completedHandler))
-            {
-                if(completedHandler.IsDone)
-                {
-                    return completedHandler.Result as IList<T>;
-                }
-
-                return await completedHandler.Task as IList<T>;
-            }
-
-            AsyncOperationHandle<IList<T>> handles = Addressables.LoadAssetsAsync<T>(name, null);
-            _сache[name] = handles;
-            return await handles.Task;
         }
 
         public T Load<T>(string assetPath) where T : Object => 

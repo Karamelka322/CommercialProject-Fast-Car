@@ -25,5 +25,7 @@ namespace CodeBase.Infrastructure.Mediator.Level
         void Construct(GeneratorPrefab generator);
         (ButtonInputElement, ButtonInputElement) GetBackwardsButton();
         void DisableMoveBackwardsButton();
+        void ShowStopwatch(float time);
+        float StopwatchTime();
     }
 }

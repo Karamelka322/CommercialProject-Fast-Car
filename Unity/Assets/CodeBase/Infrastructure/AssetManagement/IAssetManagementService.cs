@@ -14,6 +14,5 @@ namespace CodeBase.Services.AssetProvider
         T[] LoadAll<T>(string assetPath) where T : Object;
         void CleanUp();
         Task<T> LoadAsync<T>(string id) where T : class;
-        Task<IList<T>> LoadGroupAsync<T>(string name) where T : class;
     }
 }

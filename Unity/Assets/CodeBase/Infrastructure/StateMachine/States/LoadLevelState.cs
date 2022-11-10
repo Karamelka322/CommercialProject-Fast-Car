@@ -32,12 +32,12 @@ namespace CodeBase.Infrastructure.States
         private readonly IStaticDataService _staticDataService;
         private readonly IRandomService _randomService;
         private readonly IReadWriteDataService _readWriteDataService;
-        private readonly IPauseService _pauseService;
         private readonly ISpawnerService _spawnerService;
 
         private LevelStaticData _levelData;
         private LoadingCurtain _curtain;
-        
+        private IPauseService _pauseService;
+
         public LoadLevelState(
             IGameStateMachine gameStateMachine,
             ISceneLoaderService sceneLoaderService,
@@ -47,9 +47,10 @@ namespace CodeBase.Infrastructure.States
             IStaticDataService staticDataService,
             IRandomService randomService,
             IReadWriteDataService readWriteDataService,
-            IPauseService pauseService,
-            ISpawnerService spawnerService)
+            ISpawnerService spawnerService, 
+            IPauseService pauseService)
         {
+            _pauseService = pauseService;
             _gameStateMachine = gameStateMachine;
             _sceneLoaderService = sceneLoaderService;
             _uiFactory = uiFactory;
@@ -58,7 +59,6 @@ namespace CodeBase.Infrastructure.States
             _staticDataService = staticDataService;
             _randomService = randomService;
             _readWriteDataService = readWriteDataService;
-            _pauseService = pauseService;
             _spawnerService = spawnerService;
         }
 
@@ -81,7 +81,7 @@ namespace CodeBase.Infrastructure.States
             _sceneLoaderService.Load(_levelData.SceneName, LoadSceneMode.Single, OnLoaded);
 
         private async void OnLoaded()
-        {
+        {           
             _randomService.SetConfig(_levelData);
             _spawnerService.SetConfig(_levelData);
             
@@ -97,6 +97,7 @@ namespace CodeBase.Infrastructure.States
             InitUIRoot();
             
             _readWriteDataService.InformSingleReaders();
+            _pauseService.SetPause(true);
             
             EnterLoopLevelState();
         }

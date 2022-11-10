@@ -86,17 +86,17 @@ MonoBehaviour:
           m_SubObjectType: 
           m_EditorAssetChanged: 0
       SpawnPoints:
-      - Position: {x: 90.9, y: -3, z: 13.300003}
+      - Position: {x: -95.1, y: -3, z: -49.27}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: 12.900002, y: -3, z: 84.3}
+      - Position: {x: 12.900002, y: -3, z: 80.3}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: -41.1, y: -3, z: 84.3}
+      - Position: {x: -98.69, y: -3, z: 52.71}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: -107.69, y: -3, z: 52.71}
+      - Position: {x: -41.1, y: -3, z: 81.3}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: -25, y: -3, z: -127.2}
+      - Position: {x: 86.9, y: -3, z: 13.300003}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
-      - Position: {x: -105.1, y: -3, z: -49.27}
+      - Position: {x: -25, y: -3, z: -116.2}
         Rotation: {x: -0, y: -0, z: -0, w: 1}
   Reward:
     Car:

@@ -113,15 +113,6 @@ namespace CodeBase.Logic.Car
         public void DisableDrift() => 
             _drift.Disable();
 
-        public void OnReplay()
-        {
-            Property.NowMotorTorque = 0;
-            Property.NowSteeringAngle = 0;
-            
-            _rigidbody.velocity = Vector3.zero;
-            _rigidbody.angularVelocity = Vector3.zero;
-        }
-
         public void OnEnabledPause()
         {
             _backup.Velocity = _rigidbody.velocity;
@@ -136,6 +127,18 @@ namespace CodeBase.Logic.Car
 
             _rigidbody.velocity = _backup.Velocity;
             _rigidbody.angularVelocity = _backup.AngularVelocity;
+        }
+
+        public void OnReplay()
+        {
+            Property.NowMotorTorque = 0;
+            Property.NowSteeringAngle = 0;
+            
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+
+            _backup.Velocity = Vector3.zero;
+            _backup.AngularVelocity = Vector3.zero;
         }
 
         private void SpeedLimit() => 

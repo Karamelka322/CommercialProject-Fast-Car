@@ -1,12 +1,12 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeBase.UI.Input
 {
     public class AbilityBar : UIBar
     {
         [SerializeField] 
-        private TextMeshProUGUI _textCounter;
+        private Text _counter;
 
         public override float Value
         {
@@ -15,7 +15,7 @@ namespace CodeBase.UI.Input
             set
             {
                 value = Mathf.Clamp01(value);
-                _textCounter.text = $"{(int) (value * 100)}%";
+                _counter.text = $"{(int) (value * 100)}%";
                 _image.fillAmount = value;
             }
         }

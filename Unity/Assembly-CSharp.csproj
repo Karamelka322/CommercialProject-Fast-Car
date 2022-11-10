@@ -199,6 +199,7 @@
      <Compile Include="Assets\CodeBase\Services\Window\WindowService.cs" />
      <Compile Include="Assets\CodeBase\Services\Spawner\Modules\Enemy\IEnemySpawnerModule.cs" />
      <Compile Include="Assets\CodeBase\Extension\KeyValueExtension.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Player\Invulnerability.cs" />
      <Compile Include="Assets\CodeBase\Services\Tasks\TaskStatus.cs" />
      <Compile Include="Assets\CodeBase\Logic\Enemy\EnemyDamage.cs" />
      <Compile Include="Assets\CodeBase\Services\Tasks\ITask.cs" />
@@ -250,6 +251,7 @@
      <Compile Include="Assets\CodeBase\Infrastructure\StateMachine\IGameStateMachine.cs" />
      <Compile Include="Assets\CodeBase\Logic\World\FollowToObject.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Wheel\WheelWrapper.cs" />
+     <Compile Include="Assets\CodeBase\Logic\Car\Animation\CarHitAnimation.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\CarProperty.cs" />
      <Compile Include="Assets\CodeBase\Exeption\WindowExeption.cs" />
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerHook.cs" />
@@ -275,8 +277,6 @@
      <Compile Include="Assets\CodeBase\Logic\Menu\MenuState.cs" />
      <Compile Include="Assets\CodeBase\Data\Static\Enemy\EnemyStaticData.cs" />
      <Compile Include="Assets\CodeBase\Extension\TransformExtension.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Car\Animation\CarHitAnimation.cs" />
-     <Compile Include="Assets\CodeBase\Logic\Player\Invulnerability.cs" />
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.shader" />

@@ -11,7 +11,7 @@ using Zenject;
 namespace CodeBase.Logic.Player
 {
     [RequireComponent(typeof(PlayerPrefab), typeof(Car.Car))]
-    public class PlayerMovement : MonoBehaviour, IReplayHandler, IPlayerDefeatHandler, IPlayerVictoryHandler
+    public class PlayerMovement : MonoBehaviour, IReplayHandler
     {
         [SerializeField]
         private Car.Car _car;
@@ -51,11 +51,5 @@ namespace CodeBase.Logic.Player
             
             _car.DisableDrift();
         }
-
-        public void OnDefeat() => 
-            _car.Property.Axis = Vector2.zero;
-
-        public void OnVictory() => 
-            _car.Property.Axis = Vector2.zero;
     }
 }

@@ -8,7 +8,7 @@ using Zenject;
 
 namespace CodeBase.Services.Factories.Enemy
 {
-    public class EnemyMovement : MonoBehaviour, IPlayerDefeatHandler, IPlayerVictoryHandler
+    public class EnemyMovement : MonoBehaviour
     {
         [SerializeField] private Car _car;
         [SerializeField] private EnemyCrash _crash;
@@ -55,11 +55,5 @@ namespace CodeBase.Services.Factories.Enemy
                 _navMeshAgentWrapper.Enabled = true;
             }
         }
-
-        public void OnDefeat() => 
-            _car.Property.Axis = Vector2.zero;
-
-        public void OnVictory() => 
-            _car.Property.Axis = Vector2.zero;
     }
 }
