@@ -51,7 +51,6 @@
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Factories\TestBindFactory\TestBindFactory.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Bindings\TestFromComponentInHierarchy\TestFromComponentInHierarchy.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Misc\TestMonoKernelDecoration\KernelDecoratorInstaller.cs" />
-     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Bindings\TestFromComponentInHierarchyGameObjectContext\TestFromComponentInHierarchyGameObjectContext.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Misc\TestMonoKernelDecoration\TestMonoKernelDecoration.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Util\FixtureUtil.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\IntegrationTests\Tests\Factories\TestBindFactoryOne\TestBindFactoryOne.cs" />

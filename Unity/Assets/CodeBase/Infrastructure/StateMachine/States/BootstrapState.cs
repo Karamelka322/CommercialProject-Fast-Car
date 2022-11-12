@@ -1,3 +1,4 @@
+using CodeBase.Services.AppoDealService;
 using CodeBase.Services.AssetProvider;
 using CodeBase.Services.Data.ReadWrite;
 using CodeBase.Services.Defeat;
@@ -43,15 +44,19 @@ namespace CodeBase.Infrastructure.States
             _diContainer = diContainer;
 
             RegisterServices();
+            InitializeServices();
         }
 
         public void Enter() => 
             EnterLoadPersistentDataState();
 
-        public void Exit()
+        public void Exit() { }
+
+        private void InitializeServices()
         {
             _diContainer.Resolve<IAssetManagementService>().InitializeAsync();
             _diContainer.Resolve<ITaskService>().Initialize();
+            _diContainer.Resolve<IAppoDealService>().Initialize();
         }
 
         private void RegisterServices()
@@ -82,6 +87,8 @@ namespace CodeBase.Infrastructure.States
             _diContainer.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
             _diContainer.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
             _diContainer.Bind<ISpawnerService>().To<SpawnerService>().AsSingle();
+
+            _diContainer.Bind<IAppoDealService>().To<AppoDealService>().AsSingle();
         }
 
         private void EnterLoadPersistentDataState() => 

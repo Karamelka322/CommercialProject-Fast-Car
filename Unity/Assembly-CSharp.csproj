@@ -85,6 +85,7 @@
      <Compile Include="Assets\CodeBase\Logic\Player\PlayerPrefab.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Replay\IReplayService.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\GeneratorSessionData.cs" />
+     <Compile Include="Assets\CodeBase\Services\AppoDealService\AppoDealService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\Enemy\EnemyFactory.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Settings\SettingsPersistentData.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Logic\LoadingCurtain.cs" />
@@ -261,6 +262,7 @@
      <Compile Include="Assets\CodeBase\Shaders\Post Processing\Exposure\ExposurePostEffect.cs" />
      <Compile Include="Assets\CodeBase\Services\Data\ReadWrite\IStreamingWriteData.cs" />
      <Compile Include="Assets\CodeBase\Services\Level\Defeat\IPlayerDefeatHandler.cs" />
+     <Compile Include="Assets\CodeBase\Services\AppoDealService\IAppoDealService.cs" />
      <Compile Include="Assets\CodeBase\Data\Perseistent\Player\Session\PlayerSessionData.cs" />
      <Compile Include="Assets\CodeBase\Logic\UI\Head-up Display\Input\Ability\AbilityButton.cs" />
      <Compile Include="Assets\CodeBase\Infrastructure\IHandler.cs" />
@@ -528,26 +530,11 @@
      <Reference Include="Sirenix.OdinValidator.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinValidator.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.OdinInspector.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Sirenix.OdinInspector.Attributes">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
      </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
-     </Reference>
      <Reference Include="Sirenix.Serialization.Config">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
-     </Reference>
-     <Reference Include="Sirenix.Utilities">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
-     </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
      <Reference Include="RainbowCore">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\RainbowAssets\!Core\Assemblies\RainbowCore.dll</HintPath>
@@ -555,14 +542,29 @@
      <Reference Include="Newtonsoft.Json">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
      </Reference>
-     <Reference Include="Sirenix.Serialization">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
-     </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="Sirenix.Utilities.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.OdinInspector.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Utilities">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Sirenix.Serialization">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.iOS.Extensions.Xcode">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -945,17 +947,71 @@
      <Reference Include="Unity.Recorder.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Recorder.Base">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.CacheServer">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.TopBarMenu">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.TopBarMenu.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Addressables">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.Monetization.Common">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.Monetization.Common.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.Monetization.Platforms">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.Monetization.Platforms.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.Utils">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.Utils.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Rider.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.Monetization.Api">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.Monetization.Api.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.SDKManager">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.SDKManager.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.AssetExtractors">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.AssetExtractors.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.PreProcess">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.PreProcess.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.ConsentManagement.Api">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.ConsentManagement.Api.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.ConsentManagement.Platforms">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.ConsentManagement.Platforms.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.PostProcess">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.PostProcess.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Recorder.Base">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
+     </Reference>
+     <Reference Include="marijnz.EditorCoroutines">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\marijnz.EditorCoroutines.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ProBuilder.AddOns.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
@@ -969,32 +1025,26 @@
      <Reference Include="Unity.2D.Sprite.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.ProBuilder">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.ResourceManager">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.ProBuilder.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Rider.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <Reference Include="AppodealStack.UnityEditor.SDKManager.Models">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.SDKManager.Models.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.PlasticSCM.Editor">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Services.Core">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.SettingsWindow">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.SettingsWindow.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Services.Core.Analytics">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
@@ -1008,20 +1058,29 @@
      <Reference Include="Unity.Services.Core.Environments">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
      </Reference>
+     <Reference Include="AppodealStack.ConsentManagement.Common">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.ConsentManagement.Common.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.UnityEditor.InternalResources">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.InternalResources.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ScriptableBuildPipeline">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Addressables.Editor">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+     <Reference Include="AppodealStack.ConsentManagement.Platforms.Dummy">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.ConsentManagement.Platforms.Dummy.dll</HintPath>
+     </Reference>
+     <Reference Include="AppodealStack.Monetization.Platforms.Dummy">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.Monetization.Platforms.Dummy.dll</HintPath>
      </Reference>
      <Reference Include="Unity.ScriptableBuildPipeline.Editor">
      <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Recorder">
-     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
+     <Reference Include="AppodealStack.UnityEditor.PluginRemover">
+     <HintPath>C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Library\ScriptAssemblies\AppodealStack.UnityEditor.PluginRemover.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1033,10 +1092,6 @@
       <Project>{f56c3b00-7e47-993a-79f1-e71592c14248}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{78101918-7986-558b-df39-47cccaefad3a}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{627a59fb-c834-e892-6689-d3c0d9099f05}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -1044,6 +1099,10 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{6938f8d8-4b11-3b71-edf7-ce3893ffc321}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{78101918-7986-558b-df39-47cccaefad3a}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

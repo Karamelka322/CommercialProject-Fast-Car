@@ -1354,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755772963328837580, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
       propertyPath: m_ClearFlags
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7755772963328837583, guid: 75c8091b24ac31445890bc662aaa7f1f, type: 3}
       propertyPath: m_RootOrder
