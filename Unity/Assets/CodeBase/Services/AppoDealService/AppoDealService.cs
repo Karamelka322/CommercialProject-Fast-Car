@@ -7,7 +7,7 @@ namespace CodeBase.Services.AppoDealService
     [UsedImplicitly]
     public class AppoDealService : IAppoDealService
     {
-        private const string AppKey = "ca-app-pub-1385302330013925~8217619149";
+        private const string AppKey = "afb7b4133d689404b6ac310779663a32e1ae5aff9af5e9db";
 
         private const int AdTypes = AppodealAdType.Interstitial | AppodealAdType.Banner | 
                                     AppodealAdType.RewardedVideo | AppodealAdType.Mrec;

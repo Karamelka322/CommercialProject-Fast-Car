@@ -282,6 +282,7 @@
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.shader" />
+     <None Include="Assets\AddressableAssetsData\link.xml" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\PostProcessing.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTextureShadow.shader" />
