@@ -41,6 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.IOSResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.VersionHandlerImpl.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.JarResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.PackageManagerResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll" />
+  </ItemGroup>
+  <ItemGroup>
      <Compile Include="Assets\CodeBase\Services\Data\Persistent\IPersistentDataService.cs" />
      <Compile Include="Assets\CodeBase\Services\Factories\UI\UIFactory.cs" />
      <Compile Include="Assets\CodeBase\Logic\Car\Stabilization.cs" />
@@ -282,7 +289,6 @@
      <None Include="Assets\CodeBase\Shaders\Transparent.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTexture.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Contrast\ContrastPostEffect.shader" />
-     <None Include="Assets\AddressableAssetsData\link.xml" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\Bloom\BloomPostEffect.shader" />
      <None Include="Assets\CodeBase\Shaders\Post Processing\PostProcessing.shader" />
      <None Include="Assets\CodeBase\Shaders\Unlit\UnlitTextureShadow.shader" />
@@ -291,6 +297,7 @@
      <None Include="Assets\CodeBase\Shaders\Decal.shader" />
      <None Include="Assets\CodeBase\Shaders\Emissive.shader" />
      <None Include="Assets\CodeBase\Shaders\Lit\LitTexture.shader" />
+     <None Include="Assets\google-services.json" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

@@ -41,6 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.IOSResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.VersionHandlerImpl.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.JarResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\1.2.174\Google.PackageManagerResolver.dll" />
+    <Analyzer Include="C:\Users\Efim Sokolov\Desktop\Basket\Unity\Projects\CommercialProject-Fast-Car\Unity\Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll" />
+  </ItemGroup>
+  <ItemGroup>
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ZenjectUnitTestFixture.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ZenjectIntegrationTestFixture.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\SceneTestFixtureSceneReference.cs" />

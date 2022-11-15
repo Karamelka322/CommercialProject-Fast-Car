@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "272724094709",
+    "project_id": "fast-car-156b1",
+    "storage_bucket": "fast-car-156b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272724094709:android:f0642cf3330cda1d61dfbc",
+        "android_client_info": {
+          "package_name": "com.LinesofLife.FastCar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272724094709-nv1lk5pnj97rngv7jeaiuis33hm7l3ph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.LinesofLife.FastCar",
+            "certificate_hash": "56526bd4b3036e20f22bcd9216064c0195fc8906"
+          }
+        },
+        {
+          "client_id": "272724094709-r4emt7l19dfdqei0j401890t3kps9a30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5yPtoBy6XMWcAwIzWkLFC39rrg6q6AY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272724094709-r4emt7l19dfdqei0j401890t3kps9a30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
